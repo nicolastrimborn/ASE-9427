@@ -12,8 +12,6 @@ public class setTimers extends fb.rt.FBInstance {
 public final EventOutput INITO = new EventOutput();
 /** Execution Confirmation */
 public final EventOutput CNF = new EventOutput();
-/** EVENT RELEASE */
-public final EventOutput RELEASE = new EventOutput();
 /** Initialization Request */
 public final EventServer INIT = (e) -> service_INIT();
 /** Normal Execution Request */
@@ -30,6 +28,8 @@ public final EventServer REQ = (e) -> service_REQ();
   public final BOOL YELLOW = (BOOL)Control.YELLOW;
 /** VAR GREEN:BOOL */
   public final BOOL GREEN = (BOOL)Control.GREEN;
+/** VAR RELEASE:BOOL */
+  public final BOOL RELEASE = (BOOL)Control.Release;
 /** The default constructor. */
 public setTimers(){
     super();
@@ -38,7 +38,6 @@ public setTimers(){
     TimerYellow.EO.connectTo(Control.T2);
     Control.INITO.connectTo(INITO);
     Control.CNF.connectTo(CNF);
-    Control.RELEASE.connectTo(RELEASE);
     TimerGreen.DT.initializeNoException("t#3s");
     TimerYellow.DT.initializeNoException("t#1s");
   }
@@ -82,7 +81,6 @@ protected synchronized void service_INIT(){
 }
 protected synchronized void service_REQ(){
    Control.T0.serviceEvent(this);
-   TimerGreen.START.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}

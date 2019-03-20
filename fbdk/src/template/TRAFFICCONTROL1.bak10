@@ -27,19 +27,19 @@
         <With Var="RED" />
         <With Var="YELLOW" />
         <With Var="GREEN" />
-      </Event>
-      <Event Name="RELEASE" >
+        <With Var="Release" />
       </Event>
     </EventOutputs>
     <OutputVars>
       <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
       <VarDeclaration Name="YELLOW" Type="BOOL" />
       <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="Release" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
     <ECC >
-      <ECState Name="START" Comment="Initial State" x="1488.8888" y="1127.7777" >
+      <ECState Name="START" Comment="Initial State" x="1738.8888" y="877.7778" >
       </ECState>
       <ECState Name="INIT" Comment="Initialization" x="505.55554" y="50.0" >
         <ECAction Algorithm="INIT" Output="INITO" />
@@ -52,36 +52,39 @@
       </ECState>
       <ECState Name="T2" x="2911.111" y="2011.1111" >
         <ECAction Algorithm="T2" Output="CNF" />
-        <ECAction Algorithm="T2" Output="RELEASE" />
       </ECState>
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="1488.8888" y="516.6666" />
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="800.0" y="800.0" />
-      <ECTransition Source="START" Destination="T0" Condition="T0" x="2933.3333" y="766.6666" />
-      <ECTransition Source="T0" Destination="START" Condition="1" x="2616.6665" y="600.0" />
-      <ECTransition Source="START" Destination="T1" Condition="T1" x="2805.5554" y="1305.5555" />
-      <ECTransition Source="T1" Destination="START" Condition="1" x="2738.8887" y="1566.6666" />
-      <ECTransition Source="START" Destination="T2" Condition="T2" x="1916.6666" y="1949.9999" />
-      <ECTransition Source="T2" Destination="START" Condition="1" x="2266.6665" y="1561.1111" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1322.2222" y="499.99997" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1050.0" y="550.0" />
+      <ECTransition Source="START" Destination="T0" Condition="T0" x="3183.3333" y="516.6666" />
+      <ECTransition Source="T0" Destination="START" Condition="1" x="2866.6665" y="350.0" />
+      <ECTransition Source="START" Destination="T1" Condition="T1" x="3055.5554" y="1055.5555" />
+      <ECTransition Source="T1" Destination="START" Condition="1" x="2988.8887" y="1316.6666" />
+      <ECTransition Source="START" Destination="T2" Condition="T2" x="2166.6665" y="1699.9999" />
+      <ECTransition Source="T2" Destination="START" Condition="1" x="2516.6665" y="1311.1111" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
 <ST><![CDATA[GREEN:=FALSE;
 YELLOW:=FALSE;
-RED:=FALSE;]]></ST>
+RED:=FALSE;
+Release:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="T0" >
 <ST><![CDATA[GREEN:=TRUE;
 YELLOW:=FALSE;
-RED:=FALSE;]]></ST>
+RED:=FALSE;
+Release:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="T1" >
 <ST><![CDATA[GREEN:=FALSE;
 YELLOW:=TRUE;
-RED:=FALSE;]]></ST>
+RED:=FALSE;
+Release:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="T2" >
 <ST><![CDATA[GREEN:=FALSE;
 YELLOW:=FALSE;
-RED:=TRUE;]]></ST>
+RED:=TRUE;
+Release:=TRUE;]]></ST>
   </Algorithm>
   </BasicFB>
 </FBType>

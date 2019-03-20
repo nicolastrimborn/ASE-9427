@@ -5,7 +5,7 @@ import fb.rt.*;
 import fb.rt.events.*;
 /** FUNCTION_BLOCK TRAFFICCONTROL1 (* Basic Function Block Type *)
   * @author JHC
-  * @version 20190320/JHC - Generated.
+  * @version 20190319/JHC - Generated.
   */
 public class TRAFFICCONTROL1 extends fb.rt.FBInstance {
 /** The index (0) of state START. */
@@ -22,8 +22,6 @@ public static final int INDEX_T2 = 4;
 public final EventOutput INITO = new EventOutput();
 /** Execution Confirmation */
 public final EventOutput CNF = new EventOutput();
-/** EVENT RELEASE */
-public final EventOutput RELEASE = new EventOutput();
 /** Initialization Request */
 public final EventServer INIT = (e) -> service_INIT();
 /** EVENT T0 */
@@ -38,6 +36,8 @@ public final EventServer T2 = (e) -> service_T2();
   public final BOOL YELLOW = new BOOL();
 /** VAR GREEN:BOOL */
   public final BOOL GREEN = new BOOL();
+/** VAR Release:BOOL */
+  public final BOOL Release = new BOOL();
 /** The default constructor. */
 public TRAFFICCONTROL1(){
     super();
@@ -92,28 +92,30 @@ void state_T2(){
    eccState = INDEX_T2;
    alg_T2();
    CNF.serviceEvent(this);
-   alg_T2();
-   RELEASE.serviceEvent(this);
    state_START();
 }
   /** ALGORITHM INIT IN ST*/
 public void alg_INIT(){
 GREEN.value=false;
 YELLOW.value=false;
-RED.value=false;}
+RED.value=false;
+Release.value=false;}
   /** ALGORITHM T0 IN ST*/
 public void alg_T0(){
 GREEN.value=true;
 YELLOW.value=false;
-RED.value=false;}
+RED.value=false;
+Release.value=false;}
   /** ALGORITHM T1 IN ST*/
 public void alg_T1(){
 GREEN.value=false;
 YELLOW.value=true;
-RED.value=false;}
+RED.value=false;
+Release.value=false;}
   /** ALGORITHM T2 IN ST*/
 public void alg_T2(){
 GREEN.value=false;
 YELLOW.value=false;
-RED.value=true;}
+RED.value=true;
+Release.value=true;}
 }

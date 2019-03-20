@@ -92,7 +92,6 @@ void state_T2(){
    eccState = INDEX_T2;
    alg_T2();
    CNF.serviceEvent(this);
-   alg_T2();
    RELEASE.serviceEvent(this);
    state_START();
 }

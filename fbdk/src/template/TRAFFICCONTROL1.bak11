@@ -52,7 +52,7 @@
       </ECState>
       <ECState Name="T2" x="2911.111" y="2011.1111" >
         <ECAction Algorithm="T2" Output="CNF" />
-        <ECAction Algorithm="T2" Output="RELEASE" />
+        <ECAction Output="RELEASE" />
       </ECState>
       <ECTransition Source="INIT" Destination="START" Condition="1" x="1488.8888" y="516.6666" />
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="800.0" y="800.0" />

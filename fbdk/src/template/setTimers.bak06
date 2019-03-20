@@ -19,13 +19,12 @@
       </Event>
       <Event Name="CNF" Comment="Execution Confirmation" >
       </Event>
-      <Event Name="RELEASE" >
-      </Event>
     </EventOutputs>
     <OutputVars>
       <VarDeclaration Name="RED" Type="BOOL" />
       <VarDeclaration Name="YELLOW" Type="BOOL" />
       <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
@@ -34,7 +33,7 @@
     <FB Name="TimerGreen" Type="E_DELAY" x="1366.6666" y="666.6666" >
       <Parameter Name="DT" Value="t#3s" />
     </FB>
-    <FB Name="TimerYellow" Type="E_DELAY" x="2300.0" y="938.88885" >
+    <FB Name="TimerYellow" Type="E_DELAY" x="2077.7776" y="866.6666" >
       <Parameter Name="DT" Value="t#1s" />
     </FB>
     <EventConnections>
@@ -45,13 +44,12 @@
       <Connection Source="Control.INITO" Destination="INITO" />
       <Connection Source="Control.CNF" Destination="CNF" />
       <Connection Source="REQ" Destination="Control.T0" />
-      <Connection Source="REQ" Destination="TimerGreen.START" />
-      <Connection Source="Control.RELEASE" Destination="RELEASE" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Control.RED" Destination="RED" />
       <Connection Source="Control.YELLOW" Destination="YELLOW" />
       <Connection Source="Control.GREEN" Destination="GREEN" />
+      <Connection Source="Control.Release" Destination="RELEASE" />
     </DataConnections>
   </FBNetwork>
 </FBType>

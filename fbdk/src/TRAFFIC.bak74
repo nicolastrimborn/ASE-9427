@@ -20,11 +20,6 @@
           <Connection Source="ForcedStates.INITO" Destination="ToView.INIT" dx1="55.555553" />
           <Connection Source="ForcedStates.IND" Destination="ToView.REQ" dx1="55.555553" />
         </EventConnections>
-        <DataConnections>
-          <Connection Source="ForcedStates.RD_1" Destination="ToView.SD_1" dx1="449.99997" />
-          <Connection Source="ForcedStates.RD_2" Destination="ToView.SD_2" dx1="344.44443" />
-          <Connection Source="ForcedStates.RD_3" Destination="ToView.SD_3" dx1="200.0" />
-        </DataConnections>
       </FBNetwork>
     </Resource>
     <Resource Name="View" Type="PANEL_RESOURCE" x="449.99997" y="116.666664" >
@@ -48,31 +43,38 @@
     </Resource>
     <Resource Name="Control" Type="PANEL_RESOURCE" x="494.44443" y="677.7778" >
       <FBNetwork >
-        <FB Name="ForcedStates" Type="PUBL_3" x="4027.7776" y="238.88889" >
+        <FB Name="ForcedStartState" Type="SUBL_1" x="716.6666" y="11.111111" >
         </FB>
-        <FB Name="ForceStartState" Type="SUBL_0" x="883.3333" y="61.111107" >
+        <FB Name="ForcedStates" Type="PUBL_3" x="4594.4443" y="72.22222" >
         </FB>
-        <FB Name="setTimers" Type="setTimers" x="2833.3333" y="316.66666" >
+        <FB Name="ReleaseControl1" Type="PUBL_1" x="5405.555" y="1011.1111" >
         </FB>
-        <FB Name="ReleaseControl1" Type="PUBL_0" x="5516.6665" y="1011.1111" >
+        <FB Name="start" Type="FB_OR" x="2188.889" y="422.2222" >
         </FB>
-        <FB Name="ReleaseControl2" Type="SUBL_0" x="1583.3333" y="844.4444" >
+        <FB Name="ReleaseControl2" Type="SUBL_1" x="1466.6666" y="1577.7777" >
+        </FB>
+        <FB Name="setTimers1" Type="setTimers" x="3038.8887" y="350.0" >
         </FB>
         <EventConnections>
-          <Connection Source="START.COLD" Destination="ForceStartState.INIT" dx1="55.555553" />
-          <Connection Source="setTimers.INITO" Destination="ForcedStates.INIT" dx1="55.555553" />
-          <Connection Source="ForceStartState.IND" Destination="setTimers.REQ" dx1="483.3333" />
-          <Connection Source="ForceStartState.INITO" Destination="setTimers.INIT" dx1="722.22217" />
-          <Connection Source="ForcedStates.INITO" Destination="ReleaseControl1.INIT" dx1="772.22217" />
-          <Connection Source="setTimers.RELEASE" Destination="ReleaseControl1.REQ" dx1="1872.2222" />
-          <Connection Source="setTimers.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
-          <Connection Source="ForceStartState.INITO" Destination="ReleaseControl2.INIT" dx1="266.66666" />
-          <Connection Source="ReleaseControl2.IND" Destination="setTimers.REQ" dx1="344.44443" />
+          <Connection Source="START.COLD" Destination="ForcedStartState.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStartState.IND" Destination="start.REQ" dx1="972.22217" />
+          <Connection Source="ForcedStartState.INITO" Destination="ReleaseControl2.INIT" dx1="194.44444" />
+          <Connection Source="ReleaseControl2.IND" Destination="start.REQ" dx1="55.555553" />
+          <Connection Source="start.CNF" Destination="setTimers1.REQ" dx1="55.555553" />
+          <Connection Source="ForcedStartState.INITO" Destination="setTimers1.INIT" dx1="55.555553" />
+          <Connection Source="setTimers1.INITO" Destination="ForcedStates.INIT" dx1="55.555553" />
+          <Connection Source="setTimers1.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
+          <Connection Source="ForcedStates.INITO" Destination="ReleaseControl1.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates.CNF" Destination="ReleaseControl1.REQ" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
-          <Connection Source="setTimers.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
-          <Connection Source="setTimers.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
-          <Connection Source="setTimers.GREEN" Destination="ForcedStates.SD_3" dx1="55.555553" />
+          <Connection Source="ForcedStartState.RD_1" Destination="start.IN1" dx1="344.44443" />
+          <Connection Source="ReleaseControl2.RD_1" Destination="start.IN2" dx1="261.1111" />
+          <Connection Source="start.OUT" Destination="setTimers1.Q1" dx1="55.555553" />
+          <Connection Source="setTimers1.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
+          <Connection Source="setTimers1.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
+          <Connection Source="setTimers1.GREEN" Destination="ForcedStates.SD_3" dx1="55.555553" />
+          <Connection Source="setTimers1.RELEASE" Destination="ReleaseControl1.SD_1" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -89,16 +91,23 @@
         <FB Name="ForceGreen" Type="IN_BOOL" x="2350.0" y="1933.3333" >
           <Parameter Name="LABEL" Value="&#34;GREEN&#34;" />
         </FB>
-        <FB Name="count" Type="E_CTU" x="5311.111" y="1594.4443" >
+        <FB Name="ForcedStartState" Type="PUBL_1" x="6899.9995" y="488.88885" >
+        </FB>
+        <FB Name="count" Type="E_CTU" x="4811.111" y="2188.889" >
           <Parameter Name="PV" Value="4" />
         </FB>
-        <FB Name="Start" Type="IN_BOOL" x="6127.7773" y="1866.6666" >
+        <FB Name="Start" Type="IN_BOOL" x="5505.555" y="2966.6665" >
           <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
         </FB>
         <FB Name="START_1" Type="IN_EVENT" x="5161.111" y="122.22221" >
           <Parameter Name="LABEL" Value="&#34;START&#34;" />
+          <Parameter Name="QI" Value="0" />
         </FB>
-        <FB Name="ForceStartState" Type="PUBL_0" x="6388.8887" y="122.22221" >
+        <FB Name="test" Type="OUT_ANY" x="6255.555" y="1316.6666" >
+          <Parameter Name="TYPE" Value="&#34;BOOL&#34;" />
+          <Parameter Name="W" Value="5" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="IVAL" Value="&#34;FALSE&#34;" />
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />
@@ -109,13 +118,17 @@
           <Connection Source="ForceYellow.IND" Destination="ForcedStates.REQ" dx1="1188.8888" />
           <Connection Source="ForceGreen.IND" Destination="ForcedStates.REQ" dx1="466.66666" />
           <Connection Source="ForcedStates.INITO" Destination="START_1.INIT" dx1="55.555553" />
-          <Connection Source="START_1.INITO" Destination="ForceStartState.INIT" dx1="350.0" />
-          <Connection Source="START_1.IND" Destination="ForceStartState.REQ" dx1="255.55554" />
+          <Connection Source="START_1.INITO" Destination="ForcedStartState.INIT" dx1="750.0" />
+          <Connection Source="START_1.IND" Destination="ForcedStartState.REQ" dx1="577.7778" />
+          <Connection Source="ForcedStartState.INITO" Destination="test.INIT" dx1="55.555553" dx2="55.555553" dy="911.1111" />
+          <Connection Source="START_1.IND" Destination="test.REQ" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
           <Connection Source="ForceRed.OUT" Destination="ForcedStates.SD_1" dx1="55.555553" />
           <Connection Source="ForceYellow.OUT" Destination="ForcedStates.SD_2" dx1="1400.0" />
           <Connection Source="ForceGreen.OUT" Destination="ForcedStates.SD_3" dx1="1644.4443" />
+          <Connection Source="START_1.QO" Destination="ForcedStartState.SD_1" dx1="138.88889" />
+          <Connection Source="START_1.QO" Destination="test.IN" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -147,25 +160,27 @@
       <FBNetwork >
         <FB Name="ForcedStates2" Type="PUBL_3" x="3088.8887" y="122.22221" >
         </FB>
+        <FB Name="ReleaseControl1" Type="SUBL_1" x="811.1111" y="77.77777" >
+        </FB>
+        <FB Name="ReleaseControl2" Type="PUBL_1" x="3816.6665" y="949.99994" >
+        </FB>
         <FB Name="setTimers2" Type="setTimers" x="1855.5555" y="72.22222" >
         </FB>
-        <FB Name="ReleaseControl2" Type="PUBL_0" x="4272.222" y="600.0" >
-        </FB>
-        <FB Name="ReleaseControl1" Type="SUBL_0" x="866.6666" y="66.666664" >
-        </FB>
         <EventConnections>
-          <Connection Source="setTimers2.INITO" Destination="ForcedStates2.INIT" dx1="55.555553" />
-          <Connection Source="setTimers2.CNF" Destination="ForcedStates2.REQ" dx1="55.555553" />
-          <Connection Source="ForcedStates2.INITO" Destination="ReleaseControl2.INIT" dx1="672.22217" />
-          <Connection Source="setTimers2.RELEASE" Destination="ReleaseControl2.REQ" dx1="1749.9999" />
           <Connection Source="START.COLD" Destination="ReleaseControl1.INIT" dx1="55.555553" />
           <Connection Source="ReleaseControl1.INITO" Destination="setTimers2.INIT" dx1="55.555553" />
           <Connection Source="ReleaseControl1.IND" Destination="setTimers2.REQ" dx1="55.555553" />
+          <Connection Source="setTimers2.INITO" Destination="ForcedStates2.INIT" dx1="55.555553" />
+          <Connection Source="setTimers2.CNF" Destination="ForcedStates2.REQ" dx1="55.555553" />
+          <Connection Source="ForcedStates2.INITO" Destination="ReleaseControl2.INIT" dx1="288.8889" />
+          <Connection Source="ForcedStates2.CNF" Destination="ReleaseControl2.REQ" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
+          <Connection Source="ReleaseControl1.RD_1" Destination="setTimers2.Q1" dx1="55.555553" />
           <Connection Source="setTimers2.RED" Destination="ForcedStates2.SD_1" dx1="344.44443" />
           <Connection Source="setTimers2.YELLOW" Destination="ForcedStates2.SD_2" dx1="227.77777" />
           <Connection Source="setTimers2.GREEN" Destination="ForcedStates2.SD_3" dx1="183.33333" />
+          <Connection Source="setTimers2.RELEASE" Destination="ReleaseControl2.SD_1" dx1="127.77777" />
         </DataConnections>
       </FBNetwork>
     </Resource>

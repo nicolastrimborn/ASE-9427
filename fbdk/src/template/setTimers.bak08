@@ -19,13 +19,12 @@
       </Event>
       <Event Name="CNF" Comment="Execution Confirmation" >
       </Event>
-      <Event Name="RELEASE" >
-      </Event>
     </EventOutputs>
     <OutputVars>
       <VarDeclaration Name="RED" Type="BOOL" />
       <VarDeclaration Name="YELLOW" Type="BOOL" />
       <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
@@ -46,12 +45,12 @@
       <Connection Source="Control.CNF" Destination="CNF" />
       <Connection Source="REQ" Destination="Control.T0" />
       <Connection Source="REQ" Destination="TimerGreen.START" />
-      <Connection Source="Control.RELEASE" Destination="RELEASE" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Control.RED" Destination="RED" />
       <Connection Source="Control.YELLOW" Destination="YELLOW" />
       <Connection Source="Control.GREEN" Destination="GREEN" />
+      <Connection Source="Control.Release" Destination="RELEASE" />
     </DataConnections>
   </FBNetwork>
 </FBType>
