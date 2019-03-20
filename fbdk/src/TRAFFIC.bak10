@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TRAFFIC" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.4" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="Device1" Type="FRAME_DEVICE" x="733.3333" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[100,100,200,110]" />
+    <Resource Name="Model" Type="PANEL_RESOURCE" x="511.11108" y="1261.1111" >
+    </Resource>
+    <Resource Name="View" Type="PANEL_RESOURCE" x="449.99997" y="116.666664" >
+      <FBNetwork >
+        <FB Name="TrafficLight" Type="TL_View" x="2327.7776" y="38.888885" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="ForcedStates" Type="SUBL_3" x="883.3333" y="105.55555" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForcedStates.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForcedStates.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
+          <Connection Source="ForcedStates.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
+          <Connection Source="ForcedStates.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Control" Type="PANEL_RESOURCE" x="494.44443" y="677.7778" >
+      <FBNetwork >
+        <FB Name="ForcedStartState" Type="SUBL_1" x="644.4444" y="11.111111" >
+        </FB>
+        <FB Name="TimerYellow1" Type="E_CYCLE" x="1844.4443" y="1883.3333" >
+          <Parameter Name="DT" Value="t#1s" />
+        </FB>
+        <FB Name="spliter" Type="E_SPLIT" x="1427.7777" y="1033.3333" >
+        </FB>
+        <FB Name="ForcedStates" Type="PUBL_3" x="5188.8887" y="44.444443" >
+        </FB>
+        <FB Name="testin" Type="E_DELAY" x="972.22217" y="1372.2222" >
+          <Parameter Name="DT" Value="t#3s" />
+        </FB>
+        <FB Name="Toggle1" Type="E_TOGGLE" x="1961.1111" y="811.1111" >
+        </FB>
+        <FB Name="TrafficControl" Type="TRAFFICCONTROL" x="3511.111" y="105.55555" >
+        </FB>
+        <FB Name="Toggle2" Type="E_TOGGLE" x="2527.7776" y="1433.3333" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForcedStartState.INIT" dx1="55.555553" />
+          <Connection Source="spliter.EO2" Destination="TimerYellow1.START" dx1="55.555553" />
+          <Connection Source="ForcedStartState.IND" Destination="testin.START" dx1="27.777777" />
+          <Connection Source="testin.EO" Destination="spliter.EI" dx1="55.555553" />
+          <Connection Source="ForcedStartState.INITO" Destination="TrafficControl.INIT" dx1="55.555553" />
+          <Connection Source="TrafficControl.INITO" Destination="ForcedStates.INIT" dx1="55.555553" />
+          <Connection Source="TrafficControl.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
+          <Connection Source="ForcedStartState.IND" Destination="TrafficControl.REQ" dx1="55.555553" />
+          <Connection Source="spliter.EO1" Destination="Toggle1.REQ" dx1="55.555553" />
+          <Connection Source="TimerYellow1.EO" Destination="Toggle2.REQ" dx1="55.555553" />
+          <Connection Source="Toggle1.CNF" Destination="TrafficControl.REQ" dx1="55.555553" />
+          <Connection Source="Toggle2.CNF" Destination="TrafficControl.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Toggle1.OUT" Destination="TrafficControl.T1" dx1="55.555553" />
+          <Connection Source="Toggle2.OUT" Destination="TrafficControl.T2" dx1="55.555553" />
+          <Connection Source="TrafficControl.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
+          <Connection Source="TrafficControl.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
+          <Connection Source="TrafficControl.GREEN" Destination="ForcedStates.SD_3" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="477.77777" y="1794.4443" >
+      <FBNetwork >
+        <FB Name="ForceRed" Type="IN_BOOL" x="750.0" y="0.0" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="ForcedStates" Type="PUBL_3" x="4433.333" y="127.77777" >
+        </FB>
+        <FB Name="ForceYellow" Type="IN_BOOL" x="1516.6666" y="1027.7777" >
+          <Parameter Name="LABEL" Value="&#34;YELLOW&#34;" />
+        </FB>
+        <FB Name="ForceGreen" Type="IN_BOOL" x="2350.0" y="1933.3333" >
+          <Parameter Name="LABEL" Value="&#34;GREEN&#34;" />
+        </FB>
+        <FB Name="ForceStart" Type="IN_BOOL" x="5005.555" y="550.0" >
+          <Parameter Name="LABEL" Value="&#34;START&#34;" />
+        </FB>
+        <FB Name="ForcedStartState" Type="PUBL_1" x="5661.111" y="622.22217" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />
+          <Connection Source="ForceRed.INITO" Destination="ForceYellow.INIT" dx1="283.3333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="ForceYellow.INITO" Destination="ForceGreen.INIT" dx1="283.3333" dx2="55.555553" dy="1105.5555" />
+          <Connection Source="ForceGreen.INITO" Destination="ForcedStates.INIT" dx1="1194.4445" />
+          <Connection Source="ForceRed.IND" Destination="ForcedStates.REQ" dx1="1277.7777" />
+          <Connection Source="ForceYellow.IND" Destination="ForcedStates.REQ" dx1="1188.8888" />
+          <Connection Source="ForceGreen.IND" Destination="ForcedStates.REQ" dx1="466.66666" />
+          <Connection Source="ForcedStates.INITO" Destination="ForceStart.INIT" dx1="55.555553" />
+          <Connection Source="ForceStart.INITO" Destination="ForcedStartState.INIT" dx1="55.555553" dx2="55.555553" dy="1488.8888" />
+          <Connection Source="ForceStart.IND" Destination="ForcedStartState.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForceRed.OUT" Destination="ForcedStates.SD_1" dx1="55.555553" />
+          <Connection Source="ForceYellow.OUT" Destination="ForcedStates.SD_2" dx1="1400.0" />
+          <Connection Source="ForceGreen.OUT" Destination="ForcedStates.SD_3" dx1="1644.4443" />
+          <Connection Source="ForceStart.OUT" Destination="ForcedStartState.SD_1" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Device2" Type="FRAME_DEVICE" x="1849.9999" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[300,100,200,110]" />
+    <Resource Name="Model" Type="PANEL_RESOURCE" x="711.1111" y="955.55554" >
+    </Resource>
+    <Resource Name="Control" Type="PANEL_RESOURCE" x="727.7778" y="1550.0" >
+    </Resource>
+    <Resource Name="View" Type="PANEL_RESOURCE" x="783.3333" y="333.3333" >
+    </Resource>
+  </Device>
+</System>

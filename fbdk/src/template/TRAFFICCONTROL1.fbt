@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TRAFFICCONTROL1" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="T0" >
+      </Event>
+      <Event Name="T1" >
+      </Event>
+      <Event Name="T2" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="RED" />
+        <With Var="YELLOW" />
+        <With Var="GREEN" />
+        <With Var="Release" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="Release" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="1738.8888" y="877.7778" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="505.55554" y="50.0" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="T0" x="3372.2222" y="194.44444" >
+        <ECAction Algorithm="T0" Output="CNF" />
+      </ECState>
+      <ECState Name="T1" x="3244.4443" y="1444.4443" >
+        <ECAction Algorithm="T1" Output="CNF" />
+      </ECState>
+      <ECState Name="T2" x="2911.111" y="2011.1111" >
+        <ECAction Algorithm="T2" Output="CNF" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1322.2222" y="499.99997" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1050.0" y="550.0" />
+      <ECTransition Source="START" Destination="T0" Condition="T0" x="3183.3333" y="516.6666" />
+      <ECTransition Source="T0" Destination="START" Condition="1" x="2866.6665" y="350.0" />
+      <ECTransition Source="START" Destination="T1" Condition="T1" x="3055.5554" y="1055.5555" />
+      <ECTransition Source="T1" Destination="START" Condition="1" x="2988.8887" y="1316.6666" />
+      <ECTransition Source="START" Destination="T2" Condition="T2" x="2166.6665" y="1699.9999" />
+      <ECTransition Source="T2" Destination="START" Condition="1" x="2516.6665" y="1311.1111" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[GREEN:=FALSE;
+YELLOW:=FALSE;
+RED:=FALSE;
+Release:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="T0" >
+<ST><![CDATA[GREEN:=TRUE;
+YELLOW:=FALSE;
+RED:=FALSE;
+Release:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="T1" >
+<ST><![CDATA[GREEN:=FALSE;
+YELLOW:=TRUE;
+RED:=FALSE;
+Release:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="T2" >
+<ST><![CDATA[GREEN:=FALSE;
+YELLOW:=FALSE;
+RED:=TRUE;
+Release:=TRUE;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

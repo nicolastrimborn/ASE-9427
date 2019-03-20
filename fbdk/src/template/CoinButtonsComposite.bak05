@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="CoinButtonsComposite" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="Coin1Evt" >
+      </Event>
+      <Event Name="Coin5Evt" >
+      </Event>
+    </EventOutputs>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Coin5Event" Type="IN_EVENT" x="1538.8888" y="327.77777" >
+      <Parameter Name="LABEL" Value="&#34;5 euro&#34;" />
+    </FB>
+    <FB Name="Coin1Event" Type="IN_EVENT" x="272.2222" y="300.0" >
+      <Parameter Name="LABEL" Value="&#34;1 euro&#34;" />
+    </FB>
+    <EventConnections>
+      <Connection Source="Coin5Event.IND" Destination="Coin5Evt" />
+      <Connection Source="Coin1Event.IND" Destination="Coin1Evt" />
+      <Connection Source="INIT" Destination="Coin1Event.INIT" />
+      <Connection Source="Coin5Event.INITO" Destination="INITO" />
+      <Connection Source="Coin1Event.INITO" Destination="Coin5Event.INIT" dx1="55.555553" />
+    </EventConnections>
+  </FBNetwork>
+</FBType>

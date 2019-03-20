@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ControlDispenserIncomplete" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.test;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="price" />
+      </Event>
+      <Event Name="addCoin1" Comment="Normal Execution Request" >
+        <With Var="price" />
+      </Event>
+      <Event Name="addCoin5" >
+      </Event>
+      <Event Name="productSelected" >
+        <With Var="price" />
+        <With Var="productID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="balance" />
+        <With Var="dispense" />
+      </Event>
+      <Event Name="DISPENSE" >
+        <With Var="productIDO" />
+        <With Var="dispense" />
+        <With Var="dispensePending" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="price" Type="UINT" Comment="Input event qualifier" />
+      <VarDeclaration Name="productID" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="balance" Type="UINT" />
+      <VarDeclaration Name="dispense" Type="BOOL" />
+      <VarDeclaration Name="dispensePending" Type="BOOL" />
+      <VarDeclaration Name="productIDO" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="505.55554" y="844.4444" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="788.88885" y="138.88889" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="prodSelSt" x="483.3333" y="1827.7777" >
+        <ECAction Algorithm="prodSelected" Output="CNF" />
+      </ECState>
+      <ECState Name="addCoin1St" x="2577.7776" y="166.66666" >
+        <ECAction Algorithm="ReduceBalCoin1" Output="CNF" />
+      </ECState>
+      <ECState Name="addCoin5St" x="3100.0" y="1377.7777" >
+        <ECAction Algorithm="ReduceBalCoin5" Output="CNF" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="372.2222" y="555.55554" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="705.55554" y="638.88885" />
+      <ECTransition Source="START" Destination="prodSelSt" Condition="productSelected" x="361.11108" y="1649.9999" />
+      <ECTransition Source="prodSelSt" Destination="START" Condition="1" x="816.6666" y="1838.8888" />
+      <ECTransition Source="START" Destination="addCoin1St" Condition="addCoin1 [dispensePending=true]" x="2316.6665" y="1066.6666" />
+      <ECTransition Source="START" Destination="addCoin5St" Condition="addCoin5 [dispensePending=true]" x="2211.111" y="2633.3333" />
+      <ECTransition Source="addCoin5St" Destination="START" Condition="1" x="2150.0" y="2027.7777" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[balance:=0;
+dispensePending:=false;]]></ST>
+  </Algorithm>
+  <Algorithm Name="ReduceBalCoin1" >
+<ST><![CDATA[balance:=balance-1;
+
+IF (balance<=0) THEN
+dispense:=true;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="ReduceBalCoin5" >
+<ST><![CDATA[balance:=balance-5;
+IF (balance<=0) THEN
+dispense:=true;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="prodSelected" >
+<ST><![CDATA[balance:=price;
+dispensePending:=true;
+productIDO:=productID;]]></ST>
+  </Algorithm>
+  <Algorithm Name="dispenseAlg" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>
