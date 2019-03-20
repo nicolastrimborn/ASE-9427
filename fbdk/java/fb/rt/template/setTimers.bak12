@@ -113,7 +113,6 @@ protected synchronized void service_REQ(){
    Control.T0.serviceEvent(this);
    TimerGreen.START.serviceEvent(this);
    TimeGreen.START.serviceEvent(this);
-   CountDownTime.LD.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}

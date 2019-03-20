@@ -58,8 +58,6 @@
         </FB>
         <FB Name="ReleaseControl2" Type="SUBL_0" x="1583.3333" y="844.4444" >
         </FB>
-        <FB Name="ToCross1" Type="SUBL_0" x="2222.2222" y="1783.3333" >
-        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceStartState.INIT" dx1="55.555553" />
           <Connection Source="setTimers.INITO" Destination="ForcedStates.INIT" dx1="55.555553" />
@@ -70,7 +68,6 @@
           <Connection Source="setTimers.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
           <Connection Source="ForceStartState.INITO" Destination="ReleaseControl2.INIT" dx1="266.66666" />
           <Connection Source="ReleaseControl2.IND" Destination="setTimers.REQ" dx1="344.44443" />
-          <Connection Source="ReleaseControl2.INITO" Destination="ToCross1.INIT" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
           <Connection Source="setTimers.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
@@ -103,7 +100,6 @@
         <FB Name="ToCross1" Type="PUBL_0" x="6444.4443" y="1300.0" >
         </FB>
         <FB Name="count1" Type="E_CTUEVENT" x="5600.0" y="1511.1111" >
-          <Parameter Name="PV" Value="0" />
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />

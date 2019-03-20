@@ -54,8 +54,7 @@ public setTimers(){
     TimeGreen.DT.initializeNoException("t#1s");
     TimeLeft.TYPE.initializeNoException("UINT");
     TimeLeft.LABEL.initializeNoException("TIME LEFT");
-    TimeLeft.W.initializeNoException("1");
-    TimeLeft.IVAL.initializeNoException("3");
+    TimeLeft.W.initializeNoException("5");
     CountDownTime.PV.initializeNoException("3");
   }
 	/**
@@ -113,7 +112,6 @@ protected synchronized void service_REQ(){
    Control.T0.serviceEvent(this);
    TimerGreen.START.serviceEvent(this);
    TimeGreen.START.serviceEvent(this);
-   CountDownTime.LD.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}

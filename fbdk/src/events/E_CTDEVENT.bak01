@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_CTDEVENT" Comment="Event-Driven Up Counter" >
+  <Identification Standard="61499-1-A.18" Classification="Event-driven blocks" Function="Up-counter" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.5" Author="JHC" Date="2018-08-20" Remarks="Added ECC documentation." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.4" Author="JHC" Date="2018-08-11" Remarks="Added CV comment." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-11-16" Remarks="Updated for 61499-1 Ed2." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-09-07" Remarks="Changed package to fb.rt.events." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2001-04-27" Remarks="XML version" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="1999-01-22" Remarks="SRC version" />
+<CompilerInfo header="package fb.rt.events;" >
+  <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.7.0" />
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CU" Comment="Count Up" >
+        <With Var="PV" />
+      </Event>
+      <Event Name="R" Comment="Reset" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CUO" Comment="Count Up Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+      <Event Name="RO" Comment="Reset Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PV" Type="UINT" Comment="LImit Value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" Comment="CV >= PV" />
+      <VarDeclaration Name="CV" Type="UINT" Comment="Current Value" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="150.0" y="94.44444" >
+      </ECState>
+      <ECState Name="CU" Comment="Count Up" x="2422.2222" y="1244.4443" >
+        <ECAction Algorithm="CU" Output="CUO" />
+      </ECState>
+      <ECState Name="R" Comment="Service R (Reset) Event" x="144.44444" y="605.55554" >
+        <ECAction Algorithm="R" Output="RO" />
+      </ECState>
+      <ECTransition Source="START" Destination="CU" Condition="CU [CV>=PV]" x="2422.2222" y="899.99994" />
+      <ECTransition Source="CU" Destination="START" Condition="1" x="1972.2222" y="1244.4443" />
+    </ECC>
+  <Algorithm Name="CU" Comment="Count Up" >
+<ST><![CDATA[CV := CV + 1;
+Q := (CV >= PV);]]></ST>
+  </Algorithm>
+  <Algorithm Name="R" Comment="Reset" >
+<ST><![CDATA[CV := 0;
+Q := FALSE;
+]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

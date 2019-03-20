@@ -37,16 +37,16 @@
     <FB Name="TimerYellow" Type="E_DELAY" x="3288.8887" y="1100.0" >
       <Parameter Name="DT" Value="t#1s" />
     </FB>
-    <FB Name="TimeGreen" Type="E_CYCLE" x="438.8889" y="1277.7777" >
+    <FB Name="TimeGreen" Type="E_CYCLE" x="966.6666" y="1772.2222" >
       <Parameter Name="DT" Value="t#1s" />
     </FB>
-    <FB Name="TimeLeft" Type="OUT_ANY_LBL" x="3699.9998" y="2061.111" >
+    <FB Name="TimeLeft" Type="OUT_ANY_LBL" x="2883.3333" y="1883.3333" >
       <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
       <Parameter Name="LABEL" Value="&#34;TIME LEFT&#34;" />
       <Parameter Name="W" Value="1" />
       <Parameter Name="IVAL" Value="3" />
     </FB>
-    <FB Name="CountDownTime" Type="E_CTD" x="1455.5555" y="1511.1111" >
+    <FB Name="CountDownTime" Type="E_CTD" x="1911.1111" y="1855.5555" >
       <Parameter Name="PV" Value="3" />
     </FB>
     <EventConnections>
@@ -62,14 +62,14 @@
       <Connection Source="REQ" Destination="TimeGreen.START" />
       <Connection Source="INIT" Destination="TimeLeft.INIT" />
       <Connection Source="TimeGreen.EO" Destination="CountDownTime.CD" dx1="55.555553" />
-      <Connection Source="CountDownTime.CDO" Destination="TimeLeft.REQ" dx1="1350.0" />
+      <Connection Source="CountDownTime.CDO" Destination="TimeLeft.REQ" dx1="55.555553" />
       <Connection Source="REQ" Destination="CountDownTime.LD" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Control.RED" Destination="RED" />
       <Connection Source="Control.YELLOW" Destination="YELLOW" />
       <Connection Source="Control.GREEN" Destination="GREEN" />
-      <Connection Source="CountDownTime.CV" Destination="TimeLeft.IN" dx1="100.0" />
+      <Connection Source="CountDownTime.CV" Destination="TimeLeft.IN" dx1="55.555553" />
     </DataConnections>
   </FBNetwork>
 </FBType>
