@@ -54,7 +54,7 @@
         </FB>
         <FB Name="ReleaseControl1" Type="PUBL_1" x="5405.555" y="1011.1111" >
         </FB>
-        <FB Name="start" Type="FB_OR" x="2016.6666" y="472.2222" >
+        <FB Name="start" Type="FB_OR" x="2072.2222" y="855.55554" >
         </FB>
         <FB Name="ReleaseControl2" Type="SUBL_1" x="1172.2222" y="1511.1111" >
         </FB>
