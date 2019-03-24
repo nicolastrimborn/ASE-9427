@@ -41,14 +41,19 @@
     <ECC >
       <ECState Name="START" Comment="Initial State" x="150.0" y="94.44444" >
       </ECState>
-      <ECState Name="CU" Comment="Count Up" x="2422.2222" y="1244.4443" >
-        <ECAction Algorithm="CU" Output="CUO" />
+      <ECState Name="CountReached" Comment="Count Up" x="3050.0" y="650.0" >
+        <ECAction Algorithm="R" Output="CUO" />
       </ECState>
       <ECState Name="R" Comment="Service R (Reset) Event" x="144.44444" y="605.55554" >
         <ECAction Algorithm="R" Output="RO" />
       </ECState>
-      <ECTransition Source="START" Destination="CU" Condition="CU [CV>=PV]" x="2422.2222" y="899.99994" />
-      <ECTransition Source="CU" Destination="START" Condition="1" x="1972.2222" y="1244.4443" />
+      <ECState Name="Count" x="2600.0" y="1066.6666" >
+        <ECAction Algorithm="CU" />
+      </ECState>
+      <ECTransition Source="START" Destination="CountReached" Condition="CU [CV>=PV]" x="2738.8887" y="288.8889" />
+      <ECTransition Source="CountReached" Destination="START" Condition="1" x="2600.0" y="650.0" />
+      <ECTransition Source="START" Destination="Count" Condition="CU" x="1027.7777" y="1066.6666" />
+      <ECTransition Source="Count" Destination="START" Condition="1" x="1377.7777" y="583.3333" />
     </ECC>
   <Algorithm Name="CU" Comment="Count Up" >
 <ST><![CDATA[CV := CV + 1;

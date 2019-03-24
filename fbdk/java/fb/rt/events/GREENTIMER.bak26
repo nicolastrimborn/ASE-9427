@@ -1,0 +1,111 @@
+/* Copyright (c)2019 Holobloc Inc. All rights reserved. */
+package fb.rt.events;
+import fb.datatype.*;
+import fb.rt.*;
+/** FUNCTION_BLOCK GREENTIMER (* Define minimum green times *)
+  * @author JHC
+  * @version 20190324/JHC - Generated.
+  */
+public class GREENTIMER extends fb.rt.FBInstance {
+/** The index (0) of state START. */
+public static final int INDEX_START = 0;
+/** The index (1) of state CD. */
+public static final int INDEX_CD = 1;
+/** The index (2) of state CountReached. */
+public static final int INDEX_CountReached = 2;
+/** The index (3) of state YellowSet. */
+public static final int INDEX_YellowSet = 3;
+/** The index (4) of state CheckMin. */
+public static final int INDEX_CheckMin = 4;
+/** Count Up Output Event */
+public final EventOutput START_Y = new EventOutput();
+/** Reset Output Event */
+public final EventOutput RO = new EventOutput();
+/** Count Down */
+public final EventServer CD = (e) -> service_CD();
+/** Reset */
+public final EventServer LD = (e) -> {
+  alg_LD();
+  RO.serviceEvent(this);
+  }
+;
+/** EVENT PEDCROSS */
+public final EventServer PEDCROSS = (e) -> {
+  alg_PEDCROSS();
+  }
+;
+/** LImit Value */
+  public UINT XTIME = new UINT();
+/** VAR MING:UINT */
+  public UINT MING = new UINT();
+/** CV >= PV */
+  public final BOOL MIN_RCHD = new BOOL();
+/** Current Value */
+  public final UINT CV = new UINT();
+/** VAR YELLOWSET:BOOL */
+  public BOOL YELLOWSET = new BOOL();
+/** VAR PEDWANTSTOCROSS:BOOL */
+  public BOOL PEDWANTSTOCROSS = new BOOL();
+/** The default constructor. */
+public GREENTIMER(){
+    super();
+  }
+protected synchronized void service_CD(){
+  if((eccState == INDEX_START) && (CV.value==0)){
+    state_CountReached();
+  }
+  else if((eccState == INDEX_START) && (CV.value > 0)){
+    state_CD();
+  }
+  else if((eccState == INDEX_START) && (PEDWANTSTOCROSS.value==true)){
+    state_CheckMin();
+  }
+}
+/** The actions to take upon entering state START. */
+void state_START(){
+   eccState = INDEX_START;
+}
+/** The actions to take upon entering state CD. */
+void state_CD(){
+   eccState = INDEX_CD;
+   alg_CD();
+   state_START();
+}
+/** The actions to take upon entering state CountReached. */
+void state_CountReached(){
+   eccState = INDEX_CountReached;
+   if(YELLOWSET.value==false)
+     state_YellowSet();
+   state_START();
+}
+/** The actions to take upon entering state YellowSet. */
+void state_YellowSet(){
+   eccState = INDEX_YellowSet;
+   alg_FLAGSET();
+   START_Y.serviceEvent(this);
+   state_START();
+}
+/** The actions to take upon entering state CheckMin. */
+void state_CheckMin(){
+   eccState = INDEX_CheckMin;
+   if(MING.value<CV.value)
+     state_CountReached();
+   state_START();
+}
+  /** ALGORITHM CD IN ST*/
+public void alg_CD(){
+CV.value = CV.value - 1;}
+  /** ALGORITHM LD IN ST*/
+public void alg_LD(){
+CV.value = XTIME.value;
+MIN_RCHD.value = false;
+YELLOWSET.value = false;
+PEDWANTSTOCROSS.value = false;}
+  /** ALGORITHM FLAGSET IN ST*/
+public void alg_FLAGSET(){
+CV.value=0;
+YELLOWSET.value = true;}
+  /** ALGORITHM PEDCROSS IN ST*/
+public void alg_PEDCROSS(){
+PEDWANTSTOCROSS.value = true;}
+}

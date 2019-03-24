@@ -15,6 +15,8 @@ public static final int INDEX_CD = 1;
 public static final int INDEX_CountReached = 2;
 /** The index (3) of state YellowSet. */
 public static final int INDEX_YellowSet = 3;
+/** The index (4) of state CheckMin. */
+public static final int INDEX_CheckMin = 4;
 /** Count Up Output Event */
 public final EventOutput START_Y = new EventOutput();
 /** Reset Output Event */
@@ -27,6 +29,11 @@ public final EventServer LD = (e) -> {
   RO.serviceEvent(this);
   }
 ;
+/** EVENT PEDCROSS */
+public final EventServer PEDCROSS = (e) -> {
+  alg_PEDCROSS();
+  }
+;
 /** LImit Value */
   public UINT XTIME = new UINT();
 /** VAR MING:UINT */
@@ -37,6 +44,8 @@ public final EventServer LD = (e) -> {
   public final UINT CV = new UINT();
 /** VAR YELLOWSET:BOOL */
   public BOOL YELLOWSET = new BOOL();
+/** VAR PEDWANTSTOCROSS:BOOL */
+  public BOOL PEDWANTSTOCROSS = new BOOL();
 /** The default constructor. */
 public GREENTIMER(){
     super();
@@ -57,6 +66,8 @@ void state_START(){
 void state_CD(){
    eccState = INDEX_CD;
    alg_CD();
+   if(PEDWANTSTOCROSS.value==true)
+     state_CheckMin();
    state_START();
 }
 /** The actions to take upon entering state CountReached. */
@@ -73,18 +84,32 @@ void state_YellowSet(){
    START_Y.serviceEvent(this);
    state_START();
 }
+/** The actions to take upon entering state CheckMin. */
+void state_CheckMin(){
+   eccState = INDEX_CheckMin;
+   alg_AKSJDKASJDKAS();
+   if(MING.value<CV.value)
+     state_CountReached();
+   if(MING.value>=CV.value)
+     state_START();
+}
   /** ALGORITHM CD IN ST*/
 public void alg_CD(){
-CV.value = CV.value - 1;
-MIN_RCHD.value = (CV.value < MING.value);}
+CV.value = CV.value - 1;}
   /** ALGORITHM LD IN ST*/
 public void alg_LD(){
 CV.value = XTIME.value;
 MIN_RCHD.value = false;
-YELLOWSET.value = false;}
+YELLOWSET.value = false;
+PEDWANTSTOCROSS.value = false;}
   /** ALGORITHM FLAGSET IN ST*/
 public void alg_FLAGSET(){
-if( CV.value == 0 ){ 
-	YELLOWSET.value = true;
-}}
+CV.value=0;
+YELLOWSET.value = true;}
+  /** ALGORITHM PEDCROSS IN ST*/
+public void alg_PEDCROSS(){
+PEDWANTSTOCROSS.value = true;}
+  /** ALGORITHM AKSJDKASJDKAS IN ST*/
+public void alg_AKSJDKASJDKAS(){
+MIN_RCHD.value=true;}
 }

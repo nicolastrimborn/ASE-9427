@@ -4,13 +4,15 @@ import fb.datatype.*;
 import fb.rt.*;
 /** FUNCTION_BLOCK E_CTUEVENT (* Event-Driven Up Counter *)
   * @author JHC
-  * @version 20190320/JHC - Generated.
+  * @version 20190324/JHC - Generated.
   */
 public class E_CTUEVENT extends fb.rt.FBInstance {
 /** The index (0) of state START. */
 public static final int INDEX_START = 0;
-/** The index (1) of state CU. */
-public static final int INDEX_CU = 1;
+/** The index (1) of state CountReached. */
+public static final int INDEX_CountReached = 1;
+/** The index (2) of state Count. */
+public static final int INDEX_Count = 2;
 /** Count Up Output Event */
 public final EventOutput CUO = new EventOutput();
 /** Reset Output Event */
@@ -35,18 +37,27 @@ public E_CTUEVENT(){
   }
 protected synchronized void service_CU(){
   if((eccState == INDEX_START) && (CV.value>=PV.value)){
-    state_CU();
+    state_CountReached();
+  }
+  else if(eccState == INDEX_START){
+    state_Count();
   }
 }
 /** The actions to take upon entering state START. */
 void state_START(){
    eccState = INDEX_START;
 }
-/** The actions to take upon entering state CU. */
-void state_CU(){
-   eccState = INDEX_CU;
-   alg_CU();
+/** The actions to take upon entering state CountReached. */
+void state_CountReached(){
+   eccState = INDEX_CountReached;
+   alg_R();
    CUO.serviceEvent(this);
+   state_START();
+}
+/** The actions to take upon entering state Count. */
+void state_Count(){
+   eccState = INDEX_Count;
+   alg_CU();
    state_START();
 }
   /** ALGORITHM CU IN ST*/
