@@ -46,7 +46,7 @@
     </FB>
     <FB Name="ped" Type="E_PERMIT" x="3005.5554" y="855.55554" >
     </FB>
-    <FB Name="GREENTIMER" Type="GREENTIMER" x="1544.4443" y="711.1111" >
+    <FB Name="GREENTIMER" Type="GREENTIMER" x="1427.7777" y="494.44443" >
       <Parameter Name="XTIME" Value="5" />
       <Parameter Name="MING" Value="4" />
     </FB>

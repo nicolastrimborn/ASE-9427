@@ -27,12 +27,14 @@ public final EventServer PEDCROSS = (e) -> service_PEDCROSS();
   protected E_DELAY TimerYellow = new E_DELAY() ;
 /** FB TimeLeft:OUT_ANY_LBL */
   protected OUT_ANY_LBL TimeLeft = new OUT_ANY_LBL() ;
+/** FB CountDownTime:E_CTD */
+  protected E_CTD CountDownTime = new E_CTD() ;
 /** FB GreenTimer:E_CYCLE */
   protected E_CYCLE GreenTimer = new E_CYCLE() ;
 /** FB ped:E_PERMIT */
   protected E_PERMIT ped = new E_PERMIT() ;
-/** FB GREENTIMER:GREENTIMER */
-  protected GREENTIMER GREENTIMER = new GREENTIMER() ;
+/** FB GreenTimeExp2:E_CTDEVENT */
+  protected E_CTDEVENT GreenTimeExp2 = new E_CTDEVENT() ;
 /** VAR RED:BOOL */
   public final BOOL RED = (BOOL)Control.RED;
 /** VAR YELLOW:BOOL */
@@ -46,28 +48,21 @@ public setTimers(){
     Control.INITO.connectTo(INITO);
     Control.CNF.connectTo(CNF);
     Control.RELEASE.connectTo(RELEASE);
+    CountDownTime.CDO.connectTo(TimeLeft.REQ);
     ped.EO.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(GREENTIMER.CD);
-    GREENTIMER.START_Y.connectTo(Control.T1);
-    GREENTIMER.START_Y.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(TimeLeft.REQ);
-    TimerYellow.EO.connectTo(Control.T2);
-    Control.INITO.connectTo(INITO);
-    Control.CNF.connectTo(CNF);
-    Control.RELEASE.connectTo(RELEASE);
-    ped.EO.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(GREENTIMER.CD);
-    GREENTIMER.START_Y.connectTo(Control.T1);
-    GREENTIMER.START_Y.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(TimeLeft.REQ);
-    TimeLeft.connectIVNoException("IN",GREENTIMER.ovNamedNoException("CV"));
+    GreenTimeExp2.CUO.connectTo(Control.T1);
+    GreenTimer.EO.connectTo(GreenTimeExp2.CD);
+    GreenTimer.EO.connectTo(CountDownTime.CD);
+    GreenTimeExp2.CUO.connectTo(TimerYellow.START);
+    ped.connectIVNoException("PERMIT",CountDownTime.ovNamedNoException("Q"));
+    TimeLeft.connectIVNoException("IN",CountDownTime.ovNamedNoException("CV"));
     TimerYellow.DT.initializeNoException("t#1s");
     TimeLeft.TYPE.initializeNoException("UINT");
     TimeLeft.LABEL.initializeNoException("TIME LEFT");
     TimeLeft.W.initializeNoException("1");
+    CountDownTime.PV.initializeNoException("3");
     GreenTimer.DT.initializeNoException("t#1s");
-    GREENTIMER.XTIME.initializeNoException("5");
-    GREENTIMER.MING.initializeNoException("4");
+    GreenTimeExp2.PV.initializeNoException("5");
   }
 	/**
  * {@inheritDoc}
@@ -82,9 +77,10 @@ public void start( ){
   Control.start();
   TimerYellow.start();
   TimeLeft.start();
+  CountDownTime.start();
   GreenTimer.start();
   ped.start();
-  GREENTIMER.start();
+  GreenTimeExp2.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -92,9 +88,10 @@ public void stop( ){
   Control.stop();
   TimerYellow.stop();
   TimeLeft.stop();
+  CountDownTime.stop();
   GreenTimer.stop();
   ped.stop();
-  GREENTIMER.stop();
+  GreenTimeExp2.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -102,9 +99,10 @@ public void kill( ){
   Control.kill();
   TimerYellow.kill();
   TimeLeft.kill();
+  CountDownTime.kill();
   GreenTimer.kill();
   ped.kill();
-  GREENTIMER.kill();
+  GreenTimeExp2.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -112,26 +110,21 @@ public void reset( ){
   Control.reset();
   TimerYellow.reset();
   TimeLeft.reset();
+  CountDownTime.reset();
   GreenTimer.reset();
   ped.reset();
-  GREENTIMER.reset();
+  GreenTimeExp2.reset();
 }
 protected synchronized void service_INIT(){
-   Control.INIT.serviceEvent(this);
-   TimeLeft.INIT.serviceEvent(this);
    Control.INIT.serviceEvent(this);
    TimeLeft.INIT.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    Control.T0.serviceEvent(this);
    GreenTimer.START.serviceEvent(this);
-   GREENTIMER.LD.serviceEvent(this);
-   Control.T0.serviceEvent(this);
-   GreenTimer.START.serviceEvent(this);
-   GREENTIMER.LD.serviceEvent(this);
+   CountDownTime.LD.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSS(){
-   ped.EI.serviceEvent(this);
    ped.EI.serviceEvent(this);
 }
 /** {@inheritDoc}
@@ -144,8 +137,9 @@ protected synchronized void service_PEDCROSS(){
     Control.initialize("Control",r);
     TimerYellow.initialize("TimerYellow",r);
     TimeLeft.initialize("TimeLeft",r);
+    CountDownTime.initialize("CountDownTime",r);
     GreenTimer.initialize("GreenTimer",r);
     ped.initialize("ped",r);
-    GREENTIMER.initialize("GREENTIMER",r);
+    GreenTimeExp2.initialize("GreenTimeExp2",r);
 }
 }

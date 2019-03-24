@@ -51,20 +51,13 @@ public setTimers(){
     GREENTIMER.START_Y.connectTo(Control.T1);
     GREENTIMER.START_Y.connectTo(TimerYellow.START);
     GreenTimer.EO.connectTo(TimeLeft.REQ);
-    TimerYellow.EO.connectTo(Control.T2);
-    Control.INITO.connectTo(INITO);
-    Control.CNF.connectTo(CNF);
-    Control.RELEASE.connectTo(RELEASE);
-    ped.EO.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(GREENTIMER.CD);
-    GREENTIMER.START_Y.connectTo(Control.T1);
-    GREENTIMER.START_Y.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(TimeLeft.REQ);
     TimeLeft.connectIVNoException("IN",GREENTIMER.ovNamedNoException("CV"));
+    ped.connectIVNoException("PERMIT",GREENTIMER.ovNamedNoException("MIN_RCHD"));
     TimerYellow.DT.initializeNoException("t#1s");
     TimeLeft.TYPE.initializeNoException("UINT");
     TimeLeft.LABEL.initializeNoException("TIME LEFT");
     TimeLeft.W.initializeNoException("1");
+    TimeLeft.QI.initializeNoException("1");
     GreenTimer.DT.initializeNoException("t#1s");
     GREENTIMER.XTIME.initializeNoException("5");
     GREENTIMER.MING.initializeNoException("4");
@@ -119,19 +112,13 @@ public void reset( ){
 protected synchronized void service_INIT(){
    Control.INIT.serviceEvent(this);
    TimeLeft.INIT.serviceEvent(this);
-   Control.INIT.serviceEvent(this);
-   TimeLeft.INIT.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    Control.T0.serviceEvent(this);
    GreenTimer.START.serviceEvent(this);
    GREENTIMER.LD.serviceEvent(this);
-   Control.T0.serviceEvent(this);
-   GreenTimer.START.serviceEvent(this);
-   GREENTIMER.LD.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSS(){
-   ped.EI.serviceEvent(this);
    ped.EI.serviceEvent(this);
 }
 /** {@inheritDoc}

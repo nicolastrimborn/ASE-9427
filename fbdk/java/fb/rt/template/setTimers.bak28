@@ -33,6 +33,8 @@ public final EventServer PEDCROSS = (e) -> service_PEDCROSS();
   protected E_PERMIT ped = new E_PERMIT() ;
 /** FB GREENTIMER:GREENTIMER */
   protected GREENTIMER GREENTIMER = new GREENTIMER() ;
+/** FB test:E_CTD */
+  protected E_CTD test = new E_CTD() ;
 /** VAR RED:BOOL */
   public final BOOL RED = (BOOL)Control.RED;
 /** VAR YELLOW:BOOL */
@@ -51,16 +53,9 @@ public setTimers(){
     GREENTIMER.START_Y.connectTo(Control.T1);
     GREENTIMER.START_Y.connectTo(TimerYellow.START);
     GreenTimer.EO.connectTo(TimeLeft.REQ);
-    TimerYellow.EO.connectTo(Control.T2);
-    Control.INITO.connectTo(INITO);
-    Control.CNF.connectTo(CNF);
-    Control.RELEASE.connectTo(RELEASE);
-    ped.EO.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(GREENTIMER.CD);
-    GREENTIMER.START_Y.connectTo(Control.T1);
-    GREENTIMER.START_Y.connectTo(TimerYellow.START);
-    GreenTimer.EO.connectTo(TimeLeft.REQ);
-    TimeLeft.connectIVNoException("IN",GREENTIMER.ovNamedNoException("CV"));
+    GreenTimer.EO.connectTo(test.CD);
+    ped.connectIVNoException("PERMIT",GREENTIMER.ovNamedNoException("MIN_RCHD"));
+    TimeLeft.connectIVNoException("IN",test.ovNamedNoException("CV"));
     TimerYellow.DT.initializeNoException("t#1s");
     TimeLeft.TYPE.initializeNoException("UINT");
     TimeLeft.LABEL.initializeNoException("TIME LEFT");
@@ -68,6 +63,7 @@ public setTimers(){
     GreenTimer.DT.initializeNoException("t#1s");
     GREENTIMER.XTIME.initializeNoException("5");
     GREENTIMER.MING.initializeNoException("4");
+    test.PV.initializeNoException("5");
   }
 	/**
  * {@inheritDoc}
@@ -85,6 +81,7 @@ public void start( ){
   GreenTimer.start();
   ped.start();
   GREENTIMER.start();
+  test.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -95,6 +92,7 @@ public void stop( ){
   GreenTimer.stop();
   ped.stop();
   GREENTIMER.stop();
+  test.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -105,6 +103,7 @@ public void kill( ){
   GreenTimer.kill();
   ped.kill();
   GREENTIMER.kill();
+  test.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -115,23 +114,20 @@ public void reset( ){
   GreenTimer.reset();
   ped.reset();
   GREENTIMER.reset();
+  test.reset();
 }
 protected synchronized void service_INIT(){
    Control.INIT.serviceEvent(this);
    TimeLeft.INIT.serviceEvent(this);
-   Control.INIT.serviceEvent(this);
-   TimeLeft.INIT.serviceEvent(this);
+   test.LD.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    Control.T0.serviceEvent(this);
    GreenTimer.START.serviceEvent(this);
    GREENTIMER.LD.serviceEvent(this);
-   Control.T0.serviceEvent(this);
-   GreenTimer.START.serviceEvent(this);
-   GREENTIMER.LD.serviceEvent(this);
+   test.LD.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSS(){
-   ped.EI.serviceEvent(this);
    ped.EI.serviceEvent(this);
 }
 /** {@inheritDoc}
@@ -147,5 +143,6 @@ protected synchronized void service_PEDCROSS(){
     GreenTimer.initialize("GreenTimer",r);
     ped.initialize("ped",r);
     GREENTIMER.initialize("GREENTIMER",r);
+    test.initialize("test",r);
 }
 }

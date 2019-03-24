@@ -41,14 +41,21 @@
       <Parameter Name="LABEL" Value="&#34;TIME LEFT&#34;" />
       <Parameter Name="W" Value="1" />
     </FB>
+    <FB Name="CountDownTime" Type="E_CTD" x="3777.7776" y="2055.5554" >
+      <Parameter Name="PV" Value="3" />
+    </FB>
     <FB Name="GreenTimer" Type="E_CYCLE" x="333.3333" y="472.2222" >
       <Parameter Name="DT" Value="t#1s" />
     </FB>
+    <FB Name="GreenCounter" Type="E_CTU" x="1138.8888" y="1527.7777" >
+    </FB>
+    <FB Name="MinGreenTime" Type="FB_GT_UINT" x="2172.2222" y="2016.6666" >
+      <Parameter Name="IN2" Value="3" />
+    </FB>
     <FB Name="ped" Type="E_PERMIT" x="3005.5554" y="855.55554" >
     </FB>
-    <FB Name="GREENTIMER" Type="GREENTIMER" x="1544.4443" y="711.1111" >
-      <Parameter Name="XTIME" Value="5" />
-      <Parameter Name="MING" Value="4" />
+    <FB Name="GreenTimeExp" Type="FB_GT_UINT" x="1972.2222" y="44.444443" >
+      <Parameter Name="IN2" Value="5" />
     </FB>
     <EventConnections>
       <Connection Source="INIT" Destination="Control.INIT" />
@@ -58,38 +65,26 @@
       <Connection Source="REQ" Destination="Control.T0" />
       <Connection Source="Control.RELEASE" Destination="RELEASE" />
       <Connection Source="INIT" Destination="TimeLeft.INIT" />
+      <Connection Source="CountDownTime.CDO" Destination="TimeLeft.REQ" dx1="433.3333" />
       <Connection Source="REQ" Destination="GreenTimer.START" />
+      <Connection Source="GreenTimer.EO" Destination="GreenCounter.CU" dx1="283.3333" />
+      <Connection Source="GreenCounter.CUO" Destination="MinGreenTime.REQ" dx1="611.1111" />
+      <Connection Source="GreenCounter.CUO" Destination="CountDownTime.CD" dx1="2100.0" />
       <Connection Source="PEDCROSS" Destination="ped.EI" />
       <Connection Source="ped.EO" Destination="TimerYellow.START" dx1="55.555553" />
-      <Connection Source="GreenTimer.EO" Destination="GREENTIMER.CD" dx1="55.555553" />
-      <Connection Source="GREENTIMER.START_Y" Destination="Control.T1" dx1="55.555553" />
-      <Connection Source="GREENTIMER.START_Y" Destination="TimerYellow.START" dx1="477.77777" />
-      <Connection Source="GreenTimer.EO" Destination="TimeLeft.REQ" dx1="405.55554" />
-      <Connection Source="REQ" Destination="GREENTIMER.LD" />
-      <Connection Source="INIT" Destination="Control.INIT" />
-      <Connection Source="TimerYellow.EO" Destination="Control.T2" dx1="583.3333" />
-      <Connection Source="Control.INITO" Destination="INITO" />
-      <Connection Source="Control.CNF" Destination="CNF" />
-      <Connection Source="REQ" Destination="Control.T0" />
-      <Connection Source="Control.RELEASE" Destination="RELEASE" />
-      <Connection Source="INIT" Destination="TimeLeft.INIT" />
-      <Connection Source="REQ" Destination="GreenTimer.START" />
-      <Connection Source="PEDCROSS" Destination="ped.EI" />
-      <Connection Source="ped.EO" Destination="TimerYellow.START" dx1="55.555553" />
-      <Connection Source="GreenTimer.EO" Destination="GREENTIMER.CD" dx1="55.555553" />
-      <Connection Source="GREENTIMER.START_Y" Destination="Control.T1" dx1="55.555553" />
-      <Connection Source="GREENTIMER.START_Y" Destination="TimerYellow.START" dx1="477.77777" />
-      <Connection Source="GreenTimer.EO" Destination="TimeLeft.REQ" dx1="405.55554" />
-      <Connection Source="REQ" Destination="GREENTIMER.LD" />
+      <Connection Source="GreenCounter.CUO" Destination="GreenTimeExp.REQ" dx1="155.55554" />
+      <Connection Source="GreenTimeExp.CNF" Destination="Control.T1" dx1="955.55554" />
+      <Connection Source="GreenTimeExp.CNF" Destination="TimerYellow.START" dx1="700.0" />
+      <Connection Source="REQ" Destination="CountDownTime.LD" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Control.RED" Destination="RED" />
       <Connection Source="Control.YELLOW" Destination="YELLOW" />
       <Connection Source="Control.GREEN" Destination="GREEN" />
-      <Connection Source="Control.RED" Destination="RED" />
-      <Connection Source="Control.YELLOW" Destination="YELLOW" />
-      <Connection Source="Control.GREEN" Destination="GREEN" />
-      <Connection Source="GREENTIMER.CV" Destination="TimeLeft.IN" dx1="150.0" />
+      <Connection Source="GreenCounter.CV" Destination="MinGreenTime.IN1" dx1="55.555553" />
+      <Connection Source="MinGreenTime.OUT" Destination="ped.PERMIT" dx1="350.0" dx2="55.555553" dy="83.33333" />
+      <Connection Source="GreenCounter.CV" Destination="GreenTimeExp.IN1" dx1="333.3333" />
+      <Connection Source="GreenCounter.CV" Destination="TimeLeft.IN" dx1="55.555553" />
     </DataConnections>
   </FBNetwork>
 </FBType>
