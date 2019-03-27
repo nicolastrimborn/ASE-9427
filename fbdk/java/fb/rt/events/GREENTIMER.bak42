@@ -17,8 +17,6 @@ public static final int INDEX_CountReached = 2;
 public static final int INDEX_YellowSet = 3;
 /** The index (4) of state CheckMin. */
 public static final int INDEX_CheckMin = 4;
-/** The index (5) of state MinReached. */
-public static final int INDEX_MinReached = 5;
 /** Count Up Output Event */
 public final EventOutput START_Y = new EventOutput();
 /** Reset Output Event */
@@ -76,6 +74,7 @@ void state_CD(){
 /** The actions to take upon entering state CountReached. */
 void state_CountReached(){
    eccState = INDEX_CountReached;
+   alg_AKSJDKASJDKAS();
    if(YELLOWSET.value==false)
      state_YellowSet();
    state_START();
@@ -90,18 +89,10 @@ void state_YellowSet(){
 /** The actions to take upon entering state CheckMin. */
 void state_CheckMin(){
    eccState = INDEX_CheckMin;
+   if(MING.value<CV.value)
+     state_CountReached();
    if(MING.value>=CV.value)
      state_START();
-   if(MING.value<CV.value)
-     state_MinReached();
-}
-/** The actions to take upon entering state MinReached. */
-void state_MinReached(){
-   eccState = INDEX_MinReached;
-   alg_AKSJDKASJDKAS();
-   if(YELLOWSET.value==false)
-     state_YellowSet();
-   state_CheckMin();
 }
   /** ALGORITHM CD IN ST*/
 public void alg_CD(){

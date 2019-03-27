@@ -88,7 +88,7 @@
       <Connection Source="Control.YELLOW" Destination="YELLOW" />
       <Connection Source="Control.GREEN" Destination="GREEN" />
       <Connection Source="GreenTimer1.CV" Destination="TimeLeft.IN" dx1="55.555553" />
-      <Connection Source="GreenTimer1.MIN_RCHD" Destination="blah.IN" dx1="277.77777" />
+      <Connection Source="GreenTimer1.MIN_RCHD" Destination="blah.IN" dx1="55.555553" />
     </DataConnections>
   </FBNetwork>
 </FBType>

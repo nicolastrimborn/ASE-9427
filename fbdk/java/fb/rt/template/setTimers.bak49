@@ -6,7 +6,7 @@ import fb.rt.events.*;
 import fb.rt.hmi.*;
 /** FUNCTION_BLOCK setTimers (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190327/JHC - Generated.
+  * @version 20190324/JHC - Generated.
   */
 public class setTimers extends fb.rt.FBInstance {
 /** Initialization Confirm */
