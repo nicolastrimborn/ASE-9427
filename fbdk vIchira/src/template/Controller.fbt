@@ -25,9 +25,9 @@
       <Event Name="INITO" Comment="Initialization Confirm" >
         <With Var="RED" />
       </Event>
-      <Event Name="RELEASECONTROL" >
-      </Event>
       <Event Name="CNF" >
+      </Event>
+      <Event Name="RELEASEE" >
       </Event>
     </EventOutputs>
     <InputVars>
@@ -45,11 +45,10 @@
   </InterfaceList>
   <BasicFB>
     <InternalVars>
-      <VarDeclaration Name="Release" Type="BOOL" />
-      <VarDeclaration Name="GREENTIMEIN" Type="UINT" />
       <VarDeclaration Name="MINGREENTIMEIN" Type="UINT" />
-      <VarDeclaration Name="PEDCROSSIN" Type="BOOL" />
       <VarDeclaration Name="YELLOWTIMEIN" Type="UINT" />
+      <VarDeclaration Name="GREENTIMEIN" Type="UINT" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
     </InternalVars>
     <ECC >
       <ECState Name="START" Comment="Initial State" x="444.44443" y="350.0" >
@@ -60,56 +59,68 @@
       <ECState Name="CLK" Comment="Normal execution" x="755.55554" y="1833.3333" >
         <ECAction Algorithm="CLK" Output="CNF" />
       </ECState>
-      <ECState Name="ReleaseControl1" x="3294.4443" y="3416.6665" >
-        <ECAction Algorithm="RELEASE" Output="RELEASECONTROL" />
-      </ECState>
-      <ECState Name="ToRed" x="3805.5554" y="2422.2222" >
-      </ECState>
       <ECState Name="LD" x="894.4444" y="2316.6665" >
         <ECAction Algorithm="LD" />
       </ECState>
+      <ECState Name="Red" x="1977.7777" y="777.7778" >
+      </ECState>
+      <ECState Name="Release" x="2550.0" y="1294.4443" >
+        <ECAction Algorithm="RELEASE" Output="RELEASEE" />
+      </ECState>
       <ECTransition Source="INIT" Destination="START" Condition="1" x="1733.3333" y="166.66666" />
-      <ECTransition Source="START" Destination="CLK" Condition="CLK" x="816.6666" y="1166.6666" />
+      <ECTransition Source="START" Destination="CLK" Condition="CLK [RED=FALSE]" x="816.6666" y="1166.6666" />
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1822.2222" y="433.3333" />
       <ECTransition Source="CLK" Destination="START" Condition="1" x="166.66666" y="1183.3333" />
-      <ECTransition Source="ToRed" Destination="ReleaseControl1" Condition=" [Release=False]" x="3649.9998" y="2888.8887" />
-      <ECTransition Source="START" Destination="ToRed" Condition=" [RED]" x="2955.5554" y="1166.6666" />
-      <ECTransition Source="ToRed" Destination="START" Condition="1" x="2600.0" y="1594.4443" />
-      <ECTransition Source="ReleaseControl1" Destination="START" Condition="1" x="2605.5554" y="3188.8887" />
+      <ECTransition Source="Red" Destination="Release" Condition="CLK [RELEASE=FALSE]" x="2650.0" y="833.3333" />
+      <ECTransition Source="Release" Destination="Red" Condition="1" x="2266.6665" y="1038.8888" />
+      <ECTransition Source="Red" Destination="START" Condition="1" x="1522.2222" y="600.0" />
+      <ECTransition Source="START" Destination="Red" Condition="CLK [RED=TRUE]" x="1127.7777" y="777.7778" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
 <ST><![CDATA[RED:=FALSE;
 YELLOW:=FALSE;
-GREEN:=FALSE;]]></ST>
+GREEN:=FALSE;
+MINGREENTIMEIN:=100;
+YELLOWTIMEIN:=100;
+GREENTIMEIN:=100;
+RELEASE:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="CLK" Comment="Normally executed algorithm" >
 <ST><![CDATA[IF PEDCROSS AND MINGREENTIMEIN=0 THEN
+    GREEN:=FALSE;
 	YELLOW:=TRUE;
-  GREENTIMEIN:=0;
-ELSEIF GREENTIMEIN>0 THEN
+    RED:=FALSE;
+    GREENTIMEIN:=0;
+END_IF;
+IF GREENTIMEIN>0 THEN
 	GREENTIMEIN := GREENTIMEIN - 1;
-  MINGREENTIMEIN:= MINGREENTIMEIN - 1;
+        MINGREENTIMEIN:= MINGREENTIMEIN - 1;
 END_IF;
 GREENREMAINING:=GREENTIMEIN;
 IF GREENTIMEIN=0 THEN
-	YELLOW := TRUE;
+    GREEN:=FALSE;
+	YELLOW:= TRUE;
+    RED:=FALSE;
 	IF YELLOWTIMEIN>0 THEN
 		YELLOWTIMEIN:= YELLOWTIMEIN - 1;
-	ELSEIF YELLOWTIMEIN=0 THEN
+	END_IF;
+   IF YELLOWTIMEIN=0 THEN
+        GREEN:=FALSE;
+        YELLOW:=FALSE;
 		RED:=TRUE;
-		Release:=TRUE;
 	END_IF;
 END_IF;]]></ST>
   </Algorithm>
-  <Algorithm Name="RELEASE" >
-<ST><![CDATA[Release:=TRUE;]]></ST>
-  </Algorithm>
   <Algorithm Name="LD" >
-<ST><![CDATA[GREENTIMEIN:=GREENTIME;
-MINGREENTIMEIN:=MINGREENTIME;
-PEDCROSSIN:=FALSE;
+<ST><![CDATA[MINGREENTIMEIN:=MINGREENTIME;
 YELLOWTIMEIN:=YELLOWTIME;
-GREEN:=TRUE;]]></ST>
+GREEN:=TRUE;
+GREENTIMEIN:=GREENTIME;
+GREENREMAINING:=GREENTIME;
+RELEASE:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="RELEASE" >
+<ST><![CDATA[RELEASE:=TRUE;]]></ST>
   </Algorithm>
   </BasicFB>
 </FBType>

@@ -10,11 +10,11 @@
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT" Comment="Initialization Request" >
-        <With Var="QI" />
         <With Var="GREENTIME" />
         <With Var="MINGREENTIME" />
       </Event>
       <Event Name="TokenIn" >
+        <With Var="YELLOWTIME" />
       </Event>
       <Event Name="PEDCROSSBUT" >
       </Event>
@@ -28,9 +28,9 @@
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
       <VarDeclaration Name="GREENTIME" Type="UINT" />
       <VarDeclaration Name="MINGREENTIME" Type="UINT" />
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" />
     </InputVars>
     <OutputVars>
       <VarDeclaration Name="RED" Type="BOOL" />
@@ -43,33 +43,35 @@
     <FB Name="ButPressCTR" Type="E_CTU" x="550.0" y="1138.8888" >
       <Parameter Name="PV" Value="4" />
     </FB>
-    <FB Name="CLOCK" Type="E_CYCLE" x="4711.111" y="1283.3333" >
+    <FB Name="CLOCK" Type="E_CYCLE" x="4744.4443" y="1572.2222" >
       <Parameter Name="DT" Value="t#1s" />
     </FB>
-    <FB Name="Split1" Type="E_SPLIT" x="3794.4443" y="805.55554" >
+    <FB Name="Split1" Type="E_SPLIT" x="3672.2222" y="177.77777" >
     </FB>
-    <FB Name="Controller1" Type="Controller" x="1749.9999" y="300.0" >
+    <FB Name="Controller" Type="Controller" x="1455.5555" y="211.1111" >
     </FB>
     <EventConnections>
       <Connection Source="PEDCROSSBUT" Destination="ButPressCTR.CU" />
       <Connection Source="Split1.EO1" Destination="TokenOut" />
-      <Connection Source="Split1.EO2" Destination="CLOCK.STOP" dx1="55.555553" />
+      <Connection Source="Split1.EO2" Destination="CLOCK.STOP" dx1="377.77777" />
       <Connection Source="INIT" Destination="CLOCK.START" />
       <Connection Source="TokenIn" Destination="CLOCK.START" />
-      <Connection Source="INIT" Destination="Controller1.INIT" />
-      <Connection Source="Controller1.CNF" Destination="CNF" />
-      <Connection Source="Controller1.INITO" Destination="INITO" />
-      <Connection Source="Controller1.RELEASECONTROL" Destination="Split1.EI" dx1="650.0" />
-      <Connection Source="CLOCK.EO" Destination="Controller1.CLK" dx1="55.555553" dx2="616.6666" dy="833.3333" />
+      <Connection Source="INIT" Destination="Controller.INIT" />
+      <Connection Source="TokenIn" Destination="Controller.CLK" />
+      <Connection Source="PEDCROSSBUT" Destination="Controller.LD" />
+      <Connection Source="Controller.CNF" Destination="CNF" />
+      <Connection Source="Controller.RELEASEE" Destination="Split1.EI" dx1="705.55554" />
+      <Connection Source="Controller.INITO" Destination="INITO" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="ButPressCTR.Q" Destination="Controller1.PEDCROSS" dx1="55.555553" />
-      <Connection Source="MINGREENTIME" Destination="Controller1.GREENTIME" />
-      <Connection Source="MINGREENTIME" Destination="Controller1.MINGREENTIME" />
-      <Connection Source="Controller1.GREENREMAINING" Destination="GreenRming" />
-      <Connection Source="Controller1.RED" Destination="RED" />
-      <Connection Source="Controller1.YELLOW" Destination="YELLOW" />
-      <Connection Source="Controller1.GREEN" Destination="GREEN" />
+      <Connection Source="ButPressCTR.Q" Destination="Controller.PEDCROSS" dx1="55.555553" />
+      <Connection Source="GREENTIME" Destination="Controller.GREENTIME" />
+      <Connection Source="MINGREENTIME" Destination="Controller.MINGREENTIME" />
+      <Connection Source="YELLOWTIME" Destination="Controller.YELLOWTIME" />
+      <Connection Source="Controller.GREENREMAINING" Destination="GreenRming" />
+      <Connection Source="Controller.GREEN" Destination="RED" />
+      <Connection Source="Controller.GREEN" Destination="GREEN" />
+      <Connection Source="Controller.YELLOW" Destination="YELLOW" />
     </DataConnections>
   </FBNetwork>
 </FBType>
