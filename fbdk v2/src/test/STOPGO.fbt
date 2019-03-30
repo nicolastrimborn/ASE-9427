@@ -24,6 +24,8 @@
         <With Var="YELLOW" />
         <With Var="GREEN" />
       </Event>
+      <Event Name="PASSCONTROL" >
+      </Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="YELLOWTIME" Type="UINT" Comment="Input event qualifier" />
@@ -41,36 +43,31 @@
     <ECC >
       <ECState Name="START" Comment="Initial State" x="388.8889" y="866.6666" >
       </ECState>
-      <ECState Name="INIT" Comment="Initialization" x="1838.8888" y="355.55554" >
+      <ECState Name="INIT" Comment="Initialization" x="2111.111" y="316.66666" >
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="GO" x="2150.0" y="766.6666" >
+      <ECState Name="GO" x="2572.2222" y="727.7778" >
         <ECAction Algorithm="GO" />
       </ECState>
-      <ECState Name="GOYELLOW" x="4061.1108" y="2672.2222" >
-        <ECAction Algorithm="GOYELLOW" />
+      <ECState Name="GORED" x="4011.1108" y="2672.2222" >
+        <ECAction Algorithm="GORED" Output="PASSCONTROL" />
       </ECState>
       <ECState Name="CD" x="700.0" y="2616.6665" >
         <ECAction Algorithm="CD" />
       </ECState>
-      <ECState Name="STOPNOW" x="2550.0" y="3122.2222" >
-        <ECAction Algorithm="STOP" />
-      </ECState>
-      <ECState Name="STOPREQUESTED" x="4605.555" y="1783.3333" >
+      <ECState Name="STOPREQUESTED" x="4483.333" y="1616.6666" >
         <ECAction Algorithm="STOPREQ" />
       </ECState>
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="1250.0" y="266.66666" />
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1277.7777" y="477.77777" />
-      <ECTransition Source="START" Destination="GO" Condition="GO" x="1600.0" y="766.6666" />
-      <ECTransition Source="GO" Destination="START" Condition="1" x="1649.9999" y="955.55554" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1522.2222" y="227.77777" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1627.7777" y="499.99997" />
+      <ECTransition Source="START" Destination="GO" Condition="GO" x="2055.5554" y="577.7778" />
+      <ECTransition Source="GO" Destination="START" Condition="1" x="2072.2222" y="916.6666" />
       <ECTransition Source="START" Destination="CD" Condition="CLK [YELLOWTIME > 0]" x="400.0" y="2161.111" />
-      <ECTransition Source="GOYELLOW" Destination="STOPNOW" Condition="CLK [YELLOWTIME = 0]" x="4061.1108" y="3211.111" />
-      <ECTransition Source="STOPNOW" Destination="START" Condition="1" x="1844.4443" y="2016.6666" />
       <ECTransition Source="CD" Destination="START" Condition="1" x="1033.3333" y="2083.3333" />
-      <ECTransition Source="START" Destination="STOPREQUESTED" Condition="STOP" x="3899.9998" y="1277.7777" />
-      <ECTransition Source="START" Destination="GOYELLOW" Condition="CLK [YELLOWDONE = TRUE]" x="3572.2222" y="2088.889" />
-      <ECTransition Source="GOYELLOW" Destination="START" Condition="1" x="3083.3333" y="2455.5554" />
-      <ECTransition Source="STOPREQUESTED" Destination="START" Condition="1" x="3872.2222" y="1783.3333" />
+      <ECTransition Source="START" Destination="STOPREQUESTED" Condition="STOP" x="3777.7776" y="1111.1111" />
+      <ECTransition Source="START" Destination="GORED" Condition="CLK [YELLOWDONE = TRUE]" x="3788.8887" y="2100.0" />
+      <ECTransition Source="GORED" Destination="START" Condition="1" x="2883.3333" y="2672.2222" />
+      <ECTransition Source="STOPREQUESTED" Destination="START" Condition="1" x="3861.111" y="1772.2222" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
 <ST><![CDATA[RED:=FALSE;
@@ -91,15 +88,20 @@ YELLOW:=FALSE;
 RED:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="CD" >
-<ST><![CDATA[YELLOWTIME:= YELLOWTIME - 1:]]></ST>
+<ST><![CDATA[YELLOWTIME:= YELLOWTIME - 1;
+IF YELLOWTIME = 0 THEN:
+	YELLOWDONE := TRUE;
+END_IF;]]></ST>
   </Algorithm>
-  <Algorithm Name="GOYELLOW" >
-<ST><![CDATA[YELLOW:=TRUE;
-RED:=FALSE;
+  <Algorithm Name="GORED" >
+<ST><![CDATA[YELLOW:=FALSE;
+RED:=TRUE;
 GREEN:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="STOPREQ" >
-<ST><![CDATA[]]></ST>
+<ST><![CDATA[YELLOW:=TRUE;
+RED:=FALSE;
+GREEN:=FALSE;]]></ST>
   </Algorithm>
   </BasicFB>
 </FBType>
