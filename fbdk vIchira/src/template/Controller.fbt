@@ -21,6 +21,8 @@
       </Event>
       <Event Name="RELEASECONTROL" >
       </Event>
+      <Event Name="CNF" >
+      </Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="GREENTIME" Type="UINT" />
@@ -46,21 +48,21 @@
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
       <ECState Name="CLK" Comment="Normal execution" x="755.55554" y="1833.3333" >
-        <ECAction Algorithm="CLK" />
+        <ECAction Algorithm="CLK" Output="CNF" />
       </ECState>
-      <ECState Name="ReleaseControl1" x="3083.3333" y="2255.5554" >
+      <ECState Name="ReleaseControl1" x="3294.4443" y="3416.6665" >
         <ECAction Algorithm="RELEASE" Output="RELEASECONTROL" />
       </ECState>
-      <ECState Name="ToRed" x="3316.6665" y="1377.7777" >
+      <ECState Name="ToRed" x="3805.5554" y="2422.2222" >
       </ECState>
       <ECTransition Source="INIT" Destination="START" Condition="1" x="1733.3333" y="166.66666" />
       <ECTransition Source="START" Destination="CLK" Condition="CLK" x="816.6666" y="1166.6666" />
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1822.2222" y="433.3333" />
       <ECTransition Source="CLK" Destination="START" Condition="1" x="166.66666" y="1183.3333" />
-      <ECTransition Source="ToRed" Destination="ReleaseControl1" Condition=" [Release=False]" x="3405.5554" y="1883.3333" />
-      <ECTransition Source="START" Destination="ToRed" Condition=" [RED]" x="2983.3333" y="1027.7777" />
-      <ECTransition Source="ToRed" Destination="START" Condition="1" x="2011.1111" y="972.22217" />
-      <ECTransition Source="ReleaseControl1" Destination="START" Condition="1" x="2394.4443" y="2027.7777" />
+      <ECTransition Source="ToRed" Destination="ReleaseControl1" Condition=" [Release=False]" x="3649.9998" y="2888.8887" />
+      <ECTransition Source="START" Destination="ToRed" Condition=" [RED]" x="2955.5554" y="1166.6666" />
+      <ECTransition Source="ToRed" Destination="START" Condition="1" x="2505.5554" y="2600.0" />
+      <ECTransition Source="ReleaseControl1" Destination="START" Condition="1" x="2605.5554" y="3188.8887" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
 <ST><![CDATA[RED:=FALSE;
@@ -70,10 +72,10 @@ GREEN:=FALSE;]]></ST>
   <Algorithm Name="CLK" Comment="Normally executed algorithm" >
 <ST><![CDATA[IF PEDCROSS AND MINGREENTIME=0 THEN
 	YELLOW:=TRUE
-    GREENTIME=0
+   GREENTIME=0
 ELSEIF(GREENTIME > 0) THEN
 	GREENTIME := GREENTIME - 1;
-    MINGREENTIME:= MINGREENTIME - 1;
+   MINGREENTIME:= MINGREENTIME - 1;
 END_IF;
 GREENREMAINING = GREENTIME;
 IF GREENTIME = 0 THEN
