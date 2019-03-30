@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="setTimers" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="RELEASE" >
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Control" Type="TRAFFICCONTROL1" x="3911.1108" y="166.66666" >
+    </FB>
+    <FB Name="TimerGreen" Type="E_DELAY" x="1050.0" y="388.8889" >
+      <Parameter Name="DT" Value="t#3s" />
+    </FB>
+    <FB Name="TimerYellow" Type="E_DELAY" x="3288.8887" y="1100.0" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="TimeGreen" Type="E_CYCLE" x="966.6666" y="1772.2222" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="TimeLeft" Type="OUT_ANY_LBL" x="2883.3333" y="1883.3333" >
+      <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+      <Parameter Name="LABEL" Value="&#34;TIME LEFT&#34;" />
+      <Parameter Name="W" Value="1" />
+      <Parameter Name="IVAL" Value="3" />
+    </FB>
+    <FB Name="CountDownTime" Type="E_CTD" x="1911.1111" y="1855.5555" >
+      <Parameter Name="PV" Value="3" />
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="Control.INIT" />
+      <Connection Source="TimerGreen.EO" Destination="Control.T1" dx1="55.555553" />
+      <Connection Source="TimerGreen.EO" Destination="TimerYellow.START" dx1="55.555553" />
+      <Connection Source="TimerYellow.EO" Destination="Control.T2" dx1="55.555553" />
+      <Connection Source="Control.INITO" Destination="INITO" />
+      <Connection Source="Control.CNF" Destination="CNF" />
+      <Connection Source="REQ" Destination="Control.T0" />
+      <Connection Source="REQ" Destination="TimerGreen.START" />
+      <Connection Source="Control.RELEASE" Destination="RELEASE" />
+      <Connection Source="REQ" Destination="TimeGreen.START" />
+      <Connection Source="INIT" Destination="TimeLeft.INIT" />
+      <Connection Source="TimeGreen.EO" Destination="CountDownTime.CD" dx1="55.555553" />
+      <Connection Source="CountDownTime.CDO" Destination="TimeLeft.REQ" dx1="55.555553" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Control.RED" Destination="RED" />
+      <Connection Source="Control.YELLOW" Destination="YELLOW" />
+      <Connection Source="Control.GREEN" Destination="GREEN" />
+      <Connection Source="CountDownTime.CV" Destination="TimeLeft.IN" dx1="55.555553" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

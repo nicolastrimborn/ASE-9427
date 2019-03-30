@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="Controller" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="CLK" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED" />
+      </Event>
+      <Event Name="OUTTOKEN" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="GREENTIME" Type="UINT" />
+      <VarDeclaration Name="MINGREENTIME" Type="UINT" />
+      <VarDeclaration Name="PEDCROSS" Type="BOOL" />
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="GREENREMAINING" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="RELEASECONTROL" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="483.3333" y="333.3333" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="2211.111" y="244.44443" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="CLK" Comment="Normal execution" x="755.55554" y="1833.3333" >
+        <ECAction Algorithm="CLK" />
+      </ECState>
+      <ECState Name="PASSCONTROL" x="2150.0" y="1366.6666" >
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1772.2222" y="150.0" />
+      <ECTransition Source="START" Destination="CLK" Condition="CLK" x="855.55554" y="1150.0" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1861.1111" y="416.66666" />
+      <ECTransition Source="CLK" Destination="START" Condition="1" x="205.55554" y="1166.6666" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[RED:=FALSE;
+YELLOW:=FALSE;
+GREEN:=FALSE;
+GREENTIME:=0;
+MINGREENTIME:=0;
+PEDCROSS:=FALSE;
+RELEASECONTROL:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="CLK" Comment="Normally executed algorithm" >
+<ST><![CDATA[IF(GREENTIME > 0) THEN
+	GREENTIME := GREENTIME - 1;
+END_IF;
+GREENREMAINING = GREENTIME;
+IF GREENTIME = 0 THEN
+	YELLOW := TRUE
+	IF(YELLOW > 0) THEN
+		YELLOWTIME := YELLOWTIME - 1;
+	ELSEIF YELLOWTIME = 0 THEN
+		RED:=TRUE
+	END_IF;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="RELEASECONT" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

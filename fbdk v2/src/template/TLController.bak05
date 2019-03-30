@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TLController" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="QI" />
+        <With Var="GREENTIME" />
+        <With Var="MINGREENTIME" />
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+      <Event Name="TokenIn" >
+      </Event>
+      <Event Name="PEDCROSSBUT" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="TokenOut" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="GREENTIME" Type="UINT" />
+      <VarDeclaration Name="MINGREENTIME" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="GreenRming" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="ButPressCTR" Type="E_CTU" x="550.0" y="1138.8888" >
+      <Parameter Name="PV" Value="4" />
+    </FB>
+    <FB Name="Controller" Type="Controller" x="1616.6666" y="611.1111" >
+    </FB>
+    <FB Name="CLOCK" Type="E_CYCLE" x="4711.111" y="1283.3333" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="Split1" Type="E_SPLIT" x="3399.9998" y="838.88885" >
+    </FB>
+    <EventConnections>
+      <Connection Source="PEDCROSSBUT" Destination="ButPressCTR.CU" />
+      <Connection Source="Controller.OUTTOKEN" Destination="Split1.EI" dx1="55.555553" />
+      <Connection Source="Split1.EO1" Destination="TokenOut" />
+      <Connection Source="Split1.EO2" Destination="CLOCK.STOP" dx1="55.555553" />
+      <Connection Source="INIT" Destination="Controller.INIT" />
+      <Connection Source="INIT" Destination="CLOCK.START" />
+      <Connection Source="TokenIn" Destination="CLOCK.START" />
+      <Connection Source="CLOCK.EO" Destination="Controller.CLK" dx1="300.0" dx2="249.99998" dy="-1088.8888" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Controller.RED" Destination="RED" />
+      <Connection Source="Controller.YELLOW" Destination="YELLOW" />
+      <Connection Source="Controller.GREEN" Destination="GREEN" />
+      <Connection Source="GREENTIME" Destination="Controller.GREENTIME" />
+      <Connection Source="MINGREENTIME" Destination="Controller.MINGREENTIME" />
+      <Connection Source="ButPressCTR.Q" Destination="Controller.PEDCROSS" dx1="233.33333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

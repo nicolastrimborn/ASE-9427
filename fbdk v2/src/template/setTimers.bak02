@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="setTimers" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Control" Type="TRAFFICCONTROL1" x="3911.1108" y="166.66666" >
+    </FB>
+    <FB Name="toGreen" Type="E_TRIG" x="1011.1111" y="1177.7777" >
+    </FB>
+    <FB Name="TimerGreen" Type="E_DELAY" x="1500.0" y="1699.9999" >
+      <Parameter Name="DT" Value="t#3s" />
+    </FB>
+    <FB Name="TimerYellow" Type="E_DELAY" x="2461.111" y="2183.3333" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="Control.INIT" />
+      <Connection Source="REQ" Destination="toGreen.EI" />
+      <Connection Source="toGreen.ER" Destination="Control.T0" dx1="55.555553" />
+      <Connection Source="toGreen.ER" Destination="TimerGreen.START" dx1="55.555553" />
+      <Connection Source="TimerGreen.EO" Destination="Control.T1" dx1="55.555553" />
+      <Connection Source="TimerGreen.EO" Destination="TimerYellow.START" dx1="55.555553" />
+      <Connection Source="TimerYellow.EO" Destination="Control.T2" dx1="55.555553" />
+      <Connection Source="Control.INITO" Destination="INITO" />
+      <Connection Source="Control.CNF" Destination="CNF" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Control.RED" Destination="RED" />
+      <Connection Source="Control.YELLOW" Destination="YELLOW" />
+      <Connection Source="Control.GREEN" Destination="GREEN" />
+      <Connection Source="Control.Release" Destination="RELEASE" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

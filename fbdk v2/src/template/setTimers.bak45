@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="setTimers" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="PEDCROSS" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="RELEASE" >
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="Control" Type="TRAFFICCONTROL1" x="5166.6665" y="0.0" >
+    </FB>
+    <FB Name="TimerYellow" Type="E_DELAY" x="4155.555" y="522.2222" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="TimeLeft" Type="OUT_ANY_LBL" x="3483.3333" y="1977.7777" >
+      <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+      <Parameter Name="LABEL" Value="&#34;TIME LEFT&#34;" />
+      <Parameter Name="W" Value="1" />
+    </FB>
+    <FB Name="GreenTimer" Type="E_CYCLE" x="333.3333" y="472.2222" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="GreenTimer1" Type="GREENTIMER" x="1605.5555" y="677.7778" >
+      <Parameter Name="XTIME" Value="10" />
+      <Parameter Name="MING" Value="2" />
+    </FB>
+    <FB Name="blah" Type="OUT_BOOL" x="2922.2222" y="666.6666" >
+      <Parameter Name="C1" Value="[255,0,0]" />
+      <Parameter Name="C0" Value="[0,0,0]" />
+      <Parameter Name="LABEL" Value="&#34;min&#34;" />
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="Control.INIT" />
+      <Connection Source="TimerYellow.EO" Destination="Control.T2" dx1="583.3333" />
+      <Connection Source="Control.INITO" Destination="INITO" />
+      <Connection Source="Control.CNF" Destination="CNF" />
+      <Connection Source="REQ" Destination="Control.T0" />
+      <Connection Source="Control.RELEASE" Destination="RELEASE" />
+      <Connection Source="INIT" Destination="TimeLeft.INIT" />
+      <Connection Source="REQ" Destination="GreenTimer.START" />
+      <Connection Source="GreenTimer.EO" Destination="TimeLeft.REQ" dx1="405.55554" />
+      <Connection Source="INIT" Destination="Control.INIT" />
+      <Connection Source="TimerYellow.EO" Destination="Control.T2" dx1="583.3333" />
+      <Connection Source="Control.INITO" Destination="INITO" />
+      <Connection Source="Control.CNF" Destination="CNF" />
+      <Connection Source="REQ" Destination="Control.T0" />
+      <Connection Source="Control.RELEASE" Destination="RELEASE" />
+      <Connection Source="INIT" Destination="TimeLeft.INIT" />
+      <Connection Source="REQ" Destination="GreenTimer.START" />
+      <Connection Source="GreenTimer.EO" Destination="TimeLeft.REQ" dx1="405.55554" />
+      <Connection Source="GreenTimer.EO" Destination="GreenTimer1.CD" dx1="716.6666" />
+      <Connection Source="GreenTimer1.START_Y" Destination="Control.T1" dx1="55.555553" />
+      <Connection Source="PEDCROSS" Destination="GreenTimer1.PEDCROSS" />
+      <Connection Source="REQ" Destination="GreenTimer1.LD" />
+      <Connection Source="GreenTimer1.START_Y" Destination="TimerYellow.START" dx1="55.555553" />
+      <Connection Source="INIT" Destination="blah.INIT" />
+      <Connection Source="GreenTimer.EO" Destination="blah.REQ" dx1="55.555553" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="Control.RED" Destination="RED" />
+      <Connection Source="Control.YELLOW" Destination="YELLOW" />
+      <Connection Source="Control.GREEN" Destination="GREEN" />
+      <Connection Source="Control.RED" Destination="RED" />
+      <Connection Source="Control.YELLOW" Destination="YELLOW" />
+      <Connection Source="Control.GREEN" Destination="GREEN" />
+      <Connection Source="GreenTimer1.CV" Destination="TimeLeft.IN" dx1="55.555553" />
+      <Connection Source="GreenTimer1.MIN_RCHD" Destination="blah.IN" dx1="55.555553" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

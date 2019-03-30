@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TLController" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="QI" />
+        <With Var="GREENTIME" />
+        <With Var="MINGREENTIME" />
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+      <Event Name="TokenIn" >
+      </Event>
+      <Event Name="PEDCROSSBUT" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="TokenOut" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="GREENTIME" Type="UINT" />
+      <VarDeclaration Name="MINGREENTIME" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="GreenRming" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="ButPressCTR" Type="E_CTU" x="949.99994" y="2188.889" >
+      <Parameter Name="PV" Value="4" />
+    </FB>
+    <FB Name="Controller" Type="Controller" x="2611.111" y="1194.4445" >
+    </FB>
+    <EventConnections>
+      <Connection Source="PEDCROSSBUT" Destination="ButPressCTR.CU" />
+      <Connection Source="INIT" Destination="Controller.INIT" />
+      <Connection Source="CLK" Destination="Controller.CLK" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="GreenRming" Destination="Controller.GREENTIME" />
+      <Connection Source="ButPressCTR.Q" Destination="Controller.PEDCROSS" dx1="622.22217" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

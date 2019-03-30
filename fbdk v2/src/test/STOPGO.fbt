@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="STOPGO" Comment="ECC with no Transient ECC State" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2018-12-17" />
+<CompilerInfo header="package fb.rt.test;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="GO" Comment="Normal Execution Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="STOP" >
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED" />
+        <With Var="YELLOW" />
+        <With Var="GREEN" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="YELLOWDONE" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="388.8889" y="866.6666" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1838.8888" y="355.55554" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="GO" x="2150.0" y="766.6666" >
+        <ECAction Algorithm="GO" />
+      </ECState>
+      <ECState Name="GOYELLOW" x="4061.1108" y="2672.2222" >
+        <ECAction Algorithm="GOYELLOW" />
+      </ECState>
+      <ECState Name="CD" x="700.0" y="2616.6665" >
+        <ECAction Algorithm="CD" />
+      </ECState>
+      <ECState Name="STOPNOW" x="2550.0" y="3122.2222" >
+        <ECAction Algorithm="STOP" />
+      </ECState>
+      <ECState Name="STOPREQUESTED" x="4605.555" y="1783.3333" >
+        <ECAction Algorithm="STOPREQ" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1250.0" y="266.66666" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1277.7777" y="477.77777" />
+      <ECTransition Source="START" Destination="GO" Condition="GO" x="1600.0" y="766.6666" />
+      <ECTransition Source="GO" Destination="START" Condition="1" x="1649.9999" y="955.55554" />
+      <ECTransition Source="START" Destination="CD" Condition="CLK [YELLOWTIME > 0]" x="400.0" y="2161.111" />
+      <ECTransition Source="GOYELLOW" Destination="STOPNOW" Condition="CLK [YELLOWTIME = 0]" x="4061.1108" y="3211.111" />
+      <ECTransition Source="STOPNOW" Destination="START" Condition="1" x="1844.4443" y="2016.6666" />
+      <ECTransition Source="CD" Destination="START" Condition="1" x="1033.3333" y="2083.3333" />
+      <ECTransition Source="START" Destination="STOPREQUESTED" Condition="STOP" x="3899.9998" y="1277.7777" />
+      <ECTransition Source="START" Destination="GOYELLOW" Condition="CLK [YELLOWDONE = TRUE]" x="3572.2222" y="2088.889" />
+      <ECTransition Source="GOYELLOW" Destination="START" Condition="1" x="3083.3333" y="2455.5554" />
+      <ECTransition Source="STOPREQUESTED" Destination="START" Condition="1" x="3872.2222" y="1783.3333" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[RED:=FALSE;
+YELLOW:=FALSE;
+GREEN:=FALSE;
+YELLOWDONE:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="STOP" >
+<ST><![CDATA[IF YELLOWTIME = 0 THEN
+	RED:= TRUE;
+	GREEN:= FALSE;
+	YELLOW:= FALSE;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="GO" >
+<ST><![CDATA[GREEN:=TRUE;
+YELLOW:=FALSE;
+RED:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="CD" >
+<ST><![CDATA[YELLOWTIME:= YELLOWTIME - 1:]]></ST>
+  </Algorithm>
+  <Algorithm Name="GOYELLOW" >
+<ST><![CDATA[YELLOW:=TRUE;
+RED:=FALSE;
+GREEN:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="STOPREQ" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="STOPGO" Comment="ECC with no Transient ECC State" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2018-12-17" />
+<CompilerInfo header="package fb.rt.test;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="GO" Comment="Normal Execution Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="STOP" >
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED" />
+        <With Var="YELLOW" />
+        <With Var="GREEN" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="388.8889" y="866.6666" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1722.2222" y="461.11108" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="GO" x="1688.8888" y="927.7778" >
+        <ECAction Algorithm="GO" />
+      </ECState>
+      <ECState Name="STOP" x="1827.7777" y="2077.7776" >
+        <ECAction Algorithm="STOP" />
+      </ECState>
+      <ECState Name="CLK" x="999.99994" y="2594.4443" >
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1044.4445" y="155.55554" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1100.0" y="461.11108" />
+      <ECTransition Source="START" Destination="GO" Condition="GO" x="1100.0" y="838.88885" />
+      <ECTransition Source="GO" Destination="START" Condition="1" x="1188.8888" y="1116.6666" />
+      <ECTransition Source="START" Destination="STOP" Condition="STOP" x="1827.7777" y="1655.5555" />
+      <ECTransition Source="STOP" Destination="START" Condition="1" x="1272.2222" y="1922.2222" />
+      <ECTransition Source="START" Destination="CLK" Condition="1" x="694.4444" y="1733.3333" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[RED:=FALSE;
+YELLOW:=FALSE;
+GREEN:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="STOP" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  <Algorithm Name="GO" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  <Algorithm Name="CLK" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

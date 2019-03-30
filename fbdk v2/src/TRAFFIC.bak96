@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TRAFFIC" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.4" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="Device1" Type="FRAME_DEVICE" x="733.3333" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[100,100,300,110]" />
+    <Resource Name="Model" Type="PANEL_RESOURCE" x="511.11108" y="1261.1111" >
+      <FBNetwork >
+        <FB Name="ForcedStates" Type="SUBL_3" x="816.6666" y="11.111111" >
+        </FB>
+        <FB Name="ToView" Type="PUBL_3" x="2550.0" y="244.44443" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForcedStates.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates.INITO" Destination="ToView.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates.IND" Destination="ToView.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForcedStates.RD_1" Destination="ToView.SD_1" dx1="55.555553" />
+          <Connection Source="ForcedStates.RD_2" Destination="ToView.SD_2" dx1="55.555553" />
+          <Connection Source="ForcedStates.RD_3" Destination="ToView.SD_3" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="View" Type="PANEL_RESOURCE" x="449.99997" y="116.666664" >
+      <FBNetwork >
+        <FB Name="TrafficLight" Type="TL_View" x="2327.7776" y="38.888885" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="ToView" Type="SUBL_3" x="883.3333" y="105.55555" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ToView.INIT" dx1="55.555553" />
+          <Connection Source="ToView.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
+          <Connection Source="ToView.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ToView.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
+          <Connection Source="ToView.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
+          <Connection Source="ToView.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Control" Type="PANEL_RESOURCE" x="494.44443" y="677.7778" >
+      <FBNetwork >
+        <FB Name="ForcedStates" Type="PUBL_3" x="4027.7776" y="238.88889" >
+        </FB>
+        <FB Name="ForceStartState" Type="SUBL_0" x="883.3333" y="61.111107" >
+        </FB>
+        <FB Name="setTimers" Type="setTimers" x="2800.0" y="238.88889" >
+        </FB>
+        <FB Name="ReleaseControl1" Type="PUBL_0" x="5516.6665" y="1011.1111" >
+        </FB>
+        <FB Name="ReleaseControl2" Type="SUBL_0" x="1550.0" y="961.1111" >
+        </FB>
+        <FB Name="ToCross1" Type="SUBL_0" x="2233.3333" y="1961.1111" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceStartState.INIT" dx1="55.555553" />
+          <Connection Source="setTimers.INITO" Destination="ForcedStates.INIT" dx1="55.555553" />
+          <Connection Source="ForceStartState.IND" Destination="setTimers.REQ" dx1="483.3333" />
+          <Connection Source="ForceStartState.INITO" Destination="setTimers.INIT" dx1="722.22217" />
+          <Connection Source="ForcedStates.INITO" Destination="ReleaseControl1.INIT" dx1="772.22217" />
+          <Connection Source="setTimers.RELEASE" Destination="ReleaseControl1.REQ" dx1="1872.2222" />
+          <Connection Source="setTimers.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
+          <Connection Source="ForceStartState.INITO" Destination="ReleaseControl2.INIT" dx1="266.66666" />
+          <Connection Source="ReleaseControl2.IND" Destination="setTimers.REQ" dx1="344.44443" />
+          <Connection Source="ReleaseControl2.INITO" Destination="ToCross1.INIT" dx1="55.555553" />
+          <Connection Source="ToCross1.IND" Destination="setTimers.PEDCROSS" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="setTimers.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
+          <Connection Source="setTimers.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
+          <Connection Source="setTimers.GREEN" Destination="ForcedStates.SD_3" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="477.77777" y="1794.4443" >
+      <FBNetwork >
+        <FB Name="ForceRed" Type="IN_BOOL" x="750.0" y="0.0" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="ForcedStates" Type="PUBL_3" x="4433.333" y="127.77777" >
+        </FB>
+        <FB Name="ForceYellow" Type="IN_BOOL" x="1516.6666" y="1027.7777" >
+          <Parameter Name="LABEL" Value="&#34;YELLOW&#34;" />
+        </FB>
+        <FB Name="ForceGreen" Type="IN_BOOL" x="2350.0" y="1933.3333" >
+          <Parameter Name="LABEL" Value="&#34;GREEN&#34;" />
+        </FB>
+        <FB Name="START_1" Type="IN_EVENT" x="5161.111" y="122.22221" >
+          <Parameter Name="LABEL" Value="&#34;START&#34;" />
+        </FB>
+        <FB Name="ForceStartState" Type="PUBL_0" x="6388.8887" y="122.22221" >
+        </FB>
+        <FB Name="Button1" Type="IN_EVENT" x="4983.333" y="1250.0" >
+          <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
+        </FB>
+        <FB Name="ToCross1" Type="PUBL_0" x="6444.4443" y="1300.0" >
+        </FB>
+        <FB Name="count1" Type="E_CTUEVENT" x="5600.0" y="1511.1111" >
+          <Parameter Name="PV" Value="4" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />
+          <Connection Source="ForceRed.INITO" Destination="ForceYellow.INIT" dx1="283.3333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="ForceYellow.INITO" Destination="ForceGreen.INIT" dx1="283.3333" dx2="55.555553" dy="1105.5555" />
+          <Connection Source="ForceGreen.INITO" Destination="ForcedStates.INIT" dx1="1194.4445" />
+          <Connection Source="ForceRed.IND" Destination="ForcedStates.REQ" dx1="1277.7777" />
+          <Connection Source="ForceYellow.IND" Destination="ForcedStates.REQ" dx1="1188.8888" />
+          <Connection Source="ForceGreen.IND" Destination="ForcedStates.REQ" dx1="466.66666" />
+          <Connection Source="ForcedStates.INITO" Destination="START_1.INIT" dx1="55.555553" />
+          <Connection Source="START_1.INITO" Destination="ForceStartState.INIT" dx1="350.0" />
+          <Connection Source="START_1.IND" Destination="ForceStartState.REQ" dx1="255.55554" />
+          <Connection Source="ForcedStates.INITO" Destination="Button1.INIT" dx1="55.555553" />
+          <Connection Source="START_1.INITO" Destination="ToCross1.INIT" dx1="577.7778" />
+          <Connection Source="Button1.IND" Destination="count1.CU" dx1="55.555553" />
+          <Connection Source="count1.CUO" Destination="ToCross1.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForceRed.OUT" Destination="ForcedStates.SD_1" dx1="55.555553" />
+          <Connection Source="ForceYellow.OUT" Destination="ForcedStates.SD_2" dx1="1400.0" />
+          <Connection Source="ForceGreen.OUT" Destination="ForcedStates.SD_3" dx1="1644.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Device2" Type="FRAME_DEVICE" x="1844.4443" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[100,210,200,110]" />
+    <Resource Name="Model" Type="PANEL_RESOURCE" x="511.11108" y="1261.1111" >
+    </Resource>
+    <Resource Name="View" Type="PANEL_RESOURCE" x="449.99997" y="116.666664" >
+      <FBNetwork >
+        <FB Name="TrafficLight2" Type="TL_View" x="2327.7776" y="38.888885" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="ForcedStates2" Type="SUBL_3" x="883.3333" y="105.55555" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForcedStates2.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates2.INITO" Destination="TrafficLight2.INIT" dx1="55.555553" />
+          <Connection Source="ForcedStates2.IND" Destination="TrafficLight2.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForcedStates2.RD_1" Destination="TrafficLight2.RED" dx1="55.555553" />
+          <Connection Source="ForcedStates2.RD_2" Destination="TrafficLight2.YELLOW" dx1="55.555553" />
+          <Connection Source="ForcedStates2.RD_3" Destination="TrafficLight2.GREEN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Control" Type="PANEL_RESOURCE" x="494.44443" y="677.7778" >
+      <FBNetwork >
+        <FB Name="ForcedStates2" Type="PUBL_3" x="3088.8887" y="122.22221" >
+        </FB>
+        <FB Name="setTimers2" Type="setTimers" x="1855.5555" y="72.22222" >
+        </FB>
+        <FB Name="ReleaseControl2" Type="PUBL_0" x="4272.222" y="600.0" >
+        </FB>
+        <FB Name="ReleaseControl1" Type="SUBL_0" x="866.6666" y="66.666664" >
+        </FB>
+        <EventConnections>
+          <Connection Source="setTimers2.INITO" Destination="ForcedStates2.INIT" dx1="55.555553" />
+          <Connection Source="setTimers2.CNF" Destination="ForcedStates2.REQ" dx1="55.555553" />
+          <Connection Source="ForcedStates2.INITO" Destination="ReleaseControl2.INIT" dx1="672.22217" />
+          <Connection Source="setTimers2.RELEASE" Destination="ReleaseControl2.REQ" dx1="1749.9999" />
+          <Connection Source="START.COLD" Destination="ReleaseControl1.INIT" dx1="55.555553" />
+          <Connection Source="ReleaseControl1.INITO" Destination="setTimers2.INIT" dx1="55.555553" />
+          <Connection Source="ReleaseControl1.IND" Destination="setTimers2.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="setTimers2.RED" Destination="ForcedStates2.SD_1" dx1="344.44443" />
+          <Connection Source="setTimers2.YELLOW" Destination="ForcedStates2.SD_2" dx1="227.77777" />
+          <Connection Source="setTimers2.GREEN" Destination="ForcedStates2.SD_3" dx1="183.33333" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="477.77777" y="1794.4443" >
+      <FBNetwork >
+        <FB Name="ForceRed2" Type="IN_BOOL" x="750.0" y="0.0" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="ForcedStates2" Type="PUBL_3" x="4433.333" y="127.77777" >
+        </FB>
+        <FB Name="ForceYellow2" Type="IN_BOOL" x="1516.6666" y="1027.7777" >
+          <Parameter Name="LABEL" Value="&#34;YELLOW&#34;" />
+        </FB>
+        <FB Name="ForceGreen2" Type="IN_BOOL" x="2350.0" y="1933.3333" >
+          <Parameter Name="LABEL" Value="&#34;GREEN&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceRed2.INIT" dx1="55.555553" />
+          <Connection Source="ForceRed2.INITO" Destination="ForceYellow2.INIT" dx1="283.3333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="ForceYellow2.INITO" Destination="ForceGreen2.INIT" dx1="283.3333" dx2="55.555553" dy="1105.5555" />
+          <Connection Source="ForceGreen2.INITO" Destination="ForcedStates2.INIT" dx1="1194.4445" />
+          <Connection Source="ForceRed2.IND" Destination="ForcedStates2.REQ" dx1="1277.7777" />
+          <Connection Source="ForceYellow2.IND" Destination="ForcedStates2.REQ" dx1="1188.8888" />
+          <Connection Source="ForceGreen2.IND" Destination="ForcedStates2.REQ" dx1="466.66666" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForceRed2.OUT" Destination="ForcedStates2.SD_1" dx1="55.555553" />
+          <Connection Source="ForceYellow2.OUT" Destination="ForcedStates2.SD_2" dx1="1400.0" />
+          <Connection Source="ForceGreen2.OUT" Destination="ForcedStates2.SD_3" dx1="1644.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

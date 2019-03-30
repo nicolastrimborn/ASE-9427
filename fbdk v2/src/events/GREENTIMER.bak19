@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="GREENTIMER" Comment="Define minimum green times" >
+  <Identification Standard="61499-1-A.18" Classification="Event-driven blocks" Function="Up-counter" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.5" Author="JHC" Date="2018-08-20" Remarks="Added ECC documentation." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.4" Author="JHC" Date="2018-08-11" Remarks="Added CV comment." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-11-16" Remarks="Updated for 61499-1 Ed2." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-09-07" Remarks="Changed package to fb.rt.events." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2001-04-27" Remarks="XML version" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="1999-01-22" Remarks="SRC version" />
+<CompilerInfo header="package fb.rt.events;" >
+  <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.7.0" />
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CD" Comment="Count Down" >
+        <With Var="XTIME" />
+        <With Var="MING" />
+      </Event>
+      <Event Name="LD" Comment="Reset" >
+        <With Var="XTIME" />
+        <With Var="MING" />
+      </Event>
+      <Event Name="PEDCROSS" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="START_Y" Comment="Count Up Output Event" >
+        <With Var="MIN_RCHD" />
+        <With Var="CV" />
+      </Event>
+      <Event Name="RO" Comment="Reset Output Event" >
+        <With Var="MIN_RCHD" />
+        <With Var="CV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="XTIME" Type="UINT" Comment="LImit Value" />
+      <VarDeclaration Name="MING" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="MIN_RCHD" Type="BOOL" Comment="CV >= PV" />
+      <VarDeclaration Name="CV" Type="UINT" Comment="Current Value" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="YELLOWSET" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="727.7778" y="238.88889" >
+      </ECState>
+      <ECState Name="CD" Comment="Count Up" x="2916.6665" y="1827.7777" >
+        <ECAction Algorithm="CD" />
+      </ECState>
+      <ECState Name="LD" Comment="Service R (Reset) Event" x="144.44444" y="605.55554" >
+        <ECAction Algorithm="LD" Output="RO" />
+      </ECState>
+      <ECState Name="CountReached" x="3294.4443" y="405.55554" >
+      </ECState>
+      <ECState Name="YellowSet" x="3711.111" y="1388.8888" >
+        <ECAction Algorithm="FLAGSET" Output="START_Y" />
+      </ECState>
+      <ECState Name="PEDCROSS1" x="1150.0" y="1822.2222" >
+        <ECAction Algorithm="PEDCROSS_A" Output="START_Y" />
+      </ECState>
+      <ECTransition Source="CD" Destination="START" Condition="1" x="2433.3333" y="1583.3333" />
+      <ECTransition Source="START" Destination="CountReached" Condition="CD [CV=0]" x="3155.5554" y="816.6666" />
+      <ECTransition Source="START" Destination="CD" Condition="CD [CV > 0]" x="2872.2222" y="1244.4443" />
+      <ECTransition Source="CountReached" Destination="YellowSet" Condition=" [YELLOWSET=FALSE]" x="3888.8887" y="827.7778" />
+      <ECTransition Source="YellowSet" Destination="START" Condition="1" x="2511.111" y="888.88885" />
+      <ECTransition Source="CountReached" Destination="START" Condition="1" x="2300.0" y="394.44443" />
+      <ECTransition Source="START" Destination="PEDCROSS1" Condition="PEDCROSS" x="1461.1111" y="1188.8888" />
+      <ECTransition Source="PEDCROSS1" Destination="START" Condition="1" x="855.55554" y="1422.2222" />
+    </ECC>
+  <Algorithm Name="CD" Comment="Count Up" >
+<ST><![CDATA[CV := CV - 1;
+MIN_RCHD := (CV < MING);]]></ST>
+  </Algorithm>
+  <Algorithm Name="LD" Comment="Reset" >
+<ST><![CDATA[CV := XTIME;
+MIN_RCHD := FALSE;
+YELLOWSET := FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="FLAGSET" >
+<ST><![CDATA[IF CV = 0 THEN 
+	YELLOWSET := TRUE;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="PEDCROSS_A" >
+<ST><![CDATA[CV := 0;
+YELLOWSET := TRUE;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,122 @@
+/* Copyright (c)2019 Holobloc Inc. All rights reserved. */
+package fb.rt.template;
+import fb.datatype.*;
+import fb.rt.*;
+import fb.rt.events.*;
+/** FUNCTION_BLOCK TRAFFICCONTROL (* Basic Function Block Type *)
+  * @author JHC
+  * @version 20190313/JHC - Generated.
+  */
+public class TRAFFICCONTROL extends fb.rt.FBInstance {
+/** The index (0) of state START. */
+public static final int INDEX_START = 0;
+/** The index (1) of state INIT. */
+public static final int INDEX_INIT = 1;
+/** The index (2) of state REQ. */
+public static final int INDEX_REQ = 2;
+/** The index (3) of state TIME1. */
+public static final int INDEX_TIME1 = 3;
+/** The index (4) of state TIME2. */
+public static final int INDEX_TIME2 = 4;
+/** Initialization Confirm */
+public final EventOutput INITO = new EventOutput();
+/** Execution Confirmation */
+public final EventOutput CNF = new EventOutput();
+/** Initialization Request */
+public final EventServer INIT = (e) -> service_INIT();
+/** Normal Execution Request */
+public final EventServer REQ = (e) -> service_REQ();
+/** EVENT TIME1 */
+public final EventServer TIME1 = (e) -> service_TIME1();
+/** EVENT TIME2 */
+public final EventServer TIME2 = (e) -> service_TIME2();
+/** Input event qualifier */
+  public BOOL QI = new BOOL();
+/** VAR T1:BOOL */
+  public BOOL T1 = new BOOL();
+/** VAR T2:BOOL */
+  public BOOL T2 = new BOOL();
+/** Output event qualifier */
+  public final BOOL RED = new BOOL();
+/** VAR YELLOW:BOOL */
+  public final BOOL YELLOW = new BOOL();
+/** VAR GREEN:BOOL */
+  public final BOOL GREEN = new BOOL();
+/** The default constructor. */
+public TRAFFICCONTROL(){
+    super();
+  }
+protected synchronized void service_INIT(){
+  if(eccState == INDEX_START){
+    state_INIT();
+  }
+}
+protected synchronized void service_REQ(){
+  if(eccState == INDEX_START){
+    state_REQ();
+  }
+}
+protected synchronized void service_TIME1(){
+  if(eccState == INDEX_TIME1){
+    state_START();
+  }
+}
+protected synchronized void service_TIME2(){
+  if(eccState == INDEX_TIME2){
+    state_START();
+  }
+}
+/** The actions to take upon entering state START. */
+void state_START(){
+   eccState = INDEX_START;
+   alg_TIME1();
+   alg_TIME2();
+   state_TIME1();
+   state_TIME2();
+}
+/** The actions to take upon entering state INIT. */
+void state_INIT(){
+   eccState = INDEX_INIT;
+   alg_INIT();
+   INITO.serviceEvent(this);
+   state_START();
+}
+/** The actions to take upon entering state REQ. */
+void state_REQ(){
+   eccState = INDEX_REQ;
+   alg_REQ();
+   CNF.serviceEvent(this);
+   state_START();
+}
+/** The actions to take upon entering state TIME1. */
+void state_TIME1(){
+   eccState = INDEX_TIME1;
+}
+/** The actions to take upon entering state TIME2. */
+void state_TIME2(){
+   eccState = INDEX_TIME2;
+}
+  /** ALGORITHM INIT IN ST*/
+public void alg_INIT(){
+GREEN.value=false;
+Yellow=false;
+Red=false;}
+  /** ALGORITHM REQ IN ST*/
+public void alg_REQ(){
+if( QI.value ){
+	GREEN.value=false;
+	YELLOW.value=true;
+}}
+  /** ALGORITHM TIME1 IN ST*/
+public void alg_TIME1(){
+if( T1.value ){
+	GREEN.value=false;
+	YELLOW.value=true;
+}}
+  /** ALGORITHM TIME2 IN ST*/
+public void alg_TIME2(){
+if( T2.value ){
+	YELLOW.value=false;
+	RED.value=true;
+}}
+}

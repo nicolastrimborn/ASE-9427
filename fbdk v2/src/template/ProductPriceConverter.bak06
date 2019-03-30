@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ProductPriceConverter" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="productIndex" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="price" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="productIndex" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="price" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="1400.0" y="205.55554" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQState" Comment="Normal execution" x="294.44443" y="1055.5555" >
+        <ECAction Algorithm="REQAlg" Output="CNF" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="944.4444" y="105.55555" />
+      <ECTransition Source="START" Destination="REQState" Condition="REQ" x="811.1111" y="733.3333" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1300.0" y="594.4444" />
+      <ECTransition Source="REQState" Destination="START" Condition="1" x="294.44443" y="633.3333" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  <Algorithm Name="REQAlg" Comment="Normally executed algorithm" >
+<ST><![CDATA[CASE productIndex OF
+0:
+	price:=10;
+1:	
+	price:=20;
+2:
+	price:=30;
+ELSE
+	price:=1;
+END_CASE;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

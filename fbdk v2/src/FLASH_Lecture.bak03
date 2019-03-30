@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="FLASH_Lecture" Comment="Remote Flasher Test System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.1" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-01-10" Remarks="Modified from FLASHERT_TESTD." />
+  <Device Name="CTL_PANEL" Type="FRAME_DEVICE" x="527.7778" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[50,100,325,100]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="222.22221" y="11.111111" >
+      <FBNetwork >
+        <FB Name="RUN_PB" Type="IN_EVENT" x="494.44443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;RUN&#34;" />
+        </FB>
+        <FB Name="STOP_PB" Type="IN_EVENT" x="1100.0" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;STOP&#34;" />
+        </FB>
+        <FB Name="MODE" Type="IN_CHOICE" x="2361.111" y="755.55554" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;FLASH_ALL,COUNT_UP,COUNT_DOWN,CHASE_UP,CHASE_DOWN&#34;" />
+        </FB>
+        <FB Name="DT" Type="IN_ANY" x="1838.8888" y="194.44444" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="TYPE" Value="&#34;TIME&#34;" />
+          <Parameter Name="IVAL" Value="t#250ms" />
+        </FB>
+        <FB Name="LEDS" Type="LED_HMI" x="4600.0" y="499.99997" >
+        </FB>
+        <FB Name="MyCycle" Type="E_CYCLE" x="2661.111" y="2077.7776" >
+          <Parameter Name="DT" Value="t#250ms" />
+        </FB>
+        <FB Name="CONTROL" Type="FlashControl" x="3249.9998" y="494.44443" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="RUN_PB.INIT" dx1="26.315788" dx2="41.1765" dy="588.2353" />
+          <Connection Source="RUN_PB.INITO" Destination="STOP_PB.INIT" dx1="89.47369" dx2="29.4118" dy="158.8235" />
+          <Connection Source="STOP_PB.INITO" Destination="DT.INIT" dx1="136.8421" dx2="23.5294" dy="158.8235" />
+          <Connection Source="DT.INITO" Destination="MODE.INIT" dx1="121.05263" dx2="31.578947" dy="910.5263" />
+          <Connection Source="DT.IND" Destination="MODE.REQ" dx1="94.73684" dx2="57.894737" dy="778.9474" />
+          <Connection Source="RUN_PB.IND" Destination="MyCycle.START" dx1="55.555553" />
+          <Connection Source="STOP_PB.IND" Destination="MyCycle.STOP" dx1="55.555553" />
+          <Connection Source="MODE.INITO" Destination="CONTROL.INIT" dx1="55.555553" />
+          <Connection Source="CONTROL.INITO" Destination="LEDS.INIT" dx1="27.777777" />
+          <Connection Source="MyCycle.EO" Destination="CONTROL.REQ" dx1="55.555553" />
+          <Connection Source="CONTROL.CNF" Destination="LEDS.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="CONTROL.LED3" Destination="LEDS.LED3" dx1="55.555553" />
+          <Connection Source="CONTROL.LED2" Destination="LEDS.LED2" dx1="55.555553" />
+          <Connection Source="CONTROL.LED1" Destination="LEDS.LED1" dx1="55.555553" />
+          <Connection Source="CONTROL.LED0" Destination="LEDS.LED0" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

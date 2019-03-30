@@ -1,0 +1,166 @@
+/* Copyright (c)2019 Rockwell Automation. All rights reserved. */
+package fb.rt.template;
+import fb.datatype.*;
+import fb.rt.*;
+import fb.rt.compare.*;
+import fb.rt.events.*;
+import fb.rt.hmi.*;
+/** FUNCTION_BLOCK setTimers (* Composite Function Block Type *)
+  * @author JHC
+  * @version 20190324/JHC - Generated.
+  */
+public class setTimers extends fb.rt.FBInstance {
+/** Initialization Confirm */
+public final EventOutput INITO = new EventOutput();
+/** Execution Confirmation */
+public final EventOutput CNF = new EventOutput();
+/** EVENT RELEASE */
+public final EventOutput RELEASE = new EventOutput();
+/** Initialization Request */
+public final EventServer INIT = (e) -> service_INIT();
+/** Normal Execution Request */
+public final EventServer REQ = (e) -> service_REQ();
+/** EVENT PEDCROSS */
+public final EventServer PEDCROSS = (e) -> service_PEDCROSS();
+/** FB Control:TRAFFICCONTROL1 */
+  protected TRAFFICCONTROL1 Control = new TRAFFICCONTROL1() ;
+/** FB TimerYellow:E_DELAY */
+  protected E_DELAY TimerYellow = new E_DELAY() ;
+/** FB TimeLeft:OUT_ANY_LBL */
+  protected OUT_ANY_LBL TimeLeft = new OUT_ANY_LBL() ;
+/** FB CountDownTime:E_CTD */
+  protected E_CTD CountDownTime = new E_CTD() ;
+/** FB GreenTimer:E_CYCLE */
+  protected E_CYCLE GreenTimer = new E_CYCLE() ;
+/** FB GreenCounter:E_CTU */
+  protected E_CTU GreenCounter = new E_CTU() ;
+/** FB MinGreenTime:FB_GT_UINT */
+  protected FB_GT_UINT MinGreenTime = new FB_GT_UINT() ;
+/** FB ped:E_PERMIT */
+  protected E_PERMIT ped = new E_PERMIT() ;
+/** FB GreenTimeExp:FB_GT_UINT */
+  protected FB_GT_UINT GreenTimeExp = new FB_GT_UINT() ;
+/** VAR RED:BOOL */
+  public final BOOL RED = (BOOL)Control.RED;
+/** VAR YELLOW:BOOL */
+  public final BOOL YELLOW = (BOOL)Control.YELLOW;
+/** VAR GREEN:BOOL */
+  public final BOOL GREEN = (BOOL)Control.GREEN;
+/** The default constructor. */
+public setTimers(){
+    super();
+    TimerYellow.EO.connectTo(Control.T2);
+    Control.INITO.connectTo(INITO);
+    Control.CNF.connectTo(CNF);
+    Control.RELEASE.connectTo(RELEASE);
+    CountDownTime.CDO.connectTo(TimeLeft.REQ);
+    GreenTimer.EO.connectTo(GreenCounter.CU);
+    GreenCounter.CUO.connectTo(MinGreenTime.REQ);
+    GreenCounter.CUO.connectTo(CountDownTime.CD);
+    ped.EO.connectTo(TimerYellow.START);
+    GreenCounter.CUO.connectTo(GreenTimeExp.REQ);
+    GreenTimeExp.CNF.connectTo(Control.T1);
+    GreenTimeExp.CNF.connectTo(TimerYellow.START);
+    Control.RELEASE.connectTo(GreenCounter.R);
+    MinGreenTime.connectIVNoException("IN1",GreenCounter.ovNamedNoException("CV"));
+    ped.connectIVNoException("PERMIT",MinGreenTime.ovNamedNoException("OUT"));
+    GreenTimeExp.connectIVNoException("IN1",GreenCounter.ovNamedNoException("CV"));
+    TimeLeft.connectIVNoException("IN",GreenCounter.ovNamedNoException("CV"));
+    TimerYellow.DT.initializeNoException("t#1s");
+    TimeLeft.TYPE.initializeNoException("UINT");
+    TimeLeft.LABEL.initializeNoException("TIME LEFT");
+    TimeLeft.W.initializeNoException("1");
+    CountDownTime.PV.initializeNoException("3");
+    GreenTimer.DT.initializeNoException("t#1s");
+    MinGreenTime.IN2.initializeNoException("3");
+    GreenTimeExp.IN2.initializeNoException("5");
+  }
+	/**
+ * {@inheritDoc}
+ * @param newVar {@inheritDoc}
+ */
+@Override
+protected void connectInternal(ANY newVar) {
+}
+/** start the FB instances. */
+public void start( ){
+    super.start();
+  Control.start();
+  TimerYellow.start();
+  TimeLeft.start();
+  CountDownTime.start();
+  GreenTimer.start();
+  GreenCounter.start();
+  MinGreenTime.start();
+  ped.start();
+  GreenTimeExp.start();
+}
+/** stop the FB instances. */
+public void stop( ){
+    super.stop();
+  Control.stop();
+  TimerYellow.stop();
+  TimeLeft.stop();
+  CountDownTime.stop();
+  GreenTimer.stop();
+  GreenCounter.stop();
+  MinGreenTime.stop();
+  ped.stop();
+  GreenTimeExp.stop();
+}
+/** kill the FB instances. */
+public void kill( ){
+    super.kill();
+  Control.kill();
+  TimerYellow.kill();
+  TimeLeft.kill();
+  CountDownTime.kill();
+  GreenTimer.kill();
+  GreenCounter.kill();
+  MinGreenTime.kill();
+  ped.kill();
+  GreenTimeExp.kill();
+}
+/** reset the FB instances. */
+public void reset( ){
+    super.reset();
+  Control.reset();
+  TimerYellow.reset();
+  TimeLeft.reset();
+  CountDownTime.reset();
+  GreenTimer.reset();
+  GreenCounter.reset();
+  MinGreenTime.reset();
+  ped.reset();
+  GreenTimeExp.reset();
+}
+protected synchronized void service_INIT(){
+   Control.INIT.serviceEvent(this);
+   TimeLeft.INIT.serviceEvent(this);
+}
+protected synchronized void service_REQ(){
+   Control.T0.serviceEvent(this);
+   GreenTimer.START.serviceEvent(this);
+   CountDownTime.LD.serviceEvent(this);
+}
+protected synchronized void service_PEDCROSS(){
+   ped.EI.serviceEvent(this);
+}
+/** {@inheritDoc}
+ * @param fbName {@inheritDoc}
+ * @param r {@inheritDoc}
+ * @throws FBRManagementException {@inheritDoc} */
+  public void initialize(String fbName, Resource r)
+  throws FBRManagementException{
+    super.initialize(fbName,r);
+    Control.initialize("Control",r);
+    TimerYellow.initialize("TimerYellow",r);
+    TimeLeft.initialize("TimeLeft",r);
+    CountDownTime.initialize("CountDownTime",r);
+    GreenTimer.initialize("GreenTimer",r);
+    GreenCounter.initialize("GreenCounter",r);
+    MinGreenTime.initialize("MinGreenTime",r);
+    ped.initialize("ped",r);
+    GreenTimeExp.initialize("GreenTimeExp",r);
+}
+}

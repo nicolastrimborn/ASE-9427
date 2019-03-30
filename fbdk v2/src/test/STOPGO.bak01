@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="STOPGO" Comment="ECC with no Transient ECC State" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2018-12-17" />
+<CompilerInfo header="package fb.rt.test;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="GO" Comment="Normal Execution Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="STOP" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED" />
+        <With Var="YELLOW" />
+        <With Var="GREEN" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="438.8889" y="355.55554" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="805.55554" y="66.666664" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="100.0" y="683.3333" >
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="438.8889" y="66.666664" />
+      <ECTransition Source="START" Destination="REQ" Condition="GO" x="438.8889" y="527.7778" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="805.55554" y="355.55554" />
+      <ECTransition Source="REQ" Destination="START" Condition="1" x="100.0" y="355.55554" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[RED:=FALSE;
+YELLOW:=FALSE;
+GREEN:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="STOP" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  <Algorithm Name="GO" >
+<ST><![CDATA[]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>
