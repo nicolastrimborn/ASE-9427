@@ -14,16 +14,10 @@ public static final int INDEX_START = 0;
 public static final int INDEX_INIT = 1;
 /** The index (2) of state CLK. */
 public static final int INDEX_CLK = 2;
-/** The index (3) of state Red. */
-public static final int INDEX_Red = 3;
-/** The index (4) of state Release. */
-public static final int INDEX_Release = 4;
 /** Initialization Confirm */
 public final EventOutput INITO = new EventOutput();
 /** EVENT CNF */
 public final EventOutput CNF = new EventOutput();
-/** EVENT RELEASEE */
-public final EventOutput RELEASEE = new EventOutput();
 /** Initialization Request */
 public final EventServer INIT = (e) -> service_INIT();
 /** Normal Execution Request */
@@ -67,14 +61,8 @@ protected synchronized void service_INIT(){
   }
 }
 protected synchronized void service_CLK(){
-  if((eccState == INDEX_START) && (RED.value==false)){
+  if(eccState == INDEX_START){
     state_CLK();
-  }
-  else if((eccState == INDEX_Red) && (RELEASE.value==false)){
-    state_Release();
-  }
-  else if((eccState == INDEX_START) && (RED.value==true)){
-    state_Red();
   }
 }
 /** The actions to take upon entering state START. */
@@ -95,18 +83,6 @@ void state_CLK(){
    CNF.serviceEvent(this);
    state_START();
 }
-/** The actions to take upon entering state Red. */
-void state_Red(){
-   eccState = INDEX_Red;
-   state_START();
-}
-/** The actions to take upon entering state Release. */
-void state_Release(){
-   eccState = INDEX_Release;
-   alg_RELEASE();
-   RELEASEE.serviceEvent(this);
-   state_Red();
-}
   /** ALGORITHM INIT IN ST*/
 public void alg_INIT(){
 RED.value=false;
@@ -118,28 +94,31 @@ GREENTIMEIN.value=100;
 RELEASE.value=false;}
   /** ALGORITHM CLK IN ST*/
 public void alg_CLK(){
-if( PEDCROSS.value && MINGREENTIMEIN.value==0 ){
-    GREEN.value=false;
-	YELLOW.value=true;
-    RED.value=false;
-    GREENTIMEIN.value=0;
+if( PEDCROSS.value ){
+ if( MINGREENTIMEIN.value==0 ){
+   GREEN.value=false;
+   YELLOW.value=true;
+   RED.value=false;
+   GREENTIMEIN.value=0;
+ }
 }
 if( GREENTIMEIN.value>0 ){
 	GREENTIMEIN.value = GREENTIMEIN.value - 1;
-        MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
+    MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
 }
 GREENREMAINING.value=GREENTIMEIN.value;
 if( GREENTIMEIN.value==0 ){
-    GREEN.value=false;
+   GREEN.value=false;
 	YELLOW.value= true;
-    RED.value=false;
+   RED.value=false;
 	if( YELLOWTIMEIN.value>0 ){
 		YELLOWTIMEIN.value= YELLOWTIMEIN.value - 1;
 	}
-   if( YELLOWTIMEIN.value==0 ){
-        GREEN.value=false;
-        YELLOW.value=false;
+  if( YELLOWTIMEIN.value==0 ){
+       GREEN.value=false;
+       YELLOW.value=false;
 		RED.value=true;
+		RELEASE.value=true;
 	}
 }}
   /** ALGORITHM LD IN ST*/
@@ -150,7 +129,4 @@ GREEN.value=true;
 GREENTIMEIN.value=GREENTIME.value;
 GREENREMAINING.value=GREENTIME.value;
 RELEASE.value=false;}
-  /** ALGORITHM RELEASE IN ST*/
-public void alg_RELEASE(){
-RELEASE.value=true;}
 }

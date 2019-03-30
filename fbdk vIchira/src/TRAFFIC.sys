@@ -32,7 +32,7 @@
         </FB>
         <FB Name="ReleaseControl2" Type="SUBL_0" x="1388.8888" y="977.7777" >
         </FB>
-        <FB Name="ToCross1" Type="SUBL_0" x="1938.8888" y="1761.1111" >
+        <FB Name="ToCross1" Type="SUBL_0" x="2027.7777" y="1372.2222" >
         </FB>
         <FB Name="timeRemaining" Type="PUBL_1" x="4388.8887" y="1749.9999" >
         </FB>
@@ -51,8 +51,8 @@
           <Connection Source="ForcedStates.INITO" Destination="ReleaseControl1.INIT" dx1="588.88885" />
           <Connection Source="ForceStartState.INITO" Destination="ReleaseControl2.INIT" dx1="266.66666" />
           <Connection Source="ReleaseControl2.INITO" Destination="ToCross1.INIT" dx1="55.555553" />
-          <Connection Source="ToCross1.IND" Destination="setTimers1.PEDCROSSBUT" dx1="55.555553" />
-          <Connection Source="ReleaseControl2.IND" Destination="setTimers1.TokenIn" dx1="55.555553" />
+          <Connection Source="ToCross1.IND" Destination="setTimers1.PEDCROSSBUT" dx1="266.66666" />
+          <Connection Source="ReleaseControl2.IND" Destination="setTimers1.TokenIn" dx1="288.8889" />
           <Connection Source="ForceStartState.INITO" Destination="setTimers1.INIT" dx1="55.555553" />
           <Connection Source="ForceStartState.IND" Destination="setTimers1.TokenIn" dx1="55.555553" />
           <Connection Source="setTimers1.INITO" Destination="ForcedStates.INIT" dx1="55.555553" />
@@ -67,6 +67,7 @@
           <Connection Source="setTimers1.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
           <Connection Source="setTimers1.GREEN" Destination="ForcedStates.SD_3" dx1="55.555553" />
           <Connection Source="setTimers1.GreenRming" Destination="timeRemaining.SD_1" dx1="55.555553" />
+          <Connection Source="setTimers1.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -122,14 +123,6 @@
         </FB>
         <FB Name="ToCross1" Type="PUBL_0" x="7422.222" y="1050.0" >
         </FB>
-        <FB Name="count1" Type="E_CTUEVENT" x="5638.8887" y="1422.2222" >
-          <Parameter Name="PV" Value="4" />
-        </FB>
-        <FB Name="test" Type="OUT_EVENT" x="7383.333" y="2727.7776" >
-          <Parameter Name="LABEL" Value="&#34;4Press&#34;" />
-          <Parameter Name="DT" Value="t#1s" />
-          <Parameter Name="FLASH" Value="[255,0,0]" />
-        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />
           <Connection Source="ForceRed.INITO" Destination="ForceYellow.INIT" dx1="283.3333" dx2="55.555553" dy="1100.0" />
@@ -143,10 +136,7 @@
           <Connection Source="START_1.IND" Destination="ForceStartState.REQ" dx1="255.55554" />
           <Connection Source="ForcedStates.INITO" Destination="Button1.INIT" dx1="55.555553" />
           <Connection Source="START_1.INITO" Destination="ToCross1.INIT" dx1="577.7778" />
-          <Connection Source="Button1.IND" Destination="count1.CU" dx1="55.555553" />
-          <Connection Source="count1.CUO" Destination="ToCross1.REQ" dx1="55.555553" />
-          <Connection Source="count1.CUO" Destination="test.REQ" dx1="572.2222" />
-          <Connection Source="ToCross1.INITO" Destination="test.INIT" dx1="505.55554" dx2="55.555553" dy="1444.4443" />
+          <Connection Source="Button1.IND" Destination="ToCross1.REQ" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
           <Connection Source="ForceRed.OUT" Destination="ForcedStates.SD_1" dx1="55.555553" />

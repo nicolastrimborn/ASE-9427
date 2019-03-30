@@ -40,7 +40,7 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
-    <FB Name="ButPressCTR" Type="E_CTU" x="550.0" y="1138.8888" >
+    <FB Name="ButPressCTR" Type="E_CTU" x="594.4444" y="638.88885" >
       <Parameter Name="PV" Value="4" />
     </FB>
     <FB Name="CLOCK" Type="E_CYCLE" x="4744.4443" y="1572.2222" >
@@ -48,7 +48,7 @@
     </FB>
     <FB Name="Split1" Type="E_SPLIT" x="3672.2222" y="177.77777" >
     </FB>
-    <FB Name="Controller" Type="Controller" x="1455.5555" y="211.1111" >
+    <FB Name="Controller1" Type="Controller" x="2072.2222" y="127.77777" >
     </FB>
     <EventConnections>
       <Connection Source="PEDCROSSBUT" Destination="ButPressCTR.CU" />
@@ -56,22 +56,21 @@
       <Connection Source="Split1.EO2" Destination="CLOCK.STOP" dx1="377.77777" />
       <Connection Source="INIT" Destination="CLOCK.START" />
       <Connection Source="TokenIn" Destination="CLOCK.START" />
-      <Connection Source="INIT" Destination="Controller.INIT" />
-      <Connection Source="TokenIn" Destination="Controller.CLK" />
-      <Connection Source="PEDCROSSBUT" Destination="Controller.LD" />
-      <Connection Source="Controller.CNF" Destination="CNF" />
-      <Connection Source="Controller.RELEASEE" Destination="Split1.EI" dx1="705.55554" />
-      <Connection Source="Controller.INITO" Destination="INITO" />
+      <Connection Source="INIT" Destination="Controller1.INIT" />
+      <Connection Source="CLOCK.EO" Destination="Controller1.CLK" dx1="55.555553" dx2="561.1111" dy="83.33333" />
+      <Connection Source="TokenIn" Destination="Controller1.LD" />
+      <Connection Source="Controller1.INITO" Destination="INITO" />
+      <Connection Source="Controller1.CNF" Destination="CNF" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="ButPressCTR.Q" Destination="Controller.PEDCROSS" dx1="55.555553" />
-      <Connection Source="GREENTIME" Destination="Controller.GREENTIME" />
-      <Connection Source="MINGREENTIME" Destination="Controller.MINGREENTIME" />
-      <Connection Source="YELLOWTIME" Destination="Controller.YELLOWTIME" />
-      <Connection Source="Controller.GREENREMAINING" Destination="GreenRming" />
-      <Connection Source="Controller.GREEN" Destination="RED" />
-      <Connection Source="Controller.GREEN" Destination="GREEN" />
-      <Connection Source="Controller.YELLOW" Destination="YELLOW" />
+      <Connection Source="Controller1.RED" Destination="RED" />
+      <Connection Source="Controller1.YELLOW" Destination="YELLOW" />
+      <Connection Source="Controller1.GREEN" Destination="GREEN" />
+      <Connection Source="Controller1.GREENREMAINING" Destination="GreenRming" />
+      <Connection Source="ButPressCTR.Q" Destination="Controller1.PEDCROSS" dx1="55.555553" />
+      <Connection Source="GREENTIME" Destination="Controller1.GREENTIME" />
+      <Connection Source="MINGREENTIME" Destination="Controller1.MINGREENTIME" />
+      <Connection Source="YELLOWTIME" Destination="Controller1.YELLOWTIME" />
     </DataConnections>
   </FBNetwork>
 </FBType>

@@ -26,8 +26,8 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
   protected E_CYCLE CLOCK = new E_CYCLE() ;
 /** FB Split1:E_SPLIT */
   protected E_SPLIT Split1 = new E_SPLIT() ;
-/** FB Controller:Controller */
-  protected Controller Controller = new Controller() ;
+/** FB Controller1:Controller */
+  protected Controller Controller1 = new Controller() ;
 /** VAR GREENTIME:UINT */
   public UINT GREENTIME = new UINT();
 /** VAR MINGREENTIME:UINT */
@@ -35,25 +35,25 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
 /** VAR YELLOWTIME:UINT */
   public UINT YELLOWTIME = new UINT();
 /** VAR RED:BOOL */
-  public final BOOL RED = (BOOL)Controller.GREEN;
+  public final BOOL RED = (BOOL)Controller1.RED;
 /** VAR YELLOW:BOOL */
-  public final BOOL YELLOW = (BOOL)Controller.YELLOW;
+  public final BOOL YELLOW = (BOOL)Controller1.YELLOW;
 /** VAR GREEN:BOOL */
-  public final BOOL GREEN = (BOOL)Controller.GREEN;
+  public final BOOL GREEN = (BOOL)Controller1.GREEN;
 /** VAR GreenRming:UINT */
-  public final UINT GreenRming = (UINT)Controller.GREENREMAINING;
+  public final UINT GreenRming = (UINT)Controller1.GREENREMAINING;
 /** The default constructor. */
 public TLController(){
     super();
     Split1.EO1.connectTo(TokenOut);
     Split1.EO2.connectTo(CLOCK.STOP);
-    Controller.CNF.connectTo(CNF);
-    Controller.RELEASEE.connectTo(Split1.EI);
-    Controller.INITO.connectTo(INITO);
-    Controller.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
-    Controller.connectIVNoException("GREENTIME",GREENTIME);
-    Controller.connectIVNoException("MINGREENTIME",MINGREENTIME);
-    Controller.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    CLOCK.EO.connectTo(Controller1.CLK);
+    Controller1.INITO.connectTo(INITO);
+    Controller1.CNF.connectTo(CNF);
+    Controller1.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
+    Controller1.connectIVNoException("GREENTIME",GREENTIME);
+    Controller1.connectIVNoException("MINGREENTIME",MINGREENTIME);
+    Controller1.connectIVNoException("YELLOWTIME",YELLOWTIME);
     ButPressCTR.PV.initializeNoException("4");
     CLOCK.DT.initializeNoException("t#1s");
   }
@@ -64,11 +64,11 @@ public TLController(){
 @Override
 protected void connectInternal(ANY newVar) {
   if(newVar == GREENTIME)
-    Controller.connectIVNoException("GREENTIME",GREENTIME);
+    Controller1.connectIVNoException("GREENTIME",GREENTIME);
   if(newVar == MINGREENTIME)
-    Controller.connectIVNoException("MINGREENTIME",MINGREENTIME);
+    Controller1.connectIVNoException("MINGREENTIME",MINGREENTIME);
   if(newVar == YELLOWTIME)
-    Controller.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    Controller1.connectIVNoException("YELLOWTIME",YELLOWTIME);
 }
 /** start the FB instances. */
 public void start( ){
@@ -76,7 +76,7 @@ public void start( ){
   ButPressCTR.start();
   CLOCK.start();
   Split1.start();
-  Controller.start();
+  Controller1.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -84,7 +84,7 @@ public void stop( ){
   ButPressCTR.stop();
   CLOCK.stop();
   Split1.stop();
-  Controller.stop();
+  Controller1.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -92,7 +92,7 @@ public void kill( ){
   ButPressCTR.kill();
   CLOCK.kill();
   Split1.kill();
-  Controller.kill();
+  Controller1.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -100,19 +100,18 @@ public void reset( ){
   ButPressCTR.reset();
   CLOCK.reset();
   Split1.reset();
-  Controller.reset();
+  Controller1.reset();
 }
 protected synchronized void service_INIT(){
    CLOCK.START.serviceEvent(this);
-   Controller.INIT.serviceEvent(this);
+   Controller1.INIT.serviceEvent(this);
 }
 protected synchronized void service_TokenIn(){
    CLOCK.START.serviceEvent(this);
-   Controller.CLK.serviceEvent(this);
+   Controller1.LD.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSSBUT(){
    ButPressCTR.CU.serviceEvent(this);
-   Controller.LD.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}
@@ -124,6 +123,6 @@ protected synchronized void service_PEDCROSSBUT(){
     ButPressCTR.initialize("ButPressCTR",r);
     CLOCK.initialize("CLOCK",r);
     Split1.initialize("Split1",r);
-    Controller.initialize("Controller",r);
+    Controller1.initialize("Controller1",r);
 }
 }
