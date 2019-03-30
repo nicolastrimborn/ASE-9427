@@ -22,10 +22,17 @@ public static final int INDEX_ToRed = 4;
 public final EventOutput INITO = new EventOutput();
 /** EVENT RELEASECONTROL */
 public final EventOutput RELEASECONTROL = new EventOutput();
+/** EVENT CNF */
+public final EventOutput CNF = new EventOutput();
 /** Initialization Request */
 public final EventServer INIT = (e) -> service_INIT();
 /** Normal Execution Request */
 public final EventServer CLK = (e) -> service_CLK();
+/** EVENT LD */
+public final EventServer LD = (e) -> {
+  alg_LD();
+  }
+;
 /** VAR GREENTIME:UINT */
   public UINT GREENTIME = new UINT();
 /** VAR MINGREENTIME:UINT */
@@ -44,6 +51,14 @@ public final EventServer CLK = (e) -> service_CLK();
   public final UINT GREENREMAINING = new UINT();
 /** VAR Release:BOOL */
   public BOOL Release = new BOOL();
+/** VAR GREENTIMEIN:UINT */
+  public UINT GREENTIMEIN = new UINT();
+/** VAR MINGREENTIMEIN:UINT */
+  public UINT MINGREENTIMEIN = new UINT();
+/** VAR PEDCROSSIN:BOOL */
+  public BOOL PEDCROSSIN = new BOOL();
+/** VAR YELLOWTIMEIN:UINT */
+  public UINT YELLOWTIMEIN = new UINT();
 /** The default constructor. */
 public Controller(){
     super();
@@ -75,6 +90,7 @@ void state_INIT(){
 void state_CLK(){
    eccState = INDEX_CLK;
    alg_CLK();
+   CNF.serviceEvent(this);
    state_START();
 }
 /** The actions to take upon entering state ReleaseControl1. */
@@ -98,24 +114,31 @@ YELLOW.value=false;
 GREEN.value=false;}
   /** ALGORITHM CLK IN ST*/
 public void alg_CLK(){
-if( PEDCROSS.value && MINGREENTIME.value==0 ){
-	YELLOW.value=true
-    GREENTIME.value==0
-ELSEIF(GREENTIME.value > 0) ){
-	GREENTIME.value = GREENTIME.value - 1;
-    MINGREENTIME.value= MINGREENTIME.value - 1;
+if( PEDCROSS.value && MINGREENTIMEIN.value==0 ){
+	YELLOW.value=true;
+  GREENTIMEIN.value=0;
+ELSEIF GREENTIMEIN.value>0 ){
+	GREENTIMEIN.value = GREENTIMEIN.value - 1;
+  MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
 }
-GREENREMAINING.value == GREENTIME.value;
-if( GREENTIME.value == 0 ){
-	YELLOW.value = true
-	if((YELLOW.value > 0) ){
-		YELLOWTIME.value = YELLOWTIME.value - 1;
-	ELSEIF YELLOWTIME.value == 0 ){
-		RED.value=true
-		Release.value=true
+GREENREMAINING.value=GREENTIMEIN.value;
+if( GREENTIMEIN.value==0 ){
+	YELLOW.value = true;
+	if( YELLOWTIMEIN.value>0 ){
+		YELLOWTIMEIN.value= YELLOWTIMEIN.value - 1;
+	ELSEIF YELLOWTIMEIN.value==0 ){
+		RED.value=true;
+		Release.value=true;
 	}
 }}
   /** ALGORITHM RELEASE IN ST*/
 public void alg_RELEASE(){
-Release.value=True;}
+Release.value=true;}
+  /** ALGORITHM LD IN ST*/
+public void alg_LD(){
+GREENTIMEIN.value=GREENTIME.value;
+MINGREENTIMEIN.value=MINGREENTIME.value;
+PEDCROSSIN.value=false;
+YELLOWTIMEIN.value=YELLOWTIME.value;
+GREEN.value=true;}
 }

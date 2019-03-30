@@ -67,20 +67,20 @@
       </ECState>
       <ECState Name="CheckMin" x="5155.555" y="127.77777" >
       </ECState>
-      <ECState Name="MinReached" x="5883.333" y="1544.4443" >
+      <ECState Name="MinReached" x="6322.222" y="1533.3333" >
         <ECAction Algorithm="AKSJDKASJDKAS" />
       </ECState>
       <ECTransition Source="START" Destination="CountReached" Condition="CD [CV=0]" x="2600.0" y="1622.2222" />
       <ECTransition Source="START" Destination="CD" Condition="CD [CV > 0]" x="2105.5554" y="2011.1111" />
       <ECTransition Source="CountReached" Destination="YellowSet" Condition=" [YELLOWSET=FALSE]" x="3455.5554" y="1955.5554" />
       <ECTransition Source="YellowSet" Destination="START" Condition="1" x="2955.5554" y="2250.0" />
-      <ECTransition Source="CheckMin" Destination="START" Condition=" [MING>=CV]" x="4483.333" y="650.0" />
+      <ECTransition Source="CheckMin" Destination="START" Condition=" [MING=40000]" x="4472.222" y="677.7778" />
       <ECTransition Source="CountReached" Destination="START" Condition="1" x="2344.4443" y="1077.7777" />
       <ECTransition Source="CD" Destination="CheckMin" Condition=" [PEDWANTSTOCROSS=TRUE]" x="3966.6665" y="127.77777" />
       <ECTransition Source="CD" Destination="START" Condition=" [PEDWANTSTOCROSS=FALSE]" x="1394.4443" y="2077.7776" />
-      <ECTransition Source="CheckMin" Destination="MinReached" Condition=" [MING&#60;CV]" x="5994.4443" y="772.22217" />
-      <ECTransition Source="MinReached" Destination="YellowSet" Condition=" [YELLOWSET=FALSE]" x="5194.4443" y="2244.4443" />
-      <ECTransition Source="MinReached" Destination="CheckMin" Condition="1" x="5377.7773" y="955.55554" />
+      <ECTransition Source="CheckMin" Destination="MinReached" Condition=" [MING&#60;CV]" x="6433.333" y="761.1111" />
+      <ECTransition Source="MinReached" Destination="YellowSet" Condition=" [YELLOWSET=FALSE]" x="5633.333" y="2233.3333" />
+      <ECTransition Source="MinReached" Destination="CheckMin" Condition="CD [YELLOWSET=FALSE]" x="5816.6665" y="944.4444" />
     </ECC>
   <Algorithm Name="CD" Comment="Count Up" >
 <ST><![CDATA[CV := CV - 1;]]></ST>

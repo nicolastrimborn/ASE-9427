@@ -59,6 +59,9 @@ protected synchronized void service_CD(){
   else if((eccState == INDEX_START) && (CV.value > 0)){
     state_CD();
   }
+  else if((eccState == INDEX_MinReached) && (YELLOWSET.value==false)){
+    state_CheckMin();
+  }
 }
 /** The actions to take upon entering state START. */
 void state_START(){
@@ -90,7 +93,7 @@ void state_YellowSet(){
 /** The actions to take upon entering state CheckMin. */
 void state_CheckMin(){
    eccState = INDEX_CheckMin;
-   if(MING.value>=CV.value)
+   if(MING.value==40000)
      state_START();
    if(MING.value<CV.value)
      state_MinReached();
@@ -101,7 +104,6 @@ void state_MinReached(){
    alg_AKSJDKASJDKAS();
    if(YELLOWSET.value==false)
      state_YellowSet();
-   state_CheckMin();
 }
   /** ALGORITHM CD IN ST*/
 public void alg_CD(){
