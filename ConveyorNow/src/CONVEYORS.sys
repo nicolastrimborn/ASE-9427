@@ -145,12 +145,12 @@
       <Parameter Name="DIA" Value="50" />
       <Parameter Name="SIZE" Value="[10,10]" />
       <FBNetwork >
-        <FB Name="test2" Type="FB_WSTRING_TO_USINT" x="1572.2222" y="611.1111" >
+        <FB Name="test2" Type="FB_WSTRING_TO_USINT" x="1550.0" y="233.33333" >
           <Parameter Name="IN" Value="&#34;10&#34;" />
         </FB>
-        <FB Name="test1" Type="IN_COLOR" x="2683.3333" y="1672.2222" >
+        <FB Name="test1" Type="IN_COLOR" x="3349.9998" y="899.99994" >
         </FB>
-        <FB Name="test" Type="PUBL_2" x="3116.6665" y="16.666666" >
+        <FB Name="test" Type="PUBL_2" x="4483.333" y="61.111107" >
           <Parameter Name="ID" Value="&#34;test&#34;" />
         </FB>
         <FB Name="test3" Type="E_CYCLE" x="966.6666" y="1150.0" >
