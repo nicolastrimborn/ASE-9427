@@ -50,6 +50,10 @@
     </FB>
     <FB Name="Controller1" Type="Controller" x="2072.2222" y="127.77777" >
     </FB>
+    <FB Name="test1" Type="OUT_BOOL" x="1788.8888" y="1855.5555" >
+      <Parameter Name="LABEL" Value="&#34;4 presses&#34;" />
+      <Parameter Name="C1" Value="[0,0,255]" />
+    </FB>
     <EventConnections>
       <Connection Source="PEDCROSSBUT" Destination="ButPressCTR.CU" />
       <Connection Source="Split1.EO1" Destination="TokenOut" />
@@ -61,6 +65,8 @@
       <Connection Source="TokenIn" Destination="Controller1.LD" />
       <Connection Source="Controller1.INITO" Destination="INITO" />
       <Connection Source="Controller1.CNF" Destination="CNF" />
+      <Connection Source="INIT" Destination="test1.INIT" />
+      <Connection Source="ButPressCTR.CUO" Destination="test1.REQ" dx1="361.11108" />
     </EventConnections>
     <DataConnections>
       <Connection Source="Controller1.RED" Destination="RED" />
@@ -71,6 +77,7 @@
       <Connection Source="GREENTIME" Destination="Controller1.GREENTIME" />
       <Connection Source="MINGREENTIME" Destination="Controller1.MINGREENTIME" />
       <Connection Source="YELLOWTIME" Destination="Controller1.YELLOWTIME" />
+      <Connection Source="ButPressCTR.Q" Destination="test1.IN" dx1="55.555553" />
     </DataConnections>
   </FBNetwork>
 </FBType>

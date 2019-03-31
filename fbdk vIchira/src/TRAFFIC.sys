@@ -34,9 +34,9 @@
         </FB>
         <FB Name="ToCross1" Type="SUBL_0" x="2027.7777" y="1372.2222" >
         </FB>
-        <FB Name="timeRemaining" Type="PUBL_1" x="4388.8887" y="1749.9999" >
+        <FB Name="timeRemaining" Type="PUBL_1" x="4327.778" y="2688.8887" >
         </FB>
-        <FB Name="setTimers1" Type="TLController" x="2383.3333" y="27.777777" >
+        <FB Name="setTimers1" Type="TLController" x="2911.111" y="22.222221" >
           <Parameter Name="GREENTIME" Value="8" />
           <Parameter Name="MINGREENTIME" Value="4" />
           <Parameter Name="YELLOWTIME" Value="2" />
@@ -60,13 +60,13 @@
           <Connection Source="setTimers1.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
           <Connection Source="setTimers1.INITO" Destination="timeRemaining.INIT" dx1="672.22217" />
           <Connection Source="setTimers1.CNF" Destination="timeRemaining.REQ" dx1="372.2222" />
-          <Connection Source="setTimers1.TokenOut" Destination="test.REQ" dx1="55.555553" />
+          <Connection Source="setTimers1.TokenOut" Destination="test.REQ" dx1="255.55554" />
           <Connection Source="ForcedStates.INITO" Destination="test.INIT" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
           <Connection Source="setTimers1.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
           <Connection Source="setTimers1.GREEN" Destination="ForcedStates.SD_3" dx1="55.555553" />
-          <Connection Source="setTimers1.GreenRming" Destination="timeRemaining.SD_1" dx1="55.555553" />
+          <Connection Source="setTimers1.GreenRming" Destination="timeRemaining.SD_1" dx1="50.0" />
           <Connection Source="setTimers1.RED" Destination="ForcedStates.SD_1" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
@@ -121,7 +121,7 @@
           <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
           <Parameter Name="QI" Value="1" />
         </FB>
-        <FB Name="ToCross1" Type="PUBL_0" x="7422.222" y="1050.0" >
+        <FB Name="ToCross1" Type="PUBL_0" x="6933.333" y="1350.0" >
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />

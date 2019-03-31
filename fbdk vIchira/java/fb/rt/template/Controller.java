@@ -5,7 +5,7 @@ import fb.rt.*;
 import fb.rt.events.*;
 /** FUNCTION_BLOCK Controller (* Basic Function Block Type *)
   * @author JHC
-  * @version 20190330/JHC - Generated.
+  * @version 20190331/JHC - Generated.
   */
 public class Controller extends fb.rt.FBInstance {
 /** The index (0) of state START. */
@@ -95,28 +95,28 @@ RELEASE.value=false;}
   /** ALGORITHM CLK IN ST*/
 public void alg_CLK(){
 if( PEDCROSS.value ){
- if( MINGREENTIMEIN.value==0 ){
-   GREEN.value=false;
-   YELLOW.value=true;
-   RED.value=false;
-   GREENTIMEIN.value=0;
- }
+	if( MINGREENTIMEIN.value<=0 ){
+  		GREEN.value=false;
+  		YELLOW.value=true;
+  		RED.value=false;
+  		GREENTIMEIN.value=0;
+	}
 }
 if( GREENTIMEIN.value>0 ){
 	GREENTIMEIN.value = GREENTIMEIN.value - 1;
-    MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
+   MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
 }
 GREENREMAINING.value=GREENTIMEIN.value;
 if( GREENTIMEIN.value==0 ){
-   GREEN.value=false;
+  GREEN.value=false;
 	YELLOW.value= true;
-   RED.value=false;
+  RED.value=false;
 	if( YELLOWTIMEIN.value>0 ){
 		YELLOWTIMEIN.value= YELLOWTIMEIN.value - 1;
 	}
-  if( YELLOWTIMEIN.value==0 ){
-       GREEN.value=false;
-       YELLOW.value=false;
+ if( YELLOWTIMEIN.value==0 ){
+      GREEN.value=false;
+      YELLOW.value=false;
 		RED.value=true;
 		RELEASE.value=true;
 	}

@@ -3,9 +3,10 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
+import fb.rt.hmi.*;
 /** FUNCTION_BLOCK TLController (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190330/JHC - Generated.
+  * @version 20190331/JHC - Generated.
   */
 public class TLController extends fb.rt.FBInstance {
 /** Initialization Confirm */
@@ -28,6 +29,8 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
   protected E_SPLIT Split1 = new E_SPLIT() ;
 /** FB Controller1:Controller */
   protected Controller Controller1 = new Controller() ;
+/** FB test1:OUT_BOOL */
+  protected OUT_BOOL test1 = new OUT_BOOL() ;
 /** VAR GREENTIME:UINT */
   public UINT GREENTIME = new UINT();
 /** VAR MINGREENTIME:UINT */
@@ -50,12 +53,16 @@ public TLController(){
     CLOCK.EO.connectTo(Controller1.CLK);
     Controller1.INITO.connectTo(INITO);
     Controller1.CNF.connectTo(CNF);
+    ButPressCTR.CUO.connectTo(test1.REQ);
     Controller1.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
     Controller1.connectIVNoException("GREENTIME",GREENTIME);
     Controller1.connectIVNoException("MINGREENTIME",MINGREENTIME);
     Controller1.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    test1.connectIVNoException("IN",ButPressCTR.ovNamedNoException("Q"));
     ButPressCTR.PV.initializeNoException("4");
     CLOCK.DT.initializeNoException("t#1s");
+    test1.LABEL.initializeNoException("4 presses");
+    test1.C1.initializeNoException("[0,0,255]");
   }
 	/**
  * {@inheritDoc}
@@ -77,6 +84,7 @@ public void start( ){
   CLOCK.start();
   Split1.start();
   Controller1.start();
+  test1.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -85,6 +93,7 @@ public void stop( ){
   CLOCK.stop();
   Split1.stop();
   Controller1.stop();
+  test1.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -93,6 +102,7 @@ public void kill( ){
   CLOCK.kill();
   Split1.kill();
   Controller1.kill();
+  test1.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -101,10 +111,12 @@ public void reset( ){
   CLOCK.reset();
   Split1.reset();
   Controller1.reset();
+  test1.reset();
 }
 protected synchronized void service_INIT(){
    CLOCK.START.serviceEvent(this);
    Controller1.INIT.serviceEvent(this);
+   test1.INIT.serviceEvent(this);
 }
 protected synchronized void service_TokenIn(){
    CLOCK.START.serviceEvent(this);
@@ -124,5 +136,6 @@ protected synchronized void service_PEDCROSSBUT(){
     CLOCK.initialize("CLOCK",r);
     Split1.initialize("Split1",r);
     Controller1.initialize("Controller1",r);
+    test1.initialize("test1",r);
 }
 }
