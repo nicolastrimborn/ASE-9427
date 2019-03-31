@@ -11,6 +11,10 @@
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="GREENTIME" />
+        <With Var="MINGREENTIME" />
+        <With Var="PEDCROSS" />
+        <With Var="YELLOWTIME" />
       </Event>
       <Event Name="CLK" Comment="Normal Execution Request" >
       </Event>
@@ -49,21 +53,23 @@
       <VarDeclaration Name="GREENTIMEIN" Type="UINT" />
     </InternalVars>
     <ECC >
-      <ECState Name="START" Comment="Initial State" x="444.44443" y="350.0" >
+      <ECState Name="START" Comment="Initial State" x="388.8889" y="422.2222" >
       </ECState>
       <ECState Name="INIT" Comment="Initialization" x="2211.111" y="244.44443" >
         <ECAction Algorithm="INIT" Output="INITO" />
       </ECState>
-      <ECState Name="CLK" Comment="Normal execution" x="755.55554" y="1833.3333" >
+      <ECState Name="CLK" Comment="Normal execution" x="2427.7776" y="1633.3333" >
         <ECAction Algorithm="CLK" Output="CNF" />
       </ECState>
       <ECState Name="LD" x="894.4444" y="2316.6665" >
-        <ECAction Algorithm="LD" />
+        <ECAction Algorithm="LD" Output="CNF" />
       </ECState>
-      <ECTransition Source="INIT" Destination="START" Condition="1" x="1733.3333" y="166.66666" />
-      <ECTransition Source="START" Destination="CLK" Condition="CLK" x="816.6666" y="1166.6666" />
-      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1822.2222" y="433.3333" />
-      <ECTransition Source="CLK" Destination="START" Condition="1" x="166.66666" y="1183.3333" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1677.7777" y="238.88889" />
+      <ECTransition Source="START" Destination="CLK" Condition="CLK" x="2433.3333" y="1038.8888" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1766.6666" y="505.55554" />
+      <ECTransition Source="CLK" Destination="START" Condition="1" x="1783.3333" y="1055.5555" />
+      <ECTransition Source="START" Destination="LD" Condition="LD" x="261.1111" y="1511.1111" />
+      <ECTransition Source="LD" Destination="START" Condition="1" x="644.4444" y="1366.6666" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
 <ST><![CDATA[RED:=FALSE;
@@ -107,9 +113,11 @@ IF GREENTIMEIN=0 THEN
 END_IF;]]></ST>
   </Algorithm>
   <Algorithm Name="LD" >
-<ST><![CDATA[MINGREENTIMEIN:=MINGREENTIME;
+<ST><![CDATA[GREEN:=TRUE;
+YELLOW:=FALSE;
+RED:=FALSE;
+MINGREENTIMEIN:=MINGREENTIME;
 YELLOWTIMEIN:=YELLOWTIME;
-GREEN:=TRUE;
 GREENTIMEIN:=GREENTIME;
 GREENREMAINING:=GREENTIME;
 RELEASE:=FALSE;]]></ST>

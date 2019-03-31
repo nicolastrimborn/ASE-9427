@@ -26,13 +26,13 @@
       <FBNetwork >
         <FB Name="ForcedStates" Type="PUBL_3" x="4588.8887" y="94.44444" >
         </FB>
-        <FB Name="ForceStartState" Type="SUBL_0" x="883.3333" y="61.111107" >
+        <FB Name="ForceStartState" Type="SUBL_0" x="722.22217" y="0.0" >
         </FB>
         <FB Name="ReleaseControl1" Type="PUBL_0" x="4855.555" y="1344.4443" >
         </FB>
-        <FB Name="ReleaseControl2" Type="SUBL_0" x="1388.8888" y="977.7777" >
+        <FB Name="ReleaseControl2" Type="SUBL_0" x="1505.5555" y="461.11108" >
         </FB>
-        <FB Name="ToCross1" Type="SUBL_0" x="2027.7777" y="1372.2222" >
+        <FB Name="ToCross1" Type="SUBL_0" x="2094.4443" y="1583.3333" >
         </FB>
         <FB Name="timeRemaining" Type="PUBL_1" x="4327.778" y="2688.8887" >
         </FB>
@@ -108,13 +108,13 @@
         <FB Name="START_1" Type="IN_EVENT" x="5161.111" y="122.22221" >
           <Parameter Name="LABEL" Value="&#34;START&#34;" />
         </FB>
-        <FB Name="ForceStartState" Type="PUBL_0" x="6388.8887" y="122.22221" >
+        <FB Name="ForceStartState" Type="PUBL_0" x="6216.6665" y="294.44443" >
         </FB>
         <FB Name="Button1" Type="IN_EVENT" x="4983.333" y="1250.0" >
           <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
           <Parameter Name="QI" Value="1" />
         </FB>
-        <FB Name="ToCross1" Type="PUBL_0" x="6933.333" y="1350.0" >
+        <FB Name="ToCross1" Type="PUBL_0" x="6188.8887" y="1761.1111" >
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />

@@ -14,6 +14,8 @@ public static final int INDEX_START = 0;
 public static final int INDEX_INIT = 1;
 /** The index (2) of state CLK. */
 public static final int INDEX_CLK = 2;
+/** The index (3) of state LD. */
+public static final int INDEX_LD = 3;
 /** Initialization Confirm */
 public final EventOutput INITO = new EventOutput();
 /** EVENT CNF */
@@ -23,10 +25,7 @@ public final EventServer INIT = (e) -> service_INIT();
 /** Normal Execution Request */
 public final EventServer CLK = (e) -> service_CLK();
 /** EVENT LD */
-public final EventServer LD = (e) -> {
-  alg_LD();
-  }
-;
+public final EventServer LD = (e) -> service_LD();
 /** VAR GREENTIME:UINT */
   public UINT GREENTIME = new UINT();
 /** VAR MINGREENTIME:UINT */
@@ -65,6 +64,11 @@ protected synchronized void service_CLK(){
     state_CLK();
   }
 }
+protected synchronized void service_LD(){
+  if(eccState == INDEX_START){
+    state_LD();
+  }
+}
 /** The actions to take upon entering state START. */
 void state_START(){
    eccState = INDEX_START;
@@ -80,6 +84,13 @@ void state_INIT(){
 void state_CLK(){
    eccState = INDEX_CLK;
    alg_CLK();
+   CNF.serviceEvent(this);
+   state_START();
+}
+/** The actions to take upon entering state LD. */
+void state_LD(){
+   eccState = INDEX_LD;
+   alg_LD();
    CNF.serviceEvent(this);
    state_START();
 }
@@ -126,9 +137,11 @@ if( GREENTIMEIN.value==0 ){
 }}
   /** ALGORITHM LD IN ST*/
 public void alg_LD(){
+GREEN.value=true;
+YELLOW.value=false;
+RED.value=false;
 MINGREENTIMEIN.value=MINGREENTIME.value;
 YELLOWTIMEIN.value=YELLOWTIME.value;
-GREEN.value=true;
 GREENTIMEIN.value=GREENTIME.value;
 GREENREMAINING.value=GREENTIME.value;
 RELEASE.value=false;}

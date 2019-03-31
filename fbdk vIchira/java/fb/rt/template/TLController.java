@@ -26,10 +26,10 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
   protected E_CYCLE CLOCK = new E_CYCLE() ;
 /** FB Split1:E_SPLIT */
   protected E_SPLIT Split1 = new E_SPLIT() ;
-/** FB Controller:Controller */
-  protected Controller Controller = new Controller() ;
 /** FB triggertokenout:E_TRIG */
   protected E_TRIG triggertokenout = new E_TRIG() ;
+/** FB MainController:Controller */
+  protected Controller MainController = new Controller() ;
 /** VAR GREENTIME:UINT */
   public UINT GREENTIME = new UINT();
 /** VAR MINGREENTIME:UINT */
@@ -37,28 +37,28 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
 /** VAR YELLOWTIME:UINT */
   public UINT YELLOWTIME = new UINT();
 /** VAR RED:BOOL */
-  public final BOOL RED = (BOOL)Controller.RED;
+  public final BOOL RED = (BOOL)MainController.RED;
 /** VAR YELLOW:BOOL */
-  public final BOOL YELLOW = (BOOL)Controller.YELLOW;
+  public final BOOL YELLOW = (BOOL)MainController.YELLOW;
 /** VAR GREEN:BOOL */
-  public final BOOL GREEN = (BOOL)Controller.GREEN;
+  public final BOOL GREEN = (BOOL)MainController.GREEN;
 /** VAR GreenRming:UINT */
-  public final UINT GreenRming = (UINT)Controller.GREENREMAINING;
+  public final UINT GreenRming = (UINT)MainController.GREENREMAINING;
 /** The default constructor. */
 public TLController(){
     super();
     Split1.EO1.connectTo(TokenOut);
     Split1.EO2.connectTo(CLOCK.STOP);
-    CLOCK.EO.connectTo(Controller.CLK);
-    Controller.INITO.connectTo(INITO);
-    Controller.CNF.connectTo(CNF);
-    Controller.CNF.connectTo(triggertokenout.EI);
     triggertokenout.ER.connectTo(Split1.EI);
-    Controller.connectIVNoException("GREENTIME",GREENTIME);
-    Controller.connectIVNoException("MINGREENTIME",MINGREENTIME);
-    Controller.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
-    Controller.connectIVNoException("YELLOWTIME",YELLOWTIME);
-    triggertokenout.connectIVNoException("QI",Controller.ovNamedNoException("RELEASE"));
+    MainController.CNF.connectTo(triggertokenout.EI);
+    MainController.CNF.connectTo(CNF);
+    MainController.INITO.connectTo(INITO);
+    CLOCK.EO.connectTo(MainController.CLK);
+    MainController.connectIVNoException("GREENTIME",GREENTIME);
+    MainController.connectIVNoException("MINGREENTIME",MINGREENTIME);
+    MainController.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
+    MainController.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    triggertokenout.connectIVNoException("QI",MainController.ovNamedNoException("RELEASE"));
     ButPressCTR.PV.initializeNoException("4");
     CLOCK.DT.initializeNoException("t#1s");
   }
@@ -69,11 +69,11 @@ public TLController(){
 @Override
 protected void connectInternal(ANY newVar) {
   if(newVar == GREENTIME)
-    Controller.connectIVNoException("GREENTIME",GREENTIME);
+    MainController.connectIVNoException("GREENTIME",GREENTIME);
   if(newVar == MINGREENTIME)
-    Controller.connectIVNoException("MINGREENTIME",MINGREENTIME);
+    MainController.connectIVNoException("MINGREENTIME",MINGREENTIME);
   if(newVar == YELLOWTIME)
-    Controller.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    MainController.connectIVNoException("YELLOWTIME",YELLOWTIME);
 }
 /** start the FB instances. */
 public void start( ){
@@ -81,8 +81,8 @@ public void start( ){
   ButPressCTR.start();
   CLOCK.start();
   Split1.start();
-  Controller.start();
   triggertokenout.start();
+  MainController.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -90,8 +90,8 @@ public void stop( ){
   ButPressCTR.stop();
   CLOCK.stop();
   Split1.stop();
-  Controller.stop();
   triggertokenout.stop();
+  MainController.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -99,8 +99,8 @@ public void kill( ){
   ButPressCTR.kill();
   CLOCK.kill();
   Split1.kill();
-  Controller.kill();
   triggertokenout.kill();
+  MainController.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -108,14 +108,15 @@ public void reset( ){
   ButPressCTR.reset();
   CLOCK.reset();
   Split1.reset();
-  Controller.reset();
   triggertokenout.reset();
+  MainController.reset();
 }
 protected synchronized void service_INIT(){
-   Controller.INIT.serviceEvent(this);
+   MainController.INIT.serviceEvent(this);
 }
 protected synchronized void service_TokenIn(){
-   Controller.LD.serviceEvent(this);
+   ButPressCTR.R.serviceEvent(this);
+   MainController.LD.serviceEvent(this);
    CLOCK.START.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSSBUT(){
@@ -131,7 +132,7 @@ protected synchronized void service_PEDCROSSBUT(){
     ButPressCTR.initialize("ButPressCTR",r);
     CLOCK.initialize("CLOCK",r);
     Split1.initialize("Split1",r);
-    Controller.initialize("Controller",r);
     triggertokenout.initialize("triggertokenout",r);
+    MainController.initialize("MainController",r);
 }
 }
