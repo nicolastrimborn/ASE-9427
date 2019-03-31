@@ -43,14 +43,14 @@ public final EventServer LD = (e) -> {
   public final BOOL GREEN = new BOOL();
 /** VAR GREENREMAINING:UINT */
   public final UINT GREENREMAINING = new UINT();
+/** VAR RELEASE:BOOL */
+  public final BOOL RELEASE = new BOOL();
 /** VAR MINGREENTIMEIN:UINT */
   public UINT MINGREENTIMEIN = new UINT();
 /** VAR YELLOWTIMEIN:UINT */
   public UINT YELLOWTIMEIN = new UINT();
 /** VAR GREENTIMEIN:UINT */
   public UINT GREENTIMEIN = new UINT();
-/** VAR RELEASE:BOOL */
-  public BOOL RELEASE = new BOOL();
 /** The default constructor. */
 public Controller(){
     super();
@@ -104,21 +104,24 @@ if( PEDCROSS.value ){
 }
 if( GREENTIMEIN.value>0 ){
 	GREENTIMEIN.value = GREENTIMEIN.value - 1;
-   MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
+    MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
+    GREEN.value=true;
+	YELLOW.value= false;
+    RED.value=false;
 }
 GREENREMAINING.value=GREENTIMEIN.value;
 if( GREENTIMEIN.value==0 ){
-  GREEN.value=false;
+    GREEN.value=false;
 	YELLOW.value= true;
-  RED.value=false;
+    RED.value=false;
 	if( YELLOWTIMEIN.value>0 ){
 		YELLOWTIMEIN.value= YELLOWTIMEIN.value - 1;
 	}
  if( YELLOWTIMEIN.value==0 ){
       GREEN.value=false;
       YELLOW.value=false;
-		RED.value=true;
-		RELEASE.value=true;
+	  RED.value=true;
+	  RELEASE.value=true;
 	}
 }}
   /** ALGORITHM LD IN ST*/

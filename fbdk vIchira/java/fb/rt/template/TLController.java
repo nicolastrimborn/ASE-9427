@@ -3,7 +3,6 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
-import fb.rt.hmi.*;
 /** FUNCTION_BLOCK TLController (* Composite Function Block Type *)
   * @author JHC
   * @version 20190331/JHC - Generated.
@@ -27,10 +26,10 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
   protected E_CYCLE CLOCK = new E_CYCLE() ;
 /** FB Split1:E_SPLIT */
   protected E_SPLIT Split1 = new E_SPLIT() ;
-/** FB Controller1:Controller */
-  protected Controller Controller1 = new Controller() ;
-/** FB test1:OUT_BOOL */
-  protected OUT_BOOL test1 = new OUT_BOOL() ;
+/** FB Controller:Controller */
+  protected Controller Controller = new Controller() ;
+/** FB triggertokenout:E_TRIG */
+  protected E_TRIG triggertokenout = new E_TRIG() ;
 /** VAR GREENTIME:UINT */
   public UINT GREENTIME = new UINT();
 /** VAR MINGREENTIME:UINT */
@@ -38,31 +37,30 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
 /** VAR YELLOWTIME:UINT */
   public UINT YELLOWTIME = new UINT();
 /** VAR RED:BOOL */
-  public final BOOL RED = (BOOL)Controller1.RED;
+  public final BOOL RED = (BOOL)Controller.RED;
 /** VAR YELLOW:BOOL */
-  public final BOOL YELLOW = (BOOL)Controller1.YELLOW;
+  public final BOOL YELLOW = (BOOL)Controller.YELLOW;
 /** VAR GREEN:BOOL */
-  public final BOOL GREEN = (BOOL)Controller1.GREEN;
+  public final BOOL GREEN = (BOOL)Controller.GREEN;
 /** VAR GreenRming:UINT */
-  public final UINT GreenRming = (UINT)Controller1.GREENREMAINING;
+  public final UINT GreenRming = (UINT)Controller.GREENREMAINING;
 /** The default constructor. */
 public TLController(){
     super();
     Split1.EO1.connectTo(TokenOut);
     Split1.EO2.connectTo(CLOCK.STOP);
-    CLOCK.EO.connectTo(Controller1.CLK);
-    Controller1.INITO.connectTo(INITO);
-    Controller1.CNF.connectTo(CNF);
-    ButPressCTR.CUO.connectTo(test1.REQ);
-    Controller1.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
-    Controller1.connectIVNoException("GREENTIME",GREENTIME);
-    Controller1.connectIVNoException("MINGREENTIME",MINGREENTIME);
-    Controller1.connectIVNoException("YELLOWTIME",YELLOWTIME);
-    test1.connectIVNoException("IN",ButPressCTR.ovNamedNoException("Q"));
+    CLOCK.EO.connectTo(Controller.CLK);
+    Controller.INITO.connectTo(INITO);
+    Controller.CNF.connectTo(CNF);
+    Controller.CNF.connectTo(triggertokenout.EI);
+    triggertokenout.ER.connectTo(Split1.EI);
+    Controller.connectIVNoException("GREENTIME",GREENTIME);
+    Controller.connectIVNoException("MINGREENTIME",MINGREENTIME);
+    Controller.connectIVNoException("PEDCROSS",ButPressCTR.ovNamedNoException("Q"));
+    Controller.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    triggertokenout.connectIVNoException("QI",Controller.ovNamedNoException("RELEASE"));
     ButPressCTR.PV.initializeNoException("4");
     CLOCK.DT.initializeNoException("t#1s");
-    test1.LABEL.initializeNoException("4 presses");
-    test1.C1.initializeNoException("[0,0,255]");
   }
 	/**
  * {@inheritDoc}
@@ -71,11 +69,11 @@ public TLController(){
 @Override
 protected void connectInternal(ANY newVar) {
   if(newVar == GREENTIME)
-    Controller1.connectIVNoException("GREENTIME",GREENTIME);
+    Controller.connectIVNoException("GREENTIME",GREENTIME);
   if(newVar == MINGREENTIME)
-    Controller1.connectIVNoException("MINGREENTIME",MINGREENTIME);
+    Controller.connectIVNoException("MINGREENTIME",MINGREENTIME);
   if(newVar == YELLOWTIME)
-    Controller1.connectIVNoException("YELLOWTIME",YELLOWTIME);
+    Controller.connectIVNoException("YELLOWTIME",YELLOWTIME);
 }
 /** start the FB instances. */
 public void start( ){
@@ -83,8 +81,8 @@ public void start( ){
   ButPressCTR.start();
   CLOCK.start();
   Split1.start();
-  Controller1.start();
-  test1.start();
+  Controller.start();
+  triggertokenout.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -92,8 +90,8 @@ public void stop( ){
   ButPressCTR.stop();
   CLOCK.stop();
   Split1.stop();
-  Controller1.stop();
-  test1.stop();
+  Controller.stop();
+  triggertokenout.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -101,8 +99,8 @@ public void kill( ){
   ButPressCTR.kill();
   CLOCK.kill();
   Split1.kill();
-  Controller1.kill();
-  test1.kill();
+  Controller.kill();
+  triggertokenout.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -110,17 +108,16 @@ public void reset( ){
   ButPressCTR.reset();
   CLOCK.reset();
   Split1.reset();
-  Controller1.reset();
-  test1.reset();
+  Controller.reset();
+  triggertokenout.reset();
 }
 protected synchronized void service_INIT(){
    CLOCK.START.serviceEvent(this);
-   Controller1.INIT.serviceEvent(this);
-   test1.INIT.serviceEvent(this);
+   Controller.INIT.serviceEvent(this);
 }
 protected synchronized void service_TokenIn(){
    CLOCK.START.serviceEvent(this);
-   Controller1.LD.serviceEvent(this);
+   Controller.LD.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSSBUT(){
    ButPressCTR.CU.serviceEvent(this);
@@ -135,7 +132,7 @@ protected synchronized void service_PEDCROSSBUT(){
     ButPressCTR.initialize("ButPressCTR",r);
     CLOCK.initialize("CLOCK",r);
     Split1.initialize("Split1",r);
-    Controller1.initialize("Controller1",r);
-    test1.initialize("test1",r);
+    Controller.initialize("Controller",r);
+    triggertokenout.initialize("triggertokenout",r);
 }
 }

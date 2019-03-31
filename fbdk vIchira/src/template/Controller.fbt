@@ -39,6 +39,7 @@
       <VarDeclaration Name="YELLOW" Type="BOOL" />
       <VarDeclaration Name="GREEN" Type="BOOL" />
       <VarDeclaration Name="GREENREMAINING" Type="UINT" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
@@ -46,7 +47,6 @@
       <VarDeclaration Name="MINGREENTIMEIN" Type="UINT" />
       <VarDeclaration Name="YELLOWTIMEIN" Type="UINT" />
       <VarDeclaration Name="GREENTIMEIN" Type="UINT" />
-      <VarDeclaration Name="RELEASE" Type="BOOL" />
     </InternalVars>
     <ECC >
       <ECState Name="START" Comment="Initial State" x="444.44443" y="350.0" >
@@ -85,21 +85,24 @@ RELEASE:=FALSE;]]></ST>
 END_IF;
 IF GREENTIMEIN>0 THEN
 	GREENTIMEIN := GREENTIMEIN - 1;
-   MINGREENTIMEIN:= MINGREENTIMEIN - 1;
+    MINGREENTIMEIN:= MINGREENTIMEIN - 1;
+    GREEN:=TRUE;
+	YELLOW:= FALSE;
+    RED:=FALSE;
 END_IF;
 GREENREMAINING:=GREENTIMEIN;
 IF GREENTIMEIN=0 THEN
-  GREEN:=FALSE;
+    GREEN:=FALSE;
 	YELLOW:= TRUE;
-  RED:=FALSE;
+    RED:=FALSE;
 	IF YELLOWTIMEIN>0 THEN
 		YELLOWTIMEIN:= YELLOWTIMEIN - 1;
 	END_IF;
  IF YELLOWTIMEIN=0 THEN
       GREEN:=FALSE;
       YELLOW:=FALSE;
-		RED:=TRUE;
-		RELEASE:=TRUE;
+	  RED:=TRUE;
+	  RELEASE:=TRUE;
 	END_IF;
 END_IF;]]></ST>
   </Algorithm>

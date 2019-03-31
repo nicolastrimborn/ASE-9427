@@ -41,11 +41,6 @@
           <Parameter Name="MINGREENTIME" Value="4" />
           <Parameter Name="YELLOWTIME" Value="2" />
         </FB>
-        <FB Name="test" Type="OUT_EVENT" x="5461.111" y="1733.3333" >
-          <Parameter Name="LABEL" Value="&#34;token out&#34;" />
-          <Parameter Name="DT" Value="t#1s" />
-          <Parameter Name="FLASH" Value="[255,0,0]" />
-        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="ForceStartState.INIT" dx1="55.555553" />
           <Connection Source="ForcedStates.INITO" Destination="ReleaseControl1.INIT" dx1="588.88885" />
@@ -60,8 +55,6 @@
           <Connection Source="setTimers1.CNF" Destination="ForcedStates.REQ" dx1="55.555553" />
           <Connection Source="setTimers1.INITO" Destination="timeRemaining.INIT" dx1="672.22217" />
           <Connection Source="setTimers1.CNF" Destination="timeRemaining.REQ" dx1="372.2222" />
-          <Connection Source="setTimers1.TokenOut" Destination="test.REQ" dx1="255.55554" />
-          <Connection Source="ForcedStates.INITO" Destination="test.INIT" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
           <Connection Source="setTimers1.YELLOW" Destination="ForcedStates.SD_2" dx1="55.555553" />
