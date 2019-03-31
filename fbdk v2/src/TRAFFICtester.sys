@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TRAFFICtester" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.4" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="Device1" Type="FRAME_DEVICE" x="733.3333" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[100,100,300,110]" />
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="477.77777" y="1794.4443" >
+      <FBNetwork >
+        <FB Name="Button1" Type="IN_EVENT" x="2222.2222" y="2972.2222" >
+          <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="count1" Type="E_CTUEVENT" x="3038.8887" y="3644.4443" >
+          <Parameter Name="PV" Value="4" />
+        </FB>
+        <FB Name="test" Type="OUT_EVENT" x="4450.0" y="3000.0" >
+          <Parameter Name="LABEL" Value="&#34;4Press&#34;" />
+          <Parameter Name="DT" Value="t#1s" />
+          <Parameter Name="FLASH" Value="[255,0,0]" />
+        </FB>
+        <FB Name="TrafficLight" Type="TL_View" x="8638.889" y="1472.2222" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="STOPGO" Type="STOPGO" x="5766.6665" y="372.2222" >
+          <Parameter Name="YELLOWTIME" Value="5" />
+        </FB>
+        <FB Name="STOP" Type="IN_EVENT" x="1166.6666" y="1561.1111" >
+          <Parameter Name="LABEL" Value="&#34;STOP&#34;" />
+        </FB>
+        <FB Name="GO" Type="IN_EVENT" x="2833.3333" y="2005.5554" >
+          <Parameter Name="LABEL" Value="&#34;GO&#34;" />
+        </FB>
+        <FB Name="time" Type="E_CYCLE" x="3833.3333" y="1544.4443" >
+          <Parameter Name="DT" Value="t#1s" />
+        </FB>
+        <FB Name="STARTER" Type="IN_EVENT" x="966.6666" y="77.77777" >
+          <Parameter Name="LABEL" Value="&#34;START&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="flash" Type="OUT_EVENT" x="7427.7773" y="0.0" >
+          <Parameter Name="LABEL" Value="&#34;CLK&#34;" />
+          <Parameter Name="DT" Value="t#300ms" />
+          <Parameter Name="FLASH" Value="[255,0,0]" />
+        </FB>
+        <FB Name="Disp" Type="OUT_ANY" x="6783.333" y="2233.3333" >
+          <Parameter Name="TYPE" Value="&#34;UNIT&#34;" />
+          <Parameter Name="W" Value="2" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="PassControl" Type="OUT_EVENT" x="9477.777" y="633.3333" >
+          <Parameter Name="LABEL" Value="&#34;RELSD&#34;" />
+          <Parameter Name="DT" Value="t#400ms" />
+          <Parameter Name="FLASH" Value="[255,0,0]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="Button1.IND" Destination="count1.CU" dx1="55.555553" />
+          <Connection Source="count1.CUO" Destination="test.REQ" dx1="572.2222" dx2="55.555553" dy="2583.3333" />
+          <Connection Source="STOPGO.INITO" Destination="TrafficLight.INIT" dx1="288.8889" />
+          <Connection Source="START.COLD" Destination="STOP.INIT" dx1="55.555553" />
+          <Connection Source="STOP.INITO" Destination="GO.INIT" dx1="233.33333" />
+          <Connection Source="GO.IND" Destination="STOPGO.GO" dx1="27.777777" />
+          <Connection Source="STOP.IND" Destination="STOPGO.STOP" dx1="511.11108" />
+          <Connection Source="STOP.INITO" Destination="STOPGO.INIT" dx1="55.555553" />
+          <Connection Source="time.EO" Destination="STOPGO.CLK" dx1="433.3333" />
+          <Connection Source="START.COLD" Destination="STARTER.INIT" dx1="55.555553" />
+          <Connection Source="STARTER.IND" Destination="time.START" dx1="55.555553" />
+          <Connection Source="time.EO" Destination="flash.REQ" dx1="416.66666" />
+          <Connection Source="STARTER.INITO" Destination="flash.INIT" dx1="55.555553" />
+          <Connection Source="time.EO" Destination="TrafficLight.REQ" dx1="277.77777" />
+          <Connection Source="TrafficLight.INITO" Destination="Disp.INIT" dx1="55.555553" dx2="55.555553" dy="1400.0" />
+          <Connection Source="time.EO" Destination="Disp.REQ" dx1="55.555553" />
+          <Connection Source="STARTER.IND" Destination="STOPGO.LD" dx1="55.555553" />
+          <Connection Source="flash.INITO" Destination="PassControl.INIT" dx1="677.7778" />
+          <Connection Source="STOPGO.PASSCONTROL" Destination="PassControl.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="STOPGO.YELLOW" Destination="TrafficLight.YELLOW" dx1="55.555553" />
+          <Connection Source="STOPGO.GREEN" Destination="TrafficLight.GREEN" dx1="55.555553" />
+          <Connection Source="STOPGO.RED" Destination="TrafficLight.RED" dx1="55.555553" />
+          <Connection Source="STOPGO.YELLOWCVV" Destination="Disp.IN" dx1="105.55555" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>
