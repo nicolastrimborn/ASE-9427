@@ -10,6 +10,16 @@
   <Device Name="CONVEYOR1" Type="FRAME_DEVICE" x="761.1111" y="305.55554" >
     <Parameter Name="BOUNDS" Value="[200,0,300,300]" />
     <Resource Name="VIEW" Type="PANEL_RESOURCE" x="794.4444" y="755.55554" >
+      <FBNetwork >
+        <FB Name="Conveyor1" Type="MECH_VIEW" x="1372.2222" y="249.99998" >
+          <Parameter Name="DIR" Value="VDIR#RIGHT" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LEN" Value="10" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="Conveyor1.INIT" dx1="55.555553" />
+        </EventConnections>
+      </FBNetwork>
     </Resource>
     <Resource Name="CONTROL" Type="PANEL_RESOURCE" x="794.4444" y="1433.3333" >
     </Resource>
