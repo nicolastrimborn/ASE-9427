@@ -112,12 +112,11 @@ public void reset( ){
   triggertokenout.reset();
 }
 protected synchronized void service_INIT(){
-   CLOCK.START.serviceEvent(this);
    Controller.INIT.serviceEvent(this);
 }
 protected synchronized void service_TokenIn(){
-   CLOCK.START.serviceEvent(this);
    Controller.LD.serviceEvent(this);
+   CLOCK.START.serviceEvent(this);
 }
 protected synchronized void service_PEDCROSSBUT(){
    ButPressCTR.CU.serviceEvent(this);

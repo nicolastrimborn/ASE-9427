@@ -43,7 +43,7 @@
     <FB Name="ButPressCTR" Type="E_CTU" x="594.4444" y="638.88885" >
       <Parameter Name="PV" Value="4" />
     </FB>
-    <FB Name="CLOCK" Type="E_CYCLE" x="5816.6665" y="2422.2222" >
+    <FB Name="CLOCK" Type="E_CYCLE" x="4772.222" y="1849.9999" >
       <Parameter Name="DT" Value="t#1s" />
     </FB>
     <FB Name="Split1" Type="E_SPLIT" x="4827.778" y="83.33333" >
@@ -55,16 +55,15 @@
     <EventConnections>
       <Connection Source="PEDCROSSBUT" Destination="ButPressCTR.CU" />
       <Connection Source="Split1.EO1" Destination="TokenOut" />
-      <Connection Source="Split1.EO2" Destination="CLOCK.STOP" dx1="377.77777" />
-      <Connection Source="INIT" Destination="CLOCK.START" />
-      <Connection Source="TokenIn" Destination="CLOCK.START" />
+      <Connection Source="Split1.EO2" Destination="CLOCK.STOP" dx1="377.77777" dx2="544.4444" dy="3077.7776" />
       <Connection Source="INIT" Destination="Controller.INIT" />
       <Connection Source="TokenIn" Destination="Controller.LD" />
-      <Connection Source="CLOCK.EO" Destination="Controller.CLK" dx1="55.555553" dx2="838.88885" dy="83.33333" />
+      <Connection Source="CLOCK.EO" Destination="Controller.CLK" dx1="55.555553" dx2="877.7778" dy="-172.22221" />
       <Connection Source="Controller.INITO" Destination="INITO" />
       <Connection Source="Controller.CNF" Destination="CNF" />
       <Connection Source="Controller.CNF" Destination="triggertokenout.EI" dx1="311.11108" />
       <Connection Source="triggertokenout.ER" Destination="Split1.EI" dx1="55.555553" />
+      <Connection Source="TokenIn" Destination="CLOCK.START" />
     </EventConnections>
     <DataConnections>
       <Connection Source="GREENTIME" Destination="Controller.GREENTIME" />

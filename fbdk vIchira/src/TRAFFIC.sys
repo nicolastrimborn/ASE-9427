@@ -28,7 +28,7 @@
         </FB>
         <FB Name="ForceStartState" Type="SUBL_0" x="883.3333" y="61.111107" >
         </FB>
-        <FB Name="ReleaseControl1" Type="PUBL_0" x="6844.4443" y="961.1111" >
+        <FB Name="ReleaseControl1" Type="PUBL_0" x="4855.555" y="1344.4443" >
         </FB>
         <FB Name="ReleaseControl2" Type="SUBL_0" x="1388.8888" y="977.7777" >
         </FB>
@@ -36,7 +36,7 @@
         </FB>
         <FB Name="timeRemaining" Type="PUBL_1" x="4327.778" y="2688.8887" >
         </FB>
-        <FB Name="setTimers1" Type="TLController" x="2911.111" y="22.222221" >
+        <FB Name="setTimers1" Type="TLController" x="2827.7776" y="0.0" >
           <Parameter Name="GREENTIME" Value="8" />
           <Parameter Name="MINGREENTIME" Value="4" />
           <Parameter Name="YELLOWTIME" Value="2" />
@@ -149,7 +149,7 @@
         </FB>
         <FB Name="ReleaseControl2" Type="PUBL_0" x="4272.222" y="600.0" >
         </FB>
-        <FB Name="ReleaseControl1" Type="SUBL_0" x="755.55554" y="94.44444" >
+        <FB Name="ReleaseControl1" Type="SUBL_0" x="788.88885" y="116.666664" >
         </FB>
         <FB Name="setTImers2" Type="TLController" x="1783.3333" y="244.44443" >
           <Parameter Name="GREENTIME" Value="8" />
