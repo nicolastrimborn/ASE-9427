@@ -40,8 +40,8 @@ public final EventServer LD = (e) -> service_LD();
   public final BOOL YELLOW = new BOOL();
 /** VAR GREEN:BOOL */
   public final BOOL GREEN = new BOOL();
-/** VAR GREENREMAINING:UINT */
-  public final UINT GREENREMAINING = new UINT();
+/** VAR RT:UINT */
+  public final UINT RT = new UINT();
 /** VAR RELEASE:BOOL */
   public final BOOL RELEASE = new BOOL();
 /** VAR MINGREENTIMEIN:UINT */
@@ -107,32 +107,35 @@ RELEASE.value=false;}
 public void alg_CLK(){
 if( PEDCROSS.value ){
 	if( MINGREENTIMEIN.value<=0 ){
-  		GREEN.value=false;
-  		YELLOW.value=true;
-  		RED.value=false;
-  		GREENTIMEIN.value=0;
+ 		GREEN.value=false;
+ 		YELLOW.value=true;
+ 		RED.value=false;
+ 		GREENTIMEIN.value=0;
 	}
 }
 if( GREENTIMEIN.value>0 ){
-	GREENTIMEIN.value = GREENTIMEIN.value - 1;
-    MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
-    GREEN.value=true;
-	YELLOW.value= false;
-    RED.value=false;
+   GREENTIMEIN.value = GREENTIMEIN.value - 1;
+   MINGREENTIMEIN.value= MINGREENTIMEIN.value - 1;
+   GREEN.value=true;
+   YELLOW.value= false;
+   RED.value=false;
+   RT.value=GREENTIMEIN.value;
 }
-GREENREMAINING.value=GREENTIMEIN.value;
+
 if( GREENTIMEIN.value==0 ){
     GREEN.value=false;
 	YELLOW.value= true;
     RED.value=false;
 	if( YELLOWTIMEIN.value>0 ){
 		YELLOWTIMEIN.value= YELLOWTIMEIN.value - 1;
+        RT.value=YELLOWTIMEIN.value;
 	}
- if( YELLOWTIMEIN.value==0 ){
-      GREEN.value=false;
-      YELLOW.value=false;
-	  RED.value=true;
-	  RELEASE.value=true;
+if( YELLOWTIMEIN.value==0 ){
+     GREEN.value=false;
+     YELLOW.value=false;
+	 RED.value=true;
+	 RELEASE.value=true;
+     RT.value=0;
 	}
 }}
   /** ALGORITHM LD IN ST*/
@@ -141,8 +144,8 @@ GREEN.value=true;
 YELLOW.value=false;
 RED.value=false;
 MINGREENTIMEIN.value=MINGREENTIME.value;
-YELLOWTIMEIN.value=YELLOWTIME.value;
+YELLOWTIMEIN.value=YELLOWTIME.value+1;
 GREENTIMEIN.value=GREENTIME.value;
-GREENREMAINING.value=GREENTIME.value;
+RT.value=GREENTIME.value;
 RELEASE.value=false;}
 }

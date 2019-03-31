@@ -74,8 +74,8 @@
       <Connection Source="MainController.RED" Destination="RED" />
       <Connection Source="MainController.YELLOW" Destination="YELLOW" />
       <Connection Source="MainController.GREEN" Destination="GREEN" />
-      <Connection Source="MainController.GREENREMAINING" Destination="GreenRming" />
       <Connection Source="MainController.RELEASE" Destination="triggertokenout.QI" dx1="688.88885" />
+      <Connection Source="MainController.RT" Destination="GreenRming" />
     </DataConnections>
   </FBNetwork>
 </FBType>

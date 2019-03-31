@@ -43,7 +43,7 @@ public final EventServer PEDCROSSBUT = (e) -> service_PEDCROSSBUT();
 /** VAR GREEN:BOOL */
   public final BOOL GREEN = (BOOL)MainController.GREEN;
 /** VAR GreenRming:UINT */
-  public final UINT GreenRming = (UINT)MainController.GREENREMAINING;
+  public final UINT GreenRming = (UINT)MainController.RT;
 /** The default constructor. */
 public TLController(){
     super();
