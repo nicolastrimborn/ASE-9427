@@ -13,41 +13,41 @@
       <Parameter Name="DIA" Value="50" />
       <Parameter Name="SIZE" Value="[10,10]" />
       <FBNetwork >
-        <FB Name="CNV1" Type="MECH_VIEW" x="7711.111" y="3883.3333" >
+        <FB Name="CNV1" Type="MECH_VIEW" x="511.11108" y="4272.222" >
           <Parameter Name="DIR" Value="VDIR#UP" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="LEN" Value="7" />
           <Parameter Name="BKGD" Value="[192,192,192]" />
         </FB>
-        <FB Name="CNV2" Type="MECH_VIEW" x="705.55554" y="1472.2222" >
+        <FB Name="CNV2" Type="MECH_VIEW" x="1355.5555" y="4266.6665" >
           <Parameter Name="DIR" Value="VDIR#LEFT" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="LEN" Value="9" />
           <Parameter Name="BKGD" Value="[192,192,192]" />
         </FB>
-        <FB Name="CNV3" Type="MECH_VIEW" x="2805.5554" y="2588.8887" >
+        <FB Name="CNV3" Type="MECH_VIEW" x="2183.3333" y="4277.778" >
           <Parameter Name="DIR" Value="VDIR#DOWN" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="LEN" Value="4" />
           <Parameter Name="BKGD" Value="[0,114,240]" />
         </FB>
-        <FB Name="CNV4" Type="MECH_VIEW" x="4994.4443" y="3622.2222" >
+        <FB Name="CNV4" Type="MECH_VIEW" x="3011.111" y="4283.333" >
           <Parameter Name="DIR" Value="VDIR#DOWN" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="LEN" Value="4" />
           <Parameter Name="BKGD" Value="[255,211,0]" />
         </FB>
-        <FB Name="CNV5" Type="MECH_VIEW" x="6572.222" y="3949.9998" >
+        <FB Name="CNV5" Type="MECH_VIEW" x="3816.6665" y="4300.0" >
           <Parameter Name="DIR" Value="VDIR#DOWN" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="LEN" Value="4" />
           <Parameter Name="BKGD" Value="[255,0,0]" />
         </FB>
-        <FB Name="SPACE2" Type="XSPACE" x="4222.222" y="3111.111" >
+        <FB Name="SPACE2" Type="XSPACE" x="2788.8887" y="1933.3333" >
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIMS" Value="[1,0]" />
         </FB>
-        <FB Name="SPACE3" Type="XSPACE" x="5944.4443" y="3827.7776" >
+        <FB Name="SPACE3" Type="XSPACE" x="4361.111" y="1933.3333" >
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIMS" Value="[1,0]" />
         </FB>
@@ -76,21 +76,47 @@
           <Parameter Name="DIA" Value="44" />
           <Parameter Name="DIMS" Value="[5,0]" />
         </FB>
-        <FB Name="SPACE33" Type="XSPACE" x="7172.222" y="3872.2222" >
+        <FB Name="SPACE33" Type="XSPACE" x="5822.222" y="1933.3333" >
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIMS" Value="[4,0]" />
         </FB>
-        <FB Name="PS" Type="OUT_BOOL" x="1733.3333" y="1472.2222" >
+        <FB Name="PS" Type="OUT_BOOL" x="1327.7777" y="1500.0" >
           <Parameter Name="LABEL" Value="&#34;PS&#34;" />
         </FB>
         <FB Name="PE" Type="OUT_BOOL" x="6094.4443" y="50.0" >
           <Parameter Name="LABEL" Value="&#34;PE&#34;" />
         </FB>
+        <FB Name="CNV_2" Type="MECH_VIEWL" x="694.4444" y="1500.0" >
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+          <Parameter Name="LEN" Value="9" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#LEFT" />
+        </FB>
+        <FB Name="CNV_3" Type="MECH_VIEWL" x="2022.2222" y="1500.0" >
+          <Parameter Name="BKGD" Value="[0,114,240]" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+        </FB>
+        <FB Name="CNV_4" Type="MECH_VIEWL" x="3627.7776" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[255,211,0]" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+        </FB>
+        <FB Name="CNV_5" Type="MECH_VIEWL" x="5055.555" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="CNV_1" Type="MECH_VIEWL" x="6633.333" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#UP" />
+        </FB>
         <EventConnections>
-          <Connection Source="CNV3.INITO" Destination="SPACE2.INIT" dx1="55.555553" />
-          <Connection Source="SPACE2.INITO" Destination="CNV4.INIT" dx1="55.555553" />
-          <Connection Source="CNV4.INITO" Destination="SPACE3.INIT" dx1="55.555553" />
-          <Connection Source="SPACE3.INITO" Destination="CNV5.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="SP1.INIT" dx1="55.555553" />
           <Connection Source="SP1.INITO" Destination="BLUE.INIT" dx1="55.555553" />
           <Connection Source="BLUE.INITO" Destination="SP2.INIT" dx1="55.555553" />
@@ -98,12 +124,16 @@
           <Connection Source="YELLOW.INITO" Destination="SP3.INIT" dx1="55.555553" />
           <Connection Source="SP3.INITO" Destination="RED.INIT" dx1="55.555553" />
           <Connection Source="RED.INITO" Destination="SP4.INIT" dx1="55.555553" />
-          <Connection Source="CNV5.INITO" Destination="SPACE33.INIT" dx1="55.555553" />
-          <Connection Source="SPACE33.INITO" Destination="CNV1.INIT" dx1="55.555553" />
-          <Connection Source="CNV2.INITO" Destination="PS.INIT" dx1="55.555553" />
-          <Connection Source="PS.INITO" Destination="CNV3.INIT" dx1="305.55554" />
           <Connection Source="SP4.INITO" Destination="PE.INIT" dx1="55.555553" />
-          <Connection Source="PE.INITO" Destination="CNV2.INIT" dx1="55.555553" dx2="566.6666" dy="1077.7777" />
+          <Connection Source="PE.INITO" Destination="CNV_2.INIT" dx1="183.33333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="CNV_2.INITO" Destination="PS.INIT" dx1="55.555553" />
+          <Connection Source="PS.INITO" Destination="CNV_3.INIT" dx1="55.555553" />
+          <Connection Source="CNV_3.INITO" Destination="SPACE2.INIT" dx1="200.0" />
+          <Connection Source="SPACE2.INITO" Destination="CNV_4.INIT" dx1="55.555553" />
+          <Connection Source="CNV_4.INITO" Destination="SPACE3.INIT" dx1="55.555553" />
+          <Connection Source="SPACE3.INITO" Destination="CNV_5.INIT" dx1="200.0" />
+          <Connection Source="CNV_5.INITO" Destination="SPACE33.INIT" dx1="55.555553" />
+          <Connection Source="SPACE33.INITO" Destination="CNV_1.INIT" dx1="200.0" />
         </EventConnections>
       </FBNetwork>
     </Resource>
