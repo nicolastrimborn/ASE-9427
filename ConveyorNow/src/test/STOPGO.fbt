@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="STOPGO" Comment="ECC with no Transient ECC State" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2018-12-17" />
+<CompilerInfo header="package fb.rt.test;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="GO" Comment="Normal Execution Request" >
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="STOP" >
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED" />
+        <With Var="YELLOW" />
+        <With Var="GREEN" />
+      </Event>
+      <Event Name="PASSCONTROL" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" Comment="Input event qualifier" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW" Type="BOOL" />
+      <VarDeclaration Name="GREEN" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="YELLOWDONE" Type="BOOL" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="388.8889" y="866.6666" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="2111.111" y="316.66666" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="GO" x="2572.2222" y="727.7778" >
+        <ECAction Algorithm="GO" />
+      </ECState>
+      <ECState Name="GORED" x="4011.1108" y="2672.2222" >
+        <ECAction Algorithm="GORED" Output="PASSCONTROL" />
+      </ECState>
+      <ECState Name="CD" x="700.0" y="2616.6665" >
+        <ECAction Algorithm="CD" />
+      </ECState>
+      <ECState Name="STOPREQUESTED" x="4483.333" y="1616.6666" >
+        <ECAction Algorithm="STOPREQ" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1522.2222" y="227.77777" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1627.7777" y="499.99997" />
+      <ECTransition Source="START" Destination="GO" Condition="GO" x="2055.5554" y="577.7778" />
+      <ECTransition Source="GO" Destination="START" Condition="1" x="2072.2222" y="916.6666" />
+      <ECTransition Source="START" Destination="CD" Condition="CLK [YELLOWTIME > 0]" x="400.0" y="2161.111" />
+      <ECTransition Source="CD" Destination="START" Condition="1" x="1033.3333" y="2083.3333" />
+      <ECTransition Source="START" Destination="STOPREQUESTED" Condition="STOP" x="3777.7776" y="1111.1111" />
+      <ECTransition Source="START" Destination="GORED" Condition="CLK [YELLOWDONE = TRUE]" x="3788.8887" y="2100.0" />
+      <ECTransition Source="GORED" Destination="START" Condition="1" x="2883.3333" y="2672.2222" />
+      <ECTransition Source="STOPREQUESTED" Destination="START" Condition="1" x="3861.111" y="1772.2222" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[RED:=FALSE;
+YELLOW:=FALSE;
+GREEN:=FALSE;
+YELLOWDONE:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="STOP" >
+<ST><![CDATA[IF YELLOWTIME = 0 THEN
+	RED:= TRUE;
+	GREEN:= FALSE;
+	YELLOW:= FALSE;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="GO" >
+<ST><![CDATA[GREEN:=TRUE;
+YELLOW:=FALSE;
+RED:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="CD" >
+<ST><![CDATA[YELLOWTIME:= YELLOWTIME - 1;
+IF YELLOWTIME = 0 THEN:
+	YELLOWDONE := TRUE;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="GORED" >
+<ST><![CDATA[YELLOW:=FALSE;
+RED:=TRUE;
+GREEN:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="STOPREQ" >
+<ST><![CDATA[YELLOW:=TRUE;
+RED:=FALSE;
+GREEN:=FALSE;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>
