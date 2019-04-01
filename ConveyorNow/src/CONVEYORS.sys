@@ -117,8 +117,6 @@
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIR" Value="VDIR#UP" />
         </FB>
-        <FB Name="colour" Type="FB_MUX_COLOR" x="5427.7773" y="4483.333" >
-        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="SP1.INIT" dx1="55.555553" />
           <Connection Source="SP1.INITO" Destination="BLUE.INIT" dx1="55.555553" />
@@ -147,39 +145,48 @@
       <Parameter Name="DIA" Value="50" />
       <Parameter Name="SIZE" Value="[10,10]" />
       <FBNetwork >
-        <FB Name="CNV1" Type="IN_BOOL" x="1405.5555" y="1066.6666" >
+        <FB Name="CNV1" Type="IN_BOOL" x="2488.8887" y="1016.6666" >
           <Parameter Name="LABEL" Value="&#34;CNV1&#34;" />
         </FB>
-        <FB Name="CNV_VAL1" Type="PUBL_1" x="2538.8887" y="1172.2222" >
-        </FB>
-        <FB Name="CNV2" Type="IN_BOOL" x="1405.5555" y="2200.0" >
+        <FB Name="CNV2" Type="IN_BOOL" x="2455.5554" y="2416.6665" >
           <Parameter Name="LABEL" Value="&#34;CNV2&#34;" />
         </FB>
-        <FB Name="CNV_VAL2" Type="PUBL_1" x="2527.7776" y="2233.3333" >
+        <FB Name="CNV_VAL2" Type="PUBL_1" x="4049.9998" y="2461.111" >
         </FB>
         <FB Name="colours" Type="IN_CHOICE" x="1372.2222" y="0.0" >
           <Parameter Name="CHOICES" Value="&#34;RED,YELLOW,BLUE&#34;" />
         </FB>
         <FB Name="WRKPC_COLOUR" Type="PUBL_1" x="2427.7776" y="38.888885" >
         </FB>
+        <FB Name="LOAD_BTN" Type="IN_EVENT" x="833.3333" y="1138.8888" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Load the workpiece&#34;" />
+        </FB>
+        <FB Name="CNV1_STATE" Type="PUBL_1" x="3811.111" y="1138.8888" >
+        </FB>
+        <FB Name="LOAD_STATE" Type="PUBL_0" x="1333.3333" y="1144.4445" >
+        </FB>
         <EventConnections>
-          <Connection Source="START.COLD" Destination="CNV1.INIT" dx1="55.555553" />
-          <Connection Source="START.COLD" Destination="CNV1.REQ" dx1="55.555553" />
-          <Connection Source="CNV1.INITO" Destination="CNV_VAL1.INIT" dx1="55.555553" />
-          <Connection Source="CNV1.CNF" Destination="CNV_VAL1.REQ" dx1="55.555553" />
-          <Connection Source="START.COLD" Destination="CNV2.INIT" dx1="55.555553" />
           <Connection Source="CNV2.INITO" Destination="CNV_VAL2.INIT" dx1="55.555553" />
-          <Connection Source="START.COLD" Destination="CNV2.REQ" dx1="55.555553" />
           <Connection Source="CNV2.CNF" Destination="CNV_VAL2.REQ" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="colours.REQ" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="colours.INIT" dx1="55.555553" />
           <Connection Source="colours.INITO" Destination="WRKPC_COLOUR.INIT" dx1="55.555553" />
           <Connection Source="colours.IND" Destination="WRKPC_COLOUR.REQ" dx1="55.555553" />
+          <Connection Source="CNV1.IND" Destination="CNV1_STATE.REQ" dx1="55.555553" dx2="55.555553" dy="83.33333" />
+          <Connection Source="CNV1.INITO" Destination="CNV1_STATE.INIT" dx1="55.555553" dx2="55.555553" dy="88.888885" />
+          <Connection Source="LOAD_BTN.INITO" Destination="LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="LOAD_BTN.IND" Destination="LOAD_STATE.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="LOAD_BTN.INIT" dx1="55.555553" />
+          <Connection Source="LOAD_STATE.INITO" Destination="CNV1.INIT" dx1="55.555553" />
+          <Connection Source="LOAD_STATE.CNF" Destination="CNV1.REQ" dx1="55.555553" />
+          <Connection Source="LOAD_STATE.INITO" Destination="CNV2.INIT" dx1="55.555553" />
+          <Connection Source="LOAD_STATE.CNF" Destination="CNV2.REQ" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
-          <Connection Source="CNV1.OUT" Destination="CNV_VAL1.SD_1" dx1="55.555553" />
           <Connection Source="CNV2.OUT" Destination="CNV_VAL2.SD_1" dx1="55.555553" />
           <Connection Source="colours.I" Destination="WRKPC_COLOUR.SD_1" dx1="55.555553" />
+          <Connection Source="CNV1.OUT" Destination="CNV1_STATE.SD_1" dx1="55.555553" dx2="55.555553" dy="83.33333" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -192,19 +199,34 @@
       <FBNetwork >
         <FB Name="WRKPC_COLOUR" Type="SUBL_1" x="1183.3333" y="127.77777" >
         </FB>
-        <FB Name="SelectColour" Type="SELECTER" x="2016.6666" y="77.77777" >
+        <FB Name="Colour" Type="FB_MUX_COLOR" x="1861.1111" y="511.11108" >
+          <Parameter Name="IN0" Value="[255,0,0]" />
+          <Parameter Name="IN1" Value="[255,211,0]" />
+          <Parameter Name="IN2" Value="[0,0,255]" />
         </FB>
-        <FB Name="CONV_VALS1" Type="PUBL_1" x="3305.5554" y="72.22222" >
+        <FB Name="CONV_VALS1" Type="PUBL_2" x="5450.0" y="72.22222" >
+          <Parameter Name="ID" Value="&#34;CONV_VALS1&#34;" />
+        </FB>
+        <FB Name="MODEL1" Type="CNV_MDL" x="4044.4443" y="400.0" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="CLK" Type="E_CYCLE" x="3200.0" y="183.33333" >
+          <Parameter Name="DT" Value="t#100ms" />
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="WRKPC_COLOUR.INIT" dx1="55.555553" />
-          <Connection Source="WRKPC_COLOUR.INITO" Destination="SelectColour.INIT" dx1="55.555553" />
-          <Connection Source="WRKPC_COLOUR.IND" Destination="SelectColour.REQ" dx1="55.555553" />
-          <Connection Source="SelectColour.INITO" Destination="CONV_VALS1.INIT" dx1="55.555553" />
-          <Connection Source="SelectColour.CNF" Destination="CONV_VALS1.REQ" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.IND" Destination="Colour.REQ" dx1="288.8889" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="CONV_VALS1.INIT" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="CLK.START" dx1="55.555553" />
+          <Connection Source="CLK.EO" Destination="MODEL1.CLK" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
-          <Connection Source="WRKPC_COLOUR.RD_1" Destination="SelectColour.MODE" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.RD_1" Destination="Colour.K" dx1="55.555553" />
+          <Connection Source="Colour.OUT" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CONV_VALS1.SD_1" dx1="38.888885" />
+          <Connection Source="MODEL1.WKPO" Destination="CONV_VALS1.SD_2" dx1="127.77777" />
         </DataConnections>
       </FBNetwork>
     </Resource>
