@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
-<FBType Name="Basic" Comment="Basic Function Block Type" >
+<FBType Name="PASS_COLOUR" Comment="Basic Function Block Type" >
   <Identification Standard="61499-2" />
   <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
   <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
@@ -12,19 +12,19 @@
     <EventInputs>
       <Event Name="INIT" Comment="Initialization Request" >
         <With Var="QI" />
+        <With Var="CI" />
       </Event>
       <Event Name="REQ1" Comment="Normal Execution Request" >
         <With Var="QI" />
+        <With Var="CI" />
       </Event>
       <Event Name="REQ2" >
+        <With Var="QI" />
+        <With Var="CI" />
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="INITO" Comment="Initialization Confirm" >
-        <With Var="QO1" />
-      </Event>
-      <Event Name="CNF" Comment="Execution Confirmation" >
-        <With Var="QO1" />
+      <Event Name="CNF" >
       </Event>
     </EventOutputs>
     <InputVars>
@@ -42,19 +42,20 @@
       <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
       </ECState>
       <ECState Name="INIT" Comment="Initialization" x="922.22217" y="138.88889" >
-        <ECAction Algorithm="INIT" Output="INITO" />
+        <ECAction Algorithm="INIT" Output="CNF" />
       </ECState>
-      <ECState Name="REQ1" Comment="Normal execution" x="216.66666" y="755.55554" >
+      <ECState Name="REQ1" Comment="Normal execution" x="677.7778" y="2327.7776" >
         <ECAction Algorithm="REQ1" Output="CNF" />
       </ECState>
-      <ECState Name="REQ2" x="1883.3333" y="988.88885" >
+      <ECState Name="REQ2" x="2877.7776" y="1133.3333" >
+        <ECAction Algorithm="REQ2" Output="CNF" />
       </ECState>
       <ECTransition Source="INIT" Destination="START" Condition="1" x="555.55554" y="138.88889" />
-      <ECTransition Source="START" Destination="REQ1" Condition="REQ1" x="555.55554" y="600.0" />
+      <ECTransition Source="START" Destination="REQ1" Condition="REQ1" x="1194.4445" y="1305.5555" />
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="922.22217" y="427.77777" />
-      <ECTransition Source="REQ1" Destination="START" Condition="1" x="216.66666" y="427.77777" />
-      <ECTransition Source="START" Destination="REQ2" Condition="REQ2" x="1566.6666" y="650.0" />
-      <ECTransition Source="REQ2" Destination="START" Condition="1" x="1222.2222" y="711.1111" />
+      <ECTransition Source="REQ1" Destination="START" Condition="1" x="677.7778" y="1999.9999" />
+      <ECTransition Source="START" Destination="REQ2" Condition="REQ2" x="2561.111" y="794.4444" />
+      <ECTransition Source="REQ2" Destination="START" Condition="1" x="2216.6665" y="855.55554" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
 <Other Language="Java"><![CDATA[QO1.value=false;
@@ -65,6 +66,10 @@ CO.value=CI.value;]]></Other>
 <Other Language="Java"><![CDATA[QO1.value=QI.value;
 QO2.value=QI.value;
 CI.value=CO.value;]]></Other>
+  </Algorithm>
+  <Algorithm Name="REQ2" >
+<ST><![CDATA[QO2:=FALSE;
+QO1:=QI;]]></ST>
   </Algorithm>
   </BasicFB>
 </FBType>

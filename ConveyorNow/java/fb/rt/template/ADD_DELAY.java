@@ -9,9 +9,7 @@ import fb.rt.events.*;
   */
 public class ADD_DELAY extends fb.rt.FBInstance {
 /** Execution Confirmation */
-public final EventOutput CNF1 = new EventOutput();
-/** EVENT CNF2 */
-public final EventOutput CNF2 = new EventOutput();
+public final EventOutput CNF = new EventOutput();
 /** EVENT INIT */
 public final EventServer INIT = (e) -> service_INIT();
 /** EVENT REQ */
@@ -20,23 +18,24 @@ public final EventServer REQ = (e) -> service_REQ();
   protected E_DELAY DLY = new E_DELAY() ;
 /** FB test:E_R_TRIG */
   protected E_R_TRIG test = new E_R_TRIG() ;
-/** FB PASS_IT_ON:Basic */
-  protected Basic PASS_IT_ON = new Basic() ;
+/** FB PASS_IT_ON:PASS_COLOUR */
+  protected PASS_COLOUR PASS_IT_ON = new PASS_COLOUR() ;
 /** Input event qualifier */
   public BOOL QI = new BOOL();
 /** VAR CI:COLOR */
   public COLOR CI = new COLOR();
 /** Output event qualifier */
-  public final BOOL QO = (BOOL)PASS_IT_ON.QO;
+  public final BOOL QO1 = (BOOL)PASS_IT_ON.QO1;
 /** VAR CO:COLOR */
   public final COLOR CO = (COLOR)PASS_IT_ON.CO;
+/** VAR QO2:BOOL */
+  public final BOOL QO2 = (BOOL)PASS_IT_ON.QO2;
 /** The default constructor. */
 public ADD_DELAY(){
     super();
-    DLY.EO.connectTo(CNF2);
-    test.EO.connectTo(CNF1);
-    test.EO.connectTo(PASS_IT_ON.REQ);
-    DLY.EO.connectTo(PASS_IT_ON.REQ);
+    test.EO.connectTo(PASS_IT_ON.REQ1);
+    DLY.EO.connectTo(PASS_IT_ON.REQ2);
+    PASS_IT_ON.CNF.connectTo(CNF);
     PASS_IT_ON.connectIVNoException("QI",QI);
     PASS_IT_ON.connectIVNoException("CI",CI);
     DLY.DT.initializeNoException("t#2s");

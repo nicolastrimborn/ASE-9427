@@ -15,10 +15,10 @@
       </Event>
     </EventInputs>
     <EventOutputs>
-      <Event Name="CNF1" Comment="Execution Confirmation" >
-        <With Var="QO" />
-      </Event>
-      <Event Name="CNF2" >
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO1" />
+        <With Var="CO" />
+        <With Var="QO2" />
       </Event>
     </EventOutputs>
     <InputVars>
@@ -26,32 +26,33 @@
       <VarDeclaration Name="CI" Type="COLOR" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="QO1" Type="BOOL" Comment="Output event qualifier" />
       <VarDeclaration Name="CO" Type="COLOR" />
+      <VarDeclaration Name="QO2" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
     <FB Name="DLY" Type="E_DELAY" x="1572.2222" y="1533.3333" >
       <Parameter Name="DT" Value="t#2s" />
     </FB>
-    <FB Name="test" Type="E_R_TRIG" x="1572.2222" y="872.22217" >
+    <FB Name="test" Type="E_R_TRIG" x="1572.2222" y="805.55554" >
       <Parameter Name="QI" Value="1" />
     </FB>
-    <FB Name="PASS_IT_ON" Type="Basic" x="2794.4443" y="844.4444" >
+    <FB Name="PASS_IT_ON" Type="PASS_COLOUR" x="3233.3333" y="1066.6666" >
     </FB>
     <EventConnections>
-      <Connection Source="DLY.EO" Destination="CNF2" />
-      <Connection Source="test.EO" Destination="CNF1" />
-      <Connection Source="INIT" Destination="PASS_IT_ON.INIT" />
-      <Connection Source="test.EO" Destination="PASS_IT_ON.REQ" dx1="55.555553" />
-      <Connection Source="DLY.EO" Destination="PASS_IT_ON.REQ" dx1="55.555553" />
       <Connection Source="REQ" Destination="test.EI" />
       <Connection Source="REQ" Destination="DLY.START" />
+      <Connection Source="INIT" Destination="PASS_IT_ON.INIT" />
+      <Connection Source="test.EO" Destination="PASS_IT_ON.REQ1" dx1="55.555553" />
+      <Connection Source="DLY.EO" Destination="PASS_IT_ON.REQ2" dx1="55.555553" />
+      <Connection Source="PASS_IT_ON.CNF" Destination="CNF" />
     </EventConnections>
     <DataConnections>
       <Connection Source="QI" Destination="PASS_IT_ON.QI" />
       <Connection Source="CI" Destination="PASS_IT_ON.CI" />
-      <Connection Source="PASS_IT_ON.QO" Destination="QO" />
+      <Connection Source="PASS_IT_ON.QO1" Destination="QO1" />
+      <Connection Source="PASS_IT_ON.QO2" Destination="QO2" />
       <Connection Source="PASS_IT_ON.CO" Destination="CO" />
     </DataConnections>
   </FBNetwork>
