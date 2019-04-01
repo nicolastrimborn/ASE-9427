@@ -196,7 +196,7 @@
     <Parameter Name="BOUNDS" Value="[500,570,500,500]" />
     <Resource Name="CONV1_MODEL" Type="VIEW_PANEL" x="1061.1111" y="183.33333" >
       <Parameter Name="DIA" Value="50" />
-      <Parameter Name="SIZE" Value="[10,10]" />
+      <Parameter Name="SIZE" Value="[1,1]" />
       <FBNetwork >
         <FB Name="WRKPC_COLOUR" Type="SUBL_1" x="611.1111" y="277.77777" >
         </FB>
@@ -209,7 +209,7 @@
         <FB Name="MODEL1" Type="CNV_MDL" x="3933.3333" y="327.77777" >
           <Parameter Name="STYLE" Value="VSTYLE#DISC" />
           <Parameter Name="LPOS" Value="0" />
-          <Parameter Name="VF" Value="10" />
+          <Parameter Name="VF" Value="3" />
         </FB>
         <FB Name="CLK" Type="E_CYCLE" x="2916.6665" y="0.0" >
           <Parameter Name="DT" Value="t#100ms" />
@@ -221,13 +221,6 @@
         <FB Name="CNV1_VALS" Type="PUBL_3" x="5738.8887" y="55.555553" >
           <Parameter Name="ID" Value="&#34;CNV1_VALS&#34;" />
         </FB>
-        <FB Name="checkevent" Type="OUT_EVENT" x="6366.6665" y="2083.3333" >
-          <Parameter Name="DT" Value="t#1s" />
-        </FB>
-        <FB Name="test" Type="IN_EVENT" x="5000.0" y="1488.8888" >
-          <Parameter Name="QI" Value="1" />
-          <Parameter Name="LABEL" Value="&#34;force event&#34;" />
-        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="WRKPC_COLOUR.INIT" dx1="94.44444" />
           <Connection Source="WRKPC_COLOUR.IND" Destination="Colour.REQ" dx1="288.8889" />
@@ -236,11 +229,9 @@
           <Connection Source="Colour.CNF" Destination="CLK.START" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="CNV1_VALS.INIT" dx1="55.555553" />
           <Connection Source="MODEL1.INDR" Destination="CNV1_VALS.REQ" dx1="227.77777" />
-          <Connection Source="CNV1_VALS.INITO" Destination="checkevent.INIT" dx1="61.111107" dx2="55.555553" dy="1888.8888" />
-          <Connection Source="MODEL1.INDR" Destination="checkevent.REQ" dx1="55.555553" />
-          <Connection Source="LOAD_STATE.INITO" Destination="test.INIT" dx1="55.555553" />
-          <Connection Source="test.IND" Destination="CNV1_VALS.REQ" dx1="55.555553" />
-          <Connection Source="checkevent.INITO" Destination="CNV1_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="83.33333" />
+          <Connection Source="CLK.EO" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.INITO" Destination="CNV1_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+          <Connection Source="LOAD_STATE.IND" Destination="MODEL1.LOAD" dx1="511.11108" />
         </EventConnections>
         <DataConnections>
           <Connection Source="Colour.OUT" Destination="MODEL1.WKPC" dx1="522.2222" />
@@ -249,9 +240,12 @@
           <Connection Source="MODEL1.POS" Destination="CNV1_VALS.SD_1" dx1="55.555553" />
           <Connection Source="MODEL1.STYLO" Destination="CNV1_VALS.SD_2" dx1="55.555553" />
           <Connection Source="MODEL1.WKPO" Destination="CNV1_VALS.SD_3" dx1="55.555553" />
-          <Connection Source="Colour.OUT" Destination="checkevent.FLASH" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
+    </Resource>
+    <Resource Name="TT_MODEL" Type="VIEW_PANEL" x="1022.22217" y="1055.5555" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
     </Resource>
   </Device>
 </System>
