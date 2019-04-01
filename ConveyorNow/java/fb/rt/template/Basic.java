@@ -69,5 +69,6 @@ public void alg_INIT(){
 public void alg_REQ(){
 QI.value=QO.value;
 CI.value=CO.value;
+CI.value=[0 0 0];
 }
 }

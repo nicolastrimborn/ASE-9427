@@ -116,7 +116,7 @@
       <FBNetwork >
         <FB Name="ForceStartState" Type="SUBL_0" x="800.0" y="94.44444" >
         </FB>
-        <FB Name="UpdateStates1" Type="PUBL_3" x="4183.333" y="88.888885" >
+        <FB Name="UpdateStates1" Type="PUBL_3" x="4183.333" y="94.44444" >
         </FB>
         <FB Name="timeRemaining1" Type="PUBL_1" x="5033.333" y="583.3333" >
         </FB>
@@ -125,7 +125,7 @@
         <FB Name="timeRemaining2" Type="PUBL_1" x="5472.222" y="2311.111" >
         </FB>
         <FB Name="CONT" Type="ControllerCentralised" x="2405.5554" y="94.44444" >
-          <Parameter Name="GREENTIME" Value="10" />
+          <Parameter Name="GREENTIME" Value="6" />
           <Parameter Name="YELLOWTIME" Value="3" />
         </FB>
         <FB Name="CLOCK" Type="E_CYCLE" x="1616.6666" y="711.1111" >

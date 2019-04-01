@@ -38,8 +38,6 @@ public final EventServer LD = (e) -> service_LD();
   public final BOOL GREEN1 = new BOOL();
 /** VAR RT1:UINT */
   public final UINT RT1 = new UINT();
-/** VAR RELEASE:BOOL */
-  public final BOOL RELEASE = new BOOL();
 /** VAR RED2:BOOL */
   public final BOOL RED2 = new BOOL();
 /** VAR YELLOW2:BOOL */
@@ -48,10 +46,8 @@ public final EventServer LD = (e) -> service_LD();
   public final BOOL GREEN2 = new BOOL();
 /** VAR RT2:UINT */
   public final UINT RT2 = new UINT();
-/** VAR YELLOWTIMEIN:UINT */
-  public UINT YELLOWTIMEIN = new UINT();
-/** VAR GREENTIMEIN:UINT */
-  public UINT GREENTIMEIN = new UINT();
+/** VAR RELEASE:BOOL */
+  public BOOL RELEASE = new BOOL();
 /** VAR GREENTIME1CV:UINT */
   public UINT GREENTIME1CV = new UINT();
 /** VAR GREENTIME2CV:UINT */
@@ -112,8 +108,6 @@ GREEN1.value=false;
 RED2.value=false;
 YELLOW2.value=false;
 GREEN2.value=false;
-YELLOWTIMEIN.value=100;
-GREENTIMEIN.value=100;
 RELEASE.value=false;}
   /** ALGORITHM CLK IN ST*/
 public void alg_CLK(){
@@ -136,7 +130,6 @@ if( RELEASE.value == false ){
 		GREEN2.value=false;
 		YELLOW2.value= false;
 		RED2.value=true;
-
 		if( YELLOWTIME1CV.value>0 ){
 			YELLOWTIME1CV.value= YELLOWTIME1CV.value - 1;
 			RT1.value=YELLOWTIME1CV.value;
@@ -151,8 +144,8 @@ if( RELEASE.value == false ){
 		RED2.value=false;
 		RELEASE.value=true;
 		RT1.value=0;
-		RT2.value=GREENTIMEIN.value;
-		GREENTIME1CV.value= GREENTIMEIN.value;
+		RT2.value=GREENTIME.value;
+		GREENTIME1CV.value= GREENTIME.value;
 		YELLOWTIME1CV.value=  YELLOWTIME.value;
 	}
 }
@@ -166,17 +159,15 @@ if( RELEASE.value == true ){
 		GREEN2.value=true;
 		YELLOW2.value= false;
 		RED2.value=false;
-		RT1.value=GREENTIMEIN.value;
+		RT1.value=0;
 		RT2.value=GREENTIME2CV.value;
 	}
 	if( GREENTIME2CV.value==0 ){
 		GREEN1.value=false;
 		YELLOW1.value= false;
-		RED1.value=true;
 		GREEN2.value=false;
 		YELLOW2.value= true;
 		RED2.value=false;
-
 		if( YELLOWTIME2CV.value>0 ){
 			YELLOWTIME2CV.value= YELLOWTIME2CV.value - 1;
 		    RT2.value=YELLOWTIME2CV.value;
@@ -186,10 +177,13 @@ if( RELEASE.value == true ){
 		GREEN1.value=true;
 		YELLOW1.value=false;
 		RED1.value=false;
+		GREEN2.value=false;
+		YELLOW2.value=false;
+		RED2.value=true;
 		RELEASE.value=false;
-		RT1.value=GREENTIMEIN.value;
+		RT1.value=GREENTIME.value;
 		RT2.value=0;
-		GREENTIME2CV.value= GREENTIMEIN.value;
+		GREENTIME2CV.value= GREENTIME.value;
 		YELLOWTIME2CV.value=  YELLOWTIME.value;
 	}
 }}
@@ -200,10 +194,7 @@ YELLOW1.value=false;
 RED1.value=false;
 GREEN2.value=false;
 YELLOW2.value=false;
-RED2.value=false;
-
-YELLOWTIMEIN.value=YELLOWTIME.value+1;
-GREENTIMEIN.value=GREENTIME.value;
+RED2.value=true;
 
 RT1.value=GREENTIME.value;
 RT2.value= 0;

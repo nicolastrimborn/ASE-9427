@@ -37,7 +37,6 @@
       <VarDeclaration Name="YELLOW1" Type="BOOL" />
       <VarDeclaration Name="GREEN1" Type="BOOL" />
       <VarDeclaration Name="RT1" Type="UINT" />
-      <VarDeclaration Name="RELEASE" Type="BOOL" />
       <VarDeclaration Name="RED2" Type="BOOL" />
       <VarDeclaration Name="YELLOW2" Type="BOOL" />
       <VarDeclaration Name="GREEN2" Type="BOOL" />
@@ -46,8 +45,7 @@
   </InterfaceList>
   <BasicFB>
     <InternalVars>
-      <VarDeclaration Name="YELLOWTIMEIN" Type="UINT" />
-      <VarDeclaration Name="GREENTIMEIN" Type="UINT" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
       <VarDeclaration Name="GREENTIME1CV" Type="UINT" />
       <VarDeclaration Name="GREENTIME2CV" Type="UINT" />
       <VarDeclaration Name="YELLOWTIME1CV" Type="UINT" />
@@ -79,8 +77,6 @@ GREEN1:=FALSE;
 RED2:=FALSE;
 YELLOW2:=FALSE;
 GREEN2:=FALSE;
-YELLOWTIMEIN:=100;
-GREENTIMEIN:=100;
 RELEASE:=FALSE;]]></ST>
   </Algorithm>
   <Algorithm Name="CLK" Comment="Normally executed algorithm" >
@@ -103,7 +99,6 @@ RELEASE:=FALSE;]]></ST>
 		GREEN2:=FALSE;
 		YELLOW2:= FALSE;
 		RED2:=TRUE;
-
 		IF YELLOWTIME1CV>0 THEN
 			YELLOWTIME1CV:= YELLOWTIME1CV - 1;
 			RT1:=YELLOWTIME1CV;
@@ -118,8 +113,8 @@ RELEASE:=FALSE;]]></ST>
 		RED2:=FALSE;
 		RELEASE:=TRUE;
 		RT1:=0;
-		RT2:=GREENTIMEIN;
-		GREENTIME1CV:= GREENTIMEIN;
+		RT2:=GREENTIME;
+		GREENTIME1CV:= GREENTIME;
 		YELLOWTIME1CV:=  YELLOWTIME;
 	END_IF;
 END_IF;
@@ -133,17 +128,15 @@ IF RELEASE = TRUE THEN
 		GREEN2:=TRUE;
 		YELLOW2:= FALSE;
 		RED2:=FALSE;
-		RT1:=GREENTIMEIN;
+		RT1:=0;
 		RT2:=GREENTIME2CV;
 	END_IF;
 	IF GREENTIME2CV=0 THEN
 		GREEN1:=FALSE;
 		YELLOW1:= FALSE;
-		RED1:=TRUE;
 		GREEN2:=FALSE;
 		YELLOW2:= TRUE;
 		RED2:=FALSE;
-
 		IF YELLOWTIME2CV>0 THEN
 			YELLOWTIME2CV:= YELLOWTIME2CV - 1;
 		    RT2:=YELLOWTIME2CV;
@@ -153,10 +146,13 @@ IF RELEASE = TRUE THEN
 		GREEN1:=TRUE;
 		YELLOW1:=FALSE;
 		RED1:=FALSE;
+		GREEN2:=FALSE;
+		YELLOW2:=FALSE;
+		RED2:=TRUE;
 		RELEASE:=FALSE;
-		RT1:=GREENTIMEIN;
+		RT1:=GREENTIME;
 		RT2:=0;
-		GREENTIME2CV:= GREENTIMEIN;
+		GREENTIME2CV:= GREENTIME;
 		YELLOWTIME2CV:=  YELLOWTIME;
 	END_IF;
 END_IF;]]></ST>
@@ -167,10 +163,7 @@ YELLOW1:=FALSE;
 RED1:=FALSE;
 GREEN2:=FALSE;
 YELLOW2:=FALSE;
-RED2:=FALSE;
-
-YELLOWTIMEIN:=YELLOWTIME+1;
-GREENTIMEIN:=GREENTIME;
+RED2:=TRUE;
 
 RT1:=GREENTIME;
 RT2:= 0;

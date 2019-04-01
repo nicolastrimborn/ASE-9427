@@ -54,7 +54,8 @@
   </Algorithm>
   <Algorithm Name="REQ" Comment="Normally executed algorithm" >
 <Other Language="Java"><![CDATA[QI.value=QO.value;
-CI.value=CO.value;]]></Other>
+CI.value=CO.value;
+CI.value=[0 0 0];]]></Other>
   </Algorithm>
   </BasicFB>
 </FBType>
