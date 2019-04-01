@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="CONVEYORS" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.4" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="772.22217" y="983.3333" >
+    <Parameter Name="BOUNDS" Value="[500,30,520,500]" />
+    <Resource Name="VIEW_Resource" Type="VIEW_PANEL" x="1111.1111" y="194.44444" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[10,10]" />
+      <FBNetwork >
+        <FB Name="CNV1" Type="MECH_VIEW" x="511.11108" y="4272.222" >
+          <Parameter Name="DIR" Value="VDIR#UP" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+        </FB>
+        <FB Name="CNV2" Type="MECH_VIEW" x="1355.5555" y="4266.6665" >
+          <Parameter Name="DIR" Value="VDIR#LEFT" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="9" />
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+        </FB>
+        <FB Name="CNV3" Type="MECH_VIEW" x="2183.3333" y="4277.778" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="BKGD" Value="[0,114,240]" />
+        </FB>
+        <FB Name="CNV4" Type="MECH_VIEW" x="3011.111" y="4283.333" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="BKGD" Value="[255,211,0]" />
+        </FB>
+        <FB Name="CNV5" Type="MECH_VIEW" x="3816.6665" y="4300.0" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+        </FB>
+        <FB Name="SPACE2" Type="XSPACE" x="2788.8887" y="1933.3333" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[1,0]" />
+        </FB>
+        <FB Name="SPACE3" Type="XSPACE" x="4361.111" y="1933.3333" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[1,0]" />
+        </FB>
+        <FB Name="BLUE" Type="OUT_BOOL" x="1611.1111" y="44.444443" >
+          <Parameter Name="LABEL" Value="&#34;BLU&#34;" />
+        </FB>
+        <FB Name="YELLOW" Type="OUT_BOOL" x="2988.8887" y="44.444443" >
+          <Parameter Name="LABEL" Value="&#34;YEL&#34;" />
+        </FB>
+        <FB Name="RED" Type="OUT_BOOL" x="4461.111" y="44.444443" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="SP1" Type="XSPACE" x="816.6666" y="50.0" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[0,0]" />
+        </FB>
+        <FB Name="SP2" Type="XSPACE" x="2338.889" y="44.444443" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[1,0]" />
+        </FB>
+        <FB Name="SP3" Type="XSPACE" x="3738.8887" y="44.444443" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[1,0]" />
+        </FB>
+        <FB Name="SP4" Type="XSPACE" x="5261.111" y="50.0" >
+          <Parameter Name="DIA" Value="44" />
+          <Parameter Name="DIMS" Value="[5,0]" />
+        </FB>
+        <FB Name="SPACE33" Type="XSPACE" x="5822.222" y="1933.3333" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[4,0]" />
+        </FB>
+        <FB Name="PS" Type="OUT_BOOL" x="1327.7777" y="1500.0" >
+          <Parameter Name="LABEL" Value="&#34;PS&#34;" />
+        </FB>
+        <FB Name="PE" Type="OUT_BOOL" x="6094.4443" y="50.0" >
+          <Parameter Name="LABEL" Value="&#34;PE&#34;" />
+        </FB>
+        <FB Name="CNV_2" Type="MECH_VIEWL" x="694.4444" y="1500.0" >
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+          <Parameter Name="LEN" Value="9" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#LEFT" />
+        </FB>
+        <FB Name="CNV_3" Type="MECH_VIEWL" x="2022.2222" y="1500.0" >
+          <Parameter Name="BKGD" Value="[0,114,240]" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+        </FB>
+        <FB Name="CNV_4" Type="MECH_VIEWL" x="3627.7776" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[255,211,0]" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+        </FB>
+        <FB Name="CNV_5" Type="MECH_VIEWL" x="5055.555" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="CNV_1" Type="MECH_VIEWL" x="6633.333" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#UP" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SP1.INIT" dx1="55.555553" />
+          <Connection Source="SP1.INITO" Destination="BLUE.INIT" dx1="55.555553" />
+          <Connection Source="BLUE.INITO" Destination="SP2.INIT" dx1="55.555553" />
+          <Connection Source="SP2.INITO" Destination="YELLOW.INIT" dx1="55.555553" />
+          <Connection Source="YELLOW.INITO" Destination="SP3.INIT" dx1="55.555553" />
+          <Connection Source="SP3.INITO" Destination="RED.INIT" dx1="55.555553" />
+          <Connection Source="RED.INITO" Destination="SP4.INIT" dx1="55.555553" />
+          <Connection Source="SP4.INITO" Destination="PE.INIT" dx1="55.555553" />
+          <Connection Source="PE.INITO" Destination="CNV_2.INIT" dx1="183.33333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="CNV_2.INITO" Destination="PS.INIT" dx1="55.555553" />
+          <Connection Source="PS.INITO" Destination="CNV_3.INIT" dx1="55.555553" />
+          <Connection Source="CNV_3.INITO" Destination="SPACE2.INIT" dx1="200.0" />
+          <Connection Source="SPACE2.INITO" Destination="CNV_4.INIT" dx1="55.555553" />
+          <Connection Source="CNV_4.INITO" Destination="SPACE3.INIT" dx1="55.555553" />
+          <Connection Source="SPACE3.INITO" Destination="CNV_5.INIT" dx1="200.0" />
+          <Connection Source="CNV_5.INITO" Destination="SPACE33.INIT" dx1="55.555553" />
+          <Connection Source="SPACE33.INITO" Destination="CNV_1.INIT" dx1="200.0" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="HMI" Type="FRAME_DEVICE" x="788.88885" y="366.66666" >
+    <Parameter Name="BOUNDS" Value="[0,300,500,500]" />
+    <Resource Name="HMI_RESOURCE" Type="VIEW_PANEL" x="1094.4445" y="611.1111" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[10,10]" />
+    </Resource>
+  </Device>
+</System>

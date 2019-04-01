@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ControllerCentralised" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="GREENTIME" />
+        <With Var="YELLOWTIME" />
+      </Event>
+      <Event Name="CLK" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="LD" >
+        <With Var="GREENTIME" />
+        <With Var="YELLOWTIME" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="RED1" />
+      </Event>
+      <Event Name="CNF" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="GREENTIME" Type="UINT" />
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED1" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="YELLOW1" Type="BOOL" />
+      <VarDeclaration Name="GREEN1" Type="BOOL" />
+      <VarDeclaration Name="RT1" Type="UINT" />
+      <VarDeclaration Name="RELEASE" Type="BOOL" />
+      <VarDeclaration Name="RED2" Type="BOOL" />
+      <VarDeclaration Name="YELLOW2" Type="BOOL" />
+      <VarDeclaration Name="GREEN2" Type="BOOL" />
+      <VarDeclaration Name="RT2" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="YELLOWTIMEIN" Type="UINT" />
+      <VarDeclaration Name="GREENTIMEIN" Type="UINT" />
+      <VarDeclaration Name="GREENTIME1CV" Type="UINT" />
+      <VarDeclaration Name="GREENTIME2CV" Type="UINT" />
+      <VarDeclaration Name="YELLOWTIME1CV" Type="UINT" />
+      <VarDeclaration Name="YELLOWTIME2CV" Type="UINT" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="388.8889" y="422.2222" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="2211.111" y="244.44443" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="CLK" Comment="Normal execution" x="2427.7776" y="1633.3333" >
+        <ECAction Algorithm="CLK" Output="CNF" />
+      </ECState>
+      <ECState Name="LD" x="894.4444" y="2316.6665" >
+        <ECAction Algorithm="LD" Output="CNF" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1677.7777" y="238.88889" />
+      <ECTransition Source="START" Destination="CLK" Condition="CLK" x="2433.3333" y="1038.8888" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="1766.6666" y="505.55554" />
+      <ECTransition Source="CLK" Destination="START" Condition="1" x="1583.3333" y="1366.6666" />
+      <ECTransition Source="START" Destination="LD" Condition="LD" x="388.8889" y="1705.5555" />
+      <ECTransition Source="LD" Destination="START" Condition="1" x="1077.7777" y="1644.4443" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[RED1:=FALSE;
+YELLOW1:=FALSE;
+GREEN1:=FALSE;
+RED2:=FALSE;
+YELLOW2:=FALSE;
+GREEN2:=FALSE;
+YELLOWTIMEIN:=100;
+GREENTIMEIN:=100;
+RELEASE:=FALSE;]]></ST>
+  </Algorithm>
+  <Algorithm Name="CLK" Comment="Normally executed algorithm" >
+<ST><![CDATA[IF RELEASE = FALSE THEN
+	IF GREENTIME1CV > 0 THEN
+		GREENTIME1CV := GREENTIME1CV - 1;
+		GREEN1:=TRUE;
+		YELLOW1:= FALSE;
+		RED1:=FALSE;
+		GREEN2:=FALSE;
+		YELLOW2:= FALSE;
+		RED2:=TRUE;
+		RT1:=GREENTIME1CV;
+	END_IF;
+	
+	IF  GREENTIME1CV=0 THEN
+		GREEN1:=FALSE;
+		YELLOW1:= TRUE;
+		RED1:=FALSE;
+		GREEN2:=FALSE;
+		YELLOW2:= FALSE;
+		RED2:=TRUE;
+
+		IF YELLOWTIME1CV>0 THEN
+			YELLOWTIME1CV:= YELLOWTIME1CV - 1;
+			RT1:=YELLOWTIME1CV;
+		END_IF;
+	END_IF;
+	IF YELLOWTIME1CV=0 THEN
+		GREEN1:=FALSE;
+		YELLOW1:=FALSE;
+		RED1:=TRUE;
+		GREEN2:=TRUE;
+		YELLOW2:=FALSE;
+		RED2:=FALSE;
+		RELEASE:=TRUE;
+		RT1:=0;
+		RT2:=GREENTIMEIN;
+		GREENTIME1CV:= GREENTIMEIN;
+		YELLOWTIME1CV:=  YELLOWTIME;
+	END_IF;
+END_IF;
+
+IF RELEASE = TRUE THEN
+	IF GREENTIME2CV > 0 THEN
+		GREENTIME2CV := GREENTIME2CV - 1;
+		GREEN1:=FALSE;
+		YELLOW1:= FALSE;
+		RED1:=TRUE;
+		GREEN2:=TRUE;
+		YELLOW2:= FALSE;
+		RED2:=FALSE;
+		RT1:=GREENTIMEIN;
+		RT2:=GREENTIME2CV;
+	END_IF;
+	IF GREENTIME2CV=0 THEN
+		GREEN1:=FALSE;
+		YELLOW1:= FALSE;
+		RED1:=TRUE;
+		GREEN2:=FALSE;
+		YELLOW2:= TRUE;
+		RED2:=FALSE;
+
+		IF YELLOWTIME2CV>0 THEN
+			YELLOWTIME2CV:= YELLOWTIME2CV - 1;
+		    RT2:=YELLOWTIME2CV;
+		END_IF;
+	END_IF;
+	IF YELLOWTIME2CV=0 THEN
+		GREEN1:=TRUE;
+		YELLOW1:=FALSE;
+		RED1:=FALSE;
+		RELEASE:=FALSE;
+		RT1:=GREENTIMEIN;
+		RT2:=0;
+		GREENTIME2CV:= GREENTIMEIN;
+		YELLOWTIME2CV:=  YELLOWTIME;
+	END_IF;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="LD" >
+<ST><![CDATA[GREEN1:=TRUE;
+YELLOW1:=FALSE;
+RED1:=FALSE;
+GREEN2:=FALSE;
+YELLOW2:=FALSE;
+RED2:=FALSE;
+
+YELLOWTIMEIN:=YELLOWTIME+1;
+GREENTIMEIN:=GREENTIME;
+
+RT1:=GREENTIME;
+RT2:= 0;
+GREENTIME1CV:=GREENTIME;
+GREENTIME2CV:=GREENTIME;
+YELLOWTIME1CV:=YELLOWTIME+1;
+YELLOWTIME2CV:=YELLOWTIME+1;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>
