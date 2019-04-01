@@ -3,11 +3,11 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
-/** FUNCTION_BLOCK PASS_COLOUR (* Basic Function Block Type *)
+/** FUNCTION_BLOCK PASS_COLOUR1 (* Basic Function Block Type *)
   * @author JHC
   * @version 20190401/JHC - Generated.
   */
-public class PASS_COLOUR extends fb.rt.FBInstance {
+public class PASS_COLOUR1 extends fb.rt.FBInstance {
 /** The index (0) of state START. */
 public static final int INDEX_START = 0;
 /** The index (1) of state INIT. */
@@ -29,7 +29,7 @@ public final EventServer REQ1 = (e) -> service_REQ1();
 /** VAR CO:COLOR */
   public final COLOR CO = new COLOR();
 /** The default constructor. */
-public PASS_COLOUR(){
+public PASS_COLOUR1(){
     super();
   }
 protected synchronized void service_INIT(){
@@ -62,9 +62,10 @@ void state_REQ1(){
 }
   /** ALGORITHM INIT IN ST*/
 public void alg_INIT(){
-QO.value==QI.value;
-CO.value==CI.value;}
+QO.value=QI.value;
+CO.value=CI.value;}
   /** ALGORITHM REQ1 IN ST*/
 public void alg_REQ1(){
-QO.value=QI.value;}
+QO.value=QI.value;
+CO.value=CI.value;}
 }

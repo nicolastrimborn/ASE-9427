@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
-<FBType Name="PASS_COLOUR" Comment="Basic Function Block Type" >
+<FBType Name="PASS_COLOUR1" Comment="Basic Function Block Type" >
   <Identification Standard="61499-2" />
   <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
   <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
@@ -43,16 +43,17 @@
         <ECAction Algorithm="REQ1" Output="CNF" />
       </ECState>
       <ECTransition Source="INIT" Destination="START" Condition="1" x="555.55554" y="138.88889" />
-      <ECTransition Source="START" Destination="REQ1" Condition="REQ1" x="1194.4445" y="1305.5555" />
+      <ECTransition Source="START" Destination="REQ1" Condition="REQ1" x="1916.6666" y="1277.7777" />
       <ECTransition Source="START" Destination="INIT" Condition="INIT" x="922.22217" y="427.77777" />
       <ECTransition Source="REQ1" Destination="START" Condition="1" x="677.7778" y="1999.9999" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
-<ST><![CDATA[QO=QI;
-CO=CI;]]></ST>
+<ST><![CDATA[QO:=QI;
+CO:=CI;]]></ST>
   </Algorithm>
   <Algorithm Name="REQ1" Comment="Normally executed algorithm" >
-<ST><![CDATA[QO:=QI;]]></ST>
+<ST><![CDATA[QO:=QI;
+CO:=CI;]]></ST>
   </Algorithm>
   </BasicFB>
 </FBType>
