@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TLController_Centralised" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="GREENTIME" />
+        <With Var="MINGREENTIME" />
+      </Event>
+      <Event Name="START" >
+        <With Var="YELLOWTIME" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="GREENTIME" Type="UINT" />
+      <VarDeclaration Name="MINGREENTIME" Type="UINT" />
+      <VarDeclaration Name="YELLOWTIME" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="RED1" Type="BOOL" />
+      <VarDeclaration Name="YELLOW1" Type="BOOL" />
+      <VarDeclaration Name="GREEN1" Type="BOOL" />
+      <VarDeclaration Name="RT1" Type="UINT" />
+      <VarDeclaration Name="RED2" Type="BOOL" />
+      <VarDeclaration Name="YELLOW2" Type="BOOL" />
+      <VarDeclaration Name="GREEN2" Type="BOOL" />
+      <VarDeclaration Name="RT2" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="CLOCK" Type="E_CYCLE" x="955.55554" y="483.3333" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="CONTROLLER" Type="ControllerCentralised" x="2233.3333" y="372.2222" >
+    </FB>
+    <EventConnections>
+      <Connection Source="START" Destination="CLOCK.START" />
+      <Connection Source="CLOCK.EO" Destination="CONTROLLER.CLK" dx1="55.555553" />
+      <Connection Source="INIT" Destination="CONTROLLER.INIT" />
+      <Connection Source="START" Destination="CONTROLLER.LD" />
+      <Connection Source="CONTROLLER.INITO" Destination="INITO" />
+      <Connection Source="CONTROLLER.CNF" Destination="CNF" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="GREENTIME" Destination="CONTROLLER.GREENTIME" />
+      <Connection Source="MINGREENTIME" Destination="CONTROLLER.MINGREENTIME" />
+      <Connection Source="YELLOWTIME" Destination="CONTROLLER.YELLOWTIME" />
+      <Connection Source="CONTROLLER.RED1" Destination="RED1" />
+      <Connection Source="CONTROLLER.YELLOW1" Destination="YELLOW1" />
+      <Connection Source="CONTROLLER.GREEN1" Destination="GREEN1" />
+      <Connection Source="CONTROLLER.RT1" Destination="RT1" />
+      <Connection Source="CONTROLLER.RT2" Destination="RT2" />
+      <Connection Source="CONTROLLER.GREEN2" Destination="GREEN2" />
+      <Connection Source="CONTROLLER.YELLOW2" Destination="YELLOW2" />
+      <Connection Source="CONTROLLER.RED2" Destination="RED2" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

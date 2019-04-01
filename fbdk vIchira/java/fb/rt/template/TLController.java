@@ -5,7 +5,7 @@ import fb.rt.*;
 import fb.rt.events.*;
 /** FUNCTION_BLOCK TLController (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190331/JHC - Generated.
+  * @version 20190401/JHC - Generated.
   */
 public class TLController extends fb.rt.FBInstance {
 /** Initialization Confirm */

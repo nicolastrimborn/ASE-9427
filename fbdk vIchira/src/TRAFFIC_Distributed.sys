@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TRAFFIC_Distributed" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.4" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="Device1" Type="FRAME_DEVICE" x="733.3333" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[400,100,200,200]" />
+    <Parameter Name="GRID" Value="[1]" />
+    <Resource Name="View" Type="PANEL_RESOURCE" x="449.99997" y="116.666664" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="TrafficLight" Type="TL_View" x="2327.7776" y="38.888885" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="UpdateStates1" Type="SUBL_3" x="883.3333" y="105.55555" >
+        </FB>
+        <FB Name="timeRemaining" Type="SUBL_1" x="1377.7777" y="1327.7777" >
+        </FB>
+        <FB Name="timeRemainingShow1" Type="OUT_ANY_LBL" x="4772.222" y="2222.2222" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;RT&#34;" />
+          <Parameter Name="W" Value="2" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="UpdateStates1.INIT" dx1="55.555553" />
+          <Connection Source="UpdateStates1.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
+          <Connection Source="UpdateStates1.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="timeRemaining.INIT" dx1="55.555553" />
+          <Connection Source="timeRemaining.INITO" Destination="timeRemainingShow1.INIT" dx1="700.0" />
+          <Connection Source="timeRemaining.IND" Destination="timeRemainingShow1.REQ" dx1="561.1111" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="UpdateStates1.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
+          <Connection Source="UpdateStates1.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
+          <Connection Source="UpdateStates1.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
+          <Connection Source="timeRemaining.RD_1" Destination="timeRemainingShow1.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="416.66666" y="1411.1111" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="ForceRed" Type="IN_BOOL" x="750.0" y="0.0" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="UpdateStates1" Type="PUBL_3" x="4322.222" y="127.77777" >
+        </FB>
+        <FB Name="ForceYellow" Type="IN_BOOL" x="1516.6666" y="1027.7777" >
+          <Parameter Name="LABEL" Value="&#34;YELLOW&#34;" />
+        </FB>
+        <FB Name="ForceGreen" Type="IN_BOOL" x="2350.0" y="1933.3333" >
+          <Parameter Name="LABEL" Value="&#34;GREEN&#34;" />
+        </FB>
+        <FB Name="START_1" Type="IN_EVENT" x="5161.111" y="122.22221" >
+          <Parameter Name="LABEL" Value="&#34;START&#34;" />
+        </FB>
+        <FB Name="ForceStartState" Type="PUBL_0" x="6216.6665" y="294.44443" >
+        </FB>
+        <FB Name="Button1" Type="IN_EVENT" x="4983.333" y="1250.0" >
+          <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ToCross1" Type="PUBL_0" x="6188.8887" y="1761.1111" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceRed.INIT" dx1="55.555553" />
+          <Connection Source="ForceRed.INITO" Destination="ForceYellow.INIT" dx1="283.3333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="ForceYellow.INITO" Destination="ForceGreen.INIT" dx1="283.3333" dx2="55.555553" dy="1105.5555" />
+          <Connection Source="ForceGreen.INITO" Destination="UpdateStates1.INIT" dx1="1194.4445" />
+          <Connection Source="ForceRed.IND" Destination="UpdateStates1.REQ" dx1="1277.7777" />
+          <Connection Source="ForceYellow.IND" Destination="UpdateStates1.REQ" dx1="1188.8888" />
+          <Connection Source="ForceGreen.IND" Destination="UpdateStates1.REQ" dx1="466.66666" />
+          <Connection Source="UpdateStates1.INITO" Destination="START_1.INIT" dx1="55.555553" />
+          <Connection Source="START_1.INITO" Destination="ForceStartState.INIT" dx1="350.0" />
+          <Connection Source="START_1.IND" Destination="ForceStartState.REQ" dx1="255.55554" />
+          <Connection Source="UpdateStates1.INITO" Destination="Button1.INIT" dx1="55.555553" />
+          <Connection Source="START_1.INITO" Destination="ToCross1.INIT" dx1="577.7778" />
+          <Connection Source="Button1.IND" Destination="ToCross1.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForceRed.OUT" Destination="UpdateStates1.SD_1" dx1="55.555553" />
+          <Connection Source="ForceYellow.OUT" Destination="UpdateStates1.SD_2" dx1="1400.0" />
+          <Connection Source="ForceGreen.OUT" Destination="UpdateStates1.SD_3" dx1="861.1111" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Control" Type="EMB_RES" x="583.3333" y="661.1111" >
+      <FBNetwork >
+        <FB Name="ForceStartState" Type="SUBL_0" x="605.55554" y="11.111111" >
+        </FB>
+        <FB Name="ReleaseControl2" Type="SUBL_0" x="1200.0" y="505.55554" >
+        </FB>
+        <FB Name="ToCross1" Type="SUBL_0" x="1855.5555" y="1111.1111" >
+        </FB>
+        <FB Name="Controller1" Type="TLController" x="2711.111" y="16.666666" >
+          <Parameter Name="GREENTIME" Value="8" />
+          <Parameter Name="MINGREENTIME" Value="4" />
+          <Parameter Name="YELLOWTIME" Value="2" />
+        </FB>
+        <FB Name="UpdateStates1" Type="PUBL_3" x="3961.1108" y="300.0" >
+        </FB>
+        <FB Name="ReleaseControl1" Type="PUBL_0" x="4577.778" y="400.0" >
+        </FB>
+        <FB Name="timeRemaining" Type="PUBL_1" x="5166.6665" y="1294.4443" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceStartState.INIT" dx1="55.555553" />
+          <Connection Source="ForceStartState.INITO" Destination="ReleaseControl2.INIT" dx1="111.11111" />
+          <Connection Source="ReleaseControl2.INITO" Destination="ToCross1.INIT" dx1="194.44444" />
+          <Connection Source="ToCross1.INITO" Destination="Controller1.INIT" dx1="83.33333" />
+          <Connection Source="ReleaseControl2.IND" Destination="Controller1.TokenIn" dx1="388.8889" />
+          <Connection Source="ToCross1.IND" Destination="Controller1.PEDCROSSBUT" dx1="205.55554" />
+          <Connection Source="ForceStartState.IND" Destination="Controller1.TokenIn" dx1="55.555553" />
+          <Connection Source="Controller1.INITO" Destination="UpdateStates1.INIT" dx1="361.11108" />
+          <Connection Source="UpdateStates1.INITO" Destination="ReleaseControl1.INIT" dx1="127.77777" />
+          <Connection Source="ReleaseControl1.INITO" Destination="timeRemaining.INIT" dx1="100.0" />
+          <Connection Source="Controller1.CNF" Destination="UpdateStates1.REQ" dx1="138.88889" />
+          <Connection Source="Controller1.CNF" Destination="timeRemaining.REQ" dx1="55.555553" />
+          <Connection Source="Controller1.TokenOut" Destination="ReleaseControl1.REQ" dx1="249.99998" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Controller1.RED" Destination="UpdateStates1.SD_1" dx1="355.55554" />
+          <Connection Source="Controller1.YELLOW" Destination="UpdateStates1.SD_2" dx1="244.44443" />
+          <Connection Source="Controller1.GREEN" Destination="UpdateStates1.SD_3" dx1="155.55554" />
+          <Connection Source="Controller1.GreenRming" Destination="timeRemaining.SD_1" dx1="105.55555" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Model" Type="EMB_RES" x="561.1111" y="1022.22217" >
+      <FBNetwork >
+        <FB Name="UpdateStates1" Type="SUBL_3" x="1027.7777" y="183.33333" >
+        </FB>
+        <FB Name="ToView1" Type="PUBL_3" x="2111.111" y="183.33333" >
+        </FB>
+        <EventConnections>
+          <Connection Source="UpdateStates1.INITO" Destination="ToView1.INIT" dx1="55.555553" />
+          <Connection Source="UpdateStates1.IND" Destination="ToView1.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="UpdateStates1.INIT" dx1="55.555553" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Device2" Type="FRAME_DEVICE" x="1844.4443" y="94.44444" >
+    <Parameter Name="BOUNDS" Value="[600,100,200,200]" />
+    <Parameter Name="GRID" Value="[1]" />
+    <Resource Name="View" Type="PANEL_RESOURCE" x="449.99997" y="116.666664" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="TrafficLight2" Type="TL_View" x="2327.7776" y="38.888885" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="UpdateStates2" Type="SUBL_3" x="883.3333" y="105.55555" >
+        </FB>
+        <FB Name="timeRemaining2" Type="SUBL_1" x="2061.111" y="1833.3333" >
+        </FB>
+        <FB Name="timeRemainingShow2" Type="OUT_ANY_LBL" x="2988.8887" y="1866.6666" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;RT&#34;" />
+          <Parameter Name="W" Value="2" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="UpdateStates2.INIT" dx1="55.555553" />
+          <Connection Source="UpdateStates2.INITO" Destination="TrafficLight2.INIT" dx1="55.555553" />
+          <Connection Source="UpdateStates2.IND" Destination="TrafficLight2.REQ" dx1="55.555553" />
+          <Connection Source="UpdateStates2.INITO" Destination="timeRemaining2.INIT" dx1="55.555553" />
+          <Connection Source="timeRemaining2.INITO" Destination="timeRemainingShow2.INIT" dx1="55.555553" />
+          <Connection Source="timeRemaining2.IND" Destination="timeRemainingShow2.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="UpdateStates2.RD_1" Destination="TrafficLight2.RED" dx1="55.555553" />
+          <Connection Source="UpdateStates2.RD_2" Destination="TrafficLight2.YELLOW" dx1="55.555553" />
+          <Connection Source="UpdateStates2.RD_3" Destination="TrafficLight2.GREEN" dx1="55.555553" />
+          <Connection Source="timeRemaining2.RD_1" Destination="timeRemainingShow2.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Control" Type="EMB_RES" x="727.7778" y="794.4444" >
+      <FBNetwork >
+        <FB Name="ReleaseControl1" Type="SUBL_0" x="1061.1111" y="338.8889" >
+        </FB>
+        <FB Name="ToCross2" Type="SUBL_0" x="1855.5555" y="1111.1111" >
+        </FB>
+        <FB Name="Controller2" Type="TLController" x="2711.111" y="16.666666" >
+          <Parameter Name="GREENTIME" Value="8" />
+          <Parameter Name="MINGREENTIME" Value="4" />
+          <Parameter Name="YELLOWTIME" Value="2" />
+        </FB>
+        <FB Name="UpdateStates2" Type="PUBL_3" x="3961.1108" y="277.77777" >
+        </FB>
+        <FB Name="ReleaseControl2" Type="PUBL_0" x="4705.555" y="394.44443" >
+        </FB>
+        <FB Name="timeRemaining2" Type="PUBL_1" x="5283.333" y="1227.7777" >
+        </FB>
+        <EventConnections>
+          <Connection Source="Controller2.CNF" Destination="UpdateStates2.REQ" dx1="138.88889" />
+          <Connection Source="Controller2.TokenOut" Destination="ReleaseControl2.REQ" dx1="249.99998" />
+          <Connection Source="START.COLD" Destination="ReleaseControl1.INIT" dx1="55.555553" />
+          <Connection Source="ReleaseControl1.IND" Destination="Controller2.TokenIn" dx1="350.0" />
+          <Connection Source="ReleaseControl1.INITO" Destination="ToCross2.INIT" dx1="200.0" />
+          <Connection Source="ToCross2.INITO" Destination="Controller2.INIT" dx1="116.666664" />
+          <Connection Source="ToCross2.IND" Destination="Controller2.PEDCROSSBUT" dx1="249.99998" />
+          <Connection Source="Controller2.INITO" Destination="UpdateStates2.INIT" dx1="344.44443" />
+          <Connection Source="UpdateStates2.INITO" Destination="ReleaseControl2.INIT" dx1="244.44443" />
+          <Connection Source="ReleaseControl2.INITO" Destination="timeRemaining2.INIT" dx1="55.555553" />
+          <Connection Source="Controller2.CNF" Destination="timeRemaining2.REQ" dx1="72.22222" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Controller2.RED" Destination="UpdateStates2.SD_1" dx1="405.55554" />
+          <Connection Source="Controller2.YELLOW" Destination="UpdateStates2.SD_2" dx1="327.77777" />
+          <Connection Source="Controller2.GREEN" Destination="UpdateStates2.SD_3" dx1="261.1111" />
+          <Connection Source="Controller2.GreenRming" Destination="timeRemaining2.SD_1" dx1="166.66666" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="461.11108" y="1505.5555" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="ForceRed2" Type="IN_BOOL" x="750.0" y="0.0" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="UpdateStates2" Type="PUBL_3" x="4438.8887" y="127.77777" >
+        </FB>
+        <FB Name="ForceYellow2" Type="IN_BOOL" x="1516.6666" y="1027.7777" >
+          <Parameter Name="LABEL" Value="&#34;YELLOW&#34;" />
+        </FB>
+        <FB Name="ForceGreen2" Type="IN_BOOL" x="2350.0" y="1933.3333" >
+          <Parameter Name="LABEL" Value="&#34;GREEN&#34;" />
+        </FB>
+        <FB Name="Button" Type="IN_EVENT" x="3577.7776" y="2983.3333" >
+          <Parameter Name="LABEL" Value="&#34;CROSS&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ToCross2" Type="PUBL_0" x="4361.111" y="2983.3333" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ForceRed2.INIT" dx1="55.555553" />
+          <Connection Source="ForceRed2.INITO" Destination="ForceYellow2.INIT" dx1="283.3333" dx2="55.555553" dy="1100.0" />
+          <Connection Source="ForceYellow2.INITO" Destination="ForceGreen2.INIT" dx1="283.3333" dx2="55.555553" dy="1105.5555" />
+          <Connection Source="ForceGreen2.INITO" Destination="UpdateStates2.INIT" dx1="1194.4445" />
+          <Connection Source="ForceRed2.IND" Destination="UpdateStates2.REQ" dx1="1277.7777" />
+          <Connection Source="ForceYellow2.IND" Destination="UpdateStates2.REQ" dx1="1188.8888" />
+          <Connection Source="ForceGreen2.IND" Destination="UpdateStates2.REQ" dx1="466.66666" />
+          <Connection Source="ForceGreen2.INITO" Destination="Button.INIT" dx1="55.555553" />
+          <Connection Source="Button.INITO" Destination="ToCross2.INIT" dx1="55.555553" />
+          <Connection Source="Button.IND" Destination="ToCross2.REQ" dx1="227.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ForceRed2.OUT" Destination="UpdateStates2.SD_1" dx1="55.555553" />
+          <Connection Source="ForceYellow2.OUT" Destination="UpdateStates2.SD_2" dx1="1400.0" />
+          <Connection Source="ForceGreen2.OUT" Destination="UpdateStates2.SD_3" dx1="1644.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Model" Type="EMB_RES" x="683.3333" y="1144.4445" >
+      <FBNetwork >
+        <FB Name="UpdateStates2" Type="SUBL_3" x="1072.2222" y="155.55554" >
+        </FB>
+        <FB Name="ToView2" Type="PUBL_3" x="2111.111" y="155.55554" >
+        </FB>
+        <EventConnections>
+          <Connection Source="UpdateStates2.INITO" Destination="ToView2.INIT" dx1="55.555553" />
+          <Connection Source="UpdateStates2.IND" Destination="ToView2.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="UpdateStates2.INIT" dx1="55.555553" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>
