@@ -15,40 +15,28 @@
       </Event>
       <Event Name="REQ" Comment="Normal Execution Request" >
         <With Var="QI" />
-        <With Var="T1" />
-        <With Var="T2" />
-      </Event>
-      <Event Name="TIME1" >
-        <With Var="T1" />
-      </Event>
-      <Event Name="TIME2" >
-        <With Var="T2" />
       </Event>
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO" Comment="Initialization Confirm" >
-        <With Var="RED" />
+        <With Var="QO" />
       </Event>
       <Event Name="CNF" Comment="Execution Confirmation" >
-        <With Var="RED" />
+        <With Var="QO" />
       </Event>
     </EventOutputs>
     <InputVars>
       <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
-      <VarDeclaration Name="T1" Type="BOOL" />
-      <VarDeclaration Name="T2" Type="BOOL" />
+      <VarDeclaration Name="CI" Type="COLOR" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="RED" Type="BOOL" Comment="Output event qualifier" />
-      <VarDeclaration Name="YELLOW" Type="BOOL" />
-      <VarDeclaration Name="GREEN" Type="BOOL" />
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="CO" Type="COLOR" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
     <ECC >
       <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
-        <ECAction Algorithm="TIME1" />
-        <ECAction Algorithm="TIME2" />
       </ECState>
       <ECState Name="INIT" Comment="Initialization" x="922.22217" y="138.88889" >
         <ECAction Algorithm="INIT" Output="INITO" />
@@ -62,29 +50,11 @@
       <ECTransition Source="REQ" Destination="START" Condition="1" x="216.66666" y="427.77777" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
-<ST><![CDATA[IF Q1 THEN
-	GREEN:=FALSE;
-	Yellow:=FALSE;
-	Red:=FALSE;
-END_IF;]]></ST>
+<ST><![CDATA[]]></ST>
   </Algorithm>
   <Algorithm Name="REQ" Comment="Normally executed algorithm" >
-<ST><![CDATA[IF QI THEN
-	GREEN:=FALSE;
-	YELLOW:=TRUE;
-END_IF;]]></ST>
-  </Algorithm>
-  <Algorithm Name="TIME1" >
-<ST><![CDATA[IF T1 THEN
-	GREEN:=FALSE;
-	YELLOW:=TRUE;
-END_IF;]]></ST>
-  </Algorithm>
-  <Algorithm Name="TIME2" >
-<ST><![CDATA[IF T2 THEN
-	YELLOW:=FALSE;
-	RED:=TRUE;
-END_IF;]]></ST>
+<Other Language="Java"><![CDATA[QI.value=QO.value;
+CI.value=CO.value;]]></Other>
   </Algorithm>
   </BasicFB>
 </FBType>
