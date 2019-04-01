@@ -7,7 +7,7 @@ import fb.rt.hmi.*;
 import fb.rt.net.*;
 /** FUNCTION_BLOCK MECH_VIEWL (* Linear Mechanism View with Local Data Publish/Subscribe *)
   * @author JHC
-  * @version 20190331/JHC - Generated.
+  * @version 20190401/JHC - Generated.
   */
 public class MECH_VIEWL extends FBMVCD {
 /** Initialized */
@@ -18,8 +18,8 @@ public final EventServer INIT = (e) -> service_INIT();
   protected MECH_VIEW VIEW = new MECH_VIEW() ;
 /** FB UI:PUBL_1 */
   protected PUBL UI = new PUBL(1);
-/** FB REND:SUBL_2 */
-  protected SUBL REND = new SUBL(2);
+/** FB REND:SUBL_3 */
+  protected SUBL REND = new SUBL(3);
 /** Rendering Data Channel from Model */
   public WSTRING REND_ID = new WSTRING();
 /** User Input Channel to Model */
@@ -46,10 +46,10 @@ public MECH_VIEWL(){
     VIEW.connectIVNoException("LEN",LEN);
     VIEW.connectIVNoException("DIA",DIA);
     VIEW.connectIVNoException("DIR",DIR);
-    REND.connectIVNoException("ID",REND_ID);
     REND.connectOVNoException("RD_1",VIEW.POS);
-    REND.connectOVNoException("RD_2",VIEW.WKPC);
-    VIEW.STYLE.initializeNoException("VSTYLE#DISC");
+    REND.connectOVNoException("RD_2",VIEW.STYLE);
+    REND.connectOVNoException("RD_3",VIEW.WKPC);
+    REND.connectIVNoException("ID",REND_ID);
   }
 	/**
  * {@inheritDoc}
