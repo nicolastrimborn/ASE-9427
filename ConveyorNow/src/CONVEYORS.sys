@@ -94,7 +94,7 @@
           <Parameter Name="LEN" Value="9" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIR" Value="VDIR#LEFT" />
-          <Parameter Name="REND_ID" Value="&#34;test&#34;" />
+          <Parameter Name="REND_ID" Value="&#34;CNV2_VALS&#34;" />
         </FB>
         <FB Name="CNV_3" Type="MECH_VIEWL" x="2300.0" y="1427.7777" >
           <Parameter Name="BKGD" Value="[0,114,240]" />
@@ -162,45 +162,36 @@
       <Parameter Name="DIA" Value="50" />
       <Parameter Name="SIZE" Value="[10,10]" />
       <FBNetwork >
-        <FB Name="CNV1" Type="IN_BOOL" x="2111.111" y="1044.4445" >
-          <Parameter Name="LABEL" Value="&#34;CNV1&#34;" />
-        </FB>
         <FB Name="colours" Type="IN_CHOICE" x="1372.2222" y="0.0" >
           <Parameter Name="CHOICES" Value="&#34; ,RED,YELLOW,BLUE&#34;" />
         </FB>
         <FB Name="WRKPC_COLOUR" Type="PUBL_1" x="2427.7776" y="38.888885" >
         </FB>
-        <FB Name="LOAD_BTN" Type="IN_EVENT" x="761.1111" y="1027.7777" >
-          <Parameter Name="LABEL" Value="&#34;Load the workpiece&#34;" />
-          <Parameter Name="QI" Value="1" />
+        <FB Name="TT_STATE_PE" Type="PUBL_1" x="4877.778" y="1105.5555" >
         </FB>
-        <FB Name="CNV1_STATE" Type="PUBL_1" x="4100.0" y="1061.1111" >
-        </FB>
-        <FB Name="CNV1_LOAD_STATE" Type="PUBL_0" x="1333.3333" y="1144.4445" >
-        </FB>
-        <FB Name="TT_STATE_PE" Type="PUBL_1" x="5161.111" y="2244.4443" >
-        </FB>
-        <FB Name="TT" Type="IN_BOOL" x="2605.5554" y="2044.4443" >
+        <FB Name="TT" Type="IN_BOOL" x="2344.4443" y="1177.7777" >
           <Parameter Name="LABEL" Value="&#34;Load TT&#34;" />
         </FB>
-        <FB Name="TTTurn" Type="IN_BOOL" x="3605.5554" y="3249.9998" >
+        <FB Name="TTTurn" Type="IN_BOOL" x="3377.7776" y="1988.8888" >
           <Parameter Name="LABEL" Value="&#34;TurnTT&#34;" />
         </FB>
-        <FB Name="TTTURN" Type="PUBL_1" x="5122.222" y="3333.3333" >
+        <FB Name="TTTURN" Type="PUBL_1" x="4872.222" y="2005.5554" >
+        </FB>
+        <FB Name="UPDATE_CONV1" Type="UPDATE_CONV_STATE" x="1055.5555" y="1161.1111" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV1_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;CNV1&#34;" />
+        </FB>
+        <FB Name="UPDATE_CONV2" Type="UPDATE_CONV_STATE" x="949.99994" y="2755.5554" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV2_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV2_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;CNV2&#34;" />
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="colours.REQ" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="colours.INIT" dx1="55.555553" />
           <Connection Source="colours.INITO" Destination="WRKPC_COLOUR.INIT" dx1="55.555553" />
           <Connection Source="colours.IND" Destination="WRKPC_COLOUR.REQ" dx1="55.555553" />
-          <Connection Source="CNV1.IND" Destination="CNV1_STATE.REQ" dx1="55.555553" dx2="55.555553" dy="83.33333" />
-          <Connection Source="CNV1.INITO" Destination="CNV1_STATE.INIT" dx1="55.555553" dx2="55.555553" dy="88.888885" />
-          <Connection Source="LOAD_BTN.INITO" Destination="CNV1_LOAD_STATE.INIT" dx1="55.555553" />
-          <Connection Source="LOAD_BTN.IND" Destination="CNV1_LOAD_STATE.REQ" dx1="55.555553" />
-          <Connection Source="START.COLD" Destination="LOAD_BTN.INIT" dx1="55.555553" />
-          <Connection Source="CNV1_LOAD_STATE.INITO" Destination="CNV1.INIT" dx1="55.555553" />
-          <Connection Source="CNV1_LOAD_STATE.CNF" Destination="CNV1.REQ" dx1="55.555553" />
-          <Connection Source="CNV1.INITO" Destination="TT.INIT" dx1="55.555553" />
           <Connection Source="TT.INITO" Destination="TT_STATE_PE.INIT" dx1="55.555553" />
           <Connection Source="TT.IND" Destination="TT_STATE_PE.REQ" dx1="55.555553" />
           <Connection Source="TT.INITO" Destination="TTTurn.INIT" dx1="522.2222" />
@@ -208,10 +199,13 @@
           <Connection Source="TTTurn.INITO" Destination="TTTURN.INIT" dx1="55.555553" />
           <Connection Source="TTTurn.IND" Destination="TTTURN.REQ" dx1="55.555553" />
           <Connection Source="TTTurn.INITO" Destination="TTTURN.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="UPDATE_CONV1.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV1.INITO" Destination="TT.INIT" dx1="227.77777" />
+          <Connection Source="UPDATE_CONV1.CNF" Destination="TT.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="UPDATE_CONV2.INIT" dx1="55.555553" />
         </EventConnections>
         <DataConnections>
           <Connection Source="colours.I" Destination="WRKPC_COLOUR.SD_1" dx1="55.555553" />
-          <Connection Source="CNV1.OUT" Destination="CNV1_STATE.SD_1" dx1="55.555553" dx2="55.555553" dy="83.33333" />
           <Connection Source="TT.OUT" Destination="TT_STATE_PE.SD_1" dx1="55.555553" />
           <Connection Source="TTTurn.OUT" Destination="TTTURN.SD_1" dx1="55.555553" />
         </DataConnections>
@@ -241,8 +235,10 @@
           <Parameter Name="DT" Value="t#100ms" />
         </FB>
         <FB Name="CNV1_STATE" Type="SUBL_1" x="1738.8888" y="2211.111" >
+          <Parameter Name="ID" Value="&#34;CNV1_STATE&#34;" />
         </FB>
-        <FB Name="CNV1_LOAD_STATE" Type="SUBL_0" x="2594.4443" y="1872.2222" >
+        <FB Name="CNV1_LOAD_STATE" Type="SUBL_0" x="2861.111" y="1894.4443" >
+          <Parameter Name="ID" Value="&#34;CNV1_LOAD_STATE&#34;" />
         </FB>
         <FB Name="CNV1_VALS" Type="PUBL_3" x="5738.8887" y="55.555553" >
           <Parameter Name="ID" Value="&#34;CNV1_VALS&#34;" />
