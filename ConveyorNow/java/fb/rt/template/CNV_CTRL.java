@@ -3,7 +3,6 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
-import fb.rt.hmi.*;
 import fb.rt.net.*;
 import fb.rt.select.*;
 /** FUNCTION_BLOCK CNV_CTRL (* Composite Function Block Type *)
@@ -39,12 +38,8 @@ public final EventServer REQ = (e) -> service_REQ();
   protected E_DELAY MTR_DELAY = new E_DELAY() ;
 /** FB CNV_LOAD_STATE:SUBL_1 */
   protected SUBL CNV_LOAD_STATE = new SUBL(1);
-/** FB test:OUT_EVENT */
-  protected OUT_EVENT test = new OUT_EVENT() ;
 /** FB PASS_IT:PASS_BOOL */
   protected PASS_BOOL PASS_IT = new PASS_BOOL() ;
-/** FB TO_NEXT:PUBL_2 */
-  protected PUBL TO_NEXT = new PUBL(2);
 /** VAR CNV_STATE:WSTRING */
   public WSTRING CNV_STATE = new WSTRING();
 /** VAR NEXT:WSTRING */
@@ -65,7 +60,6 @@ public CNV_CTRL(){
     WKPC_COLOUR.IND.connectTo(PASS_COLOUR.REQ);
     CNV_LOAD_STATE.IND.connectTo(LOAD);
     CNV_LOAD_STATE.IND.connectTo(MTR_DELAY.START);
-    MTR_DELAY.EO.connectTo(test.REQ);
     CNV_LOAD_STATE.IND.connectTo(PASS_IT.INIT);
     MTR_DELAY.EO.connectTo(PASS_IT.REQ);
     PASS_IT.CNF.connectTo(CNF);
@@ -75,18 +69,13 @@ public CNV_CTRL(){
     WKPC_COLOUR.connectOVNoException("RD_1",PASS_COLOUR.K);
     WKPC_COLOUR.connectIVNoException("ID",COLOUR);
     CNV_LOAD_STATE.connectIVNoException("ID",CNV_STATE);
-    test.connectIVNoException("FLASH",WKPC);
     CNV_LOAD_STATE.connectOVNoException("RD_1",PASS_IT.STATE);
-    TO_NEXT.connectIVNoException("ID",NEXT);
-    TO_NEXT.connectIVNoException("SD_2",WKPC);
     CLOCK.DT.initializeNoException("t#100ms");
     PASS_COLOUR.IN0.initializeNoException("[0,0,0]");
     PASS_COLOUR.IN1.initializeNoException("[255,0,0]");
     PASS_COLOUR.IN2.initializeNoException("[255,211,0]");
     PASS_COLOUR.IN3.initializeNoException("[0,0,255]");
     MTR_DELAY.DT.initializeNoException("t#1s");
-    test.LABEL.initializeNoException("TEST");
-    test.DT.initializeNoException("t#1s");
   }
 	/**
  * {@inheritDoc}
@@ -100,8 +89,6 @@ protected void connectInternal(ANY newVar) {
     WKPC_COLOUR.connectIVNoException("ID",COLOUR);
   if(newVar == CNV_STATE)
     CNV_LOAD_STATE.connectIVNoException("ID",CNV_STATE);
-  if(newVar == NEXT)
-    TO_NEXT.connectIVNoException("ID",NEXT);
 }
 /** start the FB instances. */
 public void start( ){
@@ -113,9 +100,7 @@ public void start( ){
   WKPC_COLOUR.start();
   MTR_DELAY.start();
   CNV_LOAD_STATE.start();
-  test.start();
   PASS_IT.start();
-  TO_NEXT.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -127,9 +112,7 @@ public void stop( ){
   WKPC_COLOUR.stop();
   MTR_DELAY.stop();
   CNV_LOAD_STATE.stop();
-  test.stop();
   PASS_IT.stop();
-  TO_NEXT.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -141,9 +124,7 @@ public void kill( ){
   WKPC_COLOUR.kill();
   MTR_DELAY.kill();
   CNV_LOAD_STATE.kill();
-  test.kill();
   PASS_IT.kill();
-  TO_NEXT.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -155,20 +136,15 @@ public void reset( ){
   WKPC_COLOUR.reset();
   MTR_DELAY.reset();
   CNV_LOAD_STATE.reset();
-  test.reset();
   PASS_IT.reset();
-  TO_NEXT.reset();
 }
 protected synchronized void service_INIT(){
    NEXT_STATE.INIT.serviceEvent(this);
    WKPC_COLOUR.INIT.serviceEvent(this);
    CNV_LOAD_STATE.INIT.serviceEvent(this);
-   test.INIT.serviceEvent(this);
-   TO_NEXT.INIT.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    CLOCK.START.serviceEvent(this);
-   TO_NEXT.REQ.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}
@@ -184,8 +160,6 @@ protected synchronized void service_REQ(){
     WKPC_COLOUR.initialize("WKPC_COLOUR",r);
     MTR_DELAY.initialize("MTR_DELAY",r);
     CNV_LOAD_STATE.initialize("CNV_LOAD_STATE",r);
-    test.initialize("test",r);
     PASS_IT.initialize("PASS_IT",r);
-    TO_NEXT.initialize("TO_NEXT",r);
 }
 }

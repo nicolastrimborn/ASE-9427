@@ -59,13 +59,7 @@
     </FB>
     <FB Name="CNV_LOAD_STATE" Type="SUBL_1" x="438.8889" y="583.3333" >
     </FB>
-    <FB Name="test" Type="OUT_EVENT" x="2205.5554" y="1144.4445" >
-      <Parameter Name="LABEL" Value="&#34;TEST&#34;" />
-      <Parameter Name="DT" Value="t#1s" />
-    </FB>
     <FB Name="PASS_IT" Type="PASS_BOOL" x="2244.4443" y="88.888885" >
-    </FB>
-    <FB Name="TO_NEXT" Type="PUBL_2" x="4288.8887" y="2611.111" >
     </FB>
     <EventConnections>
       <Connection Source="INIT" Destination="NEXT_STATE.INIT" />
@@ -79,14 +73,10 @@
       <Connection Source="INIT" Destination="CNV_LOAD_STATE.INIT" />
       <Connection Source="CNV_LOAD_STATE.IND" Destination="LOAD" />
       <Connection Source="CNV_LOAD_STATE.IND" Destination="MTR_DELAY.START" dx1="449.99997" />
-      <Connection Source="INIT" Destination="test.INIT" />
-      <Connection Source="MTR_DELAY.EO" Destination="test.REQ" dx1="55.555553" />
       <Connection Source="CNV_LOAD_STATE.IND" Destination="PASS_IT.INIT" dx1="55.555553" />
       <Connection Source="MTR_DELAY.EO" Destination="PASS_IT.REQ" dx1="55.555553" />
       <Connection Source="PASS_IT.CNF" Destination="CNF" />
       <Connection Source="PASS_IT.INITO" Destination="INITO" />
-      <Connection Source="INIT" Destination="TO_NEXT.INIT" />
-      <Connection Source="REQ" Destination="TO_NEXT.REQ" />
     </EventConnections>
     <DataConnections>
       <Connection Source="NEXT_STATE.RD_1" Destination="UNLOAD.QI" dx1="55.555553" />
@@ -95,11 +85,8 @@
       <Connection Source="WKPC_COLOUR.RD_1" Destination="PASS_COLOUR.K" dx1="55.555553" />
       <Connection Source="COLOUR" Destination="WKPC_COLOUR.ID" />
       <Connection Source="CNV_STATE" Destination="CNV_LOAD_STATE.ID" />
-      <Connection Source="WKPC" Destination="test.FLASH" />
       <Connection Source="CNV_LOAD_STATE.RD_1" Destination="PASS_IT.STATE" dx1="1133.3333" />
       <Connection Source="PASS_IT.MTR" Destination="MTR" />
-      <Connection Source="NEXT" Destination="TO_NEXT.ID" />
-      <Connection Source="WKPC" Destination="TO_NEXT.SD_2" />
     </DataConnections>
   </FBNetwork>
 </FBType>

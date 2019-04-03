@@ -25,7 +25,7 @@
       <VarDeclaration Name="POS" Type="UINT" Comment="Permits EI=>EO pass-through" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="COUNT" Type="UINT" />
+      <VarDeclaration Name="END" Type="BOOL" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
