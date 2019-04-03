@@ -4,6 +4,7 @@ import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
 import fb.rt.net.*;
+import fb.rt.select.*;
 /** FUNCTION_BLOCK TO_CNV_MODEL (* Composite Function Block Type *)
   * @author JHC
   * @version 20190403/JHC - Generated.
@@ -23,8 +24,6 @@ public final EventOutput UNLD = new EventOutput();
 public final EventServer INIT = (e) -> service_INIT();
 /** Normal Execution Request */
 public final EventServer REQ = (e) -> service_REQ();
-/** FB PREV_VALS:SUBL_3 */
-  protected SUBL PREV_VALS = new SUBL(3);
 /** FB MOTOR:SUBL_1 */
   protected SUBL MOTOR = new SUBL(1);
 /** FB CNV_LOAD_STATE:SUBL_0 */
@@ -35,18 +34,22 @@ public final EventServer REQ = (e) -> service_REQ();
   protected E_TRIG UNLOAD = new E_TRIG() ;
 /** FB CLOCK:E_CYCLE */
   protected E_CYCLE CLOCK = new E_CYCLE() ;
-/** VAR PREV:WSTRING */
-  public WSTRING PREV = new WSTRING();
+/** FB PASS_COLOUR:FB_MUX_COLOR */
+  protected FB_MUX_COLOR PASS_COLOUR = new FB_MUX_COLOR() ;
+/** FB WKPC_COLOUR:SUBL_1 */
+  protected SUBL WKPC_COLOUR = new SUBL(1);
 /** VAR CNV_STATE:WSTRING */
   public WSTRING CNV_STATE = new WSTRING();
 /** VAR LOAD_STATE:WSTRING */
   public WSTRING LOAD_STATE = new WSTRING();
 /** VAR NEXT:WSTRING */
   public WSTRING NEXT = new WSTRING();
+/** VAR COLOUR:WSTRING */
+  public WSTRING COLOUR = new WSTRING();
 /** Output event qualifier */
   public final BOOL MTR = new BOOL();
 /** VAR WKPC:COLOR */
-  public final COLOR WKPC = new COLOR();
+  public final COLOR WKPC = (COLOR)PASS_COLOUR.OUT;
 /** The default constructor. */
 public TO_CNV_MODEL(){
     super();
@@ -55,16 +58,21 @@ public TO_CNV_MODEL(){
     CNV_LOAD_STATE.IND.connectTo(LOAD);
     UNLOAD.ER.connectTo(UNLD);
     MOTOR.IND.connectTo(CNF);
-    PREV_VALS.IND.connectTo(CNF);
-    PREV_VALS.INITO.connectTo(INITO);
+    PASS_COLOUR.CNF.connectTo(CNF);
+    MOTOR.INITO.connectTo(INITO);
+    WKPC_COLOUR.IND.connectTo(PASS_COLOUR.REQ);
     NEXT_STATE.connectOVNoException("RD_1",UNLOAD.QI);
-    PREV_VALS.connectOVNoException("RD_3",WKPC);
-    PREV_VALS.connectIVNoException("ID",PREV);
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     MOTOR.connectIVNoException("ID",CNV_STATE);
     NEXT_STATE.connectIVNoException("ID",NEXT);
     MOTOR.connectOVNoException("RD_1",MTR);
+    WKPC_COLOUR.connectOVNoException("RD_1",PASS_COLOUR.K);
+    WKPC_COLOUR.connectIVNoException("ID",COLOUR);
     CLOCK.DT.initializeNoException("t#100ms");
+    PASS_COLOUR.IN0.initializeNoException("[0,0,0]");
+    PASS_COLOUR.IN1.initializeNoException("[255,0,0]");
+    PASS_COLOUR.IN2.initializeNoException("[255,211,0]");
+    PASS_COLOUR.IN3.initializeNoException("[0,0,255]");
   }
 	/**
  * {@inheritDoc}
@@ -72,60 +80,64 @@ public TO_CNV_MODEL(){
  */
 @Override
 protected void connectInternal(ANY newVar) {
-  if(newVar == PREV)
-    PREV_VALS.connectIVNoException("ID",PREV);
   if(newVar == LOAD_STATE)
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
   if(newVar == CNV_STATE)
     MOTOR.connectIVNoException("ID",CNV_STATE);
   if(newVar == NEXT)
     NEXT_STATE.connectIVNoException("ID",NEXT);
+  if(newVar == COLOUR)
+    WKPC_COLOUR.connectIVNoException("ID",COLOUR);
 }
 /** start the FB instances. */
 public void start( ){
     super.start();
-  PREV_VALS.start();
   MOTOR.start();
   CNV_LOAD_STATE.start();
   NEXT_STATE.start();
   UNLOAD.start();
   CLOCK.start();
+  PASS_COLOUR.start();
+  WKPC_COLOUR.start();
 }
 /** stop the FB instances. */
 public void stop( ){
     super.stop();
-  PREV_VALS.stop();
   MOTOR.stop();
   CNV_LOAD_STATE.stop();
   NEXT_STATE.stop();
   UNLOAD.stop();
   CLOCK.stop();
+  PASS_COLOUR.stop();
+  WKPC_COLOUR.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
     super.kill();
-  PREV_VALS.kill();
   MOTOR.kill();
   CNV_LOAD_STATE.kill();
   NEXT_STATE.kill();
   UNLOAD.kill();
   CLOCK.kill();
+  PASS_COLOUR.kill();
+  WKPC_COLOUR.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
     super.reset();
-  PREV_VALS.reset();
   MOTOR.reset();
   CNV_LOAD_STATE.reset();
   NEXT_STATE.reset();
   UNLOAD.reset();
   CLOCK.reset();
+  PASS_COLOUR.reset();
+  WKPC_COLOUR.reset();
 }
 protected synchronized void service_INIT(){
-   PREV_VALS.INIT.serviceEvent(this);
    MOTOR.INIT.serviceEvent(this);
    CNV_LOAD_STATE.INIT.serviceEvent(this);
    NEXT_STATE.INIT.serviceEvent(this);
+   WKPC_COLOUR.INIT.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    CLOCK.START.serviceEvent(this);
@@ -137,11 +149,12 @@ protected synchronized void service_REQ(){
   public void initialize(String fbName, Resource r)
   throws FBRManagementException{
     super.initialize(fbName,r);
-    PREV_VALS.initialize("PREV_VALS",r);
     MOTOR.initialize("MOTOR",r);
     CNV_LOAD_STATE.initialize("CNV_LOAD_STATE",r);
     NEXT_STATE.initialize("NEXT_STATE",r);
     UNLOAD.initialize("UNLOAD",r);
     CLOCK.initialize("CLOCK",r);
+    PASS_COLOUR.initialize("PASS_COLOUR",r);
+    WKPC_COLOUR.initialize("WKPC_COLOUR",r);
 }
 }

@@ -29,10 +29,10 @@
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="PREV" Type="WSTRING" />
       <VarDeclaration Name="CNV_STATE" Type="WSTRING" />
       <VarDeclaration Name="LOAD_STATE" Type="WSTRING" />
       <VarDeclaration Name="NEXT" Type="WSTRING" />
+      <VarDeclaration Name="COLOUR" Type="WSTRING" />
     </InputVars>
     <OutputVars>
       <VarDeclaration Name="MTR" Type="BOOL" Comment="Output event qualifier" />
@@ -40,8 +40,6 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
-    <FB Name="PREV_VALS" Type="SUBL_3" x="888.88885" y="438.8889" >
-    </FB>
     <FB Name="MOTOR" Type="SUBL_1" x="916.6666" y="1461.1111" >
     </FB>
     <FB Name="CNV_LOAD_STATE" Type="SUBL_0" x="1888.8888" y="577.7778" >
@@ -53,8 +51,15 @@
     <FB Name="CLOCK" Type="E_CYCLE" x="3811.111" y="477.77777" >
       <Parameter Name="DT" Value="t#100ms" />
     </FB>
+    <FB Name="PASS_COLOUR" Type="FB_MUX_COLOR" x="5150.0" y="1405.5555" >
+      <Parameter Name="IN0" Value="[0,0,0]" />
+      <Parameter Name="IN1" Value="[255,0,0]" />
+      <Parameter Name="IN2" Value="[255,211,0]" />
+      <Parameter Name="IN3" Value="[0,0,255]" />
+    </FB>
+    <FB Name="WKPC_COLOUR" Type="SUBL_1" x="3655.5554" y="1338.8888" >
+    </FB>
     <EventConnections>
-      <Connection Source="INIT" Destination="PREV_VALS.INIT" />
       <Connection Source="INIT" Destination="MOTOR.INIT" />
       <Connection Source="INIT" Destination="CNV_LOAD_STATE.INIT" />
       <Connection Source="INIT" Destination="NEXT_STATE.INIT" />
@@ -64,17 +69,20 @@
       <Connection Source="CNV_LOAD_STATE.IND" Destination="LOAD" />
       <Connection Source="UNLOAD.ER" Destination="UNLD" />
       <Connection Source="MOTOR.IND" Destination="CNF" />
-      <Connection Source="PREV_VALS.IND" Destination="CNF" />
-      <Connection Source="PREV_VALS.INITO" Destination="INITO" />
+      <Connection Source="PASS_COLOUR.CNF" Destination="CNF" />
+      <Connection Source="MOTOR.INITO" Destination="INITO" />
+      <Connection Source="INIT" Destination="WKPC_COLOUR.INIT" />
+      <Connection Source="WKPC_COLOUR.IND" Destination="PASS_COLOUR.REQ" dx1="55.555553" />
     </EventConnections>
     <DataConnections>
       <Connection Source="NEXT_STATE.RD_1" Destination="UNLOAD.QI" dx1="55.555553" />
-      <Connection Source="PREV_VALS.RD_3" Destination="WKPC" />
-      <Connection Source="PREV" Destination="PREV_VALS.ID" />
       <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
       <Connection Source="CNV_STATE" Destination="MOTOR.ID" />
       <Connection Source="NEXT" Destination="NEXT_STATE.ID" />
       <Connection Source="MOTOR.RD_1" Destination="MTR" />
+      <Connection Source="PASS_COLOUR.OUT" Destination="WKPC" />
+      <Connection Source="WKPC_COLOUR.RD_1" Destination="PASS_COLOUR.K" dx1="55.555553" />
+      <Connection Source="COLOUR" Destination="WKPC_COLOUR.ID" />
     </DataConnections>
   </FBNetwork>
 </FBType>
