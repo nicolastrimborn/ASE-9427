@@ -7,7 +7,7 @@ import fb.rt.hmi.*;
 import fb.rt.net.*;
 /** FUNCTION_BLOCK UPDATE_CONV_STATE (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190402/JHC - Generated.
+  * @version 20190403/JHC - Generated.
   */
 public class UPDATE_CONV_STATE extends fb.rt.FBInstance {
 /** Initialization Confirm */

@@ -32,7 +32,7 @@
     </FB>
     <FB Name="CNV_LOAD_STATE" Type="PUBL_0" x="1544.4443" y="427.77777" >
     </FB>
-    <FB Name="CNV" Type="IN_BOOL" x="2505.5554" y="555.55554" >
+    <FB Name="CNV" Type="IN_BOOL" x="2211.111" y="511.11108" >
     </FB>
     <FB Name="CNV_MTR_STATE" Type="PUBL_1" x="3422.2222" y="511.11108" >
     </FB>

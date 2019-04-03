@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="CNV_CTRL" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="MTR" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="MTR" />
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+      <Event Name="LOAD" >
+      </Event>
+      <Event Name="UNLD" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CNV_STATE" Type="WSTRING" />
+      <VarDeclaration Name="NEXT" Type="WSTRING" />
+      <VarDeclaration Name="COLOUR" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="MTR" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="WKPC" Type="COLOR" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="NEXT_STATE" Type="SUBL_1" x="922.22217" y="2316.6665" >
+    </FB>
+    <FB Name="UNLOAD" Type="E_TRIG" x="2044.4443" y="2344.4443" >
+    </FB>
+    <FB Name="CLOCK" Type="E_CYCLE" x="3811.111" y="477.77777" >
+      <Parameter Name="DT" Value="t#100ms" />
+    </FB>
+    <FB Name="PASS_COLOUR" Type="FB_MUX_COLOR" x="5150.0" y="1405.5555" >
+      <Parameter Name="IN0" Value="[0,0,0]" />
+      <Parameter Name="IN1" Value="[255,0,0]" />
+      <Parameter Name="IN2" Value="[255,211,0]" />
+      <Parameter Name="IN3" Value="[0,0,255]" />
+    </FB>
+    <FB Name="WKPC_COLOUR" Type="SUBL_1" x="3655.5554" y="1338.8888" >
+    </FB>
+    <FB Name="MTR_DELAY" Type="E_DELAY" x="1377.7777" y="288.8889" >
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="CNV_LOAD_STATE" Type="SUBL_1" x="438.8889" y="583.3333" >
+    </FB>
+    <FB Name="test" Type="OUT_EVENT" x="2205.5554" y="1144.4445" >
+      <Parameter Name="LABEL" Value="&#34;TEST&#34;" />
+      <Parameter Name="DT" Value="t#1s" />
+    </FB>
+    <FB Name="PASS_IT" Type="PASS_BOOL" x="2244.4443" y="88.888885" >
+    </FB>
+    <FB Name="TO_NEXT" Type="PUBL_2" x="4288.8887" y="2611.111" >
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="NEXT_STATE.INIT" />
+      <Connection Source="NEXT_STATE.IND" Destination="UNLOAD.EI" dx1="55.555553" />
+      <Connection Source="CLOCK.EO" Destination="CLK" />
+      <Connection Source="REQ" Destination="CLOCK.START" />
+      <Connection Source="UNLOAD.ER" Destination="UNLD" />
+      <Connection Source="PASS_COLOUR.CNF" Destination="CNF" />
+      <Connection Source="INIT" Destination="WKPC_COLOUR.INIT" />
+      <Connection Source="WKPC_COLOUR.IND" Destination="PASS_COLOUR.REQ" dx1="55.555553" />
+      <Connection Source="INIT" Destination="CNV_LOAD_STATE.INIT" />
+      <Connection Source="CNV_LOAD_STATE.IND" Destination="LOAD" />
+      <Connection Source="CNV_LOAD_STATE.IND" Destination="MTR_DELAY.START" dx1="449.99997" />
+      <Connection Source="INIT" Destination="test.INIT" />
+      <Connection Source="MTR_DELAY.EO" Destination="test.REQ" dx1="55.555553" />
+      <Connection Source="CNV_LOAD_STATE.IND" Destination="PASS_IT.INIT" dx1="55.555553" />
+      <Connection Source="MTR_DELAY.EO" Destination="PASS_IT.REQ" dx1="55.555553" />
+      <Connection Source="PASS_IT.CNF" Destination="CNF" />
+      <Connection Source="PASS_IT.INITO" Destination="INITO" />
+      <Connection Source="INIT" Destination="TO_NEXT.INIT" />
+      <Connection Source="REQ" Destination="TO_NEXT.REQ" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="NEXT_STATE.RD_1" Destination="UNLOAD.QI" dx1="55.555553" />
+      <Connection Source="NEXT" Destination="NEXT_STATE.ID" />
+      <Connection Source="PASS_COLOUR.OUT" Destination="WKPC" />
+      <Connection Source="WKPC_COLOUR.RD_1" Destination="PASS_COLOUR.K" dx1="55.555553" />
+      <Connection Source="COLOUR" Destination="WKPC_COLOUR.ID" />
+      <Connection Source="CNV_STATE" Destination="CNV_LOAD_STATE.ID" />
+      <Connection Source="WKPC" Destination="test.FLASH" />
+      <Connection Source="CNV_LOAD_STATE.RD_1" Destination="PASS_IT.STATE" dx1="1133.3333" />
+      <Connection Source="PASS_IT.MTR" Destination="MTR" />
+      <Connection Source="NEXT" Destination="TO_NEXT.ID" />
+      <Connection Source="WKPC" Destination="TO_NEXT.SD_2" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>
