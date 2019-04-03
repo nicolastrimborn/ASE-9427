@@ -3,11 +3,11 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
-/** FUNCTION_BLOCK MTR_CNTRL_POS (* Basic Function Block Type *)
+/** FUNCTION_BLOCK PASSED_COLOUR (* Basic Function Block Type *)
   * @author JHC
   * @version 20190403/JHC - Generated.
   */
-public class MTR_CNTRL_POS extends fb.rt.FBInstance {
+public class PASSED_COLOUR extends fb.rt.FBInstance {
 /** The index (0) of state START. */
 public static final int INDEX_START = 0;
 /** The index (1) of state INIT. */
@@ -22,22 +22,12 @@ public final EventOutput CNF = new EventOutput();
 public final EventServer INIT = (e) -> service_INIT();
 /** EVENT REQ */
 public final EventServer REQ = (e) -> service_REQ();
-/** VAR POS:UINT */
-  public UINT POS = new UINT();
-/** VAR STATE:BOOL */
-  public BOOL STATE = new BOOL();
-/** VAR COLOUR:UINT */
-  public UINT COLOUR = new UINT();
-/** VAR P1:UINT */
-  public UINT P1 = new UINT();
-/** VAR P2:UINT */
-  public UINT P2 = new UINT();
-/** VAR P3:UINT */
-  public UINT P3 = new UINT();
+/** VAR CI:COLOR */
+  public COLOR CI = new COLOR();
 /** Output event qualifier */
-  public final BOOL MTR = new BOOL();
+  public final COLOR CO = new COLOR();
 /** The default constructor. */
-public MTR_CNTRL_POS(){
+public PASSED_COLOUR(){
     super();
   }
 protected synchronized void service_INIT(){
@@ -70,31 +60,8 @@ void state_REQ(){
 }
   /** ALGORITHM INIT IN ST*/
 public void alg_INIT(){
-MTR.value=false;}
+}
   /** ALGORITHM REQ IN ST*/
 public void alg_REQ(){
-if( STATE.value ){
-   MTR.value=true;
-	if( COLOUR.value==1 ){
-		if( POS.value<P1.value ){
-			MTR.value=true;
-		}else{
-			MTR.value=false;
-		}
-	}
-	if( COLOUR.value==2 ){
-		if( POS.value<P2.value ){
-			MTR.value=true;
-		}else{
-			MTR.value=false;
-		}
-	}
-	if( COLOUR.value==3 ){
-		if( POS.value<P3.value ){
-			MTR.value=true;
-		}else{
-			MTR.value=false;
-		}
-	}
-}}
+CO.value=CI.value;}
 }

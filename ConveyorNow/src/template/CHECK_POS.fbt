@@ -41,11 +41,9 @@
     </OutputVars>
   </InterfaceList>
   <FBNetwork >
-    <FB Name="PREV_VALS" Type="SUBL_3" x="888.88885" y="438.8889" >
-    </FB>
     <FB Name="MOTOR" Type="SUBL_1" x="449.99997" y="1638.8888" >
     </FB>
-    <FB Name="CNV_LOAD_STATE" Type="SUBL_0" x="1888.8888" y="577.7778" >
+    <FB Name="CNV_LOAD_STATE" Type="SUBL_0" x="2050.0" y="466.66666" >
     </FB>
     <FB Name="CLOCK" Type="E_CYCLE" x="3811.111" y="477.77777" >
       <Parameter Name="DT" Value="t#100ms" />
@@ -58,37 +56,39 @@
       <Parameter Name="IN2" Value="[255,211,0]" />
       <Parameter Name="IN3" Value="[0,0,255]" />
     </FB>
+    <FB Name="PREVIOUS" Type="SUBL_4" x="755.55554" y="127.77777" >
+    </FB>
+    <FB Name="TEST" Type="OUT_COLOR" x="5672.222" y="2127.7776" >
+      <Parameter Name="LABEL" Value="&#34;COLOUR&#34;" />
+    </FB>
     <EventConnections>
-      <Connection Source="INIT" Destination="PREV_VALS.INIT" />
       <Connection Source="INIT" Destination="MOTOR.INIT" />
       <Connection Source="INIT" Destination="CNV_LOAD_STATE.INIT" />
       <Connection Source="CLOCK.EO" Destination="CLK" />
       <Connection Source="REQ" Destination="CLOCK.START" />
       <Connection Source="CNV_LOAD_STATE.IND" Destination="LOAD" />
-      <Connection Source="PREV_VALS.INITO" Destination="INITO" />
-      <Connection Source="INIT" Destination="PREV_VALS.INIT" />
       <Connection Source="INIT" Destination="MOTOR.INIT" />
       <Connection Source="INIT" Destination="CNV_LOAD_STATE.INIT" />
       <Connection Source="CLOCK.EO" Destination="CLK" />
       <Connection Source="REQ" Destination="CLOCK.START" />
       <Connection Source="CNV_LOAD_STATE.IND" Destination="LOAD" />
-      <Connection Source="PREV_VALS.INITO" Destination="INITO" />
       <Connection Source="INIT" Destination="MOTOR_CONTOL.INIT" />
       <Connection Source="MOTOR_CONTOL.CNF" Destination="CNF" />
       <Connection Source="REQ" Destination="PICK_COLOUR.REQ" />
       <Connection Source="PICK_COLOUR.CNF" Destination="CNF" />
-      <Connection Source="PREV_VALS.IND" Destination="MOTOR_CONTOL.REQ" dx1="55.555553" />
       <Connection Source="REQ" Destination="MOTOR_CONTOL.REQ" />
       <Connection Source="MOTOR.IND" Destination="MOTOR_CONTOL.REQ" dx1="55.555553" />
+      <Connection Source="INIT" Destination="PREVIOUS.INIT" />
+      <Connection Source="PREVIOUS.INITO" Destination="INITO" />
+      <Connection Source="PREVIOUS.IND" Destination="MOTOR_CONTOL.REQ" dx1="355.55554" />
+      <Connection Source="INIT" Destination="TEST.INIT" />
+      <Connection Source="REQ" Destination="TEST.REQ" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="PREV" Destination="PREV_VALS.ID" />
       <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
       <Connection Source="CNV_STATE" Destination="MOTOR.ID" />
-      <Connection Source="PREV" Destination="PREV_VALS.ID" />
       <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
       <Connection Source="CNV_STATE" Destination="MOTOR.ID" />
-      <Connection Source="PREV_VALS.RD_1" Destination="MOTOR_CONTOL.POS" dx1="305.55554" />
       <Connection Source="MOTOR.RD_1" Destination="MOTOR_CONTOL.STATE" dx1="55.555553" />
       <Connection Source="COLOUR" Destination="MOTOR_CONTOL.COLOUR" />
       <Connection Source="P1" Destination="MOTOR_CONTOL.P1" />
@@ -97,6 +97,9 @@
       <Connection Source="MOTOR_CONTOL.MTR" Destination="MTR" />
       <Connection Source="COLOUR" Destination="PICK_COLOUR.K" />
       <Connection Source="PICK_COLOUR.OUT" Destination="WKPC" />
+      <Connection Source="PREVIOUS.RD_2" Destination="MOTOR_CONTOL.POS" dx1="55.555553" />
+      <Connection Source="PREV" Destination="PREVIOUS.ID" />
+      <Connection Source="PICK_COLOUR.OUT" Destination="TEST.IN" dx1="55.555553" />
     </DataConnections>
   </FBNetwork>
 </FBType>

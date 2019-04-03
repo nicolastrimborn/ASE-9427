@@ -42,7 +42,7 @@
   <FBNetwork >
     <FB Name="MOTOR" Type="SUBL_1" x="916.6666" y="1461.1111" >
     </FB>
-    <FB Name="CNV_LOAD_STATE" Type="SUBL_0" x="1888.8888" y="577.7778" >
+    <FB Name="CNV_LOAD_STATE" Type="SUBL_0" x="905.55554" y="455.55554" >
     </FB>
     <FB Name="NEXT_STATE" Type="SUBL_1" x="922.22217" y="2316.6665" >
     </FB>

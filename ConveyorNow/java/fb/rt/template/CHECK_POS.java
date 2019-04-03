@@ -3,6 +3,7 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
+import fb.rt.hmi.*;
 import fb.rt.net.*;
 import fb.rt.select.*;
 /** FUNCTION_BLOCK CHECK_POS (* Composite Function Block Type *)
@@ -22,8 +23,6 @@ public final EventOutput LOAD = new EventOutput();
 public final EventServer INIT = (e) -> service_INIT();
 /** Normal Execution Request */
 public final EventServer REQ = (e) -> service_REQ();
-/** FB PREV_VALS:SUBL_3 */
-  protected SUBL PREV_VALS = new SUBL(3);
 /** FB MOTOR:SUBL_1 */
   protected SUBL MOTOR = new SUBL(1);
 /** FB CNV_LOAD_STATE:SUBL_0 */
@@ -34,6 +33,10 @@ public final EventServer REQ = (e) -> service_REQ();
   protected MTR_CNTRL_POS MOTOR_CONTOL = new MTR_CNTRL_POS() ;
 /** FB PICK_COLOUR:FB_MUX_COLOR */
   protected FB_MUX_COLOR PICK_COLOUR = new FB_MUX_COLOR() ;
+/** FB PREVIOUS:SUBL_4 */
+  protected SUBL PREVIOUS = new SUBL(4);
+/** FB TEST:OUT_COLOR */
+  protected OUT_COLOR TEST = new OUT_COLOR() ;
 /** VAR PREV:WSTRING */
   public WSTRING PREV = new WSTRING();
 /** VAR CNV_STATE:WSTRING */
@@ -57,32 +60,32 @@ public CHECK_POS(){
     super();
     CLOCK.EO.connectTo(CLK);
     CNV_LOAD_STATE.IND.connectTo(LOAD);
-    PREV_VALS.INITO.connectTo(INITO);
     CLOCK.EO.connectTo(CLK);
     CNV_LOAD_STATE.IND.connectTo(LOAD);
-    PREV_VALS.INITO.connectTo(INITO);
     MOTOR_CONTOL.CNF.connectTo(CNF);
     PICK_COLOUR.CNF.connectTo(CNF);
-    PREV_VALS.IND.connectTo(MOTOR_CONTOL.REQ);
     MOTOR.IND.connectTo(MOTOR_CONTOL.REQ);
-    PREV_VALS.connectIVNoException("ID",PREV);
+    PREVIOUS.INITO.connectTo(INITO);
+    PREVIOUS.IND.connectTo(MOTOR_CONTOL.REQ);
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     MOTOR.connectIVNoException("ID",CNV_STATE);
-    PREV_VALS.connectIVNoException("ID",PREV);
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     MOTOR.connectIVNoException("ID",CNV_STATE);
-    PREV_VALS.connectOVNoException("RD_1",MOTOR_CONTOL.POS);
     MOTOR.connectOVNoException("RD_1",MOTOR_CONTOL.STATE);
     MOTOR_CONTOL.connectIVNoException("COLOUR",COLOUR);
     MOTOR_CONTOL.connectIVNoException("P1",P1);
     MOTOR_CONTOL.connectIVNoException("P2",P2);
     MOTOR_CONTOL.connectIVNoException("P3",P3);
     PICK_COLOUR.connectIVNoException("K",COLOUR);
+    PREVIOUS.connectOVNoException("RD_2",MOTOR_CONTOL.POS);
+    PREVIOUS.connectIVNoException("ID",PREV);
+    TEST.connectIVNoException("IN",PICK_COLOUR.ovNamedNoException("OUT"));
     CLOCK.DT.initializeNoException("t#100ms");
     PICK_COLOUR.IN0.initializeNoException("[0,0,0]");
     PICK_COLOUR.IN1.initializeNoException("[255,0,0]");
     PICK_COLOUR.IN2.initializeNoException("[255,211,0]");
     PICK_COLOUR.IN3.initializeNoException("[0,0,255]");
+    TEST.LABEL.initializeNoException("COLOUR");
   }
 	/**
  * {@inheritDoc}
@@ -90,14 +93,10 @@ public CHECK_POS(){
  */
 @Override
 protected void connectInternal(ANY newVar) {
-  if(newVar == PREV)
-    PREV_VALS.connectIVNoException("ID",PREV);
   if(newVar == LOAD_STATE)
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
   if(newVar == CNV_STATE)
     MOTOR.connectIVNoException("ID",CNV_STATE);
-  if(newVar == PREV)
-    PREV_VALS.connectIVNoException("ID",PREV);
   if(newVar == LOAD_STATE)
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
   if(newVar == CNV_STATE)
@@ -112,61 +111,68 @@ protected void connectInternal(ANY newVar) {
     MOTOR_CONTOL.connectIVNoException("P3",P3);
   if(newVar == COLOUR)
     PICK_COLOUR.connectIVNoException("K",COLOUR);
+  if(newVar == PREV)
+    PREVIOUS.connectIVNoException("ID",PREV);
 }
 /** start the FB instances. */
 public void start( ){
     super.start();
-  PREV_VALS.start();
   MOTOR.start();
   CNV_LOAD_STATE.start();
   CLOCK.start();
   MOTOR_CONTOL.start();
   PICK_COLOUR.start();
+  PREVIOUS.start();
+  TEST.start();
 }
 /** stop the FB instances. */
 public void stop( ){
     super.stop();
-  PREV_VALS.stop();
   MOTOR.stop();
   CNV_LOAD_STATE.stop();
   CLOCK.stop();
   MOTOR_CONTOL.stop();
   PICK_COLOUR.stop();
+  PREVIOUS.stop();
+  TEST.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
     super.kill();
-  PREV_VALS.kill();
   MOTOR.kill();
   CNV_LOAD_STATE.kill();
   CLOCK.kill();
   MOTOR_CONTOL.kill();
   PICK_COLOUR.kill();
+  PREVIOUS.kill();
+  TEST.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
     super.reset();
-  PREV_VALS.reset();
   MOTOR.reset();
   CNV_LOAD_STATE.reset();
   CLOCK.reset();
   MOTOR_CONTOL.reset();
   PICK_COLOUR.reset();
+  PREVIOUS.reset();
+  TEST.reset();
 }
 protected synchronized void service_INIT(){
-   PREV_VALS.INIT.serviceEvent(this);
    MOTOR.INIT.serviceEvent(this);
    CNV_LOAD_STATE.INIT.serviceEvent(this);
-   PREV_VALS.INIT.serviceEvent(this);
    MOTOR.INIT.serviceEvent(this);
    CNV_LOAD_STATE.INIT.serviceEvent(this);
    MOTOR_CONTOL.INIT.serviceEvent(this);
+   PREVIOUS.INIT.serviceEvent(this);
+   TEST.INIT.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    CLOCK.START.serviceEvent(this);
    CLOCK.START.serviceEvent(this);
    PICK_COLOUR.REQ.serviceEvent(this);
    MOTOR_CONTOL.REQ.serviceEvent(this);
+   TEST.REQ.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}
@@ -175,11 +181,12 @@ protected synchronized void service_REQ(){
   public void initialize(String fbName, Resource r)
   throws FBRManagementException{
     super.initialize(fbName,r);
-    PREV_VALS.initialize("PREV_VALS",r);
     MOTOR.initialize("MOTOR",r);
     CNV_LOAD_STATE.initialize("CNV_LOAD_STATE",r);
     CLOCK.initialize("CLOCK",r);
     MOTOR_CONTOL.initialize("MOTOR_CONTOL",r);
     PICK_COLOUR.initialize("PICK_COLOUR",r);
+    PREVIOUS.initialize("PREVIOUS",r);
+    TEST.initialize("TEST",r);
 }
 }
