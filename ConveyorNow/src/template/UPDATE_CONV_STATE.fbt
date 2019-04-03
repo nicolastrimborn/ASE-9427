@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="UPDATE_CONV_STATE" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="LOAD_STATE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LOAD_STATE" Type="WSTRING" Comment="Input event qualifier" />
+      <VarDeclaration Name="MOTOR_STATE" Type="WSTRING" />
+      <VarDeclaration Name="LABEL" Type="WSTRING" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="LOAD_BTN" Type="IN_EVENT" x="633.3333" y="322.2222" >
+      <Parameter Name="LABEL" Value="&#34;Load the workpiece&#34;" />
+      <Parameter Name="QI" Value="1" />
+    </FB>
+    <FB Name="CNV_LOAD_STATE" Type="PUBL_0" x="1544.4443" y="427.77777" >
+    </FB>
+    <FB Name="CNV" Type="IN_BOOL" x="2211.111" y="511.11108" >
+    </FB>
+    <FB Name="CNV_MTR_STATE" Type="PUBL_1" x="3422.2222" y="511.11108" >
+    </FB>
+    <EventConnections>
+      <Connection Source="LOAD_BTN.INITO" Destination="CNV_LOAD_STATE.INIT" dx1="55.555553" />
+      <Connection Source="CNV_LOAD_STATE.INITO" Destination="CNV.INIT" dx1="55.555553" />
+      <Connection Source="CNV.INITO" Destination="CNV_MTR_STATE.INIT" dx1="55.555553" />
+      <Connection Source="INIT" Destination="LOAD_BTN.INIT" />
+      <Connection Source="LOAD_BTN.IND" Destination="CNV_LOAD_STATE.REQ" dx1="55.555553" />
+      <Connection Source="CNV_LOAD_STATE.CNF" Destination="CNV.REQ" dx1="55.555553" />
+      <Connection Source="CNV.IND" Destination="CNV_MTR_STATE.REQ" dx1="55.555553" />
+      <Connection Source="CNV_MTR_STATE.INITO" Destination="INITO" />
+      <Connection Source="CNV_MTR_STATE.CNF" Destination="CNF" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="CNV.OUT" Destination="CNV_MTR_STATE.SD_1" dx1="55.555553" />
+      <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
+      <Connection Source="LABEL" Destination="CNV.LABEL" />
+      <Connection Source="MOTOR_STATE" Destination="CNV_MTR_STATE.ID" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>
