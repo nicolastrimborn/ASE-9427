@@ -21,8 +21,8 @@ public final EventServer RESET = (e) -> service_RESET();
 public final EventServer EI = (e) -> service_EI();
 /** Permits EI=>EO pass-through */
   public UINT POS = new UINT();
-/** VAR COUNT:UINT */
-  public final UINT COUNT = new UINT();
+/** VAR END:BOOL */
+  public final BOOL END = new BOOL();
 /** The default constructor. */
 public E_END(){
     super();
@@ -57,9 +57,9 @@ void state_INIT(){
   /** ALGORITHM CU IN ST*/
 public void alg_CU(){
 if( POS.value==100 ){
-	END=true;
+	END.value=true;
 }}
   /** ALGORITHM RESET IN ST*/
 public void alg_RESET(){
-COUNT.value=0;}
+END.value=false;}
 }
