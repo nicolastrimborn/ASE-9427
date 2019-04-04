@@ -7,7 +7,7 @@ import fb.rt.hmi.*;
 import fb.rt.net.*;
 /** FUNCTION_BLOCK UPDATE_CONV_STATE (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190403/JHC - Generated.
+  * @version 20190404/JHC - Generated.
   */
 public class UPDATE_CONV_STATE extends fb.rt.FBInstance {
 /** Initialization Confirm */
@@ -45,7 +45,7 @@ public UPDATE_CONV_STATE(){
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     CNV.connectIVNoException("LABEL",LABEL);
     CNV_MTR_STATE.connectIVNoException("ID",MOTOR_STATE);
-    LOAD_BTN.LABEL.initializeNoException("Load the workpiece");
+    LOAD_BTN.LABEL.initializeNoException("Load WP");
     LOAD_BTN.QI.initializeNoException("1");
   }
 	/**

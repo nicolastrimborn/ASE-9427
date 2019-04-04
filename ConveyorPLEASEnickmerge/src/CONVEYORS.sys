@@ -43,21 +43,21 @@
           <Parameter Name="LEN" Value="4" />
           <Parameter Name="BKGD" Value="[255,0,0]" />
         </FB>
-        <FB Name="SPACE2" Type="XSPACE" x="2788.8887" y="1933.3333" >
-          <Parameter Name="DIA" Value="50" />
+        <FB Name="SPACE2" Type="XSPACE" x="3927.7776" y="1938.8888" >
+          <Parameter Name="DIA" Value="20" />
           <Parameter Name="DIMS" Value="[1,0]" />
         </FB>
-        <FB Name="SPACE3" Type="XSPACE" x="4361.111" y="1933.3333" >
-          <Parameter Name="DIA" Value="50" />
+        <FB Name="SPACE3" Type="XSPACE" x="6311.111" y="1716.6666" >
+          <Parameter Name="DIA" Value="20" />
           <Parameter Name="DIMS" Value="[1,0]" />
         </FB>
-        <FB Name="BLUE" Type="OUT_BOOL" x="8322.222" y="1811.1111" >
+        <FB Name="BLUE" Type="OUT_BOOL" x="8961.11" y="4888.8887" >
           <Parameter Name="LABEL" Value="&#34;BLU&#34;" />
         </FB>
-        <FB Name="YELLOW" Type="OUT_BOOL" x="8933.333" y="1799.9999" >
+        <FB Name="YELLOW" Type="OUT_BOOL" x="8305.556" y="5033.333" >
           <Parameter Name="LABEL" Value="&#34;YEL&#34;" />
         </FB>
-        <FB Name="RED" Type="OUT_BOOL" x="9583.333" y="1783.3333" >
+        <FB Name="RED" Type="OUT_BOOL" x="9438.889" y="4961.111" >
           <Parameter Name="LABEL" Value="&#34;RED&#34;" />
         </FB>
         <FB Name="SP1" Type="XSPACE" x="816.6666" y="50.0" >
@@ -69,18 +69,18 @@
           <Parameter Name="DIMS" Value="[3,0]" />
         </FB>
         <FB Name="SP3" Type="XSPACE" x="3611.111" y="55.555553" >
-          <Parameter Name="DIA" Value="17" />
+          <Parameter Name="DIA" Value="18" />
           <Parameter Name="DIMS" Value="[3,0]" />
         </FB>
         <FB Name="SP4" Type="XSPACE" x="4950.0" y="50.0" >
-          <Parameter Name="DIA" Value="33" />
+          <Parameter Name="DIA" Value="34" />
           <Parameter Name="DIMS" Value="[6,0]" />
         </FB>
-        <FB Name="SPACE33" Type="XSPACE" x="5983.333" y="1916.6666" >
-          <Parameter Name="DIA" Value="50" />
-          <Parameter Name="DIMS" Value="[4,0]" />
+        <FB Name="SPACE33" Type="XSPACE" x="9311.11" y="1855.5555" >
+          <Parameter Name="DIA" Value="53" />
+          <Parameter Name="DIMS" Value="[3,0]" />
         </FB>
-        <FB Name="PS" Type="OUT_BOOL" x="1583.3333" y="1438.8888" >
+        <FB Name="PS" Type="OUT_BOOL" x="1616.6666" y="1483.3333" >
           <Parameter Name="LABEL" Value="&#34;PS&#34;" />
           <Parameter Name="C1" Value="[0,0,0]" />
           <Parameter Name="C0" Value="[255,255,255]" />
@@ -96,21 +96,21 @@
           <Parameter Name="DIR" Value="VDIR#LEFT" />
           <Parameter Name="REND_ID" Value="&#34;CNV2_VALS&#34;" />
         </FB>
-        <FB Name="CNV_3" Type="MECH_VIEWL" x="2300.0" y="1427.7777" >
+        <FB Name="CNV_3" Type="MECH_VIEWL" x="2433.3333" y="1427.7777" >
           <Parameter Name="BKGD" Value="[0,114,240]" />
           <Parameter Name="LEN" Value="4" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIR" Value="VDIR#DOWN" />
           <Parameter Name="REND_ID" Value="&#34;CNV3_VALS&#34;" />
         </FB>
-        <FB Name="CNV_4" Type="MECH_VIEWL" x="3627.7776" y="1933.3333" >
+        <FB Name="CNV_4" Type="MECH_VIEWL" x="4794.4443" y="1422.2222" >
           <Parameter Name="BKGD" Value="[255,255,51]" />
           <Parameter Name="LEN" Value="4" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIR" Value="VDIR#DOWN" />
           <Parameter Name="REND_ID" Value="&#34;CNV4_VALS&#34;" />
         </FB>
-        <FB Name="CNV_5" Type="MECH_VIEWL" x="5250.0" y="1877.7777" >
+        <FB Name="CNV_5" Type="MECH_VIEWL" x="7105.555" y="1472.2222" >
           <Parameter Name="BKGD" Value="[255,51,51]" />
           <Parameter Name="DIR" Value="VDIR#DOWN" />
           <Parameter Name="DIA" Value="50" />
@@ -121,19 +121,12 @@
         </FB>
         <FB Name="TT_PS" Type="SUBL_2" x="949.99994" y="1622.2222" >
         </FB>
-        <FB Name="CNV_1" Type="MECH_VIEWL" x="6849.9995" y="1905.5555" >
+        <FB Name="CNV_1" Type="MECH_VIEWL" x="9050.0" y="3366.6665" >
           <Parameter Name="REND_ID" Value="&#34;CNV1_VALS&#34;" />
           <Parameter Name="BKGD" Value="[192,192,192]" />
-          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="LEN" Value="6" />
           <Parameter Name="DIA" Value="50" />
           <Parameter Name="DIR" Value="VDIR#UP" />
-        </FB>
-        <FB Name="pushed" Type="SUBL_1" x="700.0" y="3105.5554" >
-        </FB>
-        <FB Name="test2" Type="OUT_EVENT" x="1544.4443" y="2938.8887" >
-          <Parameter Name="LABEL" Value="&#34;Pusher&#34;" />
-          <Parameter Name="FLASH" Value="[0,0,255]" />
-          <Parameter Name="DT" Value="t#1s" />
         </FB>
         <FB Name="PushBlue" Type="SOL_VIEWL" x="1577.7777" y="150.0" >
           <Parameter Name="DIR" Value="VDIR#DOWN" />
@@ -150,36 +143,69 @@
           <Parameter Name="LEN" Value="1" />
           <Parameter Name="REND_ID" Value="&#34;YELPUSH&#34;" />
         </FB>
+        <FB Name="CNTBL" Type="OUT_ANY_LBL" x="3200.0" y="1722.2222" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;#&#34;" />
+          <Parameter Name="W" Value="2" />
+        </FB>
+        <FB Name="CNTYL" Type="OUT_ANY_LBL" x="5533.333" y="1777.7777" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;#&#34;" />
+          <Parameter Name="W" Value="2" />
+        </FB>
+        <FB Name="CNTRD" Type="OUT_ANY_LBL" x="7994.4443" y="1788.8888" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;#&#34;" />
+          <Parameter Name="W" Value="2" />
+        </FB>
+        <FB Name="countSub" Type="SUBL_1" x="2377.7776" y="2872.2222" >
+          <Parameter Name="ID" Value="&#34;CountCNV3&#34;" />
+        </FB>
+        <FB Name="countSub2" Type="SUBL_1" x="4794.4443" y="2861.111" >
+          <Parameter Name="ID" Value="&#34;CountCNV4&#34;" />
+        </FB>
+        <FB Name="countSub3" Type="SUBL_1" x="7033.333" y="2872.2222" >
+          <Parameter Name="ID" Value="&#34;CountCNV5&#34;" />
+        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="SP1.INIT" dx1="55.555553" />
           <Connection Source="SP4.INITO" Destination="PE.INIT" dx1="55.555553" />
           <Connection Source="PE.INITO" Destination="CNV_2.INIT" dx1="183.33333" dx2="222.22221" dy="1138.8888" />
           <Connection Source="CNV_2.INITO" Destination="PS.INIT" dx1="55.555553" />
           <Connection Source="PS.INITO" Destination="CNV_3.INIT" dx1="55.555553" />
-          <Connection Source="CNV_3.INITO" Destination="SPACE2.INIT" dx1="200.0" />
           <Connection Source="SPACE2.INITO" Destination="CNV_4.INIT" dx1="55.555553" />
-          <Connection Source="CNV_4.INITO" Destination="SPACE3.INIT" dx1="55.555553" />
           <Connection Source="SPACE3.INITO" Destination="CNV_5.INIT" dx1="200.0" />
-          <Connection Source="CNV_5.INITO" Destination="SPACE33.INIT" dx1="55.555553" />
           <Connection Source="SP4.INITO" Destination="TT_VALS.INIT" dx1="55.555553" />
           <Connection Source="TT_VALS.IND" Destination="PE.REQ" dx1="55.555553" />
           <Connection Source="CNV_2.INITO" Destination="TT_PS.INIT" dx1="55.555553" />
           <Connection Source="TT_PS.IND" Destination="PS.REQ" dx1="55.555553" />
-          <Connection Source="SPACE33.INITO" Destination="CNV_1.INIT" dx1="55.555553" />
-          <Connection Source="START.COLD" Destination="pushed.INIT" dx1="55.555553" />
-          <Connection Source="pushed.INITO" Destination="test2.INIT" dx1="55.555553" />
-          <Connection Source="pushed.IND" Destination="test2.REQ" dx1="55.555553" />
+          <Connection Source="SPACE33.INITO" Destination="CNV_1.INIT" dx1="55.555553" dx2="55.555553" dy="1649.9999" />
           <Connection Source="SP1.INITO" Destination="PushBlue.INIT" dx1="172.22221" />
           <Connection Source="PushBlue.INITO" Destination="SP2.INIT" dx1="261.1111" />
           <Connection Source="SP2.INITO" Destination="PushYel.INIT" dx1="55.555553" />
           <Connection Source="PushYel.INITO" Destination="SP3.INIT" dx1="55.555553" />
           <Connection Source="SP3.INITO" Destination="PushRed.INIT" dx1="155.55554" />
           <Connection Source="PushRed.INITO" Destination="SP4.INIT" dx1="194.44444" />
+          <Connection Source="CNV_3.INITO" Destination="CNTBL.INIT" dx1="55.555553" />
+          <Connection Source="CNTBL.INITO" Destination="SPACE2.INIT" dx1="233.33333" />
+          <Connection Source="CNV_4.INITO" Destination="CNTYL.INIT" dx1="55.555553" />
+          <Connection Source="CNTYL.INITO" Destination="SPACE3.INIT" dx1="55.555553" />
+          <Connection Source="CNV_5.INITO" Destination="CNTRD.INIT" dx1="55.555553" />
+          <Connection Source="CNTRD.INITO" Destination="SPACE33.INIT" dx1="55.555553" />
+          <Connection Source="PS.INITO" Destination="countSub.INIT" dx1="55.555553" />
+          <Connection Source="SPACE2.INITO" Destination="countSub2.INIT" dx1="55.555553" />
+          <Connection Source="CNTYL.INITO" Destination="countSub3.INIT" dx1="55.555553" />
+          <Connection Source="countSub.IND" Destination="CNTBL.REQ" dx1="194.44444" />
+          <Connection Source="countSub2.IND" Destination="CNTYL.REQ" dx1="133.33333" />
+          <Connection Source="countSub3.IND" Destination="CNTRD.REQ" dx1="211.1111" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TT_VALS.RD_1" Destination="PE.IN" dx1="55.555553" />
           <Connection Source="TT_VALS.RD_2" Destination="PE.C1" dx1="55.555553" />
           <Connection Source="TT_PS.RD_1" Destination="PS.IN" dx1="55.555553" />
+          <Connection Source="countSub3.RD_1" Destination="CNTRD.IN" dx1="322.2222" />
+          <Connection Source="countSub2.RD_1" Destination="CNTYL.IN" dx1="200.0" />
+          <Connection Source="countSub.RD_1" Destination="CNTBL.IN" dx1="294.44443" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -545,11 +571,7 @@
           <Parameter Name="LOAD_STATE" Value="&#34;CNV3_LOAD_STATE&#34;" />
           <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
         </FB>
-        <FB Name="COUNTING" Type="E_PERMITC" x="4894.4443" y="2372.2222" >
-        </FB>
-        <FB Name="CNT" Type="OUT_ANY_LBL" x="6416.6665" y="2300.0" >
-          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
-          <Parameter Name="LABEL" Value="&#34;COUNTB&#34;" />
+        <FB Name="COUNTING" Type="E_PERMITC" x="5322.222" y="2394.4443" >
         </FB>
         <FB Name="CNV3_VALS" Type="PUBL_4" x="5955.555" y="227.77777" >
           <Parameter Name="ID" Value="&#34;CNV3_VALS&#34;" />
@@ -566,6 +588,9 @@
         <FB Name="Pusher" Type="PUBL_1" x="3755.5554" y="1744.4443" >
           <Parameter Name="ID" Value="&#34;BLUPUSH&#34;" />
         </FB>
+        <FB Name="CountCNV3" Type="PUBL_1" x="6277.7773" y="3122.2222" >
+          <Parameter Name="ID" Value="&#34;CountCNV3&#34;" />
+        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="TO_CNV3.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="TO_CNV3.REQ" dx1="55.555553" />
@@ -573,11 +598,9 @@
           <Connection Source="TO_CNV3.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
           <Connection Source="TO_CNV3.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
           <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="327.77777" />
-          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV3.INITO" Destination="CNV3_VALS.INIT" dx1="2338.889" />
           <Connection Source="MODEL1.INDR" Destination="CNV3_VALS.REQ" dx1="55.555553" />
           <Connection Source="CNV3_VALS.INITO" Destination="CNV3_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
-          <Connection Source="CNV3_VALS.INITO" Destination="CNT.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="CNV2_VALS.INIT" dx1="55.555553" />
           <Connection Source="CNV2_VALS.IND" Destination="TO_CNV3.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV3.LOAD" Destination="PusherSelect.EI0" dx1="377.77777" />
@@ -585,18 +608,20 @@
           <Connection Source="AutoRetract.EO" Destination="PusherSelect.EI1" dx1="55.555553" />
           <Connection Source="PusherSelect.EO" Destination="Pusher.REQ" dx1="183.33333" />
           <Connection Source="TO_CNV3.INITO" Destination="Pusher.INIT" dx1="1100.0" />
+          <Connection Source="Pusher.INITO" Destination="CountCNV3.INIT" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CountCNV3.REQ" dx1="288.8889" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TO_CNV3.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
           <Connection Source="TO_CNV3.WKPC" Destination="MODEL1.WKPC" dx1="805.55554" />
-          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="27.777777" />
-          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="150.0" />
           <Connection Source="MODEL1.END" Destination="CNV3_VALS.SD_1" dx1="55.555553" />
           <Connection Source="MODEL1.POS" Destination="CNV3_VALS.SD_2" dx1="55.555553" />
           <Connection Source="MODEL1.STYLO" Destination="CNV3_VALS.SD_3" dx1="55.555553" />
           <Connection Source="MODEL1.WKPO" Destination="CNV3_VALS.SD_4" dx1="55.555553" />
           <Connection Source="CNV2_VALS.RD_4" Destination="TO_CNV3.COLOUR" dx1="55.555553" />
           <Connection Source="PusherSelect.OUT" Destination="Pusher.SD_1" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CountCNV3.SD_1" dx1="144.44444" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -616,10 +641,6 @@
         </FB>
         <FB Name="COUNTING" Type="E_PERMITC" x="5194.4443" y="1600.0" >
         </FB>
-        <FB Name="CNT" Type="OUT_ANY_LBL" x="6733.333" y="1783.3333" >
-          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
-          <Parameter Name="LABEL" Value="&#34;COUNTY&#34;" />
-        </FB>
         <FB Name="CNV4_VALS" Type="PUBL_4" x="6305.555" y="5.5555553" >
           <Parameter Name="ID" Value="&#34;CNV4_VALS&#34;" />
         </FB>
@@ -635,6 +656,9 @@
         <FB Name="Pusher" Type="PUBL_1" x="3949.9998" y="1766.6666" >
           <Parameter Name="ID" Value="&#34;YELPUSH&#34;" />
         </FB>
+        <FB Name="CountCNV4" Type="PUBL_1" x="6050.0" y="3088.8887" >
+          <Parameter Name="ID" Value="&#34;CountCNV4&#34;" />
+        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="TO_CNV4.INIT" dx1="55.555553" />
           <Connection Source="TO_CNV4.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
@@ -642,11 +666,9 @@
           <Connection Source="TO_CNV4.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="TO_CNV4.REQ" dx1="55.555553" />
           <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="55.555553" />
-          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
           <Connection Source="CNV4_VALS.INITO" Destination="CNV4_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
           <Connection Source="TO_CNV4.INITO" Destination="CNV4_VALS.INIT" dx1="55.555553" />
           <Connection Source="MODEL1.INDR" Destination="CNV4_VALS.REQ" dx1="55.555553" />
-          <Connection Source="CNV4_VALS.INITO" Destination="CNT.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="CNV2_VALS.INIT" dx1="55.555553" />
           <Connection Source="CNV2_VALS.IND" Destination="TO_CNV4.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV4.LOAD" Destination="PusherSelect.EI0" dx1="700.0" />
@@ -654,18 +676,20 @@
           <Connection Source="AutoRetract.EO" Destination="PusherSelect.EI1" dx1="55.555553" />
           <Connection Source="PusherSelect.EO" Destination="Pusher.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV4.INITO" Destination="Pusher.INIT" dx1="1233.3333" />
+          <Connection Source="Pusher.INITO" Destination="CountCNV4.INIT" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CountCNV4.REQ" dx1="261.1111" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TO_CNV4.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
           <Connection Source="TO_CNV4.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
           <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="55.555553" />
-          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
           <Connection Source="MODEL1.END" Destination="CNV4_VALS.SD_1" dx1="55.555553" />
           <Connection Source="MODEL1.POS" Destination="CNV4_VALS.SD_2" dx1="55.555553" />
           <Connection Source="MODEL1.STYLO" Destination="CNV4_VALS.SD_3" dx1="55.555553" />
           <Connection Source="MODEL1.WKPO" Destination="CNV4_VALS.SD_4" dx1="55.555553" />
           <Connection Source="CNV2_VALS.RD_4" Destination="TO_CNV4.COLOUR" dx1="55.555553" />
           <Connection Source="PusherSelect.OUT" Destination="Pusher.SD_1" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CountCNV4.SD_1" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -685,10 +709,6 @@
         </FB>
         <FB Name="COUNTING" Type="E_PERMITC" x="5305.555" y="1738.8888" >
         </FB>
-        <FB Name="CNT" Type="OUT_ANY_LBL" x="6927.7773" y="1827.7777" >
-          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
-          <Parameter Name="LABEL" Value="&#34;COUNTR&#34;" />
-        </FB>
         <FB Name="CNV5_VALS" Type="PUBL_4" x="6200.0" y="161.1111" >
           <Parameter Name="ID" Value="&#34;CNV5_VALS&#34;" />
         </FB>
@@ -704,6 +724,9 @@
         <FB Name="Pusher" Type="PUBL_1" x="3855.5554" y="1938.8888" >
           <Parameter Name="ID" Value="&#34;REDPUSH&#34;" />
         </FB>
+        <FB Name="CountCNV5" Type="PUBL_1" x="6250.0" y="3116.6665" >
+          <Parameter Name="ID" Value="&#34;CountCNV5&#34;" />
+        </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="TO_CNV5.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="TO_CNV5.REQ" dx1="55.555553" />
@@ -711,11 +734,9 @@
           <Connection Source="TO_CNV5.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
           <Connection Source="TO_CNV5.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
           <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="55.555553" />
-          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV5.INITO" Destination="CNV5_VALS.INIT" dx1="55.555553" />
           <Connection Source="MODEL1.INDR" Destination="CNV5_VALS.REQ" dx1="55.555553" />
           <Connection Source="CNV5_VALS.INITO" Destination="CNV5_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
-          <Connection Source="CNV5_VALS.INITO" Destination="CNT.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="CNV2_VALS.INIT" dx1="55.555553" />
           <Connection Source="CNV2_VALS.IND" Destination="TO_CNV5.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV5.LOAD" Destination="PusherSelect.EI0" dx1="294.44443" />
@@ -723,18 +744,20 @@
           <Connection Source="AutoRetract.EO" Destination="PusherSelect.EI1" dx1="55.555553" />
           <Connection Source="PusherSelect.EO" Destination="Pusher.REQ" dx1="55.555553" />
           <Connection Source="TO_CNV5.INITO" Destination="Pusher.INIT" dx1="1033.3333" />
+          <Connection Source="Pusher.INITO" Destination="CountCNV5.INIT" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CountCNV5.REQ" dx1="244.44443" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TO_CNV5.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
           <Connection Source="TO_CNV5.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
           <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="55.555553" />
-          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
           <Connection Source="MODEL1.END" Destination="CNV5_VALS.SD_1" dx1="55.555553" />
           <Connection Source="MODEL1.POS" Destination="CNV5_VALS.SD_2" dx1="55.555553" />
           <Connection Source="MODEL1.STYLO" Destination="CNV5_VALS.SD_3" dx1="55.555553" />
           <Connection Source="MODEL1.WKPO" Destination="CNV5_VALS.SD_4" dx1="55.555553" />
           <Connection Source="CNV2_VALS.RD_4" Destination="TO_CNV5.COLOUR" dx1="55.555553" />
           <Connection Source="PusherSelect.OUT" Destination="Pusher.SD_1" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CountCNV5.SD_1" dx1="127.77777" />
         </DataConnections>
       </FBNetwork>
     </Resource>
@@ -878,7 +901,7 @@
           <Parameter Name="LPOS" Value="0" />
           <Parameter Name="VF" Value="3" />
         </FB>
-        <FB Name="TOCONV2" Type="CHECK_POS" x="3855.5554" y="0.0" >
+        <FB Name="TOCONV2" Type="CHECK_POS" x="3716.6665" y="38.888885" >
           <Parameter Name="PREV" Value="&#34;CNV2_VALS&#34;" />
           <Parameter Name="CNV_STATE" Value="&#34;CNV2_STATE&#34;" />
           <Parameter Name="LOAD_STATE" Value="&#34;CNV2_LOAD_STATE&#34;" />
@@ -917,7 +940,6 @@
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="WRKPC_COLOUR.INIT" dx1="94.44444" />
-          <Connection Source="START.COLD" Destination="TOCONV2.INIT" dx1="55.555553" />
           <Connection Source="TOCONV2.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
           <Connection Source="TOCONV2.LOAD" Destination="MODEL1.LOAD" dx1="194.44444" />
           <Connection Source="TOCONV2.INITO" Destination="CNV2_VALS.INIT" dx1="55.555553" />
@@ -937,6 +959,7 @@
           <Connection Source="TOCONV2.CNF" Destination="TRIG_TO_UNLD.EI" dx1="633.3333" />
           <Connection Source="TRIG_TO_UNLD.ER" Destination="LOAD_STATE.INIT" dx1="888.88885" />
           <Connection Source="TRIG_TO_UNLD.ER" Destination="LOAD_STATE.REQ" dx1="538.88885" />
+          <Connection Source="AUTO.IND" Destination="TOCONV2.INIT" dx1="188.88889" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TOCONV2.MTR" Destination="MODEL1.MTR_ON" dx1="538.88885" />
@@ -971,9 +994,9 @@
           <Parameter Name="LOAD_STATE" Value="&#34;CNV3_LOAD_STATE&#34;" />
           <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
         </FB>
-        <FB Name="COUNTING" Type="E_PERMITC" x="7066.6665" y="2305.5554" >
+        <FB Name="COUNTING" Type="E_PERMITC" x="6883.333" y="2305.5554" >
         </FB>
-        <FB Name="CNT" Type="OUT_ANY_LBL" x="8155.555" y="2294.4443" >
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="7766.6665" y="2355.5554" >
           <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
           <Parameter Name="LABEL" Value="&#34;COUNTB&#34;" />
         </FB>

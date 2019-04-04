@@ -26,29 +26,29 @@
     </InputVars>
   </InterfaceList>
   <FBNetwork >
-    <FB Name="LOAD_BTN" Type="IN_EVENT" x="633.3333" y="322.2222" >
-      <Parameter Name="LABEL" Value="&#34;Load the workpiece&#34;" />
+    <FB Name="LOAD_BTN" Type="IN_EVENT" x="572.2222" y="122.22221" >
+      <Parameter Name="LABEL" Value="&#34;Load WP&#34;" />
       <Parameter Name="QI" Value="1" />
     </FB>
-    <FB Name="CNV_LOAD_STATE" Type="PUBL_0" x="1544.4443" y="427.77777" >
+    <FB Name="CNV_LOAD_STATE" Type="PUBL_0" x="2022.2222" y="116.666664" >
     </FB>
-    <FB Name="CNV" Type="IN_BOOL" x="2211.111" y="511.11108" >
+    <FB Name="CNV" Type="IN_BOOL" x="3127.7776" y="88.888885" >
     </FB>
-    <FB Name="CNV_MTR_STATE" Type="PUBL_1" x="3422.2222" y="511.11108" >
+    <FB Name="CNV_MTR_STATE" Type="PUBL_1" x="6244.4443" y="249.99998" >
     </FB>
     <EventConnections>
       <Connection Source="LOAD_BTN.INITO" Destination="CNV_LOAD_STATE.INIT" dx1="55.555553" />
       <Connection Source="CNV_LOAD_STATE.INITO" Destination="CNV.INIT" dx1="55.555553" />
-      <Connection Source="CNV.INITO" Destination="CNV_MTR_STATE.INIT" dx1="55.555553" />
-      <Connection Source="INIT" Destination="LOAD_BTN.INIT" />
+      <Connection Source="CNV.INITO" Destination="CNV_MTR_STATE.INIT" dx1="494.44443" />
       <Connection Source="LOAD_BTN.IND" Destination="CNV_LOAD_STATE.REQ" dx1="55.555553" />
       <Connection Source="CNV_LOAD_STATE.CNF" Destination="CNV.REQ" dx1="55.555553" />
-      <Connection Source="CNV.IND" Destination="CNV_MTR_STATE.REQ" dx1="55.555553" />
+      <Connection Source="CNV.IND" Destination="CNV_MTR_STATE.REQ" dx1="777.7778" />
       <Connection Source="CNV_MTR_STATE.INITO" Destination="INITO" />
       <Connection Source="CNV_MTR_STATE.CNF" Destination="CNF" />
+      <Connection Source="INIT" Destination="LOAD_BTN.INIT" />
     </EventConnections>
     <DataConnections>
-      <Connection Source="CNV.OUT" Destination="CNV_MTR_STATE.SD_1" dx1="55.555553" />
+      <Connection Source="CNV.OUT" Destination="CNV_MTR_STATE.SD_1" dx1="761.1111" />
       <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
       <Connection Source="LABEL" Destination="CNV.LABEL" />
       <Connection Source="MOTOR_STATE" Destination="CNV_MTR_STATE.ID" />

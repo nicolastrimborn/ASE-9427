@@ -17,7 +17,7 @@
         <FB Name="TrafficLight" Type="TL_View" x="3216.6665" y="27.777777" >
           <Parameter Name="C0" Value="[255,255,255]" />
         </FB>
-        <FB Name="UpdateStates1" Type="SUBL_3" x="1044.4445" y="27.777777" >
+        <FB Name="ToView1" Type="SUBL_3" x="1044.4445" y="27.777777" >
         </FB>
         <FB Name="timeRemaining1" Type="SUBL_1" x="2233.3333" y="1588.8888" >
         </FB>
@@ -26,17 +26,17 @@
           <Parameter Name="LABEL" Value="&#34;RT&#34;" />
         </FB>
         <EventConnections>
-          <Connection Source="START.COLD" Destination="UpdateStates1.INIT" dx1="55.555553" />
-          <Connection Source="UpdateStates1.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
-          <Connection Source="UpdateStates1.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="ToView1.INIT" dx1="55.555553" />
+          <Connection Source="ToView1.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
+          <Connection Source="ToView1.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
           <Connection Source="timeRemaining1.INITO" Destination="timeRemainingShow1.INIT" dx1="700.0" />
           <Connection Source="timeRemaining1.IND" Destination="timeRemainingShow1.REQ" dx1="561.1111" />
           <Connection Source="TrafficLight.INITO" Destination="timeRemaining1.INIT" dx1="361.11108" dx2="394.44443" dy="1127.7777" />
         </EventConnections>
         <DataConnections>
-          <Connection Source="UpdateStates1.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
-          <Connection Source="UpdateStates1.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
-          <Connection Source="UpdateStates1.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
+          <Connection Source="ToView1.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
+          <Connection Source="ToView1.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
+          <Connection Source="ToView1.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
           <Connection Source="timeRemaining1.RD_1" Destination="timeRemainingShow1.IN" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
@@ -48,7 +48,7 @@
         <FB Name="TrafficLight" Type="TL_View" x="2327.7776" y="38.888885" >
           <Parameter Name="C0" Value="[255,255,255]" />
         </FB>
-        <FB Name="UpdateStates2" Type="SUBL_3" x="1044.4445" y="22.222221" >
+        <FB Name="ToView2" Type="SUBL_3" x="1044.4445" y="22.222221" >
         </FB>
         <FB Name="timeRemaining2" Type="SUBL_1" x="1050.0" y="1250.0" >
         </FB>
@@ -58,17 +58,17 @@
           <Parameter Name="W" Value="2" />
         </FB>
         <EventConnections>
-          <Connection Source="START.COLD" Destination="UpdateStates2.INIT" dx1="55.555553" />
-          <Connection Source="UpdateStates2.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
-          <Connection Source="UpdateStates2.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="ToView2.INIT" dx1="55.555553" />
+          <Connection Source="ToView2.INITO" Destination="TrafficLight.INIT" dx1="55.555553" />
+          <Connection Source="ToView2.IND" Destination="TrafficLight.REQ" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="timeRemaining2.INIT" dx1="55.555553" />
           <Connection Source="timeRemaining2.INITO" Destination="timeRemainingShow1.INIT" dx1="700.0" />
           <Connection Source="timeRemaining2.IND" Destination="timeRemainingShow1.REQ" dx1="561.1111" />
         </EventConnections>
         <DataConnections>
-          <Connection Source="UpdateStates2.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
-          <Connection Source="UpdateStates2.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
-          <Connection Source="UpdateStates2.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
+          <Connection Source="ToView2.RD_1" Destination="TrafficLight.RED" dx1="55.555553" />
+          <Connection Source="ToView2.RD_2" Destination="TrafficLight.YELLOW" dx1="55.555553" />
+          <Connection Source="ToView2.RD_3" Destination="TrafficLight.GREEN" dx1="55.555553" />
           <Connection Source="timeRemaining2.RD_1" Destination="timeRemainingShow1.IN" dx1="55.555553" />
         </DataConnections>
       </FBNetwork>
@@ -94,13 +94,13 @@
     </Resource>
     <Resource Name="Model" Type="EMB_RES" x="1227.7777" y="688.88885" >
       <FBNetwork >
-        <FB Name="UpdateStates1" Type="SUBL_3" x="1027.7777" y="183.33333" >
+        <FB Name="UpdateStates1" Type="SUBL_3" x="616.6666" y="388.8889" >
         </FB>
-        <FB Name="ToView1" Type="PUBL_3" x="2111.111" y="155.55554" >
+        <FB Name="ToView1" Type="PUBL_3" x="1233.3333" y="388.8889" >
         </FB>
-        <FB Name="ToView2" Type="PUBL_3" x="2122.2222" y="1338.8888" >
+        <FB Name="ToView2" Type="PUBL_3" x="2250.0" y="11.111111" >
         </FB>
-        <FB Name="UpdateStates2" Type="SUBL_3" x="999.99994" y="1244.4443" >
+        <FB Name="UpdateStates2" Type="SUBL_3" x="1677.7777" y="11.111111" >
         </FB>
         <EventConnections>
           <Connection Source="UpdateStates1.INITO" Destination="ToView1.INIT" dx1="55.555553" />
@@ -110,6 +110,14 @@
           <Connection Source="START.COLD" Destination="UpdateStates1.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="UpdateStates2.INIT" dx1="55.555553" />
         </EventConnections>
+        <DataConnections>
+          <Connection Source="UpdateStates1.RD_1" Destination="ToView1.SD_1" dx1="55.555553" />
+          <Connection Source="UpdateStates1.RD_2" Destination="ToView1.SD_2" dx1="55.555553" />
+          <Connection Source="UpdateStates1.RD_3" Destination="ToView1.SD_3" dx1="55.555553" />
+          <Connection Source="UpdateStates2.RD_1" Destination="ToView2.SD_1" dx1="55.555553" />
+          <Connection Source="UpdateStates2.RD_2" Destination="ToView2.SD_2" dx1="55.555553" />
+          <Connection Source="UpdateStates2.RD_3" Destination="ToView2.SD_3" dx1="55.555553" />
+        </DataConnections>
       </FBNetwork>
     </Resource>
     <Resource Name="Control" Type="EMB_RES" x="1233.3333" y="999.99994" >
