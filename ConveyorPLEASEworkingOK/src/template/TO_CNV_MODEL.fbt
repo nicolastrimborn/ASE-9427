@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TO_CNV_MODEL" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="MTR" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="MTR" />
+      </Event>
+      <Event Name="CLK" >
+      </Event>
+      <Event Name="LOAD" >
+      </Event>
+      <Event Name="UNLD" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="CNV_STATE" Type="WSTRING" />
+      <VarDeclaration Name="LOAD_STATE" Type="WSTRING" />
+      <VarDeclaration Name="NEXT" Type="WSTRING" />
+      <VarDeclaration Name="COLOUR" Type="COLOR" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="MTR" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="WKPC" Type="COLOR" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="MOTOR" Type="SUBL_1" x="916.6666" y="1461.1111" >
+    </FB>
+    <FB Name="CNV_LOAD_STATE" Type="SUBL_0" x="894.4444" y="488.88885" >
+    </FB>
+    <FB Name="NEXT_STATE" Type="SUBL_1" x="922.22217" y="2316.6665" >
+    </FB>
+    <FB Name="UNLOAD" Type="E_TRIG" x="2044.4443" y="2344.4443" >
+    </FB>
+    <FB Name="CLOCK" Type="E_CYCLE" x="3811.111" y="477.77777" >
+      <Parameter Name="DT" Value="t#100ms" />
+    </FB>
+    <FB Name="PASS" Type="PASSED_COLOUR" x="4422.222" y="1944.4443" >
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="MOTOR.INIT" />
+      <Connection Source="INIT" Destination="CNV_LOAD_STATE.INIT" />
+      <Connection Source="INIT" Destination="NEXT_STATE.INIT" />
+      <Connection Source="NEXT_STATE.IND" Destination="UNLOAD.EI" dx1="55.555553" />
+      <Connection Source="CLOCK.EO" Destination="CLK" />
+      <Connection Source="REQ" Destination="CLOCK.START" />
+      <Connection Source="CNV_LOAD_STATE.IND" Destination="LOAD" />
+      <Connection Source="UNLOAD.ER" Destination="UNLD" />
+      <Connection Source="MOTOR.IND" Destination="CNF" />
+      <Connection Source="MOTOR.INITO" Destination="INITO" />
+      <Connection Source="INIT" Destination="PASS.INIT" />
+      <Connection Source="REQ" Destination="PASS.REQ" />
+      <Connection Source="PASS.CNF" Destination="CNF" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="NEXT_STATE.RD_1" Destination="UNLOAD.QI" dx1="55.555553" />
+      <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
+      <Connection Source="CNV_STATE" Destination="MOTOR.ID" />
+      <Connection Source="NEXT" Destination="NEXT_STATE.ID" />
+      <Connection Source="MOTOR.RD_1" Destination="MTR" />
+      <Connection Source="COLOUR" Destination="PASS.CI" />
+      <Connection Source="PASS.CO" Destination="WKPC" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>
