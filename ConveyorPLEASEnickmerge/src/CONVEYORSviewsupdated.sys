@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="CONVEYORSviewsupdated" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.4" Author="JHC" Date="2009-03-05" Remarks="Deleted Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="772.22217" y="461.11108" >
+    <Parameter Name="BOUNDS" Value="[500,30,520,500]" />
+    <Resource Name="VIEW_Resource" Type="VIEW_PANEL" x="2294.4443" y="400.0" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[10,10]" />
+      <FBNetwork >
+        <FB Name="CNV1" Type="MECH_VIEW" x="511.11108" y="4272.222" >
+          <Parameter Name="DIR" Value="VDIR#UP" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+        </FB>
+        <FB Name="CNV2" Type="MECH_VIEW" x="1355.5555" y="4266.6665" >
+          <Parameter Name="DIR" Value="VDIR#LEFT" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="9" />
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+        </FB>
+        <FB Name="CNV3" Type="MECH_VIEW" x="2183.3333" y="4277.778" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="BKGD" Value="[0,114,240]" />
+        </FB>
+        <FB Name="CNV4" Type="MECH_VIEW" x="3011.111" y="4283.333" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="BKGD" Value="[255,211,0]" />
+        </FB>
+        <FB Name="CNV5" Type="MECH_VIEW" x="3816.6665" y="4300.0" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+        </FB>
+        <FB Name="SPACE2" Type="XSPACE" x="2788.8887" y="1933.3333" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[1,0]" />
+        </FB>
+        <FB Name="SPACE3" Type="XSPACE" x="4361.111" y="1933.3333" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[1,0]" />
+        </FB>
+        <FB Name="BLUE" Type="OUT_BOOL" x="8322.222" y="1811.1111" >
+          <Parameter Name="LABEL" Value="&#34;BLU&#34;" />
+        </FB>
+        <FB Name="YELLOW" Type="OUT_BOOL" x="8933.333" y="1799.9999" >
+          <Parameter Name="LABEL" Value="&#34;YEL&#34;" />
+        </FB>
+        <FB Name="RED" Type="OUT_BOOL" x="9583.333" y="1783.3333" >
+          <Parameter Name="LABEL" Value="&#34;RED&#34;" />
+        </FB>
+        <FB Name="SP1" Type="XSPACE" x="816.6666" y="50.0" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[0,0]" />
+        </FB>
+        <FB Name="SP2" Type="XSPACE" x="2305.5554" y="44.444443" >
+          <Parameter Name="DIA" Value="17" />
+          <Parameter Name="DIMS" Value="[3,0]" />
+        </FB>
+        <FB Name="SP3" Type="XSPACE" x="3611.111" y="55.555553" >
+          <Parameter Name="DIA" Value="17" />
+          <Parameter Name="DIMS" Value="[3,0]" />
+        </FB>
+        <FB Name="SP4" Type="XSPACE" x="4950.0" y="50.0" >
+          <Parameter Name="DIA" Value="33" />
+          <Parameter Name="DIMS" Value="[6,0]" />
+        </FB>
+        <FB Name="SPACE33" Type="XSPACE" x="5983.333" y="1916.6666" >
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIMS" Value="[4,0]" />
+        </FB>
+        <FB Name="PS" Type="OUT_BOOL" x="1583.3333" y="1438.8888" >
+          <Parameter Name="LABEL" Value="&#34;PS&#34;" />
+          <Parameter Name="C1" Value="[0,0,0]" />
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="PE" Type="OUT_BOOL" x="6833.333" y="44.444443" >
+          <Parameter Name="LABEL" Value="&#34;PE&#34;" />
+          <Parameter Name="C0" Value="[255,255,255]" />
+        </FB>
+        <FB Name="CNV_2" Type="MECH_VIEWL" x="427.77777" y="1438.8888" >
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+          <Parameter Name="LEN" Value="9" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#LEFT" />
+          <Parameter Name="REND_ID" Value="&#34;CNV2_VALS&#34;" />
+        </FB>
+        <FB Name="CNV_3" Type="MECH_VIEWL" x="2300.0" y="1427.7777" >
+          <Parameter Name="BKGD" Value="[0,114,240]" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="REND_ID" Value="&#34;CNV3_VALS&#34;" />
+        </FB>
+        <FB Name="CNV_4" Type="MECH_VIEWL" x="3627.7776" y="1933.3333" >
+          <Parameter Name="BKGD" Value="[255,255,51]" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="REND_ID" Value="&#34;CNV4_VALS&#34;" />
+        </FB>
+        <FB Name="CNV_5" Type="MECH_VIEWL" x="5250.0" y="1877.7777" >
+          <Parameter Name="BKGD" Value="[255,51,51]" />
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="REND_ID" Value="&#34;CNV5_VALS&#34;" />
+        </FB>
+        <FB Name="TT_VALS" Type="SUBL_2" x="5450.0" y="327.77777" >
+        </FB>
+        <FB Name="TT_PS" Type="SUBL_2" x="949.99994" y="1622.2222" >
+        </FB>
+        <FB Name="CNV_1" Type="MECH_VIEWL" x="6849.9995" y="1905.5555" >
+          <Parameter Name="REND_ID" Value="&#34;CNV1_VALS&#34;" />
+          <Parameter Name="BKGD" Value="[192,192,192]" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="DIA" Value="50" />
+          <Parameter Name="DIR" Value="VDIR#UP" />
+        </FB>
+        <FB Name="pushed" Type="SUBL_1" x="700.0" y="3105.5554" >
+        </FB>
+        <FB Name="test2" Type="OUT_EVENT" x="1544.4443" y="2938.8887" >
+          <Parameter Name="LABEL" Value="&#34;Pusher&#34;" />
+          <Parameter Name="FLASH" Value="[0,0,255]" />
+          <Parameter Name="DT" Value="t#1s" />
+        </FB>
+        <FB Name="PushBlue" Type="SOL_VIEWL" x="1577.7777" y="150.0" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="REND_ID" Value="&#34;BLUPUSH&#34;" />
+        </FB>
+        <FB Name="PushRed" Type="SOL_VIEWL" x="4327.778" y="144.44444" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="REND_ID" Value="&#34;REDPUSH&#34;" />
+        </FB>
+        <FB Name="PushYel" Type="SOL_VIEWL" x="3000.0" y="166.66666" >
+          <Parameter Name="DIR" Value="VDIR#DOWN" />
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="REND_ID" Value="&#34;YELPUSH&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SP1.INIT" dx1="55.555553" />
+          <Connection Source="SP4.INITO" Destination="PE.INIT" dx1="55.555553" />
+          <Connection Source="PE.INITO" Destination="CNV_2.INIT" dx1="183.33333" dx2="222.22221" dy="1138.8888" />
+          <Connection Source="CNV_2.INITO" Destination="PS.INIT" dx1="55.555553" />
+          <Connection Source="PS.INITO" Destination="CNV_3.INIT" dx1="55.555553" />
+          <Connection Source="CNV_3.INITO" Destination="SPACE2.INIT" dx1="200.0" />
+          <Connection Source="SPACE2.INITO" Destination="CNV_4.INIT" dx1="55.555553" />
+          <Connection Source="CNV_4.INITO" Destination="SPACE3.INIT" dx1="55.555553" />
+          <Connection Source="SPACE3.INITO" Destination="CNV_5.INIT" dx1="200.0" />
+          <Connection Source="CNV_5.INITO" Destination="SPACE33.INIT" dx1="55.555553" />
+          <Connection Source="SP4.INITO" Destination="TT_VALS.INIT" dx1="55.555553" />
+          <Connection Source="TT_VALS.IND" Destination="PE.REQ" dx1="55.555553" />
+          <Connection Source="CNV_2.INITO" Destination="TT_PS.INIT" dx1="55.555553" />
+          <Connection Source="TT_PS.IND" Destination="PS.REQ" dx1="55.555553" />
+          <Connection Source="SPACE33.INITO" Destination="CNV_1.INIT" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="pushed.INIT" dx1="55.555553" />
+          <Connection Source="pushed.INITO" Destination="test2.INIT" dx1="55.555553" />
+          <Connection Source="pushed.IND" Destination="test2.REQ" dx1="55.555553" />
+          <Connection Source="SP1.INITO" Destination="PushBlue.INIT" dx1="172.22221" />
+          <Connection Source="PushBlue.INITO" Destination="SP2.INIT" dx1="261.1111" />
+          <Connection Source="SP2.INITO" Destination="PushYel.INIT" dx1="55.555553" />
+          <Connection Source="PushYel.INITO" Destination="SP3.INIT" dx1="55.555553" />
+          <Connection Source="SP3.INITO" Destination="PushRed.INIT" dx1="155.55554" />
+          <Connection Source="PushRed.INITO" Destination="SP4.INIT" dx1="194.44444" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TT_VALS.RD_1" Destination="PE.IN" dx1="55.555553" />
+          <Connection Source="TT_VALS.RD_2" Destination="PE.C1" dx1="55.555553" />
+          <Connection Source="TT_PS.RD_1" Destination="PS.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="HMI" Type="FRAME_DEVICE" x="772.22217" y="972.22217" >
+    <Parameter Name="BOUNDS" Value="[1020,30,350,300]" />
+    <Parameter Name="GRID" Value="[1,2]" />
+    <Resource Name="HMI_RESOURCE" Type="VIEW_PANEL" x="1105.5555" y="577.7778" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[10,10]" />
+      <FBNetwork >
+        <FB Name="colours" Type="IN_CHOICE" x="7299.9995" y="683.3333" >
+          <Parameter Name="CHOICES" Value="&#34;,RED,YELLOW,BLUE&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="WRKPC_COLOUR" Type="PUBL_1" x="8850.0" y="200.0" >
+          <Parameter Name="ID" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="TT_STATE_PE" Type="PUBL_1" x="7533.333" y="3661.111" >
+          <Parameter Name="ID" Value="&#34;TT_STATE_PE&#34;" />
+        </FB>
+        <FB Name="TT" Type="IN_BOOL" x="3749.9998" y="3872.2222" >
+          <Parameter Name="LABEL" Value="&#34;Load TT&#34;" />
+        </FB>
+        <FB Name="TTTurn" Type="IN_BOOL" x="4972.222" y="4650.0" >
+          <Parameter Name="LABEL" Value="&#34;TurnTT&#34;" />
+        </FB>
+        <FB Name="TTTURN" Type="PUBL_1" x="7388.8887" y="4900.0" >
+        </FB>
+        <FB Name="UPDATE_CONV1" Type="UPDATE_CONV_STATE" x="1033.3333" y="3655.5554" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV1_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;CNV1&#34;" />
+        </FB>
+        <FB Name="UPDATE_CONV2" Type="UPDATE_CONV_STATE" x="2500.0" y="1949.9999" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV2_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV2_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;CNV2&#34;" />
+        </FB>
+        <FB Name="UPDATE_CONV3" Type="UPDATE_CONV_STATE" x="4783.333" y="1955.5554" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV3_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV3_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;BLUECHT&#34;" />
+        </FB>
+        <FB Name="UPDATE_CONV4" Type="UPDATE_CONV_STATE" x="7105.555" y="1961.1111" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV4_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV4_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;YELCHT&#34;" />
+        </FB>
+        <FB Name="UPDATE_CONV5" Type="UPDATE_CONV_STATE" x="9366.666" y="1955.5554" >
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV5_LOAD_STATE&#34;" />
+          <Parameter Name="MOTOR_STATE" Value="&#34;CNV5_STATE&#34;" />
+          <Parameter Name="LABEL" Value="&#34;REDCHT&#34;" />
+        </FB>
+        <FB Name="AUTOMATIC" Type="IN_BOOL" x="2327.7776" y="200.0" >
+          <Parameter Name="LABEL" Value="&#34;AUTOMATIC ON&#34;" />
+          <Parameter Name="IN" Value="0" />
+        </FB>
+        <FB Name="CNV1_STATE" Type="PUBL_1" x="5938.8887" y="533.3333" >
+          <Parameter Name="ID" Value="&#34;CNV1_STATE&#34;" />
+        </FB>
+        <FB Name="CNV1_LOAD_STATE" Type="PUBL_0" x="4350.0" y="61.111107" >
+          <Parameter Name="ID" Value="&#34;CNV1_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="AUTO" Type="PUBL_1" x="4950.0" y="366.66666" >
+          <Parameter Name="ID" Value="&#34;AUTO&#34;" />
+        </FB>
+        <FB Name="sp1" Type="XSPACE" x="3277.7776" y="50.0" >
+          <Parameter Name="DIMS" Value="[1,0]" />
+          <Parameter Name="DIA" Value="20" />
+        </FB>
+        <FB Name="sp2" Type="XSPACE" x="616.6666" y="2350.0" >
+          <Parameter Name="DIMS" Value="[2,0]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
+        </FB>
+        <FB Name="TwoStateInd" Type="Composite" x="1438.8888" y="161.1111" >
+          <Parameter Name="LABEL1" Value="&#34;AUTO&#34;" />
+          <Parameter Name="LABEL2" Value="&#34;MAN&#34;" />
+        </FB>
+        <FB Name="sp3" Type="XSPACE" x="3727.7776" y="1955.5554" >
+          <Parameter Name="DIMS" Value="[2,0]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
+        </FB>
+        <FB Name="sp4" Type="XSPACE" x="6044.4443" y="1961.1111" >
+          <Parameter Name="DIMS" Value="[1,0]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
+        </FB>
+        <FB Name="sp5" Type="XSPACE" x="8300.0" y="1955.5554" >
+          <Parameter Name="DIMS" Value="[2,0]" />
+          <Parameter Name="DIA" Value="15" />
+          <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
+        </FB>
+        <FB Name="sp6" Type="XSPACE" x="1705.5555" y="1827.7777" >
+          <Parameter Name="DIMS" Value="[2,0]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="colours.IND" Destination="WRKPC_COLOUR.REQ" dx1="172.22221" dx2="55.555553" dy="83.33333" />
+          <Connection Source="TT.INITO" Destination="TT_STATE_PE.INIT" dx1="55.555553" />
+          <Connection Source="TT.IND" Destination="TT_STATE_PE.REQ" dx1="55.555553" />
+          <Connection Source="TT.INITO" Destination="TTTurn.INIT" dx1="522.2222" />
+          <Connection Source="TT.CNF" Destination="TTTurn.REQ" dx1="55.555553" />
+          <Connection Source="TTTurn.INITO" Destination="TTTURN.INIT" dx1="55.555553" />
+          <Connection Source="TTTurn.IND" Destination="TTTURN.REQ" dx1="55.555553" />
+          <Connection Source="TTTurn.INITO" Destination="TTTURN.REQ" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV1.CNF" Destination="TT.REQ" dx1="55.555553" />
+          <Connection Source="AUTOMATIC.IND" Destination="CNV1_LOAD_STATE.REQ" dx1="388.8889" />
+          <Connection Source="CNV1_LOAD_STATE.INITO" Destination="AUTO.INIT" dx1="205.55554" />
+          <Connection Source="CNV1_LOAD_STATE.CNF" Destination="AUTO.REQ" dx1="55.555553" dx2="55.555553" dy="5466.6665" />
+          <Connection Source="AUTO.INITO" Destination="CNV1_STATE.INIT" dx1="344.44443" />
+          <Connection Source="AUTO.CNF" Destination="CNV1_STATE.REQ" dx1="216.66666" />
+          <Connection Source="START.COLD" Destination="AUTOMATIC.REQ" dx1="55.555553" />
+          <Connection Source="sp1.INITO" Destination="CNV1_LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="TwoStateInd.INIT" dx1="572.2222" />
+          <Connection Source="TwoStateInd.INITO" Destination="AUTOMATIC.INIT" dx1="55.555553" />
+          <Connection Source="AUTOMATIC.INITO" Destination="sp1.INIT" dx1="333.3333" />
+          <Connection Source="AUTOMATIC.CNF" Destination="TwoStateInd.REQ" dx1="88.888885" dx2="205.55554" dy="-483.3333" />
+          <Connection Source="AUTOMATIC.IND" Destination="TwoStateInd.REQ" dx1="155.55554" dx2="194.44444" dy="-527.7778" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="sp2.INIT" dx1="55.555553" dx2="55.555553" dy="1388.8888" />
+          <Connection Source="CNV1_STATE.INITO" Destination="colours.REQ" dx1="638.88885" />
+          <Connection Source="AUTOMATIC.CNF" Destination="colours.REQ" dx1="4472.222" />
+          <Connection Source="CNV1_STATE.INITO" Destination="colours.INIT" dx1="55.555553" />
+          <Connection Source="colours.INITO" Destination="WRKPC_COLOUR.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV2.INITO" Destination="sp3.INIT" dx1="55.555553" />
+          <Connection Source="sp3.INITO" Destination="UPDATE_CONV3.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV3.INITO" Destination="sp4.INIT" dx1="55.555553" />
+          <Connection Source="sp4.INITO" Destination="UPDATE_CONV4.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV4.INITO" Destination="sp5.INIT" dx1="55.555553" />
+          <Connection Source="sp2.INITO" Destination="UPDATE_CONV1.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV1.INITO" Destination="sp6.INIT" dx1="27.777777" />
+          <Connection Source="sp6.INITO" Destination="UPDATE_CONV2.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV1.INITO" Destination="TT.INIT" dx1="283.3333" />
+          <Connection Source="sp5.INITO" Destination="UPDATE_CONV5.INIT" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="colours.I" Destination="WRKPC_COLOUR.SD_1" dx1="288.8889" dx2="55.555553" dy="83.33333" />
+          <Connection Source="TT.OUT" Destination="TT_STATE_PE.SD_1" dx1="55.555553" />
+          <Connection Source="TTTurn.OUT" Destination="TTTURN.SD_1" dx1="55.555553" />
+          <Connection Source="AUTOMATIC.OUT" Destination="CNV1_STATE.SD_1" dx1="166.66666" />
+          <Connection Source="AUTOMATIC.OUT" Destination="AUTO.SD_1" dx1="277.77777" />
+          <Connection Source="AUTOMATIC.OUT" Destination="TwoStateInd.IN" dx1="55.555553" dx2="311.11108" dy="277.77777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="EN_DIS" Type="VIEW_PANEL" x="2100.0" y="561.1111" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[10,2]" />
+      <FBNetwork >
+        <FB Name="CNV_Enabled" Type="IN_BOOL" x="1033.3333" y="105.55555" >
+          <Parameter Name="IN" Value="1" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;CV1_EN&#34;" />
+        </FB>
+        <FB Name="ConveyorActive" Type="OUT_BOOL" x="2116.6665" y="66.666664" >
+          <Parameter Name="C0" Value="[255,0,0]" />
+          <Parameter Name="C1" Value="[0,255,0]" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;CV1STATUS&#34;" />
+        </FB>
+        <FB Name="CNV2_Enabled" Type="IN_BOOL" x="3166.6665" y="66.666664" >
+          <Parameter Name="IN" Value="1" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;CV2_EN&#34;" />
+        </FB>
+        <FB Name="ConveyorStatus1" Type="OUT_BOOL" x="4411.111" y="77.77777" >
+          <Parameter Name="C0" Value="[255,0,0]" />
+          <Parameter Name="C1" Value="[0,255,0]" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;CV2STATUS&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="CNV_Enabled.INIT" dx1="55.555553" />
+          <Connection Source="CNV_Enabled.INITO" Destination="ConveyorActive.INIT" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="CNV_Enabled.REQ" dx1="55.555553" />
+          <Connection Source="CNV_Enabled.CNF" Destination="ConveyorActive.REQ" dx1="55.555553" />
+          <Connection Source="CNV_Enabled.IND" Destination="ConveyorActive.REQ" dx1="55.555553" />
+          <Connection Source="ConveyorActive.INITO" Destination="CNV2_Enabled.INIT" dx1="55.555553" />
+          <Connection Source="CNV2_Enabled.INITO" Destination="ConveyorStatus1.INIT" dx1="55.555553" />
+          <Connection Source="CNV2_Enabled.IND" Destination="ConveyorStatus1.REQ" dx1="55.555553" />
+          <Connection Source="CNV2_Enabled.CNF" Destination="ConveyorStatus1.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="CNV_Enabled.OUT" Destination="ConveyorActive.IN" dx1="55.555553" />
+          <Connection Source="CNV2_Enabled.OUT" Destination="ConveyorStatus1.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="MODEL" Type="FRAME_DEVICE" x="777.7778" y="1538.8888" >
+    <Parameter Name="BOUNDS" Value="[500,570,0,0]" />
+    <Resource Name="CONV1_MODEL" Type="VIEW_PANEL" x="1061.1111" y="183.33333" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="4161.111" y="238.88889" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_MODEL" Type="TO_CNV_MODEL" x="1538.8888" y="155.55554" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV1_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;TT_STATE_PE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="CNV1_VALS" Type="PUBL_4" x="5522.222" y="172.22221" >
+          <Parameter Name="ID" Value="&#34;CNV1_VALS&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_MODEL.INIT" dx1="55.555553" />
+          <Connection Source="TO_MODEL.CLK" Destination="MODEL1.CLK" dx1="711.1111" />
+          <Connection Source="START.COLD" Destination="TO_MODEL.REQ" dx1="55.555553" />
+          <Connection Source="TO_MODEL.LOAD" Destination="MODEL1.LOAD" dx1="899.99994" />
+          <Connection Source="TO_MODEL.UNLD" Destination="MODEL1.UNLD" dx1="1105.5555" />
+          <Connection Source="TO_MODEL.INITO" Destination="CNV1_VALS.INIT" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="CNV1_VALS.REQ" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.INITO" Destination="CNV1_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_MODEL.WKPC" Destination="MODEL1.WKPC" dx1="1216.6666" />
+          <Connection Source="TO_MODEL.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV1_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV1_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV1_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV1_VALS.SD_4" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="TT_MODEL" Type="VIEW_PANEL" x="1033.3333" y="949.99994" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="TT_STATE_PE" Type="SUBL_1" x="2127.7776" y="11.111111" >
+          <Parameter Name="ID" Value="&#34;TT_STATE_PE&#34;" />
+        </FB>
+        <FB Name="TT_PS" Type="PUBL_2" x="6588.8887" y="1755.5555" >
+        </FB>
+        <FB Name="TTTURN" Type="SUBL_1" x="2422.2222" y="1711.1111" >
+        </FB>
+        <FB Name="Not" Type="FB_NOT" x="3555.5554" y="2011.1111" >
+        </FB>
+        <FB Name="CNV1_VALS" Type="SUBL_4" x="833.3333" y="794.4444" >
+          <Parameter Name="ID" Value="&#34;CNV1_VALS&#34;" />
+        </FB>
+        <FB Name="PASS" Type="PASS_BOOL" x="3233.3333" y="105.55555" >
+        </FB>
+        <FB Name="PASSS" Type="PASSED_COLOUR" x="3033.3333" y="905.55554" >
+        </FB>
+        <FB Name="TT_VALS" Type="PUBL_2" x="6144.4443" y="650.0" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TT_STATE_PE.INIT" dx1="55.555553" />
+          <Connection Source="TTTURN.IND" Destination="Not.REQ" dx1="638.88885" />
+          <Connection Source="TTTURN.INITO" Destination="TT_PS.INIT" dx1="55.555553" />
+          <Connection Source="Not.CNF" Destination="TT_PS.REQ" dx1="55.555553" />
+          <Connection Source="TTTURN.INITO" Destination="TT_PS.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="CNV1_VALS.INIT" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.INITO" Destination="TTTURN.INIT" dx1="344.44443" />
+          <Connection Source="TT_STATE_PE.INITO" Destination="PASS.INIT" dx1="55.555553" />
+          <Connection Source="TT_STATE_PE.IND" Destination="PASS.REQ" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.INITO" Destination="PASSS.INIT" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.IND" Destination="PASSS.REQ" dx1="55.555553" />
+          <Connection Source="PASS.INITO" Destination="TT_VALS.INIT" dx1="1983.3333" />
+          <Connection Source="PASS.CNF" Destination="TT_VALS.REQ" dx1="1855.5555" />
+          <Connection Source="PASSS.CNF" Destination="TT_VALS.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Not.OUT" Destination="TT_PS.SD_1" dx1="55.555553" />
+          <Connection Source="TTTURN.RD_1" Destination="Not.IN" dx1="55.555553" />
+          <Connection Source="TT_STATE_PE.RD_1" Destination="PASS.STATE" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.RD_4" Destination="PASSS.CI" dx1="55.555553" />
+          <Connection Source="PASS.MTR" Destination="TT_VALS.SD_1" dx1="1238.8888" />
+          <Connection Source="PASSS.CO" Destination="TT_VALS.SD_2" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV2_MODEL" Type="VIEW_PANEL" x="1022.22217" y="1833.3333" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="3883.3333" y="272.2222" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TOCONV2" Type="CHECK_POS" x="2150.0" y="0.0" >
+          <Parameter Name="PREV" Value="&#34;CNV2_VALS&#34;" />
+          <Parameter Name="CNV_STATE" Value="&#34;CNV2_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV2_LOAD_STATE&#34;" />
+          <Parameter Name="P1" Value="50" />
+          <Parameter Name="P2" Value="75" />
+          <Parameter Name="P3" Value="100" />
+        </FB>
+        <FB Name="CNV3_LOAD_STATE" Type="SUBL_0" x="1294.4443" y="1827.7777" >
+          <Parameter Name="ID" Value="&#34;CNV3_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV4_LOAD_STATE" Type="SUBL_0" x="2350.0" y="2166.6665" >
+          <Parameter Name="ID" Value="&#34;CNV4_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV5_LOAD_STATE" Type="SUBL_0" x="3088.8887" y="2711.111" >
+          <Parameter Name="ID" Value="&#34;CNV5_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV2_VALS" Type="PUBL_4" x="5622.222" y="11.111111" >
+          <Parameter Name="ID" Value="&#34;CNV2_VALS&#34;" />
+        </FB>
+        <FB Name="WRKPC_COLOUR" Type="SUBL_1" x="872.22217" y="377.77777" >
+          <Parameter Name="ID" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="TOCONV2.CLK" Destination="MODEL1.CLK" dx1="161.1111" />
+          <Connection Source="TOCONV2.LOAD" Destination="MODEL1.LOAD" dx1="194.44444" />
+          <Connection Source="CNV3_LOAD_STATE.INITO" Destination="CNV4_LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="CNV4_LOAD_STATE.INITO" Destination="CNV5_LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="CNV3_LOAD_STATE.IND" Destination="MODEL1.UNLD" dx1="1383.3333" />
+          <Connection Source="CNV4_LOAD_STATE.IND" Destination="MODEL1.UNLD" dx1="483.3333" />
+          <Connection Source="CNV5_LOAD_STATE.IND" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="TOCONV2.INITO" Destination="CNV2_VALS.INIT" dx1="638.88885" />
+          <Connection Source="MODEL1.INDR" Destination="CNV2_VALS.REQ" dx1="55.555553" />
+          <Connection Source="CNV2_VALS.INITO" Destination="CNV2_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+          <Connection Source="START.COLD" Destination="WRKPC_COLOUR.INIT" dx1="33.333332" />
+          <Connection Source="WRKPC_COLOUR.IND" Destination="TOCONV2.REQ" dx1="227.77777" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="TOCONV2.INIT" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="CNV3_LOAD_STATE.INIT" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TOCONV2.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TOCONV2.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV2_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV2_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV2_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV2_VALS.SD_4" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.RD_1" Destination="TOCONV2.COLOUR" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV3_MODEL" Type="VIEW_PANEL" x="2027.7777" y="188.88889" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="3788.8887" y="222.22221" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_CNV3" Type="TO_CNV_MODEL" x="1799.9999" y="0.0" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV3_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV3_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="COUNTING" Type="E_PERMITC" x="5105.555" y="2355.5554" >
+        </FB>
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="6416.6665" y="2300.0" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;COUNTB&#34;" />
+        </FB>
+        <FB Name="CNV3_VALS" Type="PUBL_4" x="5938.8887" y="100.0" >
+          <Parameter Name="ID" Value="&#34;CNV3_VALS&#34;" />
+        </FB>
+        <FB Name="PusherSelect" Type="E_SEL_UINT" x="2772.2222" y="1677.7777" >
+          <Parameter Name="IN0" Value="100" />
+          <Parameter Name="IN1" Value="0" />
+        </FB>
+        <FB Name="Pusher" Type="PUBL_1" x="3683.3333" y="1677.7777" >
+          <Parameter Name="ID" Value="&#34;BLUPUSH&#34;" />
+        </FB>
+        <FB Name="AutoRetract" Type="E_DELAY" x="2072.2222" y="1899.9999" >
+          <Parameter Name="DT" Value="t#2s" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_CNV3.INIT" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="TO_CNV3.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV3.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_CNV3.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_CNV3.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="327.77777" />
+          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV3.INITO" Destination="CNV3_VALS.INIT" dx1="2338.889" />
+          <Connection Source="MODEL1.INDR" Destination="CNV3_VALS.REQ" dx1="55.555553" />
+          <Connection Source="CNV3_VALS.INITO" Destination="CNV3_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+          <Connection Source="CNV3_VALS.INITO" Destination="CNT.INIT" dx1="55.555553" />
+          <Connection Source="TO_CNV3.INITO" Destination="Pusher.INIT" dx1="983.3333" />
+          <Connection Source="PusherSelect.EO" Destination="Pusher.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV3.LOAD" Destination="PusherSelect.EI0" dx1="200.0" />
+          <Connection Source="AutoRetract.EO" Destination="PusherSelect.EI1" dx1="261.1111" />
+          <Connection Source="TO_CNV3.LOAD" Destination="AutoRetract.START" dx1="88.888885" dx2="55.555553" dy="994.4444" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_CNV3.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_CNV3.WKPC" Destination="MODEL1.WKPC" dx1="805.55554" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="27.777777" />
+          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV3_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV3_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV3_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV3_VALS.SD_4" dx1="55.555553" />
+          <Connection Source="PusherSelect.OUT" Destination="Pusher.SD_1" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV4_MODEL" Type="VIEW_PANEL" x="1994.4443" y="994.4444" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="4044.4443" y="216.66666" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_CNV4" Type="TO_CNV_MODEL" x="1677.7777" y="216.66666" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV4_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV4_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="COUNTING" Type="E_PERMITC" x="5194.4443" y="1600.0" >
+        </FB>
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="6733.333" y="1783.3333" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;COUNTY&#34;" />
+        </FB>
+        <FB Name="CNV4_VALS" Type="PUBL_4" x="6305.555" y="5.5555553" >
+          <Parameter Name="ID" Value="&#34;CNV4_VALS&#34;" />
+        </FB>
+        <FB Name="PusherSelect" Type="E_SEL_UINT" x="2911.111" y="1538.8888" >
+          <Parameter Name="IN0" Value="100" />
+          <Parameter Name="IN1" Value="0" />
+        </FB>
+        <FB Name="Pusher" Type="PUBL_1" x="3827.7776" y="1622.2222" >
+          <Parameter Name="ID" Value="&#34;YELPUSH&#34;" />
+        </FB>
+        <FB Name="AutoRetract" Type="E_DELAY" x="1922.2222" y="1861.1111" >
+          <Parameter Name="DT" Value="t#2s" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_CNV4.INIT" dx1="55.555553" />
+          <Connection Source="TO_CNV4.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_CNV4.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_CNV4.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="TO_CNV4.REQ" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
+          <Connection Source="CNV4_VALS.INITO" Destination="CNV4_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+          <Connection Source="TO_CNV4.INITO" Destination="CNV4_VALS.INIT" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="CNV4_VALS.REQ" dx1="55.555553" />
+          <Connection Source="CNV4_VALS.INITO" Destination="CNT.INIT" dx1="55.555553" />
+          <Connection Source="TO_CNV4.LOAD" Destination="PusherSelect.EI0" dx1="400.0" />
+          <Connection Source="PusherSelect.EO" Destination="Pusher.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV4.INITO" Destination="Pusher.INIT" dx1="1255.5555" />
+          <Connection Source="TO_CNV4.LOAD" Destination="AutoRetract.START" dx1="55.555553" dx2="55.555553" dy="1083.3333" />
+          <Connection Source="AutoRetract.EO" Destination="PusherSelect.EI1" dx1="244.44443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_CNV4.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_CNV4.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV4_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV4_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV4_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV4_VALS.SD_4" dx1="55.555553" />
+          <Connection Source="PusherSelect.OUT" Destination="Pusher.SD_1" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV5_MODEL" Type="VIEW_PANEL" x="1955.5554" y="1827.7777" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="4038.8887" y="266.66666" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_CNV5" Type="TO_CNV_MODEL" x="1833.3333" y="50.0" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV5_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV5_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="COUNTING" Type="E_PERMITC" x="5305.555" y="1738.8888" >
+        </FB>
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="6927.7773" y="1827.7777" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;COUNTR&#34;" />
+        </FB>
+        <FB Name="CNV5_VALS" Type="PUBL_4" x="6200.0" y="161.1111" >
+          <Parameter Name="ID" Value="&#34;CNV5_VALS&#34;" />
+        </FB>
+        <FB Name="PusherSelect" Type="E_SEL_UINT" x="2794.4443" y="2033.3333" >
+          <Parameter Name="IN0" Value="100" />
+          <Parameter Name="IN1" Value="0" />
+        </FB>
+        <FB Name="Pusher" Type="PUBL_1" x="3666.6665" y="1777.7777" >
+          <Parameter Name="ID" Value="&#34;REDPUSH&#34;" />
+        </FB>
+        <FB Name="AutoRetract" Type="E_DELAY" x="2094.4443" y="2038.8888" >
+          <Parameter Name="DT" Value="t#2s" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_CNV5.INIT" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="TO_CNV5.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV5.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_CNV5.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_CNV5.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV5.INITO" Destination="CNV5_VALS.INIT" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="CNV5_VALS.REQ" dx1="55.555553" />
+          <Connection Source="CNV5_VALS.INITO" Destination="CNV5_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+          <Connection Source="CNV5_VALS.INITO" Destination="CNT.INIT" dx1="55.555553" />
+          <Connection Source="PusherSelect.EO" Destination="Pusher.REQ" dx1="266.66666" />
+          <Connection Source="TO_CNV5.LOAD" Destination="PusherSelect.EI0" dx1="266.66666" />
+          <Connection Source="TO_CNV5.INITO" Destination="Pusher.INIT" dx1="650.0" />
+          <Connection Source="TO_CNV5.LOAD" Destination="AutoRetract.START" dx1="138.88889" dx2="55.555553" dy="1277.7777" />
+          <Connection Source="AutoRetract.EO" Destination="PusherSelect.EI1" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_CNV5.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_CNV5.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV5_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV5_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV5_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV5_VALS.SD_4" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="CONTROL" Type="FRAME_DEVICE" x="783.3333" y="2166.6665" >
+    <Parameter Name="BOUNDS" Value="[1000,570,500,500]" />
+    <Resource Name="CONV1_CTRL" Type="VIEW_PANEL" x="1061.1111" y="183.33333" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="3883.3333" y="211.1111" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_MODEL" Type="TO_CNV_MODEL" x="1355.5555" y="177.77777" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV1_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+          <Parameter Name="NEXT" Value="&#34;TT_STATE_PE&#34;" />
+        </FB>
+        <FB Name="CNV1_VALS" Type="PUBL_4" x="6172.222" y="50.0" >
+          <Parameter Name="ID" Value="&#34;CNV1_VALS&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_MODEL.REQ" dx1="55.555553" />
+          <Connection Source="TO_MODEL.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_MODEL.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_MODEL.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="TO_MODEL.INITO" Destination="CNV1_VALS.INIT" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="CNV1_VALS.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="TO_MODEL.INIT" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.INITO" Destination="CNV1_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_MODEL.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_MODEL.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV1_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV1_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV1_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV1_VALS.SD_4" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="TT_CTRL" Type="VIEW_PANEL" x="1033.3333" y="949.99994" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="TT_PS" Type="PUBL_2" x="6844.4443" y="1533.3333" >
+          <Parameter Name="ID" Value="&#34;TT_PS&#34;" />
+        </FB>
+        <FB Name="DELAY" Type="E_DELAY" x="3905.5554" y="1477.7777" >
+          <Parameter Name="DT" Value="t#1s" />
+        </FB>
+        <FB Name="Not" Type="FB_NOT" x="5533.333" y="1766.6666" >
+        </FB>
+        <FB Name="CNV2_LOAD_STATE" Type="PUBL_0" x="5061.111" y="2633.3333" >
+          <Parameter Name="ID" Value="&#34;CNV2_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV2_STATE" Type="PUBL_1" x="6661.111" y="3100.0" >
+          <Parameter Name="ID" Value="&#34;CNV2_STATE&#34;" />
+        </FB>
+        <FB Name="PASS" Type="PASS_BOOL" x="2316.6665" y="0.0" >
+        </FB>
+        <FB Name="PASSS" Type="PASSED_COLOUR" x="2388.889" y="1749.9999" >
+        </FB>
+        <FB Name="CNV1_VALS" Type="SUBL_4" x="1416.6666" y="788.88885" >
+        </FB>
+        <FB Name="TT_STATE_PE" Type="PUBL_1" x="5677.7773" y="177.77777" >
+          <Parameter Name="ID" Value="&#34;TT_STATE_PE&#34;" />
+        </FB>
+        <FB Name="AUTO" Type="SUBL_1" x="822.22217" y="116.666664" >
+          <Parameter Name="ID" Value="&#34;AUTO&#34;" />
+        </FB>
+        <FB Name="TT_VALS" Type="PUBL_2" x="6599.9995" y="522.2222" >
+          <Parameter Name="ID" Value="&#34;TT_VALS&#34;" />
+        </FB>
+        <FB Name="TRIGE" Type="E_TRIG" x="3399.9998" y="622.22217" >
+        </FB>
+        <EventConnections>
+          <Connection Source="Not.CNF" Destination="TT_PS.REQ" dx1="55.555553" />
+          <Connection Source="CNV2_LOAD_STATE.INITO" Destination="CNV2_STATE.INIT" dx1="366.66666" />
+          <Connection Source="CNV1_VALS.INITO" Destination="PASS.INIT" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.IND" Destination="PASS.REQ" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.INITO" Destination="PASSS.INIT" dx1="300.0" />
+          <Connection Source="CNV1_VALS.IND" Destination="PASSS.REQ" dx1="216.66666" />
+          <Connection Source="DELAY.EO" Destination="Not.REQ" dx1="550.0" />
+          <Connection Source="PASS.INITO" Destination="TT_STATE_PE.INIT" dx1="655.55554" />
+          <Connection Source="START.COLD" Destination="AUTO.INIT" dx1="55.555553" />
+          <Connection Source="AUTO.IND" Destination="CNV1_VALS.INIT" dx1="55.555553" />
+          <Connection Source="CNV2_LOAD_STATE.CNF" Destination="CNV2_STATE.REQ" dx1="55.555553" />
+          <Connection Source="PASS.CNF" Destination="TRIGE.EI" dx1="400.0" />
+          <Connection Source="TRIGE.ER" Destination="DELAY.START" dx1="55.555553" />
+          <Connection Source="TT_STATE_PE.INITO" Destination="TT_VALS.INIT" dx1="55.555553" />
+          <Connection Source="TT_STATE_PE.CNF" Destination="TT_VALS.REQ" dx1="55.555553" />
+          <Connection Source="TRIGE.ER" Destination="TT_STATE_PE.REQ" dx1="55.555553" />
+          <Connection Source="DELAY.EO" Destination="CNV2_LOAD_STATE.INIT" dx1="350.0" />
+          <Connection Source="DELAY.EO" Destination="CNV2_LOAD_STATE.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Not.OUT" Destination="TT_PS.SD_1" dx1="55.555553" />
+          <Connection Source="CNV1_VALS.RD_4" Destination="PASSS.CI" dx1="55.555553" />
+          <Connection Source="PASS.MTR" Destination="Not.IN" dx1="2511.111" />
+          <Connection Source="CNV1_VALS.RD_1" Destination="PASS.STATE" dx1="438.8889" />
+          <Connection Source="PASS.MTR" Destination="TT_STATE_PE.SD_1" dx1="1377.7777" />
+          <Connection Source="PASS.MTR" Destination="TT_VALS.SD_1" dx1="111.11111" />
+          <Connection Source="PASSS.CO" Destination="TT_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="PASS.MTR" Destination="CNV2_STATE.SD_1" dx1="505.55554" />
+          <Connection Source="PASS.MTR" Destination="TRIGE.QI" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV2_CTRL" Type="VIEW_PANEL" x="977.7777" y="1749.9999" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="WRKPC_COLOUR" Type="SUBL_1" x="605.55554" y="283.3333" >
+          <Parameter Name="ID" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="MODEL1" Type="CNV_MDL" x="5538.8887" y="216.66666" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TOCONV2" Type="CHECK_POS" x="3855.5554" y="0.0" >
+          <Parameter Name="PREV" Value="&#34;CNV2_VALS&#34;" />
+          <Parameter Name="CNV_STATE" Value="&#34;CNV2_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV2_LOAD_STATE&#34;" />
+          <Parameter Name="P1" Value="50" />
+          <Parameter Name="P2" Value="75" />
+          <Parameter Name="P3" Value="100" />
+        </FB>
+        <FB Name="CNV3_LOAD_STATE" Type="SUBL_0" x="2733.3333" y="2600.0" >
+          <Parameter Name="ID" Value="&#34;CNV3_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV4_LOAD_STATE" Type="SUBL_0" x="3438.8887" y="3005.5554" >
+          <Parameter Name="ID" Value="&#34;CNV4_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV5_LOAD_STATE" Type="SUBL_0" x="4350.0" y="3383.3333" >
+          <Parameter Name="ID" Value="&#34;CNV5_LOAD_STATE&#34;" />
+        </FB>
+        <FB Name="CNV2_VALS" Type="PUBL_4" x="6861.111" y="0.0" >
+          <Parameter Name="ID" Value="&#34;CNV2_VALS&#34;" />
+        </FB>
+        <FB Name="AUTO" Type="SUBL_1" x="1416.6666" y="183.33333" >
+          <Parameter Name="ID" Value="&#34;AUTO&#34;" />
+        </FB>
+        <FB Name="CNV2_STATE" Type="SUBL_1" x="1300.0" y="1238.8888" >
+          <Parameter Name="ID" Value="&#34;CNV2_STATE&#34;" />
+        </FB>
+        <FB Name="AND" Type="FB_AND" x="2083.3333" y="783.3333" >
+        </FB>
+        <FB Name="ANDTRIG" Type="E_TRIG" x="2755.5554" y="394.44443" >
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="WRKPC_COLOUR.INIT" dx1="94.44444" />
+          <Connection Source="START.COLD" Destination="TOCONV2.INIT" dx1="55.555553" />
+          <Connection Source="TOCONV2.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TOCONV2.LOAD" Destination="MODEL1.LOAD" dx1="194.44444" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="CNV3_LOAD_STATE.INIT" dx1="155.55554" />
+          <Connection Source="CNV3_LOAD_STATE.INITO" Destination="CNV4_LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="CNV4_LOAD_STATE.INITO" Destination="CNV5_LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="CNV3_LOAD_STATE.IND" Destination="MODEL1.UNLD" dx1="2027.7777" />
+          <Connection Source="CNV4_LOAD_STATE.IND" Destination="MODEL1.UNLD" dx1="1127.7777" />
+          <Connection Source="CNV5_LOAD_STATE.IND" Destination="MODEL1.UNLD" dx1="633.3333" />
+          <Connection Source="TOCONV2.INITO" Destination="CNV2_VALS.INIT" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="CNV2_VALS.REQ" dx1="55.555553" />
+          <Connection Source="CNV2_VALS.INITO" Destination="CNV2_VALS.REQ" dx1="55.555553" dx2="55.555553" dy="194.44444" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="AUTO.INIT" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="CNV2_STATE.INIT" dx1="55.555553" />
+          <Connection Source="AUTO.IND" Destination="AND.REQ" dx1="183.33333" />
+          <Connection Source="CNV2_STATE.IND" Destination="AND.REQ" dx1="88.888885" />
+          <Connection Source="AND.CNF" Destination="ANDTRIG.EI" dx1="55.555553" />
+          <Connection Source="ANDTRIG.ER" Destination="TOCONV2.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TOCONV2.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TOCONV2.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.END" Destination="CNV2_VALS.SD_1" dx1="55.555553" />
+          <Connection Source="MODEL1.STYLO" Destination="CNV2_VALS.SD_3" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="CNV2_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="MODEL1.WKPO" Destination="CNV2_VALS.SD_4" dx1="55.555553" />
+          <Connection Source="WRKPC_COLOUR.RD_1" Destination="TOCONV2.COLOUR" dx1="55.555553" />
+          <Connection Source="AUTO.RD_1" Destination="AND.IN1" dx1="55.555553" />
+          <Connection Source="CNV2_STATE.RD_1" Destination="AND.IN2" dx1="177.77777" />
+          <Connection Source="AND.OUT" Destination="ANDTRIG.QI" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV3_CTRL" Type="VIEW_PANEL" x="2022.2222" y="188.88889" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="3788.8887" y="222.22221" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_CNV3" Type="TO_CNV_MODEL" x="1727.7777" y="205.55554" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV3_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV3_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="COUNTING" Type="E_PERMITC" x="4894.4443" y="2372.2222" >
+        </FB>
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="6416.6665" y="2300.0" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;COUNTB&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_CNV3.REQ" dx1="411.11108" />
+          <Connection Source="TO_CNV3.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_CNV3.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_CNV3.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="327.77777" />
+          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_CNV3.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_CNV3.WKPC" Destination="MODEL1.WKPC" dx1="805.55554" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="27.777777" />
+          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV4_CTRL" Type="VIEW_PANEL" x="1994.4443" y="994.4444" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="4044.4443" y="216.66666" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_CNV4" Type="TO_CNV_MODEL" x="1677.7777" y="216.66666" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV4_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV4_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="COUNTING" Type="E_PERMITC" x="5194.4443" y="1600.0" >
+        </FB>
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="6733.333" y="1783.3333" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;COUNTY&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="TO_CNV4.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_CNV4.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_CNV4.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="TO_CNV4.REQ" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_CNV4.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_CNV4.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONV5_CTRL" Type="VIEW_PANEL" x="1955.5554" y="1827.7777" >
+      <Parameter Name="DIA" Value="50" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="MODEL1" Type="CNV_MDL" x="3961.1108" y="255.55554" >
+          <Parameter Name="STYLE" Value="VSTYLE#DISC" />
+          <Parameter Name="LPOS" Value="0" />
+          <Parameter Name="VF" Value="3" />
+        </FB>
+        <FB Name="TO_CNV5" Type="TO_CNV_MODEL" x="1811.1111" y="383.3333" >
+          <Parameter Name="CNV_STATE" Value="&#34;CNV5_STATE&#34;" />
+          <Parameter Name="LOAD_STATE" Value="&#34;CNV5_LOAD_STATE&#34;" />
+          <Parameter Name="NEXT" Value="&#34;CNV1_LOAD_STATE&#34;" />
+          <Parameter Name="COLOUR" Value="&#34;WRKPC_COLOUR&#34;" />
+        </FB>
+        <FB Name="COUNTING" Type="E_PERMITC" x="5305.555" y="1738.8888" >
+        </FB>
+        <FB Name="CNT" Type="OUT_ANY_LBL" x="6927.7773" y="1827.7777" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="LABEL" Value="&#34;COUNTR&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TO_CNV5.REQ" dx1="55.555553" />
+          <Connection Source="TO_CNV5.CLK" Destination="MODEL1.CLK" dx1="55.555553" />
+          <Connection Source="TO_CNV5.LOAD" Destination="MODEL1.LOAD" dx1="55.555553" />
+          <Connection Source="TO_CNV5.UNLD" Destination="MODEL1.UNLD" dx1="55.555553" />
+          <Connection Source="MODEL1.INDR" Destination="COUNTING.EI" dx1="55.555553" />
+          <Connection Source="COUNTING.EO" Destination="CNT.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TO_CNV5.MTR" Destination="MODEL1.MTR_ON" dx1="55.555553" />
+          <Connection Source="TO_CNV5.WKPC" Destination="MODEL1.WKPC" dx1="55.555553" />
+          <Connection Source="MODEL1.POS" Destination="COUNTING.POS" dx1="55.555553" />
+          <Connection Source="COUNTING.COUNT" Destination="CNT.IN" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>
