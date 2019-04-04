@@ -770,11 +770,11 @@
           <Connection Source="LOAD_STATE.INITO" Destination="STATE.INIT" dx1="361.11108" dx2="55.555553" dy="1177.7777" />
           <Connection Source="LOAD_STATE.CNF" Destination="STATE.REQ" dx1="55.555553" dx2="55.555553" dy="1177.7777" />
           <Connection Source="WRKPC_COLOUR.INITO" Destination="WRKPC_COLOUR2.INIT" dx1="55.555553" />
-          <Connection Source="WRKPC_COLOUR2.INITO" Destination="PASS.INIT" dx1="661.1111" />
           <Connection Source="WRKPC_COLOUR2.IND" Destination="PASS.REQ" dx1="433.3333" />
           <Connection Source="TOCONV2.CNF" Destination="TRIG_TO_UNLD.EI" dx1="633.3333" />
           <Connection Source="TRIG_TO_UNLD.ER" Destination="LOAD_STATE.INIT" dx1="888.88885" />
           <Connection Source="TRIG_TO_UNLD.ER" Destination="LOAD_STATE.REQ" dx1="538.88885" />
+          <Connection Source="WRKPC_COLOUR2.INITO" Destination="PASS.INIT" dx1="772.22217" />
         </EventConnections>
         <DataConnections>
           <Connection Source="TOCONV2.MTR" Destination="MODEL1.MTR_ON" dx1="538.88885" />
