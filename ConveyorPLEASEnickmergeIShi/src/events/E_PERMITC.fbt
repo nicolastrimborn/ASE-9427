@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_PERMITC" Comment="Permissive propagation of an event" >
+  <Identification Standard="61499-1-A.1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2016-04-19" Remarks="Corrected spelling of Holobloc." />
+  <VersionInfo Organization="Holobloci Inc" Version="0.2" Author="JHC" Date="2009-11-14" Remarks="Updated for 61499-1 2nd Edition." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2003-12-30" Remarks="Updated for 61499-1 CDV." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2001-03-03" />
+<CompilerInfo header="package fb.rt.events;" >
+  <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="RESET" Comment="Event input" >
+        <With Var="POS" />
+      </Event>
+      <Event Name="EI" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Event output" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="POS" Type="UINT" Comment="Permits EI=>EO pass-through" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="COUNT" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="127.77777" y="83.33333" >
+      </ECState>
+      <ECState Name="EO" Comment="Issue EO Event" x="794.4444" y="1322.2222" >
+        <ECAction Algorithm="CU" Output="EO" />
+      </ECState>
+      <ECState Name="INIT" x="1716.6666" y="588.88885" >
+        <ECAction Algorithm="RESET" />
+      </ECState>
+      <ECTransition Source="EO" Destination="START" Condition="1" x="344.44443" y="1322.2222" />
+      <ECTransition Source="START" Destination="EO" Condition="EI [POS=100]" x="794.4444" y="1022.22217" />
+      <ECTransition Source="START" Destination="INIT" Condition="RESET" x="1344.4443" y="183.33333" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="1061.1111" y="572.2222" />
+    </ECC>
+  <Algorithm Name="CU" >
+<ST><![CDATA[IF POS=100 THEN
+	COUNT:=COUNT+1;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="RESET" >
+<ST><![CDATA[COUNT:=0;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>
