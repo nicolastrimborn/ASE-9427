@@ -4,10 +4,9 @@ import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
 import fb.rt.net.*;
-import fb.rt.select.*;
 /** FUNCTION_BLOCK TO_CNV_MODEL (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190403/JHC - Generated.
+  * @version 20190404/JHC - Generated.
   */
 public class TO_CNV_MODEL extends fb.rt.FBInstance {
 /** Initialization Confirm */
@@ -34,22 +33,20 @@ public final EventServer REQ = (e) -> service_REQ();
   protected E_TRIG UNLOAD = new E_TRIG() ;
 /** FB CLOCK:E_CYCLE */
   protected E_CYCLE CLOCK = new E_CYCLE() ;
-/** FB PASS_COLOUR:FB_MUX_COLOR */
-  protected FB_MUX_COLOR PASS_COLOUR = new FB_MUX_COLOR() ;
-/** FB WKPC_COLOUR:SUBL_1 */
-  protected SUBL WKPC_COLOUR = new SUBL(1);
+/** FB PASS:PASSED_COLOUR */
+  protected PASSED_COLOUR PASS = new PASSED_COLOUR() ;
 /** VAR CNV_STATE:WSTRING */
   public WSTRING CNV_STATE = new WSTRING();
 /** VAR LOAD_STATE:WSTRING */
   public WSTRING LOAD_STATE = new WSTRING();
 /** VAR NEXT:WSTRING */
   public WSTRING NEXT = new WSTRING();
-/** VAR COLOUR:WSTRING */
-  public WSTRING COLOUR = new WSTRING();
+/** VAR COLOUR:COLOR */
+  public COLOR COLOUR = new COLOR();
 /** Output event qualifier */
   public final BOOL MTR = new BOOL();
 /** VAR WKPC:COLOR */
-  public final COLOR WKPC = (COLOR)PASS_COLOUR.OUT;
+  public final COLOR WKPC = (COLOR)PASS.CO;
 /** The default constructor. */
 public TO_CNV_MODEL(){
     super();
@@ -58,21 +55,15 @@ public TO_CNV_MODEL(){
     CNV_LOAD_STATE.IND.connectTo(LOAD);
     UNLOAD.ER.connectTo(UNLD);
     MOTOR.IND.connectTo(CNF);
-    PASS_COLOUR.CNF.connectTo(CNF);
     MOTOR.INITO.connectTo(INITO);
-    WKPC_COLOUR.IND.connectTo(PASS_COLOUR.REQ);
+    PASS.CNF.connectTo(CNF);
     NEXT_STATE.connectOVNoException("RD_1",UNLOAD.QI);
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     MOTOR.connectIVNoException("ID",CNV_STATE);
     NEXT_STATE.connectIVNoException("ID",NEXT);
     MOTOR.connectOVNoException("RD_1",MTR);
-    WKPC_COLOUR.connectOVNoException("RD_1",PASS_COLOUR.K);
-    WKPC_COLOUR.connectIVNoException("ID",COLOUR);
+    PASS.connectIVNoException("CI",COLOUR);
     CLOCK.DT.initializeNoException("t#100ms");
-    PASS_COLOUR.IN0.initializeNoException("[0,0,0]");
-    PASS_COLOUR.IN1.initializeNoException("[255,0,0]");
-    PASS_COLOUR.IN2.initializeNoException("[255,211,0]");
-    PASS_COLOUR.IN3.initializeNoException("[0,0,255]");
   }
 	/**
  * {@inheritDoc}
@@ -87,7 +78,7 @@ protected void connectInternal(ANY newVar) {
   if(newVar == NEXT)
     NEXT_STATE.connectIVNoException("ID",NEXT);
   if(newVar == COLOUR)
-    WKPC_COLOUR.connectIVNoException("ID",COLOUR);
+    PASS.connectIVNoException("CI",COLOUR);
 }
 /** start the FB instances. */
 public void start( ){
@@ -97,8 +88,7 @@ public void start( ){
   NEXT_STATE.start();
   UNLOAD.start();
   CLOCK.start();
-  PASS_COLOUR.start();
-  WKPC_COLOUR.start();
+  PASS.start();
 }
 /** stop the FB instances. */
 public void stop( ){
@@ -108,8 +98,7 @@ public void stop( ){
   NEXT_STATE.stop();
   UNLOAD.stop();
   CLOCK.stop();
-  PASS_COLOUR.stop();
-  WKPC_COLOUR.stop();
+  PASS.stop();
 }
 /** kill the FB instances. */
 public void kill( ){
@@ -119,8 +108,7 @@ public void kill( ){
   NEXT_STATE.kill();
   UNLOAD.kill();
   CLOCK.kill();
-  PASS_COLOUR.kill();
-  WKPC_COLOUR.kill();
+  PASS.kill();
 }
 /** reset the FB instances. */
 public void reset( ){
@@ -130,17 +118,17 @@ public void reset( ){
   NEXT_STATE.reset();
   UNLOAD.reset();
   CLOCK.reset();
-  PASS_COLOUR.reset();
-  WKPC_COLOUR.reset();
+  PASS.reset();
 }
 protected synchronized void service_INIT(){
    MOTOR.INIT.serviceEvent(this);
    CNV_LOAD_STATE.INIT.serviceEvent(this);
    NEXT_STATE.INIT.serviceEvent(this);
-   WKPC_COLOUR.INIT.serviceEvent(this);
+   PASS.INIT.serviceEvent(this);
 }
 protected synchronized void service_REQ(){
    CLOCK.START.serviceEvent(this);
+   PASS.REQ.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}
@@ -154,7 +142,6 @@ protected synchronized void service_REQ(){
     NEXT_STATE.initialize("NEXT_STATE",r);
     UNLOAD.initialize("UNLOAD",r);
     CLOCK.initialize("CLOCK",r);
-    PASS_COLOUR.initialize("PASS_COLOUR",r);
-    WKPC_COLOUR.initialize("WKPC_COLOUR",r);
+    PASS.initialize("PASS",r);
 }
 }
