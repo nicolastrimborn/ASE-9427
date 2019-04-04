@@ -4,7 +4,7 @@ import fb.datatype.*;
 import fb.rt.*;
 /** FUNCTION_BLOCK E_PERMITC (* Permissive propagation of an event *)
   * @author JHC
-  * @version 20190403/JHC - Generated.
+  * @version 20190405/JHC - Generated.
   */
 public class E_PERMITC extends fb.rt.FBInstance {
 /** The index (0) of state START. */
@@ -52,6 +52,7 @@ void state_EO(){
 void state_INIT(){
    eccState = INDEX_INIT;
    alg_RESET();
+   EO.serviceEvent(this);
    state_START();
 }
   /** ALGORITHM CU IN ST*/

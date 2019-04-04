@@ -36,7 +36,7 @@
         <ECAction Algorithm="CU" Output="EO" />
       </ECState>
       <ECState Name="INIT" x="1716.6666" y="588.88885" >
-        <ECAction Algorithm="RESET" />
+        <ECAction Algorithm="RESET" Output="EO" />
       </ECState>
       <ECTransition Source="EO" Destination="START" Condition="1" x="344.44443" y="1322.2222" />
       <ECTransition Source="START" Destination="EO" Condition="EI [POS=100]" x="794.4444" y="1022.22217" />

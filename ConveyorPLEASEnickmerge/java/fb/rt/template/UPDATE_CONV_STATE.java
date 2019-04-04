@@ -7,7 +7,7 @@ import fb.rt.hmi.*;
 import fb.rt.net.*;
 /** FUNCTION_BLOCK UPDATE_CONV_STATE (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190404/JHC - Generated.
+  * @version 20190405/JHC - Generated.
   */
 public class UPDATE_CONV_STATE extends fb.rt.FBInstance {
 /** Initialization Confirm */
@@ -30,6 +30,8 @@ public final EventServer INIT = (e) -> service_INIT();
   public WSTRING MOTOR_STATE = new WSTRING();
 /** VAR LABEL:WSTRING */
   public WSTRING LABEL = new WSTRING();
+/** VAR BTNLABEL:WSTRING */
+  public WSTRING BTNLABEL = new WSTRING();
 /** The default constructor. */
 public UPDATE_CONV_STATE(){
     super();
@@ -45,7 +47,7 @@ public UPDATE_CONV_STATE(){
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     CNV.connectIVNoException("LABEL",LABEL);
     CNV_MTR_STATE.connectIVNoException("ID",MOTOR_STATE);
-    LOAD_BTN.LABEL.initializeNoException("Load WP");
+    LOAD_BTN.connectIVNoException("LABEL",BTNLABEL);
     LOAD_BTN.QI.initializeNoException("1");
   }
 	/**
@@ -60,6 +62,8 @@ protected void connectInternal(ANY newVar) {
     CNV.connectIVNoException("LABEL",LABEL);
   if(newVar == MOTOR_STATE)
     CNV_MTR_STATE.connectIVNoException("ID",MOTOR_STATE);
+  if(newVar == BTNLABEL)
+    LOAD_BTN.connectIVNoException("LABEL",BTNLABEL);
 }
 /** start the FB instances. */
 public void start( ){

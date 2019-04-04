@@ -44,7 +44,7 @@
           <Parameter Name="BKGD" Value="[255,0,0]" />
         </FB>
         <FB Name="SPACE2" Type="XSPACE" x="3927.7776" y="1938.8888" >
-          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIA" Value="17" />
           <Parameter Name="DIMS" Value="[1,0]" />
         </FB>
         <FB Name="SPACE3" Type="XSPACE" x="6311.111" y="1716.6666" >
@@ -224,41 +224,46 @@
         <FB Name="WRKPC_COLOUR" Type="PUBL_1" x="8850.0" y="200.0" >
           <Parameter Name="ID" Value="&#34;WRKPC_COLOUR&#34;" />
         </FB>
-        <FB Name="TT_STATE_PE" Type="PUBL_1" x="7533.333" y="3661.111" >
+        <FB Name="TT_STATE_PE" Type="PUBL_1" x="2750.0" y="2555.5554" >
           <Parameter Name="ID" Value="&#34;TT_STATE_PE&#34;" />
         </FB>
-        <FB Name="TT" Type="IN_BOOL" x="3749.9998" y="3872.2222" >
+        <FB Name="TT" Type="IN_BOOL" x="1772.2222" y="1544.4443" >
           <Parameter Name="LABEL" Value="&#34;Load TT&#34;" />
         </FB>
-        <FB Name="TTTurn" Type="IN_BOOL" x="4972.222" y="4650.0" >
+        <FB Name="TTTurn" Type="IN_BOOL" x="3427.7776" y="1538.8888" >
           <Parameter Name="LABEL" Value="&#34;TurnTT&#34;" />
         </FB>
-        <FB Name="TTTURN" Type="PUBL_1" x="7388.8887" y="4900.0" >
+        <FB Name="TTTURN" Type="PUBL_1" x="4177.778" y="1972.2222" >
         </FB>
-        <FB Name="UPDATE_CONV1" Type="UPDATE_CONV_STATE" x="1033.3333" y="3655.5554" >
+        <FB Name="UPDATE_CONV1" Type="UPDATE_CONV_STATE" x="677.7778" y="1638.8888" >
           <Parameter Name="LOAD_STATE" Value="&#34;CNV1_LOAD_STATE&#34;" />
           <Parameter Name="MOTOR_STATE" Value="&#34;CNV1_STATE&#34;" />
           <Parameter Name="LABEL" Value="&#34;CNV1&#34;" />
+          <Parameter Name="BTNLABEL" Value="&#34;LOAD WP&#34;" />
         </FB>
-        <FB Name="UPDATE_CONV2" Type="UPDATE_CONV_STATE" x="2500.0" y="1949.9999" >
+        <FB Name="UPDATE_CONV2" Type="UPDATE_CONV_STATE" x="3538.8887" y="4594.4443" >
           <Parameter Name="LOAD_STATE" Value="&#34;CNV2_LOAD_STATE&#34;" />
           <Parameter Name="MOTOR_STATE" Value="&#34;CNV2_STATE&#34;" />
           <Parameter Name="LABEL" Value="&#34;CNV2&#34;" />
+          <Parameter Name="BTNLABEL" Value="&#34;LOAD WP&#34;" />
         </FB>
-        <FB Name="UPDATE_CONV3" Type="UPDATE_CONV_STATE" x="4783.333" y="1955.5554" >
+        <FB Name="UPDATE_CONV3" Type="UPDATE_CONV_STATE" x="8927.777" y="2566.6665" >
           <Parameter Name="LOAD_STATE" Value="&#34;CNV3_LOAD_STATE&#34;" />
           <Parameter Name="MOTOR_STATE" Value="&#34;CNV3_STATE&#34;" />
           <Parameter Name="LABEL" Value="&#34;BLUECHT&#34;" />
+          <Parameter Name="BTNLABEL" Value="&#34;PUSH BLU&#34;" />
         </FB>
-        <FB Name="UPDATE_CONV4" Type="UPDATE_CONV_STATE" x="7105.555" y="1961.1111" >
+        <FB Name="UPDATE_CONV4" Type="UPDATE_CONV_STATE" x="7088.8887" y="1949.9999" >
           <Parameter Name="LOAD_STATE" Value="&#34;CNV4_LOAD_STATE&#34;" />
           <Parameter Name="MOTOR_STATE" Value="&#34;CNV4_STATE&#34;" />
           <Parameter Name="LABEL" Value="&#34;YELCHT&#34;" />
+          <Parameter Name="BTNLABEL" Value="&#34;PUSH YEL&#34;" />
         </FB>
-        <FB Name="UPDATE_CONV5" Type="UPDATE_CONV_STATE" x="9366.666" y="1955.5554" >
+        <FB Name="UPDATE_CONV5" Type="UPDATE_CONV_STATE" x="5533.333" y="2322.2222" >
           <Parameter Name="LOAD_STATE" Value="&#34;CNV5_LOAD_STATE&#34;" />
           <Parameter Name="MOTOR_STATE" Value="&#34;CNV5_STATE&#34;" />
           <Parameter Name="LABEL" Value="&#34;REDCHT&#34;" />
+          <Parameter Name="BTNLABEL" Value="&#34;PUSH RED&#34;" />
         </FB>
         <FB Name="AUTOMATIC" Type="IN_BOOL" x="2327.7776" y="200.0" >
           <Parameter Name="LABEL" Value="&#34;AUTOMATIC ON&#34;" />
@@ -277,28 +282,28 @@
           <Parameter Name="DIMS" Value="[1,0]" />
           <Parameter Name="DIA" Value="20" />
         </FB>
-        <FB Name="sp2" Type="XSPACE" x="616.6666" y="2350.0" >
+        <FB Name="sp2" Type="XSPACE" x="8888.889" y="3716.6665" >
           <Parameter Name="DIMS" Value="[2,0]" />
           <Parameter Name="DIA" Value="20" />
           <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
         </FB>
-        <FB Name="sp3" Type="XSPACE" x="3727.7776" y="1955.5554" >
-          <Parameter Name="DIMS" Value="[2,0]" />
+        <FB Name="sp3" Type="XSPACE" x="4761.111" y="3505.5554" >
+          <Parameter Name="DIMS" Value="[0,0]" />
           <Parameter Name="DIA" Value="20" />
           <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
         </FB>
-        <FB Name="sp4" Type="XSPACE" x="6044.4443" y="1961.1111" >
-          <Parameter Name="DIMS" Value="[1,0]" />
+        <FB Name="sp4" Type="XSPACE" x="6533.333" y="3122.2222" >
+          <Parameter Name="DIMS" Value="[0,0]" />
           <Parameter Name="DIA" Value="20" />
           <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
         </FB>
-        <FB Name="sp5" Type="XSPACE" x="8300.0" y="1955.5554" >
-          <Parameter Name="DIMS" Value="[2,0]" />
+        <FB Name="sp5" Type="XSPACE" x="8261.11" y="1949.9999" >
+          <Parameter Name="DIMS" Value="[0,0]" />
           <Parameter Name="DIA" Value="15" />
           <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
         </FB>
-        <FB Name="sp6" Type="XSPACE" x="1705.5555" y="1827.7777" >
-          <Parameter Name="DIMS" Value="[2,0]" />
+        <FB Name="sp6" Type="XSPACE" x="2283.3333" y="4761.111" >
+          <Parameter Name="DIMS" Value="[1,0]" />
           <Parameter Name="DIA" Value="20" />
           <Parameter Name="LBLS" Value="&#34;Select Colour&#34;" />
         </FB>
@@ -306,16 +311,19 @@
           <Parameter Name="LABEL1" Value="&#34;AUTO&#34;" />
           <Parameter Name="LABEL2" Value="&#34;MAN&#34;" />
         </FB>
+        <FB Name="sp22" Type="XSPACE" x="9377.777" y="577.7778" >
+          <Parameter Name="DIMS" Value="[3,0]" />
+          <Parameter Name="DIA" Value="20" />
+        </FB>
         <EventConnections>
           <Connection Source="colours.IND" Destination="WRKPC_COLOUR.REQ" dx1="172.22221" dx2="55.555553" dy="83.33333" />
-          <Connection Source="TT.INITO" Destination="TT_STATE_PE.INIT" dx1="55.555553" />
-          <Connection Source="TT.IND" Destination="TT_STATE_PE.REQ" dx1="55.555553" />
+          <Connection Source="TT.INITO" Destination="TT_STATE_PE.INIT" dx1="305.55554" />
+          <Connection Source="TT.IND" Destination="TT_STATE_PE.REQ" dx1="216.66666" />
           <Connection Source="TT.INITO" Destination="TTTurn.INIT" dx1="522.2222" />
           <Connection Source="TT.CNF" Destination="TTTurn.REQ" dx1="55.555553" />
           <Connection Source="TTTurn.INITO" Destination="TTTURN.INIT" dx1="55.555553" />
           <Connection Source="TTTurn.IND" Destination="TTTURN.REQ" dx1="55.555553" />
           <Connection Source="TTTurn.INITO" Destination="TTTURN.REQ" dx1="55.555553" />
-          <Connection Source="UPDATE_CONV1.CNF" Destination="TT.REQ" dx1="55.555553" />
           <Connection Source="AUTOMATIC.IND" Destination="CNV1_LOAD_STATE.REQ" dx1="388.8889" />
           <Connection Source="CNV1_LOAD_STATE.INITO" Destination="AUTO.INIT" dx1="205.55554" />
           <Connection Source="CNV1_LOAD_STATE.CNF" Destination="AUTO.REQ" dx1="55.555553" dx2="55.555553" dy="5466.6665" />
@@ -324,28 +332,29 @@
           <Connection Source="START.COLD" Destination="AUTOMATIC.REQ" dx1="55.555553" />
           <Connection Source="sp1.INITO" Destination="CNV1_LOAD_STATE.INIT" dx1="55.555553" />
           <Connection Source="AUTOMATIC.INITO" Destination="sp1.INIT" dx1="333.3333" />
-          <Connection Source="WRKPC_COLOUR.INITO" Destination="sp2.INIT" dx1="55.555553" dx2="55.555553" dy="1388.8888" />
           <Connection Source="CNV1_STATE.INITO" Destination="colours.REQ" dx1="638.88885" />
           <Connection Source="AUTOMATIC.CNF" Destination="colours.REQ" dx1="4472.222" />
           <Connection Source="CNV1_STATE.INITO" Destination="colours.INIT" dx1="55.555553" />
           <Connection Source="colours.INITO" Destination="WRKPC_COLOUR.INIT" dx1="55.555553" />
           <Connection Source="UPDATE_CONV2.INITO" Destination="sp3.INIT" dx1="55.555553" />
-          <Connection Source="sp3.INITO" Destination="UPDATE_CONV3.INIT" dx1="55.555553" />
-          <Connection Source="UPDATE_CONV3.INITO" Destination="sp4.INIT" dx1="55.555553" />
           <Connection Source="sp4.INITO" Destination="UPDATE_CONV4.INIT" dx1="55.555553" />
           <Connection Source="UPDATE_CONV4.INITO" Destination="sp5.INIT" dx1="55.555553" />
-          <Connection Source="sp2.INITO" Destination="UPDATE_CONV1.INIT" dx1="55.555553" />
-          <Connection Source="UPDATE_CONV1.INITO" Destination="sp6.INIT" dx1="27.777777" />
           <Connection Source="sp6.INITO" Destination="UPDATE_CONV2.INIT" dx1="55.555553" />
-          <Connection Source="UPDATE_CONV1.INITO" Destination="TT.INIT" dx1="283.3333" />
-          <Connection Source="sp5.INITO" Destination="UPDATE_CONV5.INIT" dx1="55.555553" />
           <Connection Source="START.COLD" Destination="twostate.INIT" dx1="55.555553" />
           <Connection Source="twostate.INITO" Destination="AUTOMATIC.INIT" dx1="55.555553" />
           <Connection Source="AUTOMATIC.IND" Destination="twostate.REQ" dx1="55.555553" dx2="55.555553" dy="83.33333" />
+          <Connection Source="WRKPC_COLOUR.INITO" Destination="sp22.INIT" dx1="55.555553" />
+          <Connection Source="TTTURN.INITO" Destination="sp6.INIT" dx1="55.555553" dx2="55.555553" dy="1705.5555" />
+          <Connection Source="sp22.INITO" Destination="UPDATE_CONV1.INIT" dx1="55.555553" dx2="55.555553" dy="805.55554" />
+          <Connection Source="UPDATE_CONV1.INITO" Destination="TT.INIT" dx1="55.555553" />
+          <Connection Source="sp5.INITO" Destination="UPDATE_CONV3.INIT" dx1="55.555553" />
+          <Connection Source="sp3.INITO" Destination="UPDATE_CONV5.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV5.INITO" Destination="sp4.INIT" dx1="55.555553" />
+          <Connection Source="UPDATE_CONV3.INITO" Destination="sp2.INIT" dx1="55.555553" dx2="55.555553" dy="1233.3333" />
         </EventConnections>
         <DataConnections>
           <Connection Source="colours.I" Destination="WRKPC_COLOUR.SD_1" dx1="288.8889" dx2="55.555553" dy="83.33333" />
-          <Connection Source="TT.OUT" Destination="TT_STATE_PE.SD_1" dx1="55.555553" />
+          <Connection Source="TT.OUT" Destination="TT_STATE_PE.SD_1" dx1="77.77777" />
           <Connection Source="TTTurn.OUT" Destination="TTTURN.SD_1" dx1="55.555553" />
           <Connection Source="AUTOMATIC.OUT" Destination="CNV1_STATE.SD_1" dx1="166.66666" />
           <Connection Source="AUTOMATIC.OUT" Destination="AUTO.SD_1" dx1="277.77777" />
@@ -457,20 +466,25 @@
         <FB Name="TT_STATE_PE" Type="SUBL_1" x="2127.7776" y="11.111111" >
           <Parameter Name="ID" Value="&#34;TT_STATE_PE&#34;" />
         </FB>
-        <FB Name="TT_PS" Type="PUBL_2" x="6588.8887" y="1755.5555" >
+        <FB Name="TT_PS" Type="PUBL_2" x="6633.333" y="1772.2222" >
         </FB>
-        <FB Name="TTTURN" Type="SUBL_1" x="2422.2222" y="1711.1111" >
+        <FB Name="TTTURN" Type="SUBL_1" x="1933.3333" y="1916.6666" >
         </FB>
-        <FB Name="Not" Type="FB_NOT" x="3555.5554" y="2011.1111" >
+        <FB Name="Not" Type="FB_NOT" x="3533.3333" y="2211.111" >
         </FB>
         <FB Name="CNV1_VALS" Type="SUBL_4" x="894.4444" y="550.0" >
           <Parameter Name="ID" Value="&#34;CNV1_VALS&#34;" />
         </FB>
         <FB Name="PASS" Type="PASS_BOOL" x="3183.3333" y="83.33333" >
         </FB>
-        <FB Name="PASSS" Type="PASSED_COLOUR" x="3166.6665" y="877.7778" >
+        <FB Name="PASSS" Type="PASSED_COLOUR" x="2211.111" y="1038.8888" >
         </FB>
         <FB Name="TT_VALS" Type="PUBL_2" x="5566.6665" y="650.0" >
+        </FB>
+        <FB Name="SWITCH_OFF" Type="PASS_DELAY" x="4672.222" y="355.55554" >
+        </FB>
+        <FB Name="CNV2_LOAD_STATE" Type="SUBL_0" x="3761.111" y="1038.8888" >
+          <Parameter Name="ID" Value="&#34;CNV2_LOAD_STATE&#34;" />
         </FB>
         <EventConnections>
           <Connection Source="START.COLD" Destination="TT_STATE_PE.INIT" dx1="55.555553" />
@@ -485,16 +499,21 @@
           <Connection Source="CNV1_VALS.INITO" Destination="PASSS.INIT" dx1="55.555553" />
           <Connection Source="CNV1_VALS.IND" Destination="PASSS.REQ" dx1="55.555553" />
           <Connection Source="PASS.INITO" Destination="TT_VALS.INIT" dx1="1983.3333" />
-          <Connection Source="PASS.CNF" Destination="TT_VALS.REQ" dx1="1855.5555" />
           <Connection Source="PASSS.CNF" Destination="TT_VALS.REQ" dx1="55.555553" />
+          <Connection Source="PASS.INITO" Destination="SWITCH_OFF.INIT" dx1="677.7778" />
+          <Connection Source="PASS.CNF" Destination="SWITCH_OFF.REQ" dx1="516.6666" />
+          <Connection Source="PASSS.INITO" Destination="CNV2_LOAD_STATE.INIT" dx1="55.555553" />
+          <Connection Source="CNV2_LOAD_STATE.IND" Destination="SWITCH_OFF.REQ2" dx1="55.555553" />
+          <Connection Source="SWITCH_OFF.CNF" Destination="TT_VALS.REQ" dx1="266.66666" />
         </EventConnections>
         <DataConnections>
-          <Connection Source="Not.OUT" Destination="TT_PS.SD_1" dx1="55.555553" />
+          <Connection Source="Not.OUT" Destination="TT_PS.SD_1" dx1="677.7778" />
           <Connection Source="TTTURN.RD_1" Destination="Not.IN" dx1="55.555553" />
           <Connection Source="TT_STATE_PE.RD_1" Destination="PASS.STATE" dx1="55.555553" />
           <Connection Source="CNV1_VALS.RD_4" Destination="PASSS.CI" dx1="55.555553" />
-          <Connection Source="PASS.MTR" Destination="TT_VALS.SD_1" dx1="1238.8888" />
           <Connection Source="PASSS.CO" Destination="TT_VALS.SD_2" dx1="55.555553" />
+          <Connection Source="PASS.MTR" Destination="SWITCH_OFF.STATE" dx1="899.99994" />
+          <Connection Source="SWITCH_OFF.MTR" Destination="TT_VALS.SD_1" dx1="55.555553" dx2="55.555553" dy="177.77777" />
         </DataConnections>
       </FBNetwork>
     </Resource>

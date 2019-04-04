@@ -23,11 +23,11 @@
       <VarDeclaration Name="LOAD_STATE" Type="WSTRING" Comment="Input event qualifier" />
       <VarDeclaration Name="MOTOR_STATE" Type="WSTRING" />
       <VarDeclaration Name="LABEL" Type="WSTRING" />
+      <VarDeclaration Name="BTNLABEL" Type="WSTRING" />
     </InputVars>
   </InterfaceList>
   <FBNetwork >
     <FB Name="LOAD_BTN" Type="IN_EVENT" x="633.3333" y="322.2222" >
-      <Parameter Name="LABEL" Value="&#34;Load WP&#34;" />
       <Parameter Name="QI" Value="1" />
     </FB>
     <FB Name="CNV_LOAD_STATE" Type="PUBL_0" x="1544.4443" y="427.77777" >
@@ -52,6 +52,7 @@
       <Connection Source="LOAD_STATE" Destination="CNV_LOAD_STATE.ID" />
       <Connection Source="LABEL" Destination="CNV.LABEL" />
       <Connection Source="MOTOR_STATE" Destination="CNV_MTR_STATE.ID" />
+      <Connection Source="BTNLABEL" Destination="LOAD_BTN.LABEL" />
     </DataConnections>
   </FBNetwork>
 </FBType>
