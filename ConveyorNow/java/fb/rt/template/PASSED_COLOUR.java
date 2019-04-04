@@ -3,11 +3,11 @@ package fb.rt.template;
 import fb.datatype.*;
 import fb.rt.*;
 import fb.rt.events.*;
-/** FUNCTION_BLOCK PASS_BOOL (* Basic Function Block Type *)
+/** FUNCTION_BLOCK PASSED_COLOUR (* Basic Function Block Type *)
   * @author JHC
-  * @version 20190404/JHC - Generated.
+  * @version 20190403/JHC - Generated.
   */
-public class PASS_BOOL extends fb.rt.FBInstance {
+public class PASSED_COLOUR extends fb.rt.FBInstance {
 /** The index (0) of state START. */
 public static final int INDEX_START = 0;
 /** The index (1) of state INIT. */
@@ -22,12 +22,12 @@ public final EventOutput CNF = new EventOutput();
 public final EventServer INIT = (e) -> service_INIT();
 /** EVENT REQ */
 public final EventServer REQ = (e) -> service_REQ();
-/** VAR STATE:BOOL */
-  public BOOL STATE = new BOOL();
+/** VAR CI:COLOR */
+  public COLOR CI = new COLOR();
 /** Output event qualifier */
-  public final BOOL MTR = new BOOL();
+  public final COLOR CO = new COLOR();
 /** The default constructor. */
-public PASS_BOOL(){
+public PASSED_COLOUR(){
     super();
   }
 protected synchronized void service_INIT(){
@@ -60,8 +60,8 @@ void state_REQ(){
 }
   /** ALGORITHM INIT IN ST*/
 public void alg_INIT(){
-MTR.value=false;}
+}
   /** ALGORITHM REQ IN ST*/
 public void alg_REQ(){
-MTR.value=STATE.value;}
+CO.value=CI.value;}
 }

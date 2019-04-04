@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
-<FBType Name="MTR_CNTRL_POS" Comment="Basic Function Block Type" >
+<FBType Name="PASSED_COLOUR" Comment="Basic Function Block Type" >
   <Identification Standard="61499-2" />
   <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
   <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
@@ -11,33 +11,22 @@
   <InterfaceList>
     <EventInputs>
       <Event Name="INIT" Comment="Initialization Request" >
-        <With Var="POS" />
-        <With Var="STATE" />
       </Event>
       <Event Name="REQ" >
-        <With Var="COLOUR" />
-        <With Var="P1" />
-        <With Var="P2" />
-        <With Var="P3" />
       </Event>
     </EventInputs>
     <EventOutputs>
       <Event Name="INITO" Comment="Initialization Confirm" >
-        <With Var="MTR" />
+        <With Var="CO" />
       </Event>
       <Event Name="CNF" >
       </Event>
     </EventOutputs>
     <InputVars>
-      <VarDeclaration Name="POS" Type="UINT" />
-      <VarDeclaration Name="STATE" Type="BOOL" />
-      <VarDeclaration Name="COLOUR" Type="UINT" />
-      <VarDeclaration Name="P1" Type="UINT" />
-      <VarDeclaration Name="P2" Type="UINT" />
-      <VarDeclaration Name="P3" Type="UINT" />
+      <VarDeclaration Name="CI" Type="COLOR" />
     </InputVars>
     <OutputVars>
-      <VarDeclaration Name="MTR" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="CO" Type="COLOR" Comment="Output event qualifier" />
     </OutputVars>
   </InterfaceList>
   <BasicFB>
@@ -56,33 +45,10 @@
       <ECTransition Source="REQ" Destination="START" Condition="1" x="533.3333" y="766.6666" />
     </ECC>
   <Algorithm Name="INIT" Comment="Initialization algorithm" >
-<ST><![CDATA[MTR:=FALSE;]]></ST>
+<ST><![CDATA[]]></ST>
   </Algorithm>
   <Algorithm Name="REQ" >
-<ST><![CDATA[IF STATE THEN
-   MTR:=TRUE;
-	IF COLOUR=1 THEN
-		IF POS<P1 THEN
-			MTR:=TRUE;
-		ELSE
-			MTR:=FALSE;
-		END_IF;
-	END_IF;
-	IF COLOUR=2 THEN
-		IF POS<P2 THEN
-			MTR:=TRUE;
-		ELSE
-			MTR:=FALSE;
-		END_IF;
-	END_IF;
-	IF COLOUR=3 THEN
-		IF POS<P3 THEN
-			MTR:=TRUE;
-		ELSE
-			MTR:=FALSE;
-		END_IF;
-	END_IF;
-END_IF;]]></ST>
+<ST><![CDATA[CO:=CI;]]></ST>
   </Algorithm>
   </BasicFB>
 </FBType>

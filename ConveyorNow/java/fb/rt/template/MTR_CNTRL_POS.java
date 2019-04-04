@@ -74,7 +74,7 @@ MTR.value=false;}
   /** ALGORITHM REQ IN ST*/
 public void alg_REQ(){
 if( STATE.value ){
-    MTR.value=true;
+   MTR.value=true;
 	if( COLOUR.value==1 ){
 		if( POS.value<P1.value ){
 			MTR.value=true;
