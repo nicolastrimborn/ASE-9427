@@ -5,7 +5,7 @@ import fb.rt.*;
 import fb.rt.events.*;
 /** FUNCTION_BLOCK PASS_BOOL (* Basic Function Block Type *)
   * @author JHC
-  * @version 20190403/JHC - Generated.
+  * @version 20190404/JHC - Generated.
   */
 public class PASS_BOOL extends fb.rt.FBInstance {
 /** The index (0) of state START. */

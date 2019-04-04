@@ -8,7 +8,7 @@ import fb.rt.net.*;
 import fb.rt.select.*;
 /** FUNCTION_BLOCK CHECK_POS (* Composite Function Block Type *)
   * @author JHC
-  * @version 20190403/JHC - Generated.
+  * @version 20190404/JHC - Generated.
   */
 public class CHECK_POS extends fb.rt.FBInstance {
 /** Initialization Confirm */
@@ -72,14 +72,14 @@ public CHECK_POS(){
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
     MOTOR.connectIVNoException("ID",CNV_STATE);
     MOTOR.connectOVNoException("RD_1",MOTOR_CONTOL.STATE);
-    MOTOR_CONTOL.connectIVNoException("COLOUR",COLOUR);
     MOTOR_CONTOL.connectIVNoException("P1",P1);
     MOTOR_CONTOL.connectIVNoException("P2",P2);
     MOTOR_CONTOL.connectIVNoException("P3",P3);
-    PICK_COLOUR.connectIVNoException("K",COLOUR);
     PREVIOUS.connectOVNoException("RD_2",MOTOR_CONTOL.POS);
     PREVIOUS.connectIVNoException("ID",PREV);
     TEST.connectIVNoException("IN",PICK_COLOUR.ovNamedNoException("OUT"));
+    MOTOR_CONTOL.connectIVNoException("COLOUR",COLOUR);
+    PICK_COLOUR.connectIVNoException("K",COLOUR);
     CLOCK.DT.initializeNoException("t#100ms");
     PICK_COLOUR.IN0.initializeNoException("[0,0,0]");
     PICK_COLOUR.IN1.initializeNoException("[255,0,0]");
@@ -101,18 +101,18 @@ protected void connectInternal(ANY newVar) {
     CNV_LOAD_STATE.connectIVNoException("ID",LOAD_STATE);
   if(newVar == CNV_STATE)
     MOTOR.connectIVNoException("ID",CNV_STATE);
-  if(newVar == COLOUR)
-    MOTOR_CONTOL.connectIVNoException("COLOUR",COLOUR);
   if(newVar == P1)
     MOTOR_CONTOL.connectIVNoException("P1",P1);
   if(newVar == P2)
     MOTOR_CONTOL.connectIVNoException("P2",P2);
   if(newVar == P3)
     MOTOR_CONTOL.connectIVNoException("P3",P3);
-  if(newVar == COLOUR)
-    PICK_COLOUR.connectIVNoException("K",COLOUR);
   if(newVar == PREV)
     PREVIOUS.connectIVNoException("ID",PREV);
+  if(newVar == COLOUR)
+    MOTOR_CONTOL.connectIVNoException("COLOUR",COLOUR);
+  if(newVar == COLOUR)
+    PICK_COLOUR.connectIVNoException("K",COLOUR);
 }
 /** start the FB instances. */
 public void start( ){
@@ -160,9 +160,7 @@ public void reset( ){
 }
 protected synchronized void service_INIT(){
    MOTOR.INIT.serviceEvent(this);
-   CNV_LOAD_STATE.INIT.serviceEvent(this);
    MOTOR.INIT.serviceEvent(this);
-   CNV_LOAD_STATE.INIT.serviceEvent(this);
    MOTOR_CONTOL.INIT.serviceEvent(this);
    PREVIOUS.INIT.serviceEvent(this);
    TEST.INIT.serviceEvent(this);
@@ -173,6 +171,7 @@ protected synchronized void service_REQ(){
    PICK_COLOUR.REQ.serviceEvent(this);
    MOTOR_CONTOL.REQ.serviceEvent(this);
    TEST.REQ.serviceEvent(this);
+   CNV_LOAD_STATE.INIT.serviceEvent(this);
 }
 /** {@inheritDoc}
  * @param fbName {@inheritDoc}
