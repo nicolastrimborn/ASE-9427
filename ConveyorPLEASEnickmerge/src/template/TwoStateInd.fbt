@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TwoStateInd" Comment="Composite Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LABEL1" Type="WSTRING" />
+      <VarDeclaration Name="LABEL2" Type="WSTRING" />
+      <VarDeclaration Name="IN" Type="BOOL" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="State1" Type="OUT_BOOL" x="866.6666" y="283.3333" >
+      <Parameter Name="C0" Value="[255,255,255]" />
+      <Parameter Name="C1" Value="[0,255,0]" />
+      <Parameter Name="QI" Value="1" />
+    </FB>
+    <FB Name="State2" Type="OUT_BOOL" x="1955.5554" y="283.3333" >
+      <Parameter Name="C0" Value="[0,255,0]" />
+      <Parameter Name="C1" Value="[255,255,255]" />
+      <Parameter Name="QI" Value="1" />
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="State1.INIT" />
+      <Connection Source="State1.INITO" Destination="State2.INIT" dx1="55.555553" />
+      <Connection Source="REQ" Destination="State1.REQ" />
+      <Connection Source="State1.CNF" Destination="State2.REQ" dx1="55.555553" />
+      <Connection Source="State2.INITO" Destination="INITO" />
+      <Connection Source="State2.CNF" Destination="CNF" />
+      <Connection Source="INIT" Destination="State1.INIT" />
+      <Connection Source="State1.INITO" Destination="State2.INIT" dx1="55.555553" />
+      <Connection Source="REQ" Destination="State1.REQ" />
+      <Connection Source="State1.CNF" Destination="State2.REQ" dx1="55.555553" />
+      <Connection Source="State2.INITO" Destination="INITO" />
+      <Connection Source="State2.CNF" Destination="CNF" />
+      <Connection Source="INIT" Destination="State1.INIT" />
+      <Connection Source="State1.INITO" Destination="State2.INIT" dx1="55.555553" />
+      <Connection Source="REQ" Destination="State1.REQ" />
+      <Connection Source="State1.CNF" Destination="State2.REQ" dx1="55.555553" />
+      <Connection Source="State2.INITO" Destination="INITO" />
+      <Connection Source="State2.CNF" Destination="CNF" />
+      <Connection Source="INIT" Destination="State1.INIT" />
+      <Connection Source="State1.INITO" Destination="State2.INIT" dx1="55.555553" />
+      <Connection Source="REQ" Destination="State1.REQ" />
+      <Connection Source="State1.CNF" Destination="State2.REQ" dx1="55.555553" />
+      <Connection Source="State2.INITO" Destination="INITO" />
+      <Connection Source="State2.CNF" Destination="CNF" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="IN" Destination="State1.IN" />
+      <Connection Source="IN" Destination="State2.IN" />
+      <Connection Source="LABEL1" Destination="State1.LABEL" />
+      <Connection Source="LABEL2" Destination="State2.LABEL" />
+      <Connection Source="IN" Destination="State1.IN" />
+      <Connection Source="IN" Destination="State2.IN" />
+      <Connection Source="LABEL1" Destination="State1.LABEL" />
+      <Connection Source="LABEL2" Destination="State2.LABEL" />
+      <Connection Source="IN" Destination="State1.IN" />
+      <Connection Source="IN" Destination="State2.IN" />
+      <Connection Source="LABEL1" Destination="State1.LABEL" />
+      <Connection Source="LABEL2" Destination="State2.LABEL" />
+      <Connection Source="IN" Destination="State1.IN" />
+      <Connection Source="IN" Destination="State2.IN" />
+      <Connection Source="LABEL1" Destination="State1.LABEL" />
+      <Connection Source="LABEL2" Destination="State2.LABEL" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

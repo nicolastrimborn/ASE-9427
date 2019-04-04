@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FLASHERBLOCK" Comment="Multi-purpose LED Flasher" >
+  <Identification Standard="61499 ITA" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2011-05-04" Remarks="Added XML line delimiters to Algorithms." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="UnknownJHC" Date="2010-10-20" Remarks="Updated ECC transitions to 61499-1 Ed2 syntax." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-01-09" Remarks="Copied from FLASHER4." />
+<CompilerInfo header="package fb.rt.test;" >
+  <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="MODE" />
+      </Event>
+      <Event Name="REQ" Comment="Update Request" >
+        <With Var="MODE" />
+      </Event>
+      <Event Name="RESET" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="LED3" />
+        <With Var="LED2" />
+        <With Var="LED1" />
+        <With Var="LED0" />
+      </Event>
+      <Event Name="CNF" Comment="Update Confirmation" >
+        <With Var="LED3" />
+        <With Var="LED2" />
+        <With Var="LED1" />
+        <With Var="LED0" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="MODE" Type="UINT" Comment="0=FLASH_ALL,1=COUNT_UP,2=COUNT_DOWN,3=CHASE_UP,4=CHASE_DOWN" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="LED3" Type="BOOL" Comment="MSB" />
+      <VarDeclaration Name="LED2" Type="BOOL" />
+      <VarDeclaration Name="LED1" Type="BOOL" />
+      <VarDeclaration Name="LED0" Type="BOOL" Comment="LSB" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="OFLO" Type="BOOL" InitialValue="true" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="WAIT" x="1444.4443" y="1022.22217" >
+      </ECState>
+      <ECState Name="INIT" x="1444.4443" y="50.0" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="FLASH_ALL" x="2061.111" y="511.11108" >
+        <ECAction Algorithm="FLASH_ALL" Output="CNF" />
+      </ECState>
+      <ECState Name="COUNT_UP" x="2500.0" y="1455.5555" >
+        <ECAction Algorithm="COUNT_UP" Output="CNF" />
+      </ECState>
+      <ECState Name="COUNT_DOWN" x="1133.3333" y="2411.111" >
+        <ECAction Algorithm="COUNT_DOWN" Output="CNF" />
+      </ECState>
+      <ECState Name="CHASE_UP" x="283.3333" y="1544.4443" >
+        <ECAction Algorithm="ChaseUPST" Output="CNF" />
+      </ECState>
+      <ECState Name="CHASE_DOWN" x="222.22221" y="516.6666" >
+        <ECAction Algorithm="ChaseDOWNST" Output="CNF" />
+      </ECState>
+      <ECState Name="RESET_S" x="2222.2222" y="1805.5555" >
+        <ECAction Algorithm="INIT" Output="CNF" />
+      </ECState>
+      <ECTransition Source="WAIT" Destination="INIT" Condition="INIT" x="1677.7777" y="388.8889" />
+      <ECTransition Source="WAIT" Destination="FLASH_ALL" Condition="REQ [MODE=0]" x="2061.111" y="816.6666" />
+      <ECTransition Source="WAIT" Destination="COUNT_UP" Condition="REQ [MODE=1]" x="2861.111" y="1027.7777" />
+      <ECTransition Source="WAIT" Destination="COUNT_DOWN" Condition="REQ [MODE=2]" x="872.22217" y="2122.2222" />
+      <ECTransition Source="WAIT" Destination="CHASE_UP" Condition="REQ [MODE=3]" x="566.6666" y="1127.7777" />
+      <ECTransition Source="WAIT" Destination="CHASE_DOWN" Condition="REQ [MODE=4]" x="405.55554" y="849.99994" />
+      <ECTransition Source="INIT" Destination="WAIT" Condition="1" x="1227.7777" y="461.11108" />
+      <ECTransition Source="FLASH_ALL" Destination="WAIT" Condition="1" x="1649.9999" y="849.99994" />
+      <ECTransition Source="COUNT_UP" Destination="WAIT" Condition="1" x="2105.5554" y="1172.2222" />
+      <ECTransition Source="COUNT_DOWN" Destination="WAIT" Condition="1" x="1538.8888" y="1872.2222" />
+      <ECTransition Source="CHASE_UP" Destination="WAIT" Condition="1" x="1100.0" y="1200.0" />
+      <ECTransition Source="CHASE_DOWN" Destination="WAIT" Condition="1" x="1022.22217" y="849.99994" />
+      <ECTransition Source="WAIT" Destination="RESET_S" Condition="RESET" x="2033.3333" y="1505.5555" />
+      <ECTransition Source="RESET_S" Destination="WAIT" Condition="1" x="1699.9999" y="1600.0" />
+    </ECC>
+  <Algorithm Name="INIT" >
+<ST><![CDATA[LED0:=false;
+LED1:=false;
+LED2:=false;
+LED3:=false;
+OFLO:=true;]]></ST>
+  </Algorithm>
+  <Algorithm Name="COUNT_UP" >
+<ST><![CDATA[LED0:=NOT LED0;
+IF NOT LED0 THEN
+LED1:=NOT LED1;
+IF NOT LED1 THEN
+LED2:=NOT LED2;
+IF NOT LED2 THEN LED3:=NOT LED3;
+END_IF;
+END_IF;
+END_IF;
+]]></ST>
+  </Algorithm>
+  <Algorithm Name="COUNT_DOWN" >
+<ST><![CDATA[LED0:=NOT LED0;
+IF LED0 THEN
+LED1:=NOT LED1;
+IF LED1 THEN
+LED2:=NOT LED2;
+IF LED2 THEN LED3:=NOT LED3;
+END_IF;
+END_IF;
+END_IF;
+]]></ST>
+  </Algorithm>
+  <Algorithm Name="FLASH_ALL" >
+    <LD >
+      <Rung Output="LED0"><![CDATA[LED0 ! ]]></Rung>
+      <Rung Output="LED1"><![CDATA[LED1 ! ]]></Rung>
+      <Rung Output="LED2"><![CDATA[LED2 ! ]]></Rung>
+      <Rung Output="LED3"><![CDATA[LED3 ! ]]></Rung>
+    </LD>
+  </Algorithm>
+  <Algorithm Name="ChaseUPST" >
+<ST><![CDATA[IF LED3 THEN
+	OFLO:=true;
+	LED3:=false;
+END_IF;
+
+IF LED2 THEN
+	LED3:=true;
+	LED2:=false;
+END_IF;
+
+IF LED1 THEN
+	LED2:=true;
+	LED1:=false;
+END_IF;
+
+IF LED0 THEN
+	LED1:=true;
+	LED0:=false;
+END_IF;
+
+IF OFLO THEN
+	LED0:=true;
+	OFLO:=false;
+END_IF;]]></ST>
+  </Algorithm>
+  <Algorithm Name="ChaseDOWNST" >
+<ST><![CDATA[IF LED0 THEN
+	OFLO:=true;
+	LED0:=false;
+END_IF;
+
+IF LED1 THEN
+	LED0:=true;
+	LED1:=false;
+END_IF;
+
+IF LED2 THEN
+	LED1:=true;
+	LED2:=false;
+END_IF;
+
+IF LED3 THEN
+	LED2:=true;
+	LED3:=false;
+END_IF;
+
+IF OFLO THEN
+	LED3:=true;
+	OFLO:=false;
+END_IF;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

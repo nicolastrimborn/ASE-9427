@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PASS_COLOUR2" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="QI" />
+        <With Var="CI" />
+      </Event>
+      <Event Name="REQ1" Comment="Normal Execution Request" >
+        <With Var="QI" />
+        <With Var="CI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="CI" Type="COLOR" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="CO" Type="COLOR" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="922.22217" y="138.88889" >
+        <ECAction Algorithm="INIT" Output="CNF" />
+      </ECState>
+      <ECState Name="REQ1" Comment="Normal execution" x="677.7778" y="2327.7776" >
+        <ECAction Algorithm="REQ1" Output="CNF" />
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="555.55554" y="138.88889" />
+      <ECTransition Source="START" Destination="REQ1" Condition="REQ1" x="1194.4445" y="1305.5555" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="922.22217" y="427.77777" />
+      <ECTransition Source="REQ1" Destination="START" Condition="1" x="677.7778" y="1999.9999" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<ST><![CDATA[QO:=FALSE;
+CO:=CI;]]></ST>
+  </Algorithm>
+  <Algorithm Name="REQ1" Comment="Normally executed algorithm" >
+<ST><![CDATA[QO:=QI;]]></ST>
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "https://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="Basic" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2009-09-15" Remarks="Changed transition priorities." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+<CompilerInfo header="package fb.rt.template;" >
+</CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ1" Comment="Normal Execution Request" >
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ2" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="QO1" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO1" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="CI" Type="COLOR" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO1" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="CO" Type="COLOR" />
+      <VarDeclaration Name="QO2" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="555.55554" y="427.77777" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="922.22217" y="138.88889" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="REQ1" Comment="Normal execution" x="216.66666" y="755.55554" >
+        <ECAction Algorithm="REQ1" Output="CNF" />
+      </ECState>
+      <ECState Name="REQ2" x="1883.3333" y="988.88885" >
+      </ECState>
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="555.55554" y="138.88889" />
+      <ECTransition Source="START" Destination="REQ1" Condition="REQ1" x="555.55554" y="600.0" />
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="922.22217" y="427.77777" />
+      <ECTransition Source="REQ1" Destination="START" Condition="1" x="216.66666" y="427.77777" />
+      <ECTransition Source="START" Destination="REQ2" Condition="REQ2" x="1566.6666" y="650.0" />
+      <ECTransition Source="REQ2" Destination="START" Condition="1" x="1222.2222" y="711.1111" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+<Other Language="Java"><![CDATA[QO1.value=false;
+QO2.value=true;
+CO.value=CI.value;]]></Other>
+  </Algorithm>
+<<<<<<< HEAD
+  <Algorithm Name="REQ1" Comment="Normally executed algorithm" >
+<Other Language="Java"><![CDATA[QO1.value=QI.value;
+QO2.value=QI.value;
+CI.value=CO.value;]]></Other>
+=======
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+<Other Language="Java"><![CDATA[QI.value=QO.value;
+CI.value=CO.value;
+CI.value=[0 0 0];]]></Other>
+>>>>>>> 4fc5eddf98f340facf2279a41ea4e68315b1aa5f
+  </Algorithm>
+  </BasicFB>
+</FBType>
